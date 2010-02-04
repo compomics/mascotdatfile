@@ -1,4 +1,4 @@
-=Introduction to MascotDatfile=
+=Introduction to MascotDatfileee=
 
 This library was developed as a tool for the large scale analysis of all data inside one or more complex Mascot() MS/MS datfiles for a variety of purposes.
 The main functionality consists of retrieving a Mascot datfile from multiple sources (a harddisk, database or MascotServer URL ) and transforming into a functional object model.
