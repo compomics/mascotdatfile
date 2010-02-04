@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.computationalomics</groupId>
+	<groupId>com.compomics</groupId>
 	<artifactId>mascotdatfile</artifactId>
 	<packaging>jar</packaging>
 	<version>${version.number}</version>
@@ -10,7 +10,7 @@
 
 <!-- Set the version number for the whole project -->
 	<properties>
-		<version.number>2.4</version.number>
+		<version.number>3.0</version.number>
 	</properties>
     
 <!-- Licence -->
@@ -55,7 +55,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.computationalomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui.Spectrumviewer_gui</mainClass>
+							<mainClass>com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui.Spectrumviewer_gui</mainClass>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib</classpathPrefix>
 						</manifest>
@@ -153,7 +153,7 @@
         <!-- This project depends on the utilities JAR file.
           -->
         <dependency>
-            <groupId>com.computationalomics</groupId>
+            <groupId>com.compomics</groupId>
             <artifactId>utilities</artifactId>
             <version>3.0</version>
             <type>jar</type>
