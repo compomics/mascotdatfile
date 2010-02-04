@@ -6,7 +6,7 @@
  * To change template for new class use 
  * Code Style | Class Templates options (Tools | IDE Options).
  */
-package com.computationalomics.mascotdatfile.util.mascot.parser;
+package com.compomics.mascotdatfile.util.mascot.parser;
 
 import java.io.*;
 import java.util.HashMap;

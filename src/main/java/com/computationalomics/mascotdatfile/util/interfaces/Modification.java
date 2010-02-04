@@ -21,7 +21,7 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.util.interfaces;
+package com.compomics.mascotdatfile.util.interfaces;
 
 /**
  * Created by IntelliJ IDEA.

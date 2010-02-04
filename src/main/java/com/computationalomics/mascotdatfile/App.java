@@ -1,4 +1,4 @@
-package com.computationalomics.mascotdatfile;
+package com.compomics.mascotdatfile;
 
 /**
  * Hello world!

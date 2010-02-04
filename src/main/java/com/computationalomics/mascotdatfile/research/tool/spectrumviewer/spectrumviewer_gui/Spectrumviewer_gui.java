@@ -21,11 +21,11 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
+package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
 
-import com.computationalomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model.DatfileTreePanel;
-import com.computationalomics.mascotdatfile.research.util.DatfileLocation;
-import com.computationalomics.mascotdatfile.util.mascot.MascotDatfile;
+import com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model.DatfileTreePanel;
+import com.compomics.mascotdatfile.research.util.DatfileLocation;
+import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;

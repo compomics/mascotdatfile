@@ -1,7 +1,7 @@
-package com.computationalomics.mascotdatfile.util.interfaces;
+package com.compomics.mascotdatfile.util.interfaces;
 
-import com.computationalomics.mascotdatfile.util.mascot.*;
-import com.computationalomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
+import com.compomics.mascotdatfile.util.mascot.*;
+import com.compomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
 
 import java.util.HashMap;
 import java.util.Vector;

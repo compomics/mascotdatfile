@@ -21,9 +21,9 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model;
+package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model;
 
-import com.computationalomics.mascotdatfile.util.mascot.PeptideHit;
+import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.Hashtable;

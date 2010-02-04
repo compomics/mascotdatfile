@@ -21,11 +21,11 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.research.script;
+package com.compomics.mascotdatfile.research.script;
 
-import com.computationalomics.mascotdatfile.research.util.DatfileLocation;
-import com.computationalomics.mascotdatfile.util.mascot.*;
-import com.computationalomics.util.gui.spectrum.SpectrumPanel;
+import com.compomics.mascotdatfile.research.util.DatfileLocation;
+import com.compomics.mascotdatfile.util.mascot.*;
+import com.compomics.util.gui.spectrum.SpectrumPanel;
 
 import javax.swing.*;
 import java.awt.*;

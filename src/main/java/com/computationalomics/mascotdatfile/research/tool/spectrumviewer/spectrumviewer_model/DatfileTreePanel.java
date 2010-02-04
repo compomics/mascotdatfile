@@ -21,13 +21,13 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model;
+package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model;
 
-import com.computationalomics.mascotdatfile.util.mascot.MascotDatfile;
-import com.computationalomics.mascotdatfile.util.mascot.PeptideHit;
-import com.computationalomics.mascotdatfile.util.mascot.PeptideHitAnnotation;
-import com.computationalomics.mascotdatfile.util.mascot.Query;
-import com.computationalomics.util.gui.spectrum.SpectrumPanel;
+import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
+import com.compomics.mascotdatfile.util.mascot.PeptideHit;
+import com.compomics.mascotdatfile.util.mascot.PeptideHitAnnotation;
+import com.compomics.mascotdatfile.util.mascot.Query;
+import com.compomics.util.gui.spectrum.SpectrumPanel;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;

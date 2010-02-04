@@ -21,9 +21,9 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.util.mascot;
+package com.compomics.mascotdatfile.util.mascot;
 
-import com.computationalomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
+import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 
 import java.util.HashMap;
 import java.util.Vector;

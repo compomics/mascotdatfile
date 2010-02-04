@@ -1,4 +1,4 @@
-package com.computationalomics.mascotdatfile.util.io;
+package com.compomics.mascotdatfile.util.io;
 
 import psidev.psi.tools.xxindex.StandardXpathAccess;
 import psidev.psi.tools.xxindex.index.IndexElement;

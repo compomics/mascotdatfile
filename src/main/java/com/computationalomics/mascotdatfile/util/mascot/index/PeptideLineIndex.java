@@ -1,4 +1,4 @@
-package com.computationalomics.mascotdatfile.util.mascot.index;
+package com.compomics.mascotdatfile.util.mascot.index;
 
 import java.util.Iterator;
 

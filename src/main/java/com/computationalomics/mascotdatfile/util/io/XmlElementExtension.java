@@ -1,4 +1,4 @@
-package com.computationalomics.mascotdatfile.util.io;
+package com.compomics.mascotdatfile.util.io;
 
 import java.util.HashMap;
 import java.util.StringTokenizer;
