@@ -1,4 +1,4 @@
-#Introduction to MascotDatfile.
+=Introduction to MascotDatfile=
 
 This library was developed as a tool for the large scale analysis of all data inside one or more complex Mascot() MS/MS datfiles for a variety of purposes.
 The main functionality consists of retrieving a Mascot datfile from multiple sources (a harddisk, database or MascotServer URL ) and transforming into a functional object model.
@@ -12,17 +12,4 @@ A MascotDatfile instance captures all the data from PeptideHits and Queries into
 
 *In summary, this library makes the raw data inside Mascot datfiles easily accessible for research purposes.*
 
-The library is written by Kenny Helsens (kenny.helsens AT UGent.be) and you can contact the author for any questions concerning this library. Also feel free to contact me whenever you have suggestions/enhancements/comments to library.
-
-
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+The library is written by Kenny Helsens ([kenny.helsens@UGent.be] and you can contact the author for any questions concerning this library. Also feel free to contact me whenever you have suggestions/enhancements/comments to library.
