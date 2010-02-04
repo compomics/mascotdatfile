@@ -21,9 +21,9 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
+package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
 
-import com.computationalomics.mascotdatfile.util.mascot.MascotDatfile;
+import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 
 /**
  * <b>Created by IntelliJ IDEA.</b> User: Kenni Date: 10-jul-2006 Time: 15:06:08

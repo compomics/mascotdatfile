@@ -21,11 +21,11 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.research.util;
+package com.compomics.mascotdatfile.research.util;
 
-import com.computationalomics.mascotdatfile.util.mascot.MascotDatfile;
-import com.computationalomics.mascotdatfile.util.mascot.PeptideHit;
-import com.computationalomics.mascotdatfile.util.mascot.QueryToPeptideMap;
+import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
+import com.compomics.mascotdatfile.util.mascot.PeptideHit;
+import com.compomics.mascotdatfile.util.mascot.QueryToPeptideMap;
 
 import java.io.BufferedWriter;
 import java.io.File;

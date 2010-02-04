@@ -21,10 +21,10 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.research.script;
+package com.compomics.mascotdatfile.research.script;
 
-import com.computationalomics.mascotdatfile.util.interfaces.Modification;
-import com.computationalomics.mascotdatfile.util.mascot.*;
+import com.compomics.mascotdatfile.util.interfaces.Modification;
+import com.compomics.mascotdatfile.util.mascot.*;
 
 import java.io.*;
 import java.util.ArrayList;

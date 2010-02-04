@@ -1,4 +1,4 @@
-package com.computationalomics.mascotdatfile.util.mascot.enumeration;
+package com.compomics.mascotdatfile.util.mascot.enumeration;
 
 /**
  * Enumaration for the distinct MascotDatfile types.

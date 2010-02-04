@@ -1,7 +1,7 @@
-package com.computationalomics.mascotdatfile.util.mascot.quantitation;
+package com.compomics.mascotdatfile.util.mascot.quantitation;
 
-import com.computationalomics.mascotdatfile.util.mascot.Peak;
-import com.computationalomics.mascotdatfile.util.mascot.enumeration.Mass;
+import com.compomics.mascotdatfile.util.mascot.Peak;
+import com.compomics.mascotdatfile.util.mascot.enumeration.Mass;
 
 import java.math.BigDecimal;
 

@@ -21,11 +21,11 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.util.mascot;
+package com.compomics.mascotdatfile.util.mascot;
 
-import com.computationalomics.mascotdatfile.util.interfaces.MascotDatfileInf;
-import com.computationalomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
-import com.computationalomics.mascotdatfile.util.mascot.parser.MascotRawParser;
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
+import com.compomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
+import com.compomics.mascotdatfile.util.mascot.parser.MascotRawParser;
 
 import java.io.BufferedReader;
 import java.io.File;

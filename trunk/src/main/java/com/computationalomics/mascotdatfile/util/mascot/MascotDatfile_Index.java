@@ -21,14 +21,14 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.util.mascot;
+package com.compomics.mascotdatfile.util.mascot;
 
-import com.computationalomics.mascotdatfile.util.interfaces.MascotDatfileInf;
-import com.computationalomics.mascotdatfile.util.mascot.index.Controller;
-import com.computationalomics.mascotdatfile.util.mascot.index.DecoyQueryToPeptideMap_Index;
-import com.computationalomics.mascotdatfile.util.mascot.index.QueryToPeptideMap_Index;
-import com.computationalomics.mascotdatfile.util.mascot.index.SummaryIndex;
-import com.computationalomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
+import com.compomics.mascotdatfile.util.mascot.index.Controller;
+import com.compomics.mascotdatfile.util.mascot.index.DecoyQueryToPeptideMap_Index;
+import com.compomics.mascotdatfile.util.mascot.index.QueryToPeptideMap_Index;
+import com.compomics.mascotdatfile.util.mascot.index.SummaryIndex;
+import com.compomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
 
 import java.io.BufferedReader;
 import java.io.File;

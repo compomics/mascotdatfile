@@ -1,4 +1,4 @@
-package com.computationalomics.mascotdatfile.util.mascot;
+package com.compomics.mascotdatfile.util.mascot;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ import java.io.Serializable;
  * <p/>
  * This class represents an ErrorTolerantModification.
  */
-public class ErrorTolerantModification implements com.computationalomics.mascotdatfile.util.interfaces.Modification, Serializable {
+public class ErrorTolerantModification implements com.compomics.mascotdatfile.util.interfaces.Modification, Serializable {
     /**
      * The standard type of the variable modification.
      */

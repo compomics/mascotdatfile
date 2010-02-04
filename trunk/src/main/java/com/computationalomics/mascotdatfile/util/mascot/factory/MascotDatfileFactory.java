@@ -1,9 +1,9 @@
-package com.computationalomics.mascotdatfile.util.mascot.factory;
+package com.compomics.mascotdatfile.util.mascot.factory;
 
-import com.computationalomics.mascotdatfile.util.interfaces.MascotDatfileInf;
-import com.computationalomics.mascotdatfile.util.mascot.MascotDatfile;
-import com.computationalomics.mascotdatfile.util.mascot.MascotDatfile_Index;
-import com.computationalomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
+import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
+import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
+import com.compomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
 
 import java.io.BufferedReader;
 

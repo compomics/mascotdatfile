@@ -21,12 +21,12 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.util.mascot.index;
+package com.compomics.mascotdatfile.util.mascot.index;
 
-import com.computationalomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
-import com.computationalomics.mascotdatfile.util.mascot.ModificationList;
-import com.computationalomics.mascotdatfile.util.mascot.PeptideHit;
-import com.computationalomics.mascotdatfile.util.mascot.ProteinMap;
+import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
+import com.compomics.mascotdatfile.util.mascot.ModificationList;
+import com.compomics.mascotdatfile.util.mascot.PeptideHit;
+import com.compomics.mascotdatfile.util.mascot.ProteinMap;
 
 /**
  * Created by IntelliJ IDEA.

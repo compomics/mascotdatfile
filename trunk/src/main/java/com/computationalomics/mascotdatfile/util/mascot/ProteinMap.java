@@ -1,4 +1,4 @@
-package com.computationalomics.mascotdatfile.util.mascot;
+package com.compomics.mascotdatfile.util.mascot;
 
 import java.util.HashMap;
 import java.util.Iterator;

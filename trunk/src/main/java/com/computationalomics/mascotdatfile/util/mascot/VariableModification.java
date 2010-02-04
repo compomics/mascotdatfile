@@ -21,7 +21,7 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.util.mascot;
+package com.compomics.mascotdatfile.util.mascot;
 
 import java.io.Serializable;
 
@@ -35,7 +35,7 @@ import java.io.Serializable;
 /**
  * Instances of this class represent 1 variable modification that can used to create a peptideHit while doing the Mascot search.
  */
-public class VariableModification implements com.computationalomics.mascotdatfile.util.interfaces.Modification, Serializable {
+public class VariableModification implements com.compomics.mascotdatfile.util.interfaces.Modification, Serializable {
     /**
      * The standard type of the variable modification.
      */

@@ -21,10 +21,10 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.util.interfaces;
+package com.compomics.mascotdatfile.util.interfaces;
 
-import com.computationalomics.mascotdatfile.util.mascot.Peak;
-import com.computationalomics.util.gui.interfaces.SpectrumAnnotation;
+import com.compomics.mascotdatfile.util.mascot.Peak;
+import com.compomics.util.gui.interfaces.SpectrumAnnotation;
 
 import java.awt.*;
 

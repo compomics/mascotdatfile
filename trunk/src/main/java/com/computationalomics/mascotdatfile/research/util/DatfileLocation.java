@@ -21,9 +21,9 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.research.util;
+package com.compomics.mascotdatfile.research.util;
 
-import com.computationalomics.mascotdatfile.util.mascot.MascotDatfile;
+import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 
 import java.io.BufferedReader;
 import java.io.IOException;

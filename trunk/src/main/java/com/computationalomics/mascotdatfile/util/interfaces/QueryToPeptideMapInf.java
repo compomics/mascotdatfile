@@ -1,6 +1,6 @@
-package com.computationalomics.mascotdatfile.util.interfaces;
+package com.compomics.mascotdatfile.util.interfaces;
 
-import com.computationalomics.mascotdatfile.util.mascot.PeptideHit;
+import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 
 import java.util.Vector;
 

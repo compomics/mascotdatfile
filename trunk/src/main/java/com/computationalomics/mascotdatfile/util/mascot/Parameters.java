@@ -21,7 +21,7 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.util.mascot;
+package com.compomics.mascotdatfile.util.mascot;
 
 import java.io.Serializable;
 import java.util.HashMap;

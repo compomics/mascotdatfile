@@ -27,7 +27,7 @@
  * Date: 2-mrt-2006
  * Time: 10:43:47
  */
-package com.computationalomics.mascotdatfile.util.mascot;
+package com.compomics.mascotdatfile.util.mascot;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

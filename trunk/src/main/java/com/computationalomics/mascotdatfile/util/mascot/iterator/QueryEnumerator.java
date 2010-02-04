@@ -1,7 +1,7 @@
-package com.computationalomics.mascotdatfile.util.mascot.iterator;
+package com.compomics.mascotdatfile.util.mascot.iterator;
 
-import com.computationalomics.mascotdatfile.util.interfaces.MascotDatfileInf;
-import com.computationalomics.mascotdatfile.util.mascot.Query;
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
+import com.compomics.mascotdatfile.util.mascot.Query;
 
 import java.util.Enumeration;
 

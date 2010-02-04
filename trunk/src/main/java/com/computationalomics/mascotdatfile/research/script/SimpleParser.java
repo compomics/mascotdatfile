@@ -1,13 +1,13 @@
-package com.computationalomics.mascotdatfile.research.script;
+package com.compomics.mascotdatfile.research.script;
 
-import com.computationalomics.mascotdatfile.util.interfaces.MascotDatfileInf;
-import com.computationalomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
-import com.computationalomics.mascotdatfile.util.mascot.PeptideHit;
-import com.computationalomics.mascotdatfile.util.mascot.ProteinHit;
-import com.computationalomics.mascotdatfile.util.mascot.ProteinID;
-import com.computationalomics.mascotdatfile.util.mascot.Query;
-import com.computationalomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
-import com.computationalomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
+import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
+import com.compomics.mascotdatfile.util.mascot.PeptideHit;
+import com.compomics.mascotdatfile.util.mascot.ProteinHit;
+import com.compomics.mascotdatfile.util.mascot.ProteinID;
+import com.compomics.mascotdatfile.util.mascot.Query;
+import com.compomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
+import com.compomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.computationalomics.mascotdatfile.util.mascot.quantitation;
+package com.compomics.mascotdatfile.util.mascot.quantitation;
 
 /**
  * Created by IntelliJ IDEA.

@@ -21,10 +21,10 @@
  * lennart.martens@ebi.ac.uk
  */
 
-package com.computationalomics.mascotdatfile.util.mascot.fragmentions;
+package com.compomics.mascotdatfile.util.mascot.fragmentions;
 
-import com.computationalomics.mascotdatfile.util.interfaces.FragmentIon;
-import com.computationalomics.mascotdatfile.util.mascot.Peak;
+import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
+import com.compomics.mascotdatfile.util.mascot.Peak;
 
 import java.awt.*;
 import java.io.Serializable;

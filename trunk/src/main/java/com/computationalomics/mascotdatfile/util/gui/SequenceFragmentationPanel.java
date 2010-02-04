@@ -1,11 +1,11 @@
-package com.computationalomics.mascotdatfile.util.gui;
+package com.compomics.mascotdatfile.util.gui;
 
-import com.computationalomics.mascotdatfile.util.interfaces.FragmentIon;
-import com.computationalomics.mascotdatfile.util.mascot.MascotDatfile;
-import com.computationalomics.mascotdatfile.util.mascot.PeptideHit;
-import com.computationalomics.mascotdatfile.util.mascot.Query;
-import com.computationalomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
-import com.computationalomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
+import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
+import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
+import com.compomics.mascotdatfile.util.mascot.PeptideHit;
+import com.compomics.mascotdatfile.util.mascot.Query;
+import com.compomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
+import com.compomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,9 +1,9 @@
-package com.computationalomics.mascotdatfile.util.mascot;
+package com.compomics.mascotdatfile.util.mascot;
 
-import com.computationalomics.mascotdatfile.util.io.IndexElementExtension;
-import com.computationalomics.mascotdatfile.util.io.XmlElementExtension;
-import com.computationalomics.mascotdatfile.util.mascot.quantitation.Component;
-import com.computationalomics.mascotdatfile.util.mascot.quantitation.Ratio;
+import com.compomics.mascotdatfile.util.io.IndexElementExtension;
+import com.compomics.mascotdatfile.util.io.XmlElementExtension;
+import com.compomics.mascotdatfile.util.mascot.quantitation.Component;
+import com.compomics.mascotdatfile.util.mascot.quantitation.Ratio;
 import psidev.psi.tools.xxindex.StandardXpathAccess;
 import psidev.psi.tools.xxindex.index.IndexElement;
 import psidev.psi.tools.xxindex.index.StandardXpathIndex;
