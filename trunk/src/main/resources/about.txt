@@ -1,0 +1,138 @@
+0. Table of contents.
+---------------------
+
+ 0. Table of contents
+
+ 1. About
+
+ 2. About the author
+
+ 3. Changelog
+
+
+
+
+1. About MascotDatfile
+----------------
+The MascotDatfile library allows the fast analysis of peptide identifications produced by Mascot (Matrix Science). It is a tool designed for the flexible and detailed analysis of raw data inside a large and complex project for all uses and purposes. The library was compiled using Sun's Java JDK 1.5. Working code is guaranteed by a complete JUnit 3.8 testing suite. The library's build process is automated by a Maven 1.0.2 pom. 
+
+   
+2. About the author
+----------------
+Kenny Helsens (kenny.helsens AT UGent.be) is a PhD (or predoctoral as we say in Europe) student at the lab of Prof. Dr. Kris Gevaert and Prof. Dr. Joël Vandekerckhove in the VIB Department of Medical Protein Research, UGent - Proteome Analysis and Bioinformatics Unit (http://www.proteomics.be/).
+
+At the time of this writing he is supported by an IWT scholarship (the IWT is the Institue for encouraging innoation by Science and technology in Flanders, http://www.iwt.be/) and is specializing in bioinformatics with a focus on proteomics.
+
+3. Changelog
+--------------------
+
+- Version	1
+	This is the initial release with the core functionalities of the MascotDatfile library.
+
+
+- Version	1.1
+	This release features the first version of SpectrumViewer capable of loading a single peptidehit in an annotated spectrum from mutliple sources. Solved a severe bug in the peak annotation functionality!
+
+
+- Version	1.2
+	This release features an new SpectrumViewer capable of displaying Queries and PeptideHits in a Tree structure.
+
+
+- Version	1.3
+	In this minor release a new object is added. A ProteinMap is now accessible on the main MascotDatfile instance. Protein descriptions or ProteinID objects can returned when a PeptideHit's accession is passed to the ProteinMap's interface. A cleanup of the UnitTest code was also performed.
+
+
+- Version	1.4
+	This release Created two new methods on PeptideHitAnnotation. SequenceCoverage for Mascot matched fragmentions and Fused matched fragmentions can be requested by signatures getMascotIonCoverage() and getFusedIonCoverage(). The code is re-used from the SequenceCoverage script.
+
+
+- Version	1.5
+	This release is a major release. MascotDatfile is now independent from ms_lims. Ms_lims classes that were doing the raw parsing of raw result files were moved into MascotDatfile. SpectrumPanel has been moved to Utilities so their are no linkages left from mascotdatfile to ms_lims. Some classes from the research package that enabled MascotDatfile to interact with ms_lims were removed as well. Second, a new GUI component that draws relational intensity based fragmention information along the modified sequence was created.
+
+
+- Version	1.2.1 
+	This release features a minor requested update for improved handling of short modification descriptions that are not included in ModificationConversion.txt.
+
+
+- Version	1.2.2 
+	This is a minor release wherein a bugfix is done when one has to load a datfile without any peptidehits.
+
+
+- Version	1.2.3 
+	In this minor release a bugfix is done in a switch statement causing disfunctionality of the URL dialog.
+
+
+- Version	1.3.1 
+	In this minor release some new features are added. EnumerateMascotDatfile can return an identity for the datfile in memory.
+
+
+- Version	1.3.2 
+	In this minor release some bugs are fixed. The ProteinID object was using an "enum" as a name for a variable. This was fine for jdk 1.4, though it crashed more recent versions of Java. Forward compatibility problem .. :) Parsing of the ProteinHit String from the datfile used a StringTokenizer on a locon sign, this caused errors with IPI accessions.
+
+
+- Version	1.3.3 
+	In this minor release the Spectrum interface signature was broadened with new methods.
+
+
+- Version	1.3.4 
+	In this minor release output functionality is added. This requires a new dependency from the iText library. In the Tools menu, there is a new option "pdf output" that allows you to output the active spectrum that is shown at that time.
+
+
+- Version	1.3.5 
+	This minor release is a bugfix that caused a StringIndexOutofBoundsException if a variable modification did not have a location in 'Mascot format' in the title (e.g.: (N-term)).
+
+
+- Version	1.3.6 
+	This minor release adds a new method getFileName() on MascotDatfile. If a MascotDatfile instance is created from an InputStream, this FileName can be passed with the constructor, though it's not necessairy for backwards compatibility.
+
+
+- Version	1.3.7 
+	This minor release adds a new (previously overlooked) method getHomologyThreshold() on MascotDatfile. This value is directly usable from the .dat file as the QPlugHole value in the summary section.
+
+
+- Version	1.3.8 
+	This release made all objects beyond a PeptideHit serializable.
+
+
+- Version	1.3.9 
+	This release Created two new methods on MascotDatfile. Both are related to the decoy search features of Mascot since version 2.2. If a "decoy_petides" section is availlable, it can be parsed into a QueryToPeptideMap through the MascotDatfile interface.
+
+
+- Version	1.4.1 
+	getPrecursorAndImmoniumIons() is now a public method.
+
+
+- Version	1.4.2 
+	This release added a new method to a PeptideHit. getModifiedSequenceComponents() returns a String[] with distinct components of the modified primary sequence. Request for mslims6.
+
+
+- Version	1.4.3 
+	This release is a bugfix. The modified sequence displayed fixed modification incorrect on NTerminal modidifcations. Reorganized modified sequence methods in PeptideHit as well.
+
+
+- Version	1.5.1 
+	During the parsing of the ModifiedSequence, the location of the '-' char for the N and C terminal ends is crucial. When MascotDatfile however returns full name mods if no short name is availlable. (example) #AcetylHeavy (N-term)#-AKKEF-COOH appears instead of AceD3-AKKEF-COOH. The parsing of the ModifiedSequence therefore looks now for the '#' chars as an indiciation for the Nterminal modfication.
+
+
+- Version	1.5.2 
+	The SequenceFragmentationPanel now also looks for double charged b++ and y++ ions. Introduced illegal characters for short names in the ModificationConversion. If these are encountered, ModificationConversion.java will throw an RunTimeException and stop parsing.
+
+
+- Version	1.5.3 
+	Serious bug concerning the calculation of fragmentions has been solved. When a peptide was identified with a fixed modification on the C-terminus or N-terminus, the calculation of the y and b ions was erronous. Fixed and new tests and test files included.
+
+
+- Version	1.5.4 
+	This minor release fixes a bug if the fixed modifications does not provide a location in the parameters section of the raw file. Second, the Mascot TOL parameter was incorrectly used as iErrorMargin field on a FragmentIon instance. The fragmention matching methods did however not suffer from this since ITOL was correctly used at the matching level. When the FragmentIon instances were however drawn onto a spectrumPanel, TOL was incorrectly used instead of ITOL. This has also been fixed in this release.
+
+
+- Version	1.5.5 
+	This minor release adds a new method to the ProteinMap. getProteinIDIterator() returns an iterator on the keyset of the hashmap containing all the ProteinID's. This iterator can then be used to iterate over the datfile by Protein Accession instead of Querynumber.
+
+
+- Version	1.5.6 
+	This minor release catches an OutOfBounds Exception that was thrown upon parsing a ProteinHit that has no accession. Such a file example was encoutered in the template file that comes with the PrideWizard.
+
+- Version	2.1.2
+	This minor release adds parsing for the 'rtinseconds' query header attribute when present.
+
