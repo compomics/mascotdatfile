@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Date: Jun 15, 2009
  * Time: 12:09:30 PM
  * <p/>
- * This class
+ * This class represents an ErrorTolerantModification.
  */
 public class ErrorTolerantModification implements com.computationalomics.mascotdatfile.util.interfaces.Modification, Serializable {
     /**
