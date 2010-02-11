@@ -167,7 +167,6 @@
             <version>2.0.8</version>
             <type>jar</type>
         </dependency>
-                             e
         <!-- This project depends on the commons-logging JAR file.
           -->
         <dependency>
