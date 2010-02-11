@@ -6,7 +6,7 @@
 	<packaging>jar</packaging>
 	<version>${version.number}</version>
 	<name>mascotdatfile</name>
-	<url>http://genesis.ugent.be/mascotdatfile</url>
+	<url>http://mascotdatfile.googlecode.com</url>
 
 <!-- Set the version number for the whole project -->
 	<properties>
@@ -162,12 +162,12 @@
         <!-- This project depends on the iText pdf library for pdf output.
           -->
         <dependency>
-            <groupId>kenny</groupId>
-            <artifactId>itext</artifactId>
-            <version>2.0.2</version>
+            <groupId>itext</groupId>
+            <artifactId>iText</artifactId>
+            <version>2.0.8</version>
             <type>jar</type>
         </dependency>
-
+                             e
         <!-- This project depends on the commons-logging JAR file.
           -->
         <dependency>
@@ -204,4 +204,15 @@
             <type>jar</type>
         </dependency>
 	</dependencies>
+
+      <!-- The deployment maven2 repository-->
+      <distributionManagement>
+        <repository>
+            <id>genesis-maven2-repo</id>
+            <name>Genesis Maven Repository</name>
+            <url>scp://genesis.ugent.be/home/maven/public_html/maven2</url>
+        </repository>
+    </distributionManagement>
+
+
 </project>
