@@ -9,10 +9,10 @@ Starting from MascotDatfile version 3.0, all subsequent versions of the library 
 
 
 ===3.0.1===
-* When more then 10 variable modifications are applied, the modification id becomes hexadecimal ('A' for the tenth modification) and caused an parsing error in MascotDatfile.
+ * When more then 10 variable modifications are applied, the modification id becomes hexadecimal ('A' for the tenth modification) and caused an parsing error in MascotDatfile.
 
 ==3.0==
-** Initial import of the MascotDatfile library into google code.
+ * Initial import of the MascotDatfile library into google code.
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
