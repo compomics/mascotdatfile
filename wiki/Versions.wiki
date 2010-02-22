@@ -1,7 +1,6 @@
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
 
 ===3.0.1===
-_22022010_
  * When more then 10 variable modifications are applied, the modification id becomes hexadecimal ('A' for the tenth modification) and caused an parsing error in MascotDatfile.
 
 ==3.0==
