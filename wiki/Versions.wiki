@@ -13,8 +13,3 @@ Starting from MascotDatfile version 3.0, all subsequent versions of the library 
 
 ==3.0==
  * Initial import of the MascotDatfile library into google code.
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
