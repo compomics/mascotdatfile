@@ -1,12 +1,4 @@
-#List of the distinct MascotDatfile versions.
-
-= Introduction =
-
-Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed below.
-
-
-= Versions =
-
+#Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
 
 ===3.0.1===
  * When more then 10 variable modifications are applied, the modification id becomes hexadecimal ('A' for the tenth modification) and caused an parsing error in MascotDatfile.
