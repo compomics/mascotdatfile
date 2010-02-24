@@ -612,7 +612,7 @@ public class PeptideHit implements Serializable {
                         lType = token.substring(indexStart, indexStop);
 
                         // The short name.
-                        lShortType = (String) ModificationConversion.getConversionMap().get(token);
+                        lShortType = (String) ModificationConversion.getInstance().getConversionMap().get(token);
                         if (lShortType == null) {
                             lShortType = "ETS_" + lType;
                         } else {
