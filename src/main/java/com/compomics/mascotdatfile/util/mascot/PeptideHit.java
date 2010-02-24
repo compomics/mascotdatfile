@@ -451,7 +451,7 @@ public class PeptideHit implements Serializable {
         for (int i = 0; i < aVariableModificationString.length(); i++) {
             char c = aVariableModificationString.charAt(i);
             if (c != 'X') {
-                iVariableModificationsArray[i] = Integer.parseInt("" + c);
+                iVariableModificationsArray[i] = Integer.parseInt("" + c, 16);
             } else {
                 iVariableModificationsArray[i] = c;
             }

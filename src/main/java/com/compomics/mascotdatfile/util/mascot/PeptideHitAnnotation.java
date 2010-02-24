@@ -1756,7 +1756,7 @@ public class PeptideHitAnnotation implements Serializable {
     // Test && demo ---------------------------------------------------------------------------------------------//
 
     public static void main(String[] args) {
-        MascotDatfile mdf = new MascotDatfile("D:\\Be_Ugent\\Java\\mascotdatfile\\target\\test-classes\\F010983.dat");
+        MascotDatfile mdf = new MascotDatfile("/Users/kenny/Proteomics/Projects/1002/0210_mascotdatfile_mod_error/F046001.dat");
         QueryToPeptideMap lQuery2P = mdf.getQueryToPeptideMap();
         PeptideHit ph = lQuery2P.getPeptideHitOfOneQuery(218, 1);
         PeptideHitAnnotation lPha = new PeptideHitAnnotation(ph.getSequence(), ph.getModifications(), mdf.getMasses(), mdf.getParametersSection(), ph.getIonSeriesFound());
