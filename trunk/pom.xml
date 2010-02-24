@@ -1,114 +1,130 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.compomics</groupId>
-	<artifactId>mascotdatfile</artifactId>
-	<packaging>jar</packaging>
-	<version>${version.number}</version>
-	<name>mascotdatfile</name>
-	<url>http://mascotdatfile.googlecode.com</url>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.compomics</groupId>
+    <artifactId>mascotdatfile</artifactId>
+    <packaging>jar</packaging>
+    <version>${version.number}</version>
+    <name>mascotdatfile</name>
+    <url>http://mascotdatfile.googlecode.com</url>
 
-<!-- Set the version number for the whole project -->
-	<properties>
-		<version.number>3.0</version.number>
-	</properties>
-    
-<!-- Licence -->
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>LICENSE-2.0.txt</url>
-		</license>
-	</licenses>
-    
-<!-- Build -->
-	<build>
-<!-- Copy the resources required during building -->
-		<resources>
-			<resource>
-				<directory>src/main/resources/</directory>
-				<includes>
-					<include>modificationConversion.txt</include>
-				</includes>
-			</resource>
-		</resources>
+    <!-- Set the version number for the whole project -->
+    <properties>
+        <version.number>3.0.1</version.number>
+    </properties>
 
+    <!-- Licence -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <!-- Build -->
+    <build>
+        <!-- Copy the resources required during building -->
+        <resources>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <includes>
+                    <include>modificationConversion.txt</include>
+                </includes>
+            </resource>
+        </resources>
 
 
         <!-- Plugins -->
         <plugins>
             <!-- Compiler plugin -->
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-					<showDeprecation>true</showDeprecation>
-					<debug>true</debug>
-				</configuration>
-			</plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <showDeprecation>true</showDeprecation>
+                    <debug>true</debug>
+                </configuration>
+            </plugin>
 
             <!-- Jar plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui.Spectrumviewer_gui</mainClass>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib</classpathPrefix>
-						</manifest>
-					</archive>
-					<outputDirectory>${project.build.directory}/mascotdatfile-${project.version}</outputDirectory>
-				</configuration>
-			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>
+                                com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui.Spectrumviewer_gui
+                            </mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib</classpathPrefix>
+                        </manifest>
+                    </archive>
+                    <outputDirectory>${project.build.directory}/mascotdatfile-${project.version}</outputDirectory>
+                </configuration>
+            </plugin>
 
             <!-- Dependency plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/mascotdatfile-${project.version}/lib</outputDirectory>
-							<overWriteReleases>true</overWriteReleases>
-							<overWriteSnapshots>true</overWriteSnapshots>
-							<excludeTransitive>false</excludeTransitive>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/mascotdatfile-${project.version}/lib
+                            </outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <excludeTransitive>false</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!-- Resources plugin -->
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.3</version>
-				<executions>
-					<execution>
-						<id>copy-resources</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/mascotdatfile-${project.version}</outputDirectory>
-							<resources>
-								<resource>
-									<directory>src/main/resources/</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>    
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/mascotdatfile-${project.version}
+                            </outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- JUnit tests plugin (SureFire plugin) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <forkMode>pertest</forkMode>
+                    <!-- This is the parameter that matters: max memory needs to be high! -->
+                    <argLine>-Xmx512m</argLine>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <!-- Repositores -->
     <repositories>
@@ -119,8 +135,8 @@
             <url>http://genesis.UGent.be/maven</url>
             <layout>legacy</layout>
         </repository>
-        
-         <!-- UGent Genesis Maven 2 repository -->
+
+        <!-- UGent Genesis Maven 2 repository -->
         <repository>
             <id>genesis-maven2-repository</id>
             <name>Genesis maven2 repository</name>
@@ -131,7 +147,7 @@
     </repositories>
 
     <!-- Dependencies -->
-	<dependencies>
+    <dependencies>
         <!-- This project depends on the junit JAR file.
           -->
         <dependency>
@@ -202,10 +218,10 @@
             <version>0.5</version>
             <type>jar</type>
         </dependency>
-	</dependencies>
+    </dependencies>
 
-      <!-- The deployment maven2 repository-->
-      <distributionManagement>
+    <!-- The deployment maven2 repository-->
+    <distributionManagement>
         <repository>
             <id>genesis-maven2-repo</id>
             <name>Genesis Maven Repository</name>
