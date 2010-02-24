@@ -168,9 +168,11 @@ public class TestModification extends TestCaseLM {
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(422);
         Assert.assertEquals(1, lPeptideHit.getVariableModificationsArray()[8]);
 
-
-
-
+        // Test character-ids for variable modifications. (9th variable modification has id 'A')
+        lMascotDatfile = new MascotDatfile(getFullFilePath("F046001.dat"));
+        lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(1);
+        Assert.assertEquals(10, lPeptideHit.getVariableModificationsArray()[3]);
+        
     }
 
     public void testModificationInterface() {
