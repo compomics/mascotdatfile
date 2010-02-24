@@ -29,78 +29,24 @@
  */
 package com.compomics.mascotdatfile.util.mascot;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
 /**
- * Singleton Class, only one instance of this Class is made.
- * The Class holds itself and a Static HashMap.
- * You can always get the hashmap by the static getConversionMap() method.
+ * Singleton Class, only one instance of this Class is made. The Class holds itself and a Static HashMap. You can always
+ * get the hashmap by the static getConversionMap() method.
  * <p/>
- * Parses modificationConversion.txt (must be in classpath! 'src/conf/modificationConversion.txt')
- * Key:     fullname    Acetyl_heavy (N-term)
- * Value:   shortname   AcD3
+ * Parses modificationConversion.txt (must be in classpath! 'src/conf/modificationConversion.txt') Key:     fullname
+ * Acetyl_heavy (N-term) Value:   shortname   AcD3
  */
 public class ModificationConversion {
-    private static HashMap iConversionMap;
+// ------------------------------ FIELDS ------------------------------
 
-    static {
-        iConversionMap = new HashMap();
-        try {
-            // Conversion file must be in classpath!!!
-            BufferedReader lBuf = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream("modificationConversion.txt")));
+    private static ModificationConversion singleton = null;
+    private HashMap iConversionMap;
 
-            String line = null;
-            while ((line = lBuf.readLine()) != null) {
-                // Skip comments and empty lines.
-                if (line.trim().startsWith("#") || line.trim().equals("")) {
-                    continue;
-                }
-                StringTokenizer lst = new StringTokenizer(line, "=");
-                String lKey = lst.nextToken().trim();
-                String lValue = lst.nextToken().trim();
-
-                // Check for illegal characters in the short name.
-                char lIllegalChar = '-';
-
-                if(lValue.indexOf(lIllegalChar) != -1){
-                    illegalShortName(lKey, lValue, lIllegalChar);
-                }
-                lIllegalChar = '#';
-                if(lValue.indexOf(lIllegalChar) != -1){
-                    illegalShortName(lKey, lValue, lIllegalChar);
-                }
-
-                iConversionMap.put(lKey, lValue);
-            }
-            lBuf.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Unable to load file for modification conversion!\n" +
-                "The file 'modificationConversion.txt' should be present in your classpath!");
-        }
-    }
-
-    private static void illegalShortName(String aKey, String aValue, char aIllegalCharacter) throws RuntimeException{
-        throw new RuntimeException("Illegal character ' " + aIllegalCharacter + "' used in \"" + aValue + "\" for Mascot modification \"" + aKey + "\".\nPlease remove all illegal charaters ('" + aIllegalCharacter + "') in the short names from ModificationCoverion.txt");
-    }
-
-    /**
-     * Do not instantiate ModificationConversion.
-     */
-    private ModificationConversion() {
-    }
-
-    /**
-     * Getter for property 'conversionMap'.
-     *
-     * @return Value for property 'conversionMap'.
-     */
-    public static HashMap getConversionMap() {
-        return iConversionMap;
-    }
+// -------------------------- STATIC METHODS --------------------------
 
     /**
      * This method returns the short-type notation of a modification name as found in the conversion map.
@@ -109,10 +55,116 @@ public class ModificationConversion {
      * @return String Short name of the modification.
      */
     public static String getShortType(String aType) {
-        String result = (String) iConversionMap.get(aType);
+        String result = (String) getInstance().getConversionMap().get(aType);
         if (result == null) {
             result = "#" + aType + "#";
         }
         return result;
+    }
+
+    /**
+     * Get the singleton instance of the modificationConversion instance.
+     * @return
+     */
+    public static ModificationConversion getInstance(){
+        if(singleton == null){
+            singleton = new ModificationConversion();
+        }
+        return singleton;
+    }
+
+// --------------------------- CONSTRUCTORS ---------------------------
+
+    /**
+     * Do not instantiate ModificationConversion.
+     */
+    private ModificationConversion() {
+        // empty constructor.
+    }
+
+// --------------------- GETTER / SETTER METHODS ---------------------
+
+    /**
+     * Getter for property 'conversionMap'.
+     *
+     * @return Value for property 'conversionMap'.
+     */
+    public HashMap getConversionMap() {
+        if (iConversionMap == null) {
+            initModificationConversionMap();
+        }
+        return iConversionMap;
+    }
+
+    /**
+     * Initiate the modificationconversion.txt file.
+     */
+    private void initModificationConversionMap() {
+        iConversionMap = new HashMap();
+        try {
+            BufferedReader lBuf = null;
+
+            // First, try to find the modificationconversion file in the "resources" jar launcher folder.
+            String path = "" + this.getClass().getProtectionDomain().getCodeSource().getLocation();
+            path = path.substring(5, path.lastIndexOf("/"));
+            if(path.endsWith("/lib")){
+                path = path.substring(0, path.length() - 4);
+            }
+            path = path + "/resources/modificationConversion.txt";
+            path = path.replace("%20", " ");
+
+            File lFile = new File(path);
+            if (lFile.exists()) {
+                lBuf = new BufferedReader(new InputStreamReader(new FileInputStream(lFile)));
+            } else {
+                // Second, if not found - try to find the file in the classpath.
+                InputStreamReader lReader = new InputStreamReader(ClassLoader.getSystemResourceAsStream("modificationConversion.txt"));
+
+                if(lReader == null){
+                    lReader = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("modificationConversion.txt"));
+                }
+
+                lBuf = new BufferedReader(lReader);
+            }
+
+
+            if (lBuf == null) {
+                // BufferedReader has not been initialized, quit!
+                throw new FileNotFoundException("Unable to load modifiactionConversion.txt file from the /resources/ directory or from the classpath!!");
+            } else {
+                String line = null;
+                while ((line = lBuf.readLine()) != null) {
+                // Skip comments and empty lines.
+                    if (line.trim().startsWith("#") || line.trim().equals("")) {
+                        continue;
+                    }
+                    StringTokenizer lst = new StringTokenizer(line, "=");
+                    String lKey = lst.nextToken().trim();
+                    String lValue = lst.nextToken().trim();
+
+                    // Check for illegal characters in the short name.
+                    char lIllegalChar = '-';
+
+                    if (lValue.indexOf(lIllegalChar) != -1) {
+                        illegalShortName(lKey, lValue, lIllegalChar);
+                    }
+                    lIllegalChar = '#';
+                    if (lValue.indexOf(lIllegalChar) != -1) {
+                        illegalShortName(lKey, lValue, lIllegalChar);
+                    }
+
+                    iConversionMap.put(lKey, lValue);
+                }
+                lBuf.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Unable to load file for modification conversion!\n" +
+                    "The file 'modificationConversion.txt' should be present in your classpath!");
+        }
+    }
+
+    private static void illegalShortName(String aKey, String aValue, char aIllegalCharacter) throws RuntimeException {
+        throw new RuntimeException("Illegal character ' " + aIllegalCharacter + "' used in \"" + aValue + "\" for Mascot modification \"" + aKey + "\".\nPlease remove all illegal charaters ('" + aIllegalCharacter + "') in the short names from ModificationCoverion.txt");
     }
 }
