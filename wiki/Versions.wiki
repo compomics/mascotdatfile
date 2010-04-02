@@ -9,4 +9,4 @@
 
 ==3.0==
  * Initial import of the MascotDatfile library into google code.
- * Note that all MascotDatfile packages have been changed from 'be.proteomics.mascotdatfile.*' to 'com.compomics.mascotdatfile.*'
+ * Note that all MascotDatfile packages have been changed from 'be.proteomics.mascotdatfile.' to 'com.compomics.mascotdatfile.'
