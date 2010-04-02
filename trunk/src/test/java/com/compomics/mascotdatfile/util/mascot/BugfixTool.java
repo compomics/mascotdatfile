@@ -81,7 +81,7 @@ public class BugfixTool {
             int lNumberOfQueries = lMascotDatfileInf.getNumberOfQueries();
             int lNumberOfQueries2 = qtpmap.getNumberOfQueries();
 
-            int lQueryNumber = 20000;
+            int lQueryNumber = 2000;
             PeptideHit lPeptideHit = qtpmap.getPeptideHitOfOneQuery(lQueryNumber);
 
             if (lPeptideHit != null) {

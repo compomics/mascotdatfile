@@ -241,12 +241,12 @@ public class PeptideHit implements Serializable {
     private void splitPeptideHit(String aPeptideHit) {
         StringTokenizer st = new StringTokenizer(aPeptideHit, ";");
         if (st.countTokens() != 2) {
-            throw new IllegalArgumentException("Wrong String with input data to split  " +
-                    "(found \" + st.countTokens() + \" tokens instead of expected 2).\")");
+            System.out.println("Warning, more then two ';' semilocons used in the peptidehit String!!\n\t" + aPeptideHit);
         }
+        int lSplitIndex = aPeptideHit.indexOf(';');
         //OK, we know we have 2 tokens, read them now.
-        iPeptideHit_pep = st.nextToken();
-        iPeptideHit_prot = st.nextToken();
+        iPeptideHit_pep = aPeptideHit.substring(0, lSplitIndex);
+        iPeptideHit_prot = aPeptideHit.substring(lSplitIndex + 1);
     }
 
     /**

@@ -395,6 +395,7 @@ public class Reader {
           }
 
         // Increase the bytecount.
+
         iByteCount = iByteCount + getStringLengthInBytes(lLine) + iLineSeparator.length;
     }
 
@@ -480,7 +481,9 @@ public class Reader {
     }
 
     private int getStringLengthInBytes(String s){
-        if(iByteLengthStatus == -1){
+        return s.getBytes().length;
+
+        /*if(iByteLengthStatus == -1){
             if(s.length() == s.getBytes().length){
                  iByteLengthStatus = 1;
             }else{
@@ -491,6 +494,6 @@ public class Reader {
             return s.length();
         }else{
             return s.getBytes().length;
-        }
+        }*/
     }
 }
