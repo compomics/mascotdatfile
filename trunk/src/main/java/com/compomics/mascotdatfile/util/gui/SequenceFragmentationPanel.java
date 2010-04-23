@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.gui;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
@@ -20,11 +22,12 @@ import java.util.Vector;
  */
 
 /**
- * Class description:
- * ------------------
- * This class was developed to display fragmentation information on the modified sequence as inspired by X!Tandem.
+ * Class description: ------------------ This class was developed to display fragmentation information on the modified
+ * sequence as inspired by X!Tandem.
  */
 public class SequenceFragmentationPanel extends JPanel {
+    // Class specific log4j logger for SequenceFragmentationPanel instances.
+    private static Logger logger = Logger.getLogger(SequenceFragmentationPanel.class);
 
     /**
      * Elementary data for composing the Panel.
@@ -33,16 +36,16 @@ public class SequenceFragmentationPanel extends JPanel {
     private Vector iFragmentIons;
 
     /**
-     * Double array on b-ions for the sequence components.
-     * If '0', no corresponding ions were given for the component.
-     * Otherwise, a double between [0:1] is stored in the array that is relative with the intensity of the most intense fragmention.
+     * Double array on b-ions for the sequence components. If '0', no corresponding ions were given for the component.
+     * Otherwise, a double between [0:1] is stored in the array that is relative with the intensity of the most intense
+     * fragmention.
      */
     private double[] bIons;
 
     /**
-     * Double array on y-ions for the sequence components.
-     * If '0', no corresponding ions were given for the component.
-     * Otherwise, a double between [0:1] is stored in the array that is relative with the intensity of the most intense fragmention.
+     * Double array on y-ions for the sequence components. If '0', no corresponding ions were given for the component.
+     * Otherwise, a double between [0:1] is stored in the array that is relative with the intensity of the most intense
+     * fragmention.
      */
     private double[] yIons;
 
@@ -54,33 +57,31 @@ public class SequenceFragmentationPanel extends JPanel {
     private final int iXStart = 10;
 
     /**
-     * This boolean decides whether to markup the modified sequence in red for y-ion coverage and underline for b-ion coverage.
+     * This boolean decides whether to markup the modified sequence in red for y-ion coverage and underline for b-ion
+     * coverage.
      */
     private boolean iBoolHighlightSequence = false;
 
     /**
-     * This boolean holds whether or not the given sequence is a modified sequence or a normal peptide sequence.
-     * Normal: KENNY
-     * Modified: NH2-K<Ace>ENNY-COOH
+     * This boolean holds whether or not the given sequence is a modified sequence or a normal peptide sequence. Normal:
+     * KENNY Modified: NH2-K<Ace>ENNY-COOH
      */
     private boolean isModifiedSequence;
 
     /**
-     * Creates a non-modal dialog without a title with the
-     * specified <code>Frame</code> as its owner.  If <code>owner</code>
-     * is <code>null</code>, a shared, hidden frame will be set as the
-     * owner of the dialog.
+     * Creates a non-modal dialog without a title with the specified <code>Frame</code> as its owner.  If
+     * <code>owner</code> is <code>null</code>, a shared, hidden frame will be set as the owner of the dialog.
      * <p/>
-     * This constructor sets the component's locale property to the value
-     * returned by <code>JComponent.getDefaultLocale</code>.
+     * This constructor sets the component's locale property to the value returned by
+     * <code>JComponent.getDefaultLocale</code>.
      *
      * @param aModifiedSequence String with the Modified Sequence of an peptide identification.
      * @param aFragmentIons     Vector with Fragmentation objects.
-     * @throws java.awt.HeadlessException if GraphicsEnvironment.isHeadless()
-     *                                    returns true.
+     * @throws java.awt.HeadlessException if GraphicsEnvironment.isHeadless() returns true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see javax.swing.JComponent#getDefaultLocale
-     * @deprecated constructor with boolean on modified sequence is in favor of this constructor that always considers the sequence as a modified sequence.
+     * @deprecated constructor with boolean on modified sequence is in favor of this constructor that always considers
+     *             the sequence as a modified sequence.
      */
     public SequenceFragmentationPanel(String aModifiedSequence, Vector aFragmentIons) throws HeadlessException {
         super();
@@ -92,19 +93,17 @@ public class SequenceFragmentationPanel extends JPanel {
     }
 
     /**
-     * Creates a non-modal dialog without a title with the
-     * specified <code>Frame</code> as its owner.  If <code>owner</code>
-     * is <code>null</code>, a shared, hidden frame will be set as the
-     * owner of the dialog.
+     * Creates a non-modal dialog without a title with the specified <code>Frame</code> as its owner.  If
+     * <code>owner</code> is <code>null</code>, a shared, hidden frame will be set as the owner of the dialog.
      * <p/>
-     * This constructor sets the component's locale property to the value
-     * returned by <code>JComponent.getDefaultLocale</code>.
+     * This constructor sets the component's locale property to the value returned by
+     * <code>JComponent.getDefaultLocale</code>.
      *
      * @param aSequence            String with the Modified Sequence of an peptide identification.
      * @param aFragmentIons        Vector with Fragmentation objects.
-     * @param boolModifiedSequence boolean describing the sequence. This constructor can be used to enter a ModifiedSequence or a normal sequence.
-     * @throws java.awt.HeadlessException if GraphicsEnvironment.isHeadless()
-     *                                    returns true.
+     * @param boolModifiedSequence boolean describing the sequence. This constructor can be used to enter a
+     *                             ModifiedSequence or a normal sequence.
+     * @throws java.awt.HeadlessException if GraphicsEnvironment.isHeadless() returns true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see javax.swing.JComponent#getDefaultLocale
      */
@@ -118,9 +117,9 @@ public class SequenceFragmentationPanel extends JPanel {
     }
 
     /**
-     * Paints the SequenceFragmentationPanel.
-     * Based on the given ModifiedSequence Components and Fragmentions, a visualisation (inspired by X!Tandem) is drawn on a Graphics object.
-     * Next to every possible fragmentation site of the peptide a bar is drawn wether b or y ions were found originating from this fragmentation side.
+     * Paints the SequenceFragmentationPanel. Based on the given ModifiedSequence Components and Fragmentions, a
+     * visualisation (inspired by X!Tandem) is drawn on a Graphics object. Next to every possible fragmentation site of
+     * the peptide a bar is drawn wether b or y ions were found originating from this fragmentation side.
      *
      * @param g the specified Graphics window
      * @see java.awt.Component#update(java.awt.Graphics)
@@ -226,19 +225,12 @@ public class SequenceFragmentationPanel extends JPanel {
 
 
     /**
-     * This method can parse a modified sequence String into a String[] with different components.
-     * Primitive analog to getModifiedSequenceComponents() on a peptidehit.
+     * This method can parse a modified sequence String into a String[] with different components. Primitive analog to
+     * getModifiedSequenceComponents() on a peptidehit.
      *
      * @param aSequence String with the Modified sequence of a peptideHit.
-     * @return the modified sequence of the peptidehit in a String[].
-     *         Example:
-     *         The peptide Ace-K<AceD3>ENNYR-COOH will return a String[] with
-     *         [0]Ace-K<AceD3>
-     *         [1]E
-     *         [2]N
-     *         [3]N
-     *         [4]Y
-     *         [5]R-COOH
+     * @return the modified sequence of the peptidehit in a String[]. Example: The peptide Ace-K<AceD3>ENNYR-COOH will
+     *         return a String[] with [0]Ace-K<AceD3> [1]E [2]N [3]N [4]Y [5]R-COOH
      */
     private String[] parseSequenceIntoComponents(String aSequence) {
         String[] result;
@@ -398,7 +390,8 @@ public class SequenceFragmentationPanel extends JPanel {
      * Set the Sequence for the SequenceFragmentationPanel.
      *
      * @param lSequence            String with peptide sequence.
-     * @param boolModifiedSequence Boolean whether lSequence is a Modified Sequence "NH2-K<Ace>ENNY-COOH" or a Flat Sequence "KENNY".
+     * @param boolModifiedSequence Boolean whether lSequence is a Modified Sequence "NH2-K<Ace>ENNY-COOH" or a Flat
+     *                             Sequence "KENNY".
      */
     public void setSequence(String lSequence, boolean boolModifiedSequence) {
         isModifiedSequence = boolModifiedSequence;
@@ -406,8 +399,7 @@ public class SequenceFragmentationPanel extends JPanel {
     }
 
     /**
-     * Set the Vector with FragmentIons.
-     * The double[] indexing b and y ion intensities will be recalculated.
+     * Set the Vector with FragmentIons. The double[] indexing b and y ion intensities will be recalculated.
      *
      * @param lFragmentions Vector
      */

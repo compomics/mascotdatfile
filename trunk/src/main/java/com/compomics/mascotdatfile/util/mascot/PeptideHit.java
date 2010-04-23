@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.Modification;
 
 import java.io.Serializable;
@@ -33,6 +35,8 @@ import java.util.StringTokenizer;
  * This Class contains all the parsed data from a datfile peptidehit
  */
 public class PeptideHit implements Serializable {
+    // Class specific log4j logger for PeptideHit instances.
+    private static Logger logger = Logger.getLogger(PeptideHit.class);
     /**
      * a soft type for the number of missed cleavages
      */
@@ -122,12 +126,13 @@ public class PeptideHit implements Serializable {
      */
     private int iPeaksUsedFromIons3 = 0;
     /**
-     * The ArrayList is filled with ProteinHit instances. Each containing information about the (possible) origin(s) of this PeptideHit instances.
+     * The ArrayList is filled with ProteinHit instances. Each containing information about the (possible) origin(s) of
+     * this PeptideHit instances.
      */
     private ArrayList iProteinHits = new ArrayList(1);
     /**
-     * The array holds Fixed And Variable Modifications of the peptidehit. If the array value is null; there is no modification at that residue.
-     * The array is build as follows: N-term[0] * aminoacids[1]-[n-1] * C-term[n].
+     * The array holds Fixed And Variable Modifications of the peptidehit. If the array value is null; there is no
+     * modification at that residue. The array is build as follows: N-term[0] * aminoacids[1]-[n-1] * C-term[n].
      */
     private Modification[] iModifications = null;
     /**
@@ -147,14 +152,13 @@ public class PeptideHit implements Serializable {
      */
     private double iHomologyThreshold = 0;
     /**
-     * This instance of PeptideHitAnnotation calculates the b- and y-ion series of the PeptideHit.
-     * The instance is a lazy cache.
+     * This instance of PeptideHitAnnotation calculates the b- and y-ion series of the PeptideHit. The instance is a
+     * lazy cache.
      */
     private PeptideHitAnnotation iPha = null;
 
     /**
-     * This boolean indicates whether this peptidehit origined from
-     * an errortolerant search.
+     * This boolean indicates whether this peptidehit origined from an errortolerant search.
      */
     private boolean boolErrorTolerantHit = false;
 
@@ -164,8 +168,10 @@ public class PeptideHit implements Serializable {
      * This private constructor is being called by a static variable in this class.
      *
      * @param aPeptideHit       is a String that comes right from the .dat file
-     * @param aModificationList is an instance of ModificationList containing all the possible Modifications of this Mascot Search.
-     * @param aThreshold        contains two doubles - qmatch and qplughole, source for the identity and homology threshold.
+     * @param aModificationList is an instance of ModificationList containing all the possible Modifications of this
+     *                          Mascot Search.
+     * @param aThreshold        contains two doubles - qmatch and qplughole, source for the identity and homology
+     *                          threshold.
      */
     private PeptideHit(String aPeptideHit, ProteinMap aProteinMap, ModificationList aModificationList, double[] aThreshold) {
         splitPeptideHit(aPeptideHit);
@@ -176,15 +182,18 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * This is a static method that takes a peptideHit String and returns an PeptideHit object with all the parsed data.
+     * This is a static method that takes a peptideHit String and returns an PeptideHit object with all the parsed
+     * data.
      *
      * @param aETSPeptideHitString is a String with the unparsed data of the peptidehit.
      * @param aETSPeptideHitMods   is a String with the Error Tolerant Search modification in case.
      * @param aProteinMap          is a structured version of the ProteinSection.
-     * @param aModificationList    is an instance of ModificationList containing all the possible Modifications of this Mascot Search.
-     * @param aThreshold           contains two doubles - qmatch and qplughole, source for the identity and homology threshold.
-     * @return an PeptideHit object that contains all the parsed data of the aPeptideHit String
-     *         can be "null" if no peptide match found
+     * @param aModificationList    is an instance of ModificationList containing all the possible Modifications of this
+     *                             Mascot Search.
+     * @param aThreshold           contains two doubles - qmatch and qplughole, source for the identity and homology
+     *                             threshold.
+     * @return an PeptideHit object that contains all the parsed data of the aPeptideHit String can be "null" if no
+     *         peptide match found
      */
     public PeptideHit(final String aETSPeptideHitString, final String aETSPeptideHitMods, final ProteinMap aProteinMap, final ModificationList aModificationList, final double[] aThreshold) {
         splitPeptideHit(aETSPeptideHitString);
@@ -196,14 +205,17 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * This is a static method that takes a peptideHit String and returns an PeptideHit object with all the parsed data.
+     * This is a static method that takes a peptideHit String and returns an PeptideHit object with all the parsed
+     * data.
      *
      * @param aPeptideHit       is a String with the unparsed data of the peptidehit.
      * @param aProteinMap       is a structured version of the ProteinSection.
-     * @param aModificationList is an instance of ModificationList containing all the possible Modifications of this Mascot Search.
-     * @param aThreshold        contains two doubles - qmatch and qplughole, source for the identity and homology threshold.
-     * @return an PeptideHit object that contains all the parsed data of the aPeptideHit String
-     *         can be "null" if no peptide match found
+     * @param aModificationList is an instance of ModificationList containing all the possible Modifications of this
+     *                          Mascot Search.
+     * @param aThreshold        contains two doubles - qmatch and qplughole, source for the identity and homology
+     *                          threshold.
+     * @return an PeptideHit object that contains all the parsed data of the aPeptideHit String can be "null" if no
+     *         peptide match found
      */
     public static PeptideHit parsePeptideHit(String aPeptideHit, ProteinMap aProteinMap, ModificationList aModificationList, double[] aThreshold) {
         PeptideHit ph = null;
@@ -214,15 +226,18 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * This is a static method that takes a peptideHit String and returns an PeptideHit object with all the parsed data.
+     * This is a static method that takes a peptideHit String and returns an PeptideHit object with all the parsed
+     * data.
      *
      * @param aETSPeptideHitString is a String with the unparsed data of the peptidehit.
      * @param aETSPeptideHitMods   is a String with the Error Tolerant Search modification in case.
      * @param aProteinMap          is a structured version of the ProteinSection.
-     * @param aModificationList    is an instance of ModificationList containing all the possible Modifications of this Mascot Search.
-     * @param aThreshold           contains two doubles - qmatch and qplughole, source for the identity and homology threshold.
-     * @return an PeptideHit object that contains all the parsed data of the aPeptideHit String
-     *         can be "null" if no peptide match found
+     * @param aModificationList    is an instance of ModificationList containing all the possible Modifications of this
+     *                             Mascot Search.
+     * @param aThreshold           contains two doubles - qmatch and qplughole, source for the identity and homology
+     *                             threshold.
+     * @return an PeptideHit object that contains all the parsed data of the aPeptideHit String can be "null" if no
+     *         peptide match found
      */
     public static PeptideHit parsePeptideHit(final String aETSPeptideHitString, final String aETSPeptideHitMods, final ProteinMap aProteinMap, final ModificationList aModificationList, final double[] aThreshold) {
         PeptideHit ph = null;
@@ -233,8 +248,8 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * This method splits the aPeptideHit into a string iPeptideHit_pep with peptide data
-     * and a String iPeptideHit_prot with protein data.
+     * This method splits the aPeptideHit into a string iPeptideHit_pep with peptide data and a String iPeptideHit_prot
+     * with protein data.
      *
      * @param aPeptideHit
      */
@@ -278,9 +293,9 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * This method parses the String iPeptideHit_prot into protein related variable of this object.
-     * Multiple proteinHits are spliced into Tokens.
-     * As long as there are more Tokens, new ProteinHit instances are created and added into iProteinHits ArrayList.
+     * This method parses the String iPeptideHit_prot into protein related variable of this object. Multiple proteinHits
+     * are spliced into Tokens. As long as there are more Tokens, new ProteinHit instances are created and added into
+     * iProteinHits ArrayList.
      */
     private void parseDatFileProteinString() {
         if (iPeptideHit_prot.indexOf(",") == -1) {
@@ -416,6 +431,7 @@ public class PeptideHit implements Serializable {
     /*
     * Returns the ETS search origin of this peptidehit.
     */
+
     public boolean isErrorTolerantHit() {
         return boolErrorTolerantHit;
     }
@@ -439,8 +455,7 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * method
-     * parses the coded variablemodificationString into an int[]
+     * method parses the coded variablemodificationString into an int[]
      *
      * @param aVariableModificationString
      */
@@ -531,18 +546,22 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * Returns the ArrayList is filled with ProteinHit instances. Each containing information about the (possible) origin(s) of this PeptideHit instances.
+     * Returns the ArrayList is filled with ProteinHit instances. Each containing information about the (possible)
+     * origin(s) of this PeptideHit instances.
      *
-     * @return the ArrayList is filled with ProteinHit instances. Each containing information about the (possible) origin(s) of this PeptideHit instances.
+     * @return the ArrayList is filled with ProteinHit instances. Each containing information about the (possible)
+     *         origin(s) of this PeptideHit instances.
      */
     public ArrayList getProteinHits() {
         return iProteinHits;
     }
 
     /**
-     * Sets the ArrayList is filled with ProteinHit instances. Each containing information about the (possible) origin(s) of this PeptideHit instances.
+     * Sets the ArrayList is filled with ProteinHit instances. Each containing information about the (possible)
+     * origin(s) of this PeptideHit instances.
      *
-     * @param aProteinHits the ArrayList is filled with ProteinHit instances. Each containing information about the (possible) origin(s) of this PeptideHit instances.
+     * @param aProteinHits the ArrayList is filled with ProteinHit instances. Each containing information about the
+     *                     (possible) origin(s) of this PeptideHit instances.
      */
     public void setProteinHits(ArrayList aProteinHits) {
         iProteinHits = aProteinHits;
@@ -566,12 +585,10 @@ public class PeptideHit implements Serializable {
 
 
     /**
-     * Method
-     * Parse the MascotDatfile_Modifications instance into relevant modifications of this peptidehit into the Modification[] iModifications.
-     * Process: 1.Put all the fixed mods in the Modification[],
-     * 2.Put all the variable mods in the Modification[], this is done by using this instance's VariableModificationsString.
-     * (   if a fixed and variable mod are both possible (ex: Fixed K-acetylation & Variable K-biotinylation,
-     * 1.The Fixed is set on every K
+     * Method Parse the MascotDatfile_Modifications instance into relevant modifications of this peptidehit into the
+     * Modification[] iModifications. Process: 1.Put all the fixed mods in the Modification[], 2.Put all the variable
+     * mods in the Modification[], this is done by using this instance's VariableModificationsString. (   if a fixed and
+     * variable mod are both possible (ex: Fixed K-acetylation & Variable K-biotinylation, 1.The Fixed is set on every K
      * 2.The variable overwrites the fixed if the VariableModificationsString would say that the K has the variable mod!
      * )
      *
@@ -635,12 +652,10 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * Method
-     * Parse the MascotDatfile_Modifications instance into relevant modifications of this peptidehit into the Modification[] iModifications.
-     * Process: 1.Put all the fixed mods in the Modification[],
-     * 2.Put all the variable mods in the Modification[], this is done by using this instance's VariableModificationsString.
-     * (   if a fixed and variable mod are both possible (ex: Fixed K-acetylation & Variable K-biotinylation,
-     * 1.The Fixed is set on every K
+     * Method Parse the MascotDatfile_Modifications instance into relevant modifications of this peptidehit into the
+     * Modification[] iModifications. Process: 1.Put all the fixed mods in the Modification[], 2.Put all the variable
+     * mods in the Modification[], this is done by using this instance's VariableModificationsString. (   if a fixed and
+     * variable mod are both possible (ex: Fixed K-acetylation & Variable K-biotinylation, 1.The Fixed is set on every K
      * 2.The variable overwrites the fixed if the VariableModificationsString would say that the K has the variable mod!
      * )
      *
@@ -737,10 +752,11 @@ public class PeptideHit implements Serializable {
 
 
     /**
-     * Returns the array holds Fixed And Variable Modifications of the peptidehit. If the array value is null; there is no modification at that residue.
-     * The array is build as follows: N-term[0] * aminoacids[1]-[n-1] * C-term[n].
+     * Returns the array holds Fixed And Variable Modifications of the peptidehit. If the array value is null; there is
+     * no modification at that residue. The array is build as follows: N-term[0] * aminoacids[1]-[n-1] * C-term[n].
      *
-     * @return the array holds Fixed And Variable Modifications of the peptidehit. If the array value is null; there is no modification at that residue.
+     * @return the array holds Fixed And Variable Modifications of the peptidehit. If the array value is null; there is
+     *         no modification at that residue.
      */
     public Modification[] getModifications() {
         return iModifications;
@@ -768,15 +784,8 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * Returns the modified sequence of the peptidehit in a String[].
-     * Example:
-     * The peptide Ace-K<AceD3>ENNYR-COOH will return a String[] with
-     * [0]Ace-K<AceD3>
-     * [1]E
-     * [2]N
-     * [3]N
-     * [4]Y
-     * [5]R-COOH
+     * Returns the modified sequence of the peptidehit in a String[]. Example: The peptide Ace-K<AceD3>ENNYR-COOH will
+     * return a String[] with [0]Ace-K<AceD3> [1]E [2]N [3]N [4]Y [5]R-COOH
      *
      * @return String[] with the modified sequence in different components according the primary sequence.
      */
@@ -857,8 +866,8 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * method       test if the PeptideHit's score is above the identity threshold.
-     * The threshold score is calculated with the default Confidence interval with alpha = 0.05
+     * method       test if the PeptideHit's score is above the identity threshold. The threshold score is calculated
+     * with the default Confidence interval with alpha = 0.05
      *
      * @return boolean     true if this PeptideHit's score is above the threshold threshold.
      */
@@ -867,8 +876,8 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * method       test if the PeptideHit's score is above the identity threshold.
-     * The threshold score is calculated with the Confidence interval alpha as a parameter.
+     * method       test if the PeptideHit's score is above the identity threshold. The threshold score is calculated
+     * with the Confidence interval alpha as a parameter.
      *
      * @param aConfidenceInterval Confidence interval with alpha = aConfidenceInterval
      * @return boolean     true if this PeptideHit's score is above the threshold threshold.
@@ -879,10 +888,11 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * method       test if the PeptideHit's score is above the changed identity threshold.
-     * The threshold score is calculated with the default Confidence interval with alpha = 0.05
+     * method       test if the PeptideHit's score is above the changed identity threshold. The threshold score is
+     * calculated with the default Confidence interval with alpha = 0.05
      *
-     * @param aDelta delta is an int that can be positive or negative. It will be added to the IdentityThreshold to make it higher or lower.
+     * @param aDelta delta is an int that can be positive or negative. It will be added to the IdentityThreshold to make
+     *               it higher or lower.
      * @return boolean     true if this PeptideHit's score is above the threshold threshold.
      */
     public boolean scoresAboveIdentityThreshold(int aDelta) {
@@ -890,10 +900,11 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * method       test if the PeptideHit's score is above the changed identity threshold.
-     * The threshold score is calculated with the Confidence interval alpha as a parameter.
+     * method       test if the PeptideHit's score is above the changed identity threshold. The threshold score is
+     * calculated with the Confidence interval alpha as a parameter.
      *
-     * @param aDelta              delta is an int that can be positive or negative. It will be added to the IdentityThreshold to make it higher or lower.
+     * @param aDelta              delta is an int that can be positive or negative. It will be added to the
+     *                            IdentityThreshold to make it higher or lower.
      * @param aConfidenceInterval Confidence interval with alpha = aConfidenceInterval
      * @return boolean     true if this PeptideHit's score is above the threshold threshold.
      */
@@ -903,8 +914,8 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * method to get the expectance at default confidence alpha = 0.05. <br>
-     * Expectancy is the number of times you could expect to get this score or better by chance.
+     * method to get the expectance at default confidence alpha = 0.05. <br> Expectancy is the number of times you could
+     * expect to get this score or better by chance.
      *
      * @return double Expectancy
      */
@@ -923,8 +934,8 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * method to get the expectance at confidence alpha = parameter. <br>
-     * Expectancy is the number of times you could expect to get this score or better by chance.
+     * method to get the expectance at confidence alpha = parameter. <br> Expectancy is the number of times you could
+     * expect to get this score or better by chance.
      *
      * @return double Expectancy
      */
@@ -968,8 +979,10 @@ public class PeptideHit implements Serializable {
      *
      * @param aMasses      Instance of the Masses Class to calculate the ion series.
      * @param aParameters  Instance of the Parameters Class to get the mass tolerance data.
-     * @param aPrecursorMZ Double with the MZ value of the precursor of the spectrum wherefrom this peptidehit was created.
-     * @return PeptideHitAnnotation     returns an instance of PeptideHitAnnotation wherefrom you can get the ion series of this peptidehit.
+     * @param aPrecursorMZ Double with the MZ value of the precursor of the spectrum wherefrom this peptidehit was
+     *                     created.
+     * @return PeptideHitAnnotation     returns an instance of PeptideHitAnnotation wherefrom you can get the ion series
+     *         of this peptidehit.
      */
     public PeptideHitAnnotation getPeptideHitAnnotation(Masses aMasses, Parameters aParameters, double aPrecursorMZ, String aPrecursorCharge) {
         if (iPha == null) {
@@ -983,7 +996,8 @@ public class PeptideHit implements Serializable {
      *
      * @param aMasses     Instance of the Masses Class to calculate the ion series.
      * @param aParameters Instance of the Parameters Class to get the mass tolerance data.
-     * @return PeptideHitAnnotation     returns an instance of PeptideHitAnnotation wherefrom you can get the ion series of this peptidehit.
+     * @return PeptideHitAnnotation     returns an instance of PeptideHitAnnotation wherefrom you can get the ion series
+     *         of this peptidehit.
      */
     public PeptideHitAnnotation getPeptideHitAnnotation(Masses aMasses, Parameters aParameters) {
         if (iPha == null) {

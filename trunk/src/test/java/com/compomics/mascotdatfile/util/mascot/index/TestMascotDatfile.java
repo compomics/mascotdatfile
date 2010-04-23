@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
 import junit.TestCaseLM;
@@ -31,12 +33,11 @@ import junit.framework.Assert;
 import java.util.HashMap;
 
 /**
- * Created by IntelliJ IDEA.
- * User: kenny
- * Date: 12-okt-2006
- * Time: 14:11:46
+ * Created by IntelliJ IDEA. User: kenny Date: 12-okt-2006 Time: 14:11:46
  */
 public class TestMascotDatfile extends TestCaseLM {
+    // Class specific log4j logger for TestMascotDatfile instances.
+    private static Logger logger = Logger.getLogger(TestMascotDatfile.class);
 
     public TestMascotDatfile() {
         super("Testscenario for parts of the MascotDatfile class.");

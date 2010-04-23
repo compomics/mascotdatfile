@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +39,9 @@ import java.util.HashMap;
 /**
  * This class contains all the parsed data from the 'header' section of the datfile.
  */
-public class Header  implements Serializable {
+public class Header implements Serializable {
+    // Class specific log4j logger for Header instances.
+    private static Logger logger = Logger.getLogger(Header.class);
     /**
      * Number of sequences in the database.
      */

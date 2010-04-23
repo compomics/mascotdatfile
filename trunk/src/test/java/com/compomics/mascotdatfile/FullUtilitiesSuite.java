@@ -23,21 +23,24 @@
 
 package com.compomics.mascotdatfile;
 
+import org.apache.log4j.Logger;
+
 import junit.framework.TestCase;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenni
- * Date: 22-jun-2006
- * Time: 15:51:07
- * This Suite tests all the components that are build on the MascotDatfile library.
+ * Created by IntelliJ IDEA. User: Kenni Date: 22-jun-2006 Time: 15:51:07 This Suite tests all the components that are
+ * build on the MascotDatfile library.
  */
 public class FullUtilitiesSuite extends TestCase {
+    // Class specific log4j logger for FullUtilitiesSuite instances.
+    private static Logger logger = Logger.getLogger(FullUtilitiesSuite.class);
+
     public FullUtilitiesSuite() {
         super("Test the components that are build on the MascotDatfile library...");
     }
+
     public FullUtilitiesSuite(String aName) {
         super(aName);
     }
-    
+
 }

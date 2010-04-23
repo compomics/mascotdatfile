@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
 import junit.TestCaseLM;
 import junit.framework.Assert;
@@ -39,6 +41,9 @@ import java.util.ArrayList;
  * This class implements the test scenario for the PeptideHit Class.
  */
 public class TestPeptideHit extends TestCaseLM {
+    // Class specific log4j logger for TestPeptideHit instances.
+    private static Logger logger = Logger.getLogger(TestPeptideHit.class);
+
     public TestPeptideHit() {
         super("Testscenario for the peptidehit Class. ");
     }
@@ -215,6 +220,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     // This is from an old datfile from the platelets projects. The fixed mods are read from the parameters this time!!
+
     public void testModifiedSequenceD() {
         MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F001326.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();

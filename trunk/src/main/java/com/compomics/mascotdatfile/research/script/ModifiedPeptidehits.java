@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.script;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.Modification;
 import com.compomics.mascotdatfile.util.mascot.*;
 
@@ -37,6 +39,9 @@ import java.util.Vector;
  * <br>This Class can read a datfile and will search for one or more modifications (args).</br>
  */
 public class ModifiedPeptidehits {
+    // Class specific log4j logger for ModifiedPeptidehits instances.
+    private static Logger logger = Logger.getLogger(ModifiedPeptidehits.class);
+
     public static void main(String[] args) {
         if (args.length != 6 && args.length != 2) {
             printUsage();
@@ -106,7 +111,7 @@ public class ModifiedPeptidehits {
                     bw.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                } catch (NullPointerException npe){
+                } catch (NullPointerException npe) {
                     npe.printStackTrace();
                 }
             }
@@ -116,8 +121,8 @@ public class ModifiedPeptidehits {
     /**
      * This method checks if the PeptideHit contains all the modifications inside the aModsArray.
      *
-     * @param aPeptideHit        - Peptidehit whose mods have to be checked.
-     * @param aModsArray - Modifications that must be on the identification to set te boolean to true.
+     * @param aPeptideHit - Peptidehit whose mods have to be checked.
+     * @param aModsArray  - Modifications that must be on the identification to set te boolean to true.
      * @return boolean - true(false) if the peptidehit does('nt) contain all the modifications.
      */
     private static boolean containsAllModifications(PeptideHit aPeptideHit, ArrayList aModsArray) {
@@ -177,7 +182,8 @@ public class ModifiedPeptidehits {
     }
 
     /**
-     * This method will read the parametrical datfile, parse the possible modifications inside therein and print them into the errorstream.
+     * This method will read the parametrical datfile, parse the possible modifications inside therein and print them
+     * into the errorstream.
      *
      * @param aDatfilePathAndFilename - String targetting datfile source.
      */
@@ -214,7 +220,7 @@ public class ModifiedPeptidehits {
      *
      * @param bw                      - BufferedWriter to the filestream
      * @param aDatfilePathAndFilename - datfile source
-     * @throws IOException
+     * @throws java.io.IOException
      */
     private static void printCSVheaders(BufferedWriter bw, String aDatfilePathAndFilename) throws IOException {
         bw.write("ModifiedPeptidehits.java analysis of " + aDatfilePathAndFilename + ".");

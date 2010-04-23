@@ -6,6 +6,8 @@
  */
 package com.compomics.mascotdatfile.util.mascot.parser;
 
+import org.apache.log4j.Logger;
+
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
@@ -28,6 +30,8 @@ import java.io.IOException;
  * @see com.compomics.mascotdatfile.util.mascot.parser.MascotRawParser
  */
 public class TestMascotRawParser extends TestCaseLM {
+    // Class specific log4j logger for TestMascotRawParser instances.
+    private static Logger logger = Logger.getLogger(TestMascotRawParser.class);
 
     public TestMascotRawParser() {
         this("Test scenario for the MascotRawParser class.");
@@ -38,8 +42,7 @@ public class TestMascotRawParser extends TestCaseLM {
     }
 
     /**
-     * This method test the parsing of a mascot raw file
-     * in its constituent parts.
+     * This method test the parsing of a mascot raw file in its constituent parts.
      */
     public void testParsing() {
         // First parse from String.
@@ -47,13 +50,13 @@ public class TestMascotRawParser extends TestCaseLM {
             BufferedReader br = new BufferedReader(new FileReader(super.getFullFilePath("F001326.dat")));
             String line = null;
             StringBuffer all = new StringBuffer();
-            while((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
                 all.append(line + "\n");
             }
             br.close();
             MascotRawParser mrp = new MascotRawParser(all.toString());
             Assert.assertEquals(869, mrp.getNumberOfQueries());
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             fail("IOExcpetion during test of MascotRawParser: " + ioe.getMessage() + "!");
         }
 
@@ -63,7 +66,7 @@ public class TestMascotRawParser extends TestCaseLM {
             MascotRawParser mrp = new MascotRawParser(br);
             br.close();
             Assert.assertEquals(869, mrp.getNumberOfQueries());
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             fail("IOExcpetion during test of MascotRawParser: " + ioe.getMessage() + "!");
         }
 
@@ -72,7 +75,7 @@ public class TestMascotRawParser extends TestCaseLM {
 
             MascotRawParser mrp = new MascotRawParser(new File(super.getFullFilePath("F001326.dat")));
             Assert.assertEquals(869, mrp.getNumberOfQueries());
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             fail("IOExcpetion during test of MascotRawParser: " + ioe.getMessage() + "!");
         }
 
@@ -80,9 +83,9 @@ public class TestMascotRawParser extends TestCaseLM {
         try {
             MascotRawParser mrp = new MascotRawParser(new File(super.getFullFilePath("Threshold_test_F009911_conf95.txt")));
             fail("No IllegalArgumentException thrown when attempting to parse a non-datfile!");
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             fail("IOException during test of MascotRawParser: " + ioe.getMessage() + "!");
-        } catch(IllegalArgumentException iae) {
+        } catch (IllegalArgumentException iae) {
             // This is what we expected.
         }
     }

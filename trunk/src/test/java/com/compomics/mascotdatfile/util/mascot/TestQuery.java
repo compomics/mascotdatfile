@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
@@ -39,6 +41,9 @@ import java.util.Vector;
  * * This class implements the test scenario for the PeptideHit Class.
  */
 public class TestQuery extends TestCaseLM {
+    // Class specific log4j logger for TestQuery instances.
+    private static Logger logger = Logger.getLogger(TestQuery.class);
+
     public TestQuery() {
         super("This is the test scenario for a Query instance.");
     }

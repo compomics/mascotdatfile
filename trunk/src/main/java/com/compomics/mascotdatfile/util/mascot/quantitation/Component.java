@@ -1,13 +1,14 @@
 package com.compomics.mascotdatfile.util.mascot.quantitation;
 
+import org.apache.log4j.Logger;
+
 /**
- * Created by IntelliJ IDEA.
- * User: kenny
- * Date: Mar 16, 2009
- * Time: 5:33:18 PM
- * To change this template use File | Settings | File Templates.
+ * Created by IntelliJ IDEA. User: kenny Date: Mar 16, 2009 Time: 5:33:18 PM To change this template use File | Settings
+ * | File Templates.
  */
 public class Component {
+    // Class specific log4j logger for Component instances.
+    private static Logger logger = Logger.getLogger(Component.class);
     /**
      * The name for the component.
      */

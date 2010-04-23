@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot.iterator;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.Query;
 
@@ -10,6 +12,8 @@ import java.util.Enumeration;
  * File Templates.
  */
 public class QueryEnumerator implements Enumeration {
+    // Class specific log4j logger for QueryEnumerator instances.
+    private static Logger logger = Logger.getLogger(QueryEnumerator.class);
     /**
      * Reference to the MascotDatfile implementing object.
      */
@@ -27,6 +31,7 @@ public class QueryEnumerator implements Enumeration {
 
     /**
      * Constructs a new Query enumerating object for the given MascotDatfileInf.
+     *
      * @param aMascotDatfileInf MascotDatfileInf instance holding the queries to enumerate.
      */
     public QueryEnumerator(MascotDatfileInf aMascotDatfileInf) {
@@ -36,6 +41,7 @@ public class QueryEnumerator implements Enumeration {
 
     /**
      * Returns the status if there are more queries in the MascotDatfile.
+     *
      * @return <code>true</code> if more Queries. <code>false</code> if no more Queries.
      */
     public boolean hasMoreElements() {
@@ -45,6 +51,7 @@ public class QueryEnumerator implements Enumeration {
 
     /**
      * Returns the next Query instance of the MascotDatfile.
+     *
      * @return Query
      */
     public Query nextElement() {

@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
 import com.compomics.mascotdatfile.util.interfaces.Modification;
 import com.compomics.mascotdatfile.util.mascot.fragmentions.FragmentIonImpl;
@@ -40,19 +42,23 @@ import java.util.Vector;
  */
 
 /**
- * This Class calculates the fragmentIon masses.
- * The masses are read directly from the datfile from Mascot.
+ * This Class calculates the fragmentIon masses. The masses are read directly from the datfile from Mascot.
  */
 public class PeptideHitAnnotation implements Serializable {
+    // Class specific log4j logger for PeptideHitAnnotation instances.
+    private static Logger logger = Logger.getLogger(PeptideHitAnnotation.class);
 // ------------------------------ FIELDS ------------------------------
 
     /**
-     * This Vector holds the significant theoretical fragmentions that are returned by the getSignificantTheoreticalFragmentions() method.<br>It is declared as an instance variable to do a lazy cache.
+     * This Vector holds the significant theoretical fragmentions that are returned by the
+     * getSignificantTheoreticalFragmentions() method.<br>It is declared as an instance variable to do a lazy cache.
      */
     Vector iSignificantTheoreticalFragmentions = null;
 
     /**
-     * This Vector holds the significant theoretical fragmentions that are returned by the getNonSignificantTheoreticalFragementions() method.<br>It is declared as an instance variable to do a lazy cache.
+     * This Vector holds the significant theoretical fragmentions that are returned by the
+     * getNonSignificantTheoreticalFragementions() method.<br>It is declared as an instance variable to do a lazy
+     * cache.
      */
     Vector iNonSignificantTheoreticalFragmentions = null;
 
@@ -62,26 +68,26 @@ public class PeptideHitAnnotation implements Serializable {
     private String iSequence = null;
 
     /**
-     * This variable is the smalles index of a S|T|D|E residue in the sequence. These residues can loose H2O.
-     * It is used as a lazy cache for the B_H2O_ions calculation.
+     * This variable is the smalles index of a S|T|D|E residue in the sequence. These residues can loose H2O. It is used
+     * as a lazy cache for the B_H2O_ions calculation.
      */
     private int iH2OStartB = -1;
 
     /**
-     * This variable is the smalles index of a S|T|D|E residue in the sequence. These residues can loose H2O.
-     * It is used as a lazy cache for the B_NH3_ions calculation.
+     * This variable is the smalles index of a S|T|D|E residue in the sequence. These residues can loose H2O. It is used
+     * as a lazy cache for the B_NH3_ions calculation.
      */
     private int iH2OStartY = -1;
 
     /**
-     * This variable is the smalles index of a K|R|Q|N residue in the sequence. These residues can loose NH3.
-     * It is used as a lazy cache for the Y_H2O_ions calculation.
+     * This variable is the smalles index of a K|R|Q|N residue in the sequence. These residues can loose NH3. It is used
+     * as a lazy cache for the Y_H2O_ions calculation.
      */
     private int iNH3StartB = -1;
 
     /**
-     * This variable is the smalles index of a K|R|Q|N residue in the sequence. These residues can loose NH3.
-     * It is used as a lazy cache for the Y_NH3_ions calcuation.
+     * This variable is the smalles index of a K|R|Q|N residue in the sequence. These residues can loose NH3. It is used
+     * as a lazy cache for the Y_NH3_ions calcuation.
      */
     private int iNH3StartY = -1;
 
@@ -91,13 +97,14 @@ public class PeptideHitAnnotation implements Serializable {
     private int[] iIonSeriesFound = null;
 
     /**
-     * This is the default value for the intensity threshold for the getMatchedIonsAboveIntensityThreshold method.<br>Default value equals 10%.
+     * This is the default value for the intensity threshold for the getMatchedIonsAboveIntensityThreshold
+     * method.<br>Default value equals 10%.
      */
     private double iIntensityPercentage = 0.1;
 
     /**
-     * The array holds Fixed And Variable Modifications of iSequence. If the array value is null; there is no modification at that residue.
-     * The array is build as follows: N-term[0] * aminoacids[1]-[n-1] * C-term[n].
+     * The array holds Fixed And Variable Modifications of iSequence. If the array value is null; there is no
+     * modification at that residue. The array is build as follows: N-term[0] * aminoacids[1]-[n-1] * C-term[n].
      */
     private Modification[] iMods = null;
 
@@ -112,14 +119,16 @@ public class PeptideHitAnnotation implements Serializable {
     private FragmentIonImpl[] iBions = null;
 
     /**
-     * Double variable holding the tolerated mass difference when the theoretical ions are mathced next to a massspectrum.
-     * <br>This variable comes from a parameters instance. It will be used further on for the ionmatching.
+     * Double variable holding the tolerated mass difference when the theoretical ions are mathced next to a
+     * massspectrum. <br>This variable comes from a parameters instance. It will be used further on for the
+     * ionmatching.
      */
     private double iFragmentMassErrorMargin = 0.0;
 
     /**
-     * Double variable holding the tolerated mass difference when the theoretical ions are mathced next to a massspectrum.
-     * <br>This variable comes from a parameters instance. It will be used further on for the ionmatching.
+     * Double variable holding the tolerated mass difference when the theoretical ions are mathced next to a
+     * massspectrum. <br>This variable comes from a parameters instance. It will be used further on for the
+     * ionmatching.
      */
     private double iPeptideMassErrorMargin = 0.0;
     /**
@@ -150,13 +159,16 @@ public class PeptideHitAnnotation implements Serializable {
 // --------------------------- CONSTRUCTORS ---------------------------
 
     /**
-     * This constructor creates an instance of the PeptideHitAnnotation class.
-     * When the constructor is called, it will generate an array with theoretical b- and y- ions. Other methods that calculate a- and c- ions, x- and z-ions are included.
+     * This constructor creates an instance of the PeptideHitAnnotation class. When the constructor is called, it will
+     * generate an array with theoretical b- and y- ions. Other methods that calculate a- and c- ions, x- and z-ions are
+     * included.
      *
      * @param aSequence       PeptideHit's sequence.
-     * @param aMods           Modifications on the sequence, each Modification includes different variables such as the mass.
+     * @param aMods           Modifications on the sequence, each Modification includes different variables such as the
+     *                        mass.
      * @param aM              A masses object that holds all the masses values of the AA, Hydrogen, H2O, ..
-     * @param aP              A parameter object that holds all the parameter data of the datfile. We need the tolerance data in this object.
+     * @param aP              A parameter object that holds all the parameter data of the datfile. We need the tolerance
+     *                        data in this object.
      * @param aIonSeriesFound A int[] with the wherein the significant fragmention types are encoded.
      */
     public PeptideHitAnnotation(String aSequence, Modification[] aMods, Masses aM, Parameters aP, int[] aIonSeriesFound) {
@@ -232,8 +244,8 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method calculates the theoretical instance b-ions and y-ions of the PeptideHit.
-     * iBions[0] is the mass of b1 and iYions[0] is the mass of y1
+     * This method calculates the theoretical instance b-ions and y-ions of the PeptideHit. iBions[0] is the mass of b1
+     * and iYions[0] is the mass of y1
      */
     private void calculateBYions(Masses aM) {
         double[] lPeptideUnitMasses = calculatePeptideUnitMasses(aM);
@@ -267,9 +279,9 @@ public class PeptideHitAnnotation implements Serializable {
     /**
      * This method will calculate all the ion series masses for the peptide.
      *
-     * @return double[]     This double[] contains the mass of each unit of the sequence.
-     *         If the first element of the PeptideHit is A, the first element of the array will be the mass of A.
-     *         If the (ex) thirth AA of of the PeptideHit is Acetylated K, the thirth element in the array will be the mass of (K + Acetylation).     *
+     * @return double[]     This double[] contains the mass of each unit of the sequence. If the first element of the
+     *         PeptideHit is A, the first element of the array will be the mass of A. If the (ex) thirth AA of of the
+     *         PeptideHit is Acetylated K, the thirth element in the array will be the mass of (K + Acetylation).     *
      */
     private double[] calculatePeptideUnitMasses(Masses aM) {
         int length = iSequence.length();
@@ -303,15 +315,19 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This constructor creates an instance of the PeptideHitAnnotation class.
-     * When the constructor is called, it will generate an array with theoretical b- and y- ions. Other methods that calculate a- and c- ions, x- and z-ions are included.
+     * This constructor creates an instance of the PeptideHitAnnotation class. When the constructor is called, it will
+     * generate an array with theoretical b- and y- ions. Other methods that calculate a- and c- ions, x- and z-ions are
+     * included.
      *
      * @param aSequence        PeptideHit's sequence.
-     * @param aMods            Modifications on the sequence, each Modification includes different variables such as the mass.
+     * @param aMods            Modifications on the sequence, each Modification includes different variables such as the
+     *                         mass.
      * @param aM               A masses object that holds all the masses values of the AA, Hydrogen, H2O, ..
-     * @param aP               A parameter object that holds all the parameter data of the datfile. We need the tolerance data in this object.
+     * @param aP               A parameter object that holds all the parameter data of the datfile. We need the
+     *                         tolerance data in this object.
      * @param aIonSeriesFound  A int[] with the wherein the significant fragmention types are encoded.
-     * @param aPrecursorMZ     A double representing the precursorMZ of the Query wherefrom this peptidehit was created.
+     * @param aPrecursorMZ     A double representing the precursorMZ of the Query wherefrom this peptidehit was
+     *                         created.
      * @param aPrecursorCharge A int representing the charge of the precursor ion.
      */
     public PeptideHitAnnotation(String aSequence, Modification[] aMods, Masses aM, Parameters aP, int[] aIonSeriesFound, double aPrecursorMZ, String aPrecursorCharge) {
@@ -332,7 +348,8 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method calculates the start position of a possible H2O loss for the B-ion series. The returning variable is used for the H2O-loss fragmentions calculation.
+     * This method calculates the start position of a possible H2O loss for the B-ion series. The returning variable is
+     * used for the H2O-loss fragmentions calculation.
      *
      * @return int     This variable holds the smallest index of S|T|E|D residue. These aminoacids can loose their H2O.
      */
@@ -357,7 +374,8 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method calculates the start position of a possible H2O loss for the Y-ion series. The returning variable is used for the H2O-loss fragmentions calculation.
+     * This method calculates the start position of a possible H2O loss for the Y-ion series. The returning variable is
+     * used for the H2O-loss fragmentions calculation.
      *
      * @return int     This variable holds the smallest index of R|K|N|Q residue. These aminoacids can loose their H2O.
      */
@@ -387,25 +405,30 @@ public class PeptideHitAnnotation implements Serializable {
      */
 
     /**
-     * Returns this is the default value for the intensity threshold for the getMatchedIonsAboveIntensityThreshold method.<br>Default value equals 10%.
+     * Returns this is the default value for the intensity threshold for the getMatchedIonsAboveIntensityThreshold
+     * method.<br>Default value equals 10%.
      *
-     * @return this is the default value for the intensity threshold for the getMatchedIonsAboveIntensityThreshold method.<br>Default value equals 10%.
+     * @return this is the default value for the intensity threshold for the getMatchedIonsAboveIntensityThreshold
+     *         method.<br>Default value equals 10%.
      */
     public double getIntensityPercentage() {
         return iIntensityPercentage;
     }
 
     /**
-     * Sets this is the default value for the intensity threshold for the getMatchedIonsAboveIntensityThreshold method.<br>Default value equals 10%.
+     * Sets this is the default value for the intensity threshold for the getMatchedIonsAboveIntensityThreshold
+     * method.<br>Default value equals 10%.
      *
-     * @param aIntensityPercentage this is the default value for the intensity threshold for the getMatchedIonsAboveIntensityThreshold method.<br>Default value equals 10%.
+     * @param aIntensityPercentage this is the default value for the intensity threshold for the
+     *                             getMatchedIonsAboveIntensityThreshold method.<br>Default value equals 10%.
      */
     public void setIntensityPercentage(double aIntensityPercentage) {
         iIntensityPercentage = aIntensityPercentage;
     }
 
     /**
-     * This method calculates the start position of a possible NH3 loss for the B-ion series. The returning variable is used for the NH3-loss fragmentions calculation.
+     * This method calculates the start position of a possible NH3 loss for the B-ion series. The returning variable is
+     * used for the NH3-loss fragmentions calculation.
      *
      * @return int     This variable holds the smallest index of R|K|N|Q residue. These aminoacids can loose their NH3.
      */
@@ -430,7 +453,8 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method calculates the start position of a possible NH3 loss for the Y-ion series. The returning variable is used for the NH3-loss fragmentions calculation.
+     * This method calculates the start position of a possible NH3 loss for the Y-ion series. The returning variable is
+     * used for the NH3-loss fragmentions calculation.
      *
      * @return int     This variable holds the smallest index of R|K|N|Q residue. These aminoacids can loose their NH3.
      */
@@ -466,16 +490,19 @@ public class PeptideHitAnnotation implements Serializable {
 // -------------------------- OTHER METHODS --------------------------
 
     /**
-     * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was created.
-     * @param aNumberOfPeaksUsed   This variable holds the number of ions that mascot used to check witch of the theoretical ions matched in the spectrum.
-     *                             In practice, anly the first <aNumberOfPeaksUsed> Peaks from <aPeaks> will be used to do the check.
-     *                             This parameter is returned by the getPeaksUsedFromIons1() method in PeptideHit.
+     * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
+     *                             created.
+     * @param aNumberOfPeaksUsed   This variable holds the number of ions that mascot used to check witch of the
+     *                             theoretical ions matched in the spectrum. In practice, anly the first
+     *                             <aNumberOfPeaksUsed> Peaks from <aPeaks> will be used to do the check. This parameter
+     *                             is returned by the getPeaksUsedFromIons1() method in PeptideHit.
      * @param aMaxIntensity        double with the max intensity of the spectrum.
-     * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be (aMaxIntensity*aIntensityPercentage),
-     *                             only matches that are above this threshold will be added to the Vector.* @param aMassError           This is the mass error to check if this theoretical fragment ion was found in the spectrum.
-     * @return int[] with the distinct number fragmentions that covered the sequence. <br />
-     *         <b>[0]</b> number of b-ions covering the peptide's sequence.<br />
-     *         <b>[1]</b> number of y-ions covering the peptide's sequence.<br />
+     * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be
+     *                             (aMaxIntensity*aIntensityPercentage), only matches that are above this threshold will
+     *                             be added to the Vector.* @param aMassError           This is the mass error to check
+     *                             if this theoretical fragment ion was found in the spectrum.
+     * @return int[] with the distinct number fragmentions that covered the sequence. <br /> <b>[0]</b> number of b-ions
+     *         covering the peptide's sequence.<br /> <b>[1]</b> number of y-ions covering the peptide's sequence.<br />
      *         <b>[2]</b> number of b- and -ions covering the peptide's sequence.
      */
     public int[] getFusedIonCoverage(Peak[] aPeaks, int aNumberOfPeaksUsed, double aMaxIntensity, double aIntensityPercentage) {
@@ -497,19 +524,24 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method returns a Vector with FragmentIon instances.<br>
-     * All the FragmentIons are matched by 2 submethods.
+     * This method returns a Vector with FragmentIon instances.<br> All the FragmentIons are matched by 2 submethods.
      * <ul><li>MatchedIonsByMascot<br>First, check the Peaks that mascot used to check the matching fragmentions.
-     * <li>MatchedIonsAboveIntensityThreshold<br>Second, check all the Peaks in the spectrum for matches. The matching Peak must have a intensity above a parametrical intensityThreshold.
+     * <li>MatchedIonsAboveIntensityThreshold<br>Second, check all the Peaks in the spectrum for matches. The matching
+     * Peak must have a intensity above a parametrical intensityThreshold.
      *
-     * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was created.
-     * @param aNumberOfIonsUsed    This variable holds the number of ions that mascot used to check witch of the theoretical ions matched in the spectrum.<br></br>
-     *                             In practice, only the first <aNumberOfIonsUsed> Peaks from <aPeaks> will be used to do the check.
-     *                             This parameter is returned by the getPeaksUsedFromIons1() method in PeptideHit.
+     * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
+     *                             created.
+     * @param aNumberOfIonsUsed    This variable holds the number of ions that mascot used to check witch of the
+     *                             theoretical ions matched in the spectrum.<br></br> In practice, only the first
+     *                             <aNumberOfIonsUsed> Peaks from <aPeaks> will be used to do the check. This parameter
+     *                             is returned by the getPeaksUsedFromIons1() method in PeptideHit.
      * @param aMaxIntensity        double with the max intensity of the spectrum.
-     * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be (aMaxIntensity*aIntensityPercentage),
-     *                             only matches that are above this threshold will be added to the Vector.* @param aMassError           This is the mass error to check if this theoretical fragment ion was found in the spectrum.
-     * @return Vector with FragmentIons that were matched by Mascot used Peaks and by my aboveIntensityThreshold method.
+     * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be
+     *                             (aMaxIntensity*aIntensityPercentage), only matches that are above this threshold will
+     *                             be added to the Vector.* @param aMassError           This is the mass error to check
+     *                             if this theoretical fragment ion was found in the spectrum.
+     * @return Vector with FragmentIons that were matched by Mascot used Peaks and by my aboveIntensityThreshold
+     *         method.
      */
     public Vector getFusedMatchedIons(Peak[] aPeaks, int aNumberOfIonsUsed, double aMaxIntensity, double aIntensityPercentage) {
         resetPreviousMatching();
@@ -556,10 +588,12 @@ public class PeptideHitAnnotation implements Serializable {
     /**
      * This method will return a Vector with FragmentIon Instances that were matched int the massspectrum by Mascot.
      *
-     * @param aPeaks             Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was created.
-     * @param aNumberOfPeaksUsed This variable holds the number of ions that mascot used to check witch of the theoretical ions matched in the spectrum.
-     *                           In practice, anly the first <aNumberOfPeaksUsed> Peaks from <aPeaks> will be used to do the check.
-     *                           This parameter is returned by the getPeaksUsedFromIons1() method in PeptideHit.
+     * @param aPeaks             Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
+     *                           created.
+     * @param aNumberOfPeaksUsed This variable holds the number of ions that mascot used to check witch of the
+     *                           theoretical ions matched in the spectrum. In practice, anly the first
+     *                           <aNumberOfPeaksUsed> Peaks from <aPeaks> will be used to do the check. This parameter
+     *                           is returned by the getPeaksUsedFromIons1() method in PeptideHit.
      * @return Vector  Returns a vector with FragmentIon instances that had a match in the Peak[].
      */
     public Vector getMatchedIonsByMascot(Peak[] aPeaks, int aNumberOfPeaksUsed) {
@@ -583,9 +617,9 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method looks for matches between the FragmentIon[] and the Peak[], wich are both parameters.<br>
-     * This method will return a Vector with FragmentIons that where matched in the spectrum.<br>
-     * Every FragmentIon in this vector has a boolean with value = true.<br>
+     * This method looks for matches between the FragmentIon[] and the Peak[], wich are both parameters.<br> This method
+     * will return a Vector with FragmentIons that where matched in the spectrum.<br> Every FragmentIon in this vector
+     * has a boolean with value = true.<br>
      *
      * @param fmv    FragmentIon Vector with Theoretical fragmentions.
      * @param aPeaks Peak[] with representing the massspectrum.
@@ -607,7 +641,8 @@ public class PeptideHitAnnotation implements Serializable {
      * This method clears all the peaks that have allready been matched by the Fragmentions Vector.
      *
      * @param aPeaks        The original PeakList.
-     * @param aFragmentions The fragmentions that have allready been matched, peaks corresponding to their mass will be set to zero so they wont be matched anymore.
+     * @param aFragmentions The fragmentions that have allready been matched, peaks corresponding to their mass will be
+     *                      set to zero so they wont be matched anymore.
      * @return Peak[]            The reduced PeakList.
      */
     public Peak[] reducePeaks(Peak[] aPeaks, Vector aFragmentions) {
@@ -654,13 +689,17 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method will return a Vector with Significant FragmentIon Instances that were matched in the mass spectrum AND where above a parametrical intensity threshold.
+     * This method will return a Vector with Significant FragmentIon Instances that were matched in the mass spectrum
+     * AND where above a parametrical intensity threshold.
      *
-     * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was created.
+     * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
+     *                             created.
      * @param aMaxIntensity        double with the max intensity of the spectrum.
-     * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be (aMaxIntensity*aIntensityPercentage),
-     *                             only matches that are above this threshold will be added to the Vector.
-     * @return Vector Returns a vector with the significant FragmentIon instances that had a match above the intensity threshold in the Peak[].
+     * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be
+     *                             (aMaxIntensity*aIntensityPercentage), only matches that are above this threshold will
+     *                             be added to the Vector.
+     * @return Vector Returns a vector with the significant FragmentIon instances that had a match above the intensity
+     *         threshold in the Peak[].
      */
     public Vector getSignificantMatchedIonsAboveIntensityThreshold(Peak[] aPeaks, double aMaxIntensity, double aIntensityPercentage) {
         //get the significant theoretical fragmentions and pass them to the getMatchedIons method with intensity parameters.
@@ -671,9 +710,11 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method returns all significant fragmentions. Based on the ionseries int[]. It serves as input for the different matching methods.
+     * This method returns all significant fragmentions. Based on the ionseries int[]. It serves as input for the
+     * different matching methods.
      *
-     * @return Vector with all the significant theoretical fragmentions that should be checked for a match in the spectrum.
+     * @return Vector with all the significant theoretical fragmentions that should be checked for a match in the
+     *         spectrum.
      */
     public Vector getSignificantTheoreticalFragmentions() {
         Vector lAllSignificantIons = new Vector();
@@ -699,7 +740,8 @@ public class PeptideHitAnnotation implements Serializable {
      * This method returns a FragmentIonImpl[] with fragmentions. The fragmention type is made up by a switch()
      *
      * @param aIonSeriesIndex
-     * @return FragmentIonImpl[]   Returns a FragmentIonImpl[] with fragmentions of the requested type. (by int aIonSeries read from the iIonSeries int[].
+     * @return FragmentIonImpl[]   Returns a FragmentIonImpl[] with fragmentions of the requested type. (by int
+     *         aIonSeries read from the iIonSeries int[].
      */
     private FragmentIonImpl[] getFragmentIons(int aIonSeriesIndex) {
         FragmentIonImpl[] lFragmentIons = null;
@@ -815,7 +857,8 @@ public class PeptideHitAnnotation implements Serializable {
     /**
      * This method returns the A-ions and its associated ions. (A-ions, A-H2O-ions and A-NH3-ions)
      *
-     * @return FragmentIonImpl[]  Returns a FragmentIonImpl[] with the A-ions, A-H2O-ions and A-NH3-ions, if Mascot used a-ions according the IonSeries, all these ions should be checked.
+     * @return FragmentIonImpl[]  Returns a FragmentIonImpl[] with the A-ions, A-H2O-ions and A-NH3-ions, if Mascot used
+     *         a-ions according the IonSeries, all these ions should be checked.
      */
     private FragmentIonImpl[] getASeries() {
         FragmentIonImpl[] lAions = getAions();
@@ -889,7 +932,8 @@ public class PeptideHitAnnotation implements Serializable {
     /**
      * This method returns the double charged A-ions and its associated ions. (A++-ions, A++-H2O-ions and A++-NH3-ions)
      *
-     * @return FragmentIonImpl[]  Returns a FragmentIonImpl[] with the A++-ions, A++-H2O-ions and A++-NH3-ions, if Mascot used a++-ions according the IonSeries, all these ions should be checked.
+     * @return FragmentIonImpl[]  Returns a FragmentIonImpl[] with the A++-ions, A++-H2O-ions and A++-NH3-ions, if
+     *         Mascot used a++-ions according the IonSeries, all these ions should be checked.
      */
     private FragmentIonImpl[] getADoubleSeries() {
         FragmentIonImpl[] lADouble = getADoubleions();
@@ -992,7 +1036,8 @@ public class PeptideHitAnnotation implements Serializable {
     /**
      * This method returns the B-ions and its associated ions. (B-ions, B-H2O-ions and B-NH3-ions)
      *
-     * @return Vector  Returns a FragmentIon[] with the B-ions, B-H2O-ions and B-NH3-ions, if Mascot used b-ions according the IonSeries, all these ions should be checked.
+     * @return Vector  Returns a FragmentIon[] with the B-ions, B-H2O-ions and B-NH3-ions, if Mascot used b-ions
+     *         according the IonSeries, all these ions should be checked.
      */
     private FragmentIonImpl[] getBSeries() {
         FragmentIonImpl[] lBH2O = getBH2Oions();
@@ -1063,7 +1108,8 @@ public class PeptideHitAnnotation implements Serializable {
     /**
      * This method returns the double charged B-ions and its associated ions. (B++-ions, B++-H2O-ions and B++-NH3-ions)
      *
-     * @return Vector  Returns a vector with the B++-ions, B++-H2O-ions and B++-NH3-ions, if Mascot used b++-ions according the IonSeries, all these ions should be checked.
+     * @return Vector  Returns a vector with the B++-ions, B++-H2O-ions and B++-NH3-ions, if Mascot used b++-ions
+     *         according the IonSeries, all these ions should be checked.
      */
     private FragmentIonImpl[] getBDoubleSeries() {
         FragmentIonImpl[] lBDouble = getBDoubleions();
@@ -1149,7 +1195,8 @@ public class PeptideHitAnnotation implements Serializable {
     /**
      * This method returns the Y-ions and its associated ions. (Y-ions, Y-H2O-ions and Y-NH3-ions)
      *
-     * @return FragmentIonImpl[]  Returns a FragmentIonImpl[] with the Y-ions, Y-H2O-ions and Y-NH3-ions, if Mascot used y-ions according the IonSeries, all these ions should be checked.
+     * @return FragmentIonImpl[]  Returns a FragmentIonImpl[] with the Y-ions, Y-H2O-ions and Y-NH3-ions, if Mascot used
+     *         y-ions according the IonSeries, all these ions should be checked.
      */
     private FragmentIonImpl[] getYSeries() {
         FragmentIonImpl[] lYH2O = getYH2Oions();
@@ -1220,7 +1267,8 @@ public class PeptideHitAnnotation implements Serializable {
     /**
      * This method returns the double charged Y-ions and its associated ions. (Y++-ions, Y++-H2O-ions and Y++-NH3-ions)
      *
-     * @return FragmentIonImpl[]  Returns a FragmentIonImpl[] with the Y++-ions, Y++-H2O-ions and Y++-NH3-ions, if Mascot used y++-ions according the IonSeries, all these ions should be checked.
+     * @return FragmentIonImpl[]  Returns a FragmentIonImpl[] with the Y++-ions, Y++-H2O-ions and Y++-NH3-ions, if
+     *         Mascot used y++-ions according the IonSeries, all these ions should be checked.
      */
     private FragmentIonImpl[] getYDoubleSeries() {
         FragmentIonImpl[] lYDouble = getYDoubleions();
@@ -1426,9 +1474,9 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method looks for matches between the FragmentIon[] and the Peak[], <b>The matched peak must be above the intensity threshold(parameters)</b>.<br>
-     * This method will return a Vector with FragmentIons that where matched in the spectrum.<br>
-     * Every FragmentIon in this vector has a boolean with value = true.<br>
+     * This method looks for matches between the FragmentIon[] and the Peak[], <b>The matched peak must be above the
+     * intensity threshold(parameters)</b>.<br> This method will return a Vector with FragmentIons that where matched in
+     * the spectrum.<br> Every FragmentIon in this vector has a boolean with value = true.<br>
      *
      * @param fmv    FragmentIon Vector with Theoretical fragmentions.
      * @param aPeaks Peak[] with representing the massspectrum.
@@ -1447,13 +1495,17 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method will return a Vector with Non Significant FragmentIon Instances that were matched in the mass spectrum AND where above a parametrical intensity threshold.
+     * This method will return a Vector with Non Significant FragmentIon Instances that were matched in the mass
+     * spectrum AND where above a parametrical intensity threshold.
      *
-     * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was created.
+     * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
+     *                             created.
      * @param aMaxIntensity        double with the max intensity of the spectrum.
-     * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be (aMaxIntensity*aIntensityPercentage),
-     *                             only matches that are above this threshold will be added to the Vector.
-     * @return Vector Returns a vector with non significant FragmentIon instances that had a match above the intensity threshold in the Peak[].
+     * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be
+     *                             (aMaxIntensity*aIntensityPercentage), only matches that are above this threshold will
+     *                             be added to the Vector.
+     * @return Vector Returns a vector with non significant FragmentIon instances that had a match above the intensity
+     *         threshold in the Peak[].
      */
     public Vector getNonSignificantMatchedIonsAboveIntensityThreshold(Peak[] aPeaks, double aMaxIntensity, double aIntensityPercentage) {
         //get the significant theoretical fragmentions and pass them to the getMatchedIons method with intensity parameters.
@@ -1464,7 +1516,8 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method returns all non-significant fragmentions based on the ionseries int[], these are all the fragmentions with importance equal to 0. It serves as input for the different matching methods.
+     * This method returns all non-significant fragmentions based on the ionseries int[], these are all the fragmentions
+     * with importance equal to 0. It serves as input for the different matching methods.
      *
      * @return Vector with all the non-significant theoretical fragmentions.
      */
@@ -1562,8 +1615,8 @@ public class PeptideHitAnnotation implements Serializable {
 
 
     /**
-     * This method returns all theoretical fragmentions:<br><i>  b | b++ | b(NH3) | b(NH3)++ | b(H2O) | b(H2O)++ | y | y++ | y(NH3) | y(NH3)++ | y(H2O) | y(H2O)++</i>
-     * <br> It serves as input for the different matching methods.
+     * This method returns all theoretical fragmentions:<br><i>  b | b++ | b(NH3) | b(NH3)++ | b(H2O) | b(H2O)++ | y |
+     * y++ | y(NH3) | y(NH3)++ | y(H2O) | y(H2O)++</i> <br> It serves as input for the different matching methods.
      *
      * @return Vector with all the theoretical fragmentions that should be checked for a match in the spectrum.
      */
@@ -1572,28 +1625,17 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method returns all significant fragmentions that were requested in the int array.
-     * <br> It serves as input for the different matching methods.
+     * This method returns all significant fragmentions that were requested in the int array. <br> It serves as input
+     * for the different matching methods.
      *
-     * @param aIonTypes int[] wherein the ions you want in return can be retrieved. use the static integers on the FragmentIon interface!<ul>
-     *                  <li>0  - a Series
-     *                  <li>1  place holder
-     *                  <li>2  - a++ Series
+     * @param aIonTypes int[] wherein the ions you want in return can be retrieved. use the static integers on the
+     *                  FragmentIon interface!<ul> <li>0  - a Series <li>1  place holder <li>2  - a++ Series
      *                  <p/>
-     *                  <li>3  - b Series
-     *                  <li>4  place holder
-     *                  <li>5  - b++ Series
+     *                  <li>3  - b Series <li>4  place holder <li>5  - b++ Series
      *                  <p/>
-     *                  <li>6  - y Series
-     *                  <li>7  place holder
-     *                  <li>8  - y++ Series
+     *                  <li>6  - y Series <li>7  place holder <li>8  - y++ Series
      *                  <p/>
-     *                  <li>9  c
-     *                  <li>10 c++
-     *                  <li>11 x
-     *                  <li>12 x++
-     *                  <li>13 z
-     *                  <li>14 z++</ul>
+     *                  <li>9  c <li>10 c++ <li>11 x <li>12 x++ <li>13 z <li>14 z++</ul>
      * @return Vector with all the theoretical fragmentions that should be checked for a match in the spectrum.
      */
     public Vector getTheoreticalFragmentions(int[] aIonTypes) {
@@ -1611,13 +1653,14 @@ public class PeptideHitAnnotation implements Serializable {
     /**
      * This method calculates ioncoverage of a PeptideSequence and matched fragmentions.
      *
-     * @param aPeaks             Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was created.
-     * @param aNumberOfPeaksUsed This variable holds the number of ions that mascot used to check witch of the theoretical ions matched in the spectrum.
-     *                           In practice, anly the first <aNumberOfPeaksUsed> Peaks from <aPeaks> will be used to do the check.
-     *                           This parameter is returned by the getPeaksUsedFromIons1() method in PeptideHit.
-     * @return int[] with the distinct number fragmentions that covered the sequence. <br />
-     *         <b>[0]</b> number of b-ions covering the peptide's sequence.<br />
-     *         <b>[1]</b> number of y-ions covering the peptide's sequence.<br />
+     * @param aPeaks             Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
+     *                           created.
+     * @param aNumberOfPeaksUsed This variable holds the number of ions that mascot used to check witch of the
+     *                           theoretical ions matched in the spectrum. In practice, anly the first
+     *                           <aNumberOfPeaksUsed> Peaks from <aPeaks> will be used to do the check. This parameter
+     *                           is returned by the getPeaksUsedFromIons1() method in PeptideHit.
+     * @return int[] with the distinct number fragmentions that covered the sequence. <br /> <b>[0]</b> number of b-ions
+     *         covering the peptide's sequence.<br /> <b>[1]</b> number of y-ions covering the peptide's sequence.<br />
      *         <b>[2]</b> number of b- and -ions covering the peptide's sequence.
      */
     public int[] getMascotIonCoverage(Peak[] aPeaks, int aNumberOfPeaksUsed) {
@@ -1641,9 +1684,8 @@ public class PeptideHitAnnotation implements Serializable {
      * This method calculates ioncoverage of a PeptideSequence and matched fragmentions.
      *
      * @param aFragmentIons - A Vector with fragmentions that were matched.
-     * @return int[] with the distinct number fragmentions that covered the sequence. <br />
-     *         <b>[0]</b> number of b-ions covering the peptide's sequence.<br />
-     *         <b>[1]</b> number of y-ions covering the peptide's sequence.<br />
+     * @return int[] with the distinct number fragmentions that covered the sequence. <br /> <b>[0]</b> number of b-ions
+     *         covering the peptide's sequence.<br /> <b>[1]</b> number of y-ions covering the peptide's sequence.<br />
      *         <b>[2]</b> number of b- and -ions covering the peptide's sequence.
      */
     private int[] calculateCoverage(Vector aFragmentIons) {

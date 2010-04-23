@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
@@ -11,11 +13,11 @@ import junit.framework.Assert;
  */
 
 /**
- * TestClass description:
- * ------------------
- * This TestClass was developed to test
+ * TestClass description: ------------------ This TestClass was developed to test
  */
 public class TestProteinHit extends TestCaseLM {
+    // Class specific log4j logger for TestProteinHit instances.
+    private static Logger logger = Logger.getLogger(TestProteinHit.class);
     ProteinHit iProteinHit;
 
     public TestProteinHit() {
@@ -54,7 +56,8 @@ public class TestProteinHit extends TestCaseLM {
     public void testGetPeptideStopInProtein_PeptideCentricDatabase() {
         Assert.assertEquals(132, iProteinHit.getPeptideStopInProtein_PeptideCentricDatabase());
     }
-    public void testIPIProteinAccession(){
+
+    public void testIPIProteinAccession() {
         ProteinHit lProteinHit = new ProteinHit("\"IPI:IPI00025499.1\":0:275:280:1");
         Assert.assertEquals("IPI:IPI00025499.1", lProteinHit.getAccession());
     }

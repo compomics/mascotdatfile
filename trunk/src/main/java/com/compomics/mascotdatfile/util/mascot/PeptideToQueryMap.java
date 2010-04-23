@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 
 import java.util.HashMap;
@@ -36,26 +38,22 @@ import java.util.Vector;
  */
 
 /**
- * Contains a HashMap in the PeptideHit to
- * direction.
- * Keys     ModifiedSequences.
- * Vector   Query instances.
+ * Contains a HashMap in the PeptideHit to direction. Keys     ModifiedSequences. Vector   Query instances.
  */
 public class PeptideToQueryMap {
+    // Class specific log4j logger for PeptideToQueryMap instances.
+    private static Logger logger = Logger.getLogger(PeptideToQueryMap.class);
     /**
-     * The HashMap in the PeptideHit to Query direction.
-     * Keys     ModifiedSequences.
-     * Vector   Query instances.
+     * The HashMap in the PeptideHit to Query direction. Keys     ModifiedSequences. Vector   Query instances.
      */
     private HashMap iPeptideToQueryMap = null;
 
     /**
-     * Constructor
-     * Create the iPeptideToQueryMap, starting from the iQueryToPeptideMap
+     * Constructor Create the iPeptideToQueryMap, starting from the iQueryToPeptideMap
      *
      * @param aQueryToPeptideMap Hashmap with key=Querynumber that has a value=vector with peptidehits.
      */
-    public PeptideToQueryMap (QueryToPeptideMapInf aQueryToPeptideMap, Vector aQueryList) {
+    public PeptideToQueryMap(QueryToPeptideMapInf aQueryToPeptideMap, Vector aQueryList) {
         // 1.Initiate iPeptideToQueryMap.
         iPeptideToQueryMap = new HashMap(300, 100);
 

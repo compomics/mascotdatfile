@@ -23,11 +23,13 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
 
+import com.lowagie.text.*;
+import com.lowagie.text.Rectangle;
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model.DatfileTreePanel;
 import com.compomics.mascotdatfile.research.util.DatfileLocation;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfTemplate;
 import com.lowagie.text.pdf.PdfWriter;
@@ -50,6 +52,8 @@ import java.sql.SQLException;
  * <br>This Class has a main that will start a gui thread to show a spectrum with annotations.</br>
  */
 public class Spectrumviewer_gui extends JFrame implements DataBridge {
+    // Class specific log4j logger for Spectrumviewer_gui instances.
+    private static Logger logger = Logger.getLogger(Spectrumviewer_gui.class);
     private JButton btnHardDisk = null;
     private JButton btnDatabase = null;
     private JButton btnUrl = null;
@@ -71,7 +75,7 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
     /**
      * This constructer launches the gui thread by the constructScreen method.
      */
-    public Spectrumviewer_gui(){
+    public Spectrumviewer_gui() {
         super("Spectrumviewer");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         constructScreen();
@@ -82,7 +86,7 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
     /**
      * This method contructs the JFrame, it is called in the constructor.
      */
-    public void constructScreen(){
+    public void constructScreen() {
 
         // Create the menubar.
         mbar1 = new JMenuBar();
@@ -101,7 +105,7 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
 
 
         // Create a group of items for the "Open Datfile" menu (Datfile dialog launchers).
-        menuItem1 = new JMenuItem("URL Mascot Server",KeyEvent.VK_U);
+        menuItem1 = new JMenuItem("URL Mascot Server", KeyEvent.VK_U);
         menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.ALT_MASK));
         menuItem1.addActionListener(new ActionListener() {
             /** {@inheritDoc} */
@@ -111,7 +115,7 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
         });
         menuOpen.add(menuItem1);
 
-        menuItem1 = new JMenuItem("Hard Disk",KeyEvent.VK_H);
+        menuItem1 = new JMenuItem("Hard Disk", KeyEvent.VK_H);
         menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
         menuItem1.addActionListener(new ActionListener() {
             /** {@inheritDoc} */
@@ -139,11 +143,11 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
         menuItem1.addActionListener(new ActionListener() {
             /** {@inheritDoc} */
             public void actionPerformed(ActionEvent e) {
-                if(dtp == null){
+                if (dtp == null) {
                     JOptionPane.showMessageDialog(jpanMenuBar, "First load a datfile by the Datfile menu.");
-                }else{
+                } else {
                     String lInput = JOptionPane.showInputDialog(jpanMenuBar, "Insert the Querynumber or SpectrumFilename.", "Select Query", JOptionPane.QUESTION_MESSAGE).trim();
-                    if(lInput != null){
+                    if (lInput != null) {
                         dtp.select_jpanTree_node(lInput);
                     }
                 }
@@ -167,11 +171,11 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
 
         //Create a Panel for the menubar.
         jpanMenuBar = new JPanel();
-        jpanMenuBar.setLayout(new BorderLayout(5,5));
+        jpanMenuBar.setLayout(new BorderLayout(5, 5));
         jpanMenuBar.add(mbar1);
 
 
-        jpanDatfileTree = new JPanel(new BorderLayout(5,5));
+        jpanDatfileTree = new JPanel(new BorderLayout(5, 5));
         jpanDatfileTree.add(new JLabel("Select a datfile through the Datfile menu.", JLabel.CENTER));
 
         JPanel jpanMain = new JPanel(new BorderLayout());
@@ -182,6 +186,7 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
 
     /**
      * This method is used by the dialog to set the DatfileTreePanel.
+     *
      * @param mdf MascotDatfile instance
      */
     public void passMascotDatfile(MascotDatfile mdf, String aFilename) {
@@ -200,21 +205,19 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
 
     /**
      * This method is used by the dialog to apply the user defined filter settings.
-     *
      */
-    public void passFilterSettings(double aIntensityThreshold){
+    public void passFilterSettings(double aIntensityThreshold) {
         dtp.setFilterSettingsOnTreeModel(aIntensityThreshold);
         this.validate();
     }
 
     /**
-     * This method is called whenever the user clicked the button to
-     * export the spectrum to pdf.
+     * This method is called whenever the user clicked the button to export the spectrum to pdf.
      */
     private void pdfOutputTriggered() {
-        if(dtp != null){
+        if (dtp != null) {
 
-             // Looping boolean.
+            // Looping boolean.
             boolean lbContinue = true;
             // Previous selected path.
             String previousPath = "/";
@@ -222,7 +225,7 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
             FileFilter filter = new FileFilter() {
                 public boolean accept(File f) {
                     boolean result = false;
-                    if(f.isDirectory() || f.getName().endsWith(".pdf")) {
+                    if (f.isDirectory() || f.getName().endsWith(".pdf")) {
                         result = true;
                     }
                     return result;
@@ -232,22 +235,22 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
                     return "PDF file";
                 }
             };
-            while(lbContinue) {
+            while (lbContinue) {
                 JFileChooser jfc = new JFileChooser(previousPath);
                 jfc.setDialogTitle("Save spectrum panel as PDF file");
                 jfc.setDialogType(JFileChooser.SAVE_DIALOG);
                 jfc.setFileFilter(filter);
                 int returnVal = jfc.showSaveDialog(this.getParent());
-                if(returnVal == JFileChooser.APPROVE_OPTION) {
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = jfc.getSelectedFile();
                     // Append the file extension if it is not already there.
-                    if(jfc.getFileFilter() == filter && !file.getName().toLowerCase().endsWith(".pdf")) {
+                    if (jfc.getFileFilter() == filter && !file.getName().toLowerCase().endsWith(".pdf")) {
                         file = new File(file.getAbsolutePath() + ".pdf");
                     }
                     // Check for existing file.
-                    if(file.exists()) {
-                        int reply = JOptionPane.showConfirmDialog(this.getParent(), new String[] {"File '" + file.getAbsolutePath() + "' exists.", "Do you wish to overwrite?"}, "File exists!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                        if(reply != JOptionPane.YES_OPTION) {
+                    if (file.exists()) {
+                        int reply = JOptionPane.showConfirmDialog(this.getParent(), new String[]{"File '" + file.getAbsolutePath() + "' exists.", "Do you wish to overwrite?"}, "File exists!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        if (reply != JOptionPane.YES_OPTION) {
                             previousPath = file.getParent();
                             continue;
                         }
@@ -255,12 +258,12 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
 
                     // Output to PDF.
                     JPanel jpanSpectrum = dtp.getSpectrumPanel();
-                    float lWidthFloat = (new Double(jpanSpectrum.getSize().getWidth())).floatValue()+20;
+                    float lWidthFloat = (new Double(jpanSpectrum.getSize().getWidth())).floatValue() + 20;
                     float lHeightFloat = (new Double(jpanSpectrum.getSize().getHeight())).floatValue();
                     int lWidthInt = (new Double(jpanSpectrum.getSize().getWidth())).intValue();
                     int lHeightInt = (new Double(jpanSpectrum.getSize().getHeight())).intValue();
 
-                    Document document = new Document(new com.lowagie.text.Rectangle(lWidthInt, lHeightInt));
+                    Document document = new Document(new Rectangle(lWidthInt, lHeightInt));
 
                     try {
                         PdfWriter writer;
@@ -288,30 +291,30 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
                     lbContinue = false;
                 }
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "You need to load a datfile and SpectrumPanel first!", "No datfile loaded yet!", JOptionPane.ERROR_MESSAGE);
         }
 
     }
 
-    private void launch_URL_JDialog(){
+    private void launch_URL_JDialog() {
         JDialog d = new Spectrumviewer_URL_JDialog(this, this, "Spectrumviewer URL dialog", iPropertiesFile);
     }
-    
-    private void launch_HDD_JDialog(){
+
+    private void launch_HDD_JDialog() {
         File lDatfileFile = null;
         boolean lbContinue = true;
-        while(lbContinue) {
+        while (lbContinue) {
             JFileChooser lJFileChooser = new JFileChooser("/");
             int lReturnVal = lJFileChooser.showOpenDialog(this);
             if (lReturnVal == JFileChooser.APPROVE_OPTION) {
                 lDatfileFile = lJFileChooser.getSelectedFile();
-                if(lDatfileFile == null || !lDatfileFile.exists()) {
+                if (lDatfileFile == null || !lDatfileFile.exists()) {
                     JOptionPane.showMessageDialog(this, "You need to specify an existing datfile!", "Datfile not found!", JOptionPane.WARNING_MESSAGE);
                 } else {
                     lbContinue = false;
                 }
-            } else if(lReturnVal == JFileChooser.CANCEL_OPTION) {
+            } else if (lReturnVal == JFileChooser.CANCEL_OPTION) {
                 return;
             }
         }
@@ -322,17 +325,17 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
             this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             DatfileLocation dfl = new DatfileLocation(DatfileLocation.HARDDISK, lDatfileFile.getPath());
             lMdf = dfl.getDatfile();
-        } catch(ClassNotFoundException cnfe) {
+        } catch (ClassNotFoundException cnfe) {
             errorString = "HD class was not found! (" + cnfe.getMessage() + ")";
-        } catch(IllegalAccessException iae) {
+        } catch (IllegalAccessException iae) {
             errorString = "(" + iae.getMessage() + ")";
-        } catch(InstantiationException ie) {
+        } catch (InstantiationException ie) {
             errorString = "Could not create instance of the MascotDatfile class! (" + ie.getMessage() + ")";
-        } catch(SQLException sqle) {
+        } catch (SQLException sqle) {
             errorString = "(" + sqle.getMessage() + ")";
         }
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        if(errorString != null) {
+        if (errorString != null) {
             JOptionPane.showMessageDialog(this, new String[]{"Unable to load " + lDatfileFile.getPath() + ". " + errorString, "\n"}, "Unable to get the datfile!", JOptionPane.ERROR_MESSAGE);
         } else {
             this.passMascotDatfile(lMdf, lDatfileFile.getPath());
@@ -340,20 +343,20 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
     }
 
 
-    private void launch_Filter_JDialog(){
+    private void launch_Filter_JDialog() {
         JDialog d = new SpectrumViewer_Filter_JDialog(this, this, "Spectrumviewer Filter Settings", iPropertiesFile);
     }
 
 
-
     /**
      * This main method will be called to launch this tool.
+     *
      * @param args - no params necessary
      */
     public static void main(String[] args) {
         JFrame frame = new Spectrumviewer_gui();
-        frame.setSize(750,100);
-        frame.setLocation(50,50);
+        frame.setSize(750, 100);
+        frame.setLocation(50, 50);
         frame.setVisible(true);
     }
 

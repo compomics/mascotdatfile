@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
@@ -21,6 +23,8 @@ import java.io.File;
  * This class
  */
 public class BugfixTool {
+    // Class specific log4j logger for BugfixTool instances.
+    private static Logger logger = Logger.getLogger(BugfixTool.class);
 
 
     /**

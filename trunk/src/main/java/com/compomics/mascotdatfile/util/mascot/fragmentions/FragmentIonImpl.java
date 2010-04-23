@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.fragmentions;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
 import com.compomics.mascotdatfile.util.mascot.Peak;
 
@@ -30,12 +32,11 @@ import java.awt.*;
 import java.io.Serializable;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenny
- * Date: 10-mrt-2006
- * Time: 15:08:48
+ * Created by IntelliJ IDEA. User: Kenny Date: 10-mrt-2006 Time: 15:08:48
  */
 public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
+    // Class specific log4j logger for FragmentIonImpl instances.
+    private static Logger logger = Logger.getLogger(FragmentIonImpl.class);
     /**
      * This double holds the mass of fragmention.
      */
@@ -49,8 +50,9 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
      */
     private int iNumber = 0;
     /**
-     * This ID represents an identification for this ion.
-     * The FragmentIon implementation has these int-values hard coded. <br>The FragmentIonImpl constructor gets a hard coded int. The type of this fragmention will be verified by the getId() method.
+     * This ID represents an identification for this ion. The FragmentIon implementation has these int-values hard
+     * coded. <br>The FragmentIonImpl constructor gets a hard coded int. The type of this fragmention will be verified
+     * by the getId() method.
      */
     private int iID = 0;
     /**
@@ -58,8 +60,8 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
      */
     private String iType = null;
     /**
-     * This double holds the mass error between the theoretical fragmention and the matched peakmass.
-     * This variable can only be used when this fragmention has been matched by one of the method of this class.
+     * This double holds the mass error between the theoretical fragmention and the matched peakmass. This variable can
+     * only be used when this fragmention has been matched by one of the method of this class.
      */
     private double iTheoreticalExperimantalMassError = 0.0;
     /**
@@ -67,18 +69,17 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
      */
     private Color iColor = null;
     /**
-     * This int value is a measurement of the importance of the fragmentions. It is originally from the ionseries.
-     * <ul>
-     * <li><b>FragmentIon.NOT_Sign_NOT_Scoring </b> - Not Significant, Not Scoring.
-     * <li><b>FragmentIon.Sign_NOT_Scoring </b> - Significant, Not Scoring.
-     * <li><b>FragmentIon.Sign_AND_Scoring  </b> - Significant And Scoring.
-     * <i>default is FragmentIon.NOT_Sign_NOT_Scoring. </i>
+     * This int value is a measurement of the importance of the fragmentions. It is originally from the ionseries. <ul>
+     * <li><b>FragmentIon.NOT_Sign_NOT_Scoring </b> - Not Significant, Not Scoring. <li><b>FragmentIon.Sign_NOT_Scoring
+     * </b> - Significant, Not Scoring. <li><b>FragmentIon.Sign_AND_Scoring  </b> - Significant And Scoring. <i>default
+     * is FragmentIon.NOT_Sign_NOT_Scoring. </i>
      */
     private int iImportance = FragmentIon.NOT_Sign_NOT_Scoring;
     /**
-     * This double is the default error margin at wich this fragmention should be matched in the mass spectrum.
-     * <br>this Value is necessairy for the spectrumpannel. When this fragmention must be shown on the spectrumpannel, it MUST have a error margin for itself.
-     * <br>the other methods that can be accessed on a fragmention have a parametrical error margin so. These do not interfere, because they work in opposite directions.
+     * This double is the default error margin at wich this fragmention should be matched in the mass spectrum. <br>this
+     * Value is necessairy for the spectrumpannel. When this fragmention must be shown on the spectrumpannel, it MUST
+     * have a error margin for itself. <br>the other methods that can be accessed on a fragmention have a parametrical
+     * error margin so. These do not interfere, because they work in opposite directions.
      */
     private double iErrorMargin = 0.0;
     /**
@@ -91,7 +92,8 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
      *
      * @param aMZ          This double holds the mass of the fragmention.
      * @param aErrorMargin This double holds the error margin wich will be used in the spectrumpannel.
-     * @param aID          A static integer from the FragmentIon interface that serves as an identifier for the type of fragmention.
+     * @param aID          A static integer from the FragmentIon interface that serves as an identifier for the type of
+     *                     fragmention.
      * @param aNumber      The int Number of the fragmention. (Ex: a b3 fragmention will have int iNumber = 3)
      * @param aType        The type of the fragmention. (Ex: a b3 fragmention will have String iType = "a"
      */
@@ -110,7 +112,8 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
      * @param aMZ          This double holds the mass of the fragmention.
      * @param aIntensity   This double holds the intensity of the fragmention.
      * @param aErrorMargin This double holds the error margin wich will be used in the spectrumpannel.
-     * @param aID          A static integer from the FragmentIon interface that serves as an identifier for the type of fragmention.
+     * @param aID          A static integer from the FragmentIon interface that serves as an identifier for the type of
+     *                     fragmention.
      * @param aNumber      The int Number of the fragmention. (Ex: a b3 fragmention will have int iNumber = 3)
      * @param aType        The type of the fragmention. (Ex: a b3 fragmention will have String iType = "a"
      */
@@ -125,7 +128,8 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
      * @param aMZ          This double holds the mass of the fragmention.
      * @param aIntensity   This double holds the intensity of the fragmention.
      * @param aErrorMargin This double holds the error margin wich will be used in the spectrumpannel.
-     * @param aID          A static integer from the FragmentIon interface that serves as an identifier for the type of fragmention.
+     * @param aID          A static integer from the FragmentIon interface that serves as an identifier for the type of
+     *                     fragmention.
      * @param aNumber      The int Number of the fragmention. (Ex: a b3 fragmention will have int iNumber = 3)
      * @param aType        The type of the fragmention. (Ex: a b3 fragmention will have String iType = "a"
      * @param aColor       The Color that should be used to annotate this fragmention on the spectrumpannel.
@@ -141,7 +145,8 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
      *
      * @param aMZ          This double holds the mass of the fragmention.
      * @param aErrorMargin This double holds the error margin wich will be used in the spectrumpannel.
-     * @param aID          A static integer from the FragmentIon interface that serves as an identifier for the type of fragmention.
+     * @param aID          A static integer from the FragmentIon interface that serves as an identifier for the type of
+     *                     fragmention.
      * @param aNumber      The int Number of the fragmention. (Ex: a b3 fragmention will have int iNumber = 3)
      * @param aType        The type of the fragmention. (Ex: a b3 fragmention will have String iType = "a"
      * @param aColor       The Color that should be used to annotate this fragmention on the spectrumpannel.
@@ -189,33 +194,14 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
     }
 
     /**
-     * This method returns the soft type int ID of the fragmention. ex:an X-ion has an integer iID = 4.<br>These id's are static final integers fixed in this FragmentIon interface.
-     * <br><b>B-ion : 1</B>
-     * <br><b>B++-ion : 2</B>
-     * <br><b>B-H2O-ion : 3</B>
-     * <br><b>B++-H2O-ion : 4</B>
-     * <br><b>B-NH3-ion : 5</B>
-     * <br><b>B++-NH3-ion : 6</B>
-     * <br><b>Y-ion : 7</B>
-     * <br><b>Y++-ion : 8</B>
-     * <br><b>Y-H2O-ion : 9</B>
-     * <br><b>Y++-H2O-ion : 10</B>
-     * <br><b>Y-NH3-ion : 11</B>
-     * <br><b>Y++-NH3-ion : 12</B>
-     * <br><b>A-ion : 13</B>
-     * <br><b>A++-ion : 14</B>
-     * <br><b>A-H2O-ion : 15</B>
-     * <br><b>A++-H2O-ion : 16</B>
-     * <br><b>A-NH3-ion : 17</B>
-     * <br><b>A++-NH3-ion : 18</B>
-     * <br><b>X-ion : 19</B>
-     * <br><b>X++-ion : 20</B>
-     * <br><b>C-ion : 21</B>
-     * <br><b>C++-ion : 22</B>
-     * <br><b>Z-ion : 23</B>
-     * <br><b>Z++-ion : 24</B>
-     * <br><b>Precursor : 25</B>
-     * <br><b>Immonium : 26</B>
+     * This method returns the soft type int ID of the fragmention. ex:an X-ion has an integer iID = 4.<br>These id's
+     * are static final integers fixed in this FragmentIon interface. <br><b>B-ion : 1</B> <br><b>B++-ion : 2</B>
+     * <br><b>B-H2O-ion : 3</B> <br><b>B++-H2O-ion : 4</B> <br><b>B-NH3-ion : 5</B> <br><b>B++-NH3-ion : 6</B>
+     * <br><b>Y-ion : 7</B> <br><b>Y++-ion : 8</B> <br><b>Y-H2O-ion : 9</B> <br><b>Y++-H2O-ion : 10</B> <br><b>Y-NH3-ion
+     * : 11</B> <br><b>Y++-NH3-ion : 12</B> <br><b>A-ion : 13</B> <br><b>A++-ion : 14</B> <br><b>A-H2O-ion : 15</B>
+     * <br><b>A++-H2O-ion : 16</B> <br><b>A-NH3-ion : 17</B> <br><b>A++-NH3-ion : 18</B> <br><b>X-ion : 19</B>
+     * <br><b>X++-ion : 20</B> <br><b>C-ion : 21</B> <br><b>C++-ion : 22</B> <br><b>Z-ion : 23</B> <br><b>Z++-ion :
+     * 24</B> <br><b>Precursor : 25</B> <br><b>Immonium : 26</B>
      *
      * @return int     ID with the ionnumber.
      */
@@ -260,14 +246,13 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
     }
 
     /**
-     * Returns this int value is a measurement of the importance of the fragmentions. It is originally from the ionseries.
-     * <ul>
-     * <li><b>FragmentIon.NOT_Sign_NOT_Scoring </b> - Not Significant, Not Scoring.
-     * <li><b>FragmentIon.Sign_NOT_Scoring </b> - Significant, Not Scoring.
-     * <li><b>FragmentIon.Sign_AND_Scoring  </b> - Significant And Scoring.
-     * <i>default is FragmentIon.NOT_Sign_NOT_Scoring. </i>
+     * Returns this int value is a measurement of the importance of the fragmentions. It is originally from the
+     * ionseries. <ul> <li><b>FragmentIon.NOT_Sign_NOT_Scoring </b> - Not Significant, Not Scoring.
+     * <li><b>FragmentIon.Sign_NOT_Scoring </b> - Significant, Not Scoring. <li><b>FragmentIon.Sign_AND_Scoring  </b> -
+     * Significant And Scoring. <i>default is FragmentIon.NOT_Sign_NOT_Scoring. </i>
      *
-     * @return this int value is a measurement of the importance of the fragmentions. It is originally from the ionseries.
+     * @return this int value is a measurement of the importance of the fragmentions. It is originally from the
+     *         ionseries.
      */
     public int getImportance() {
         return iImportance;
@@ -275,13 +260,12 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
 
     /**
      * Sets this int value is a measurement of the importance of the fragmentions. It is originally from the ionseries.
-     * <ul>
-     * <li><b>FragmentIon.NOT_Sign_NOT_Scoring </b> - Not Significant, Not Scoring.
-     * <li><b>FragmentIon.Sign_NOT_Scoring </b> - Significant, Not Scoring.
-     * <li><b>FragmentIon.Sign_AND_Scoring  </b> - Significant And Scoring.
-     * <i>default is FragmentIon.NOT_Sign_NOT_Scoring. </i>
+     * <ul> <li><b>FragmentIon.NOT_Sign_NOT_Scoring </b> - Not Significant, Not Scoring.
+     * <li><b>FragmentIon.Sign_NOT_Scoring </b> - Significant, Not Scoring. <li><b>FragmentIon.Sign_AND_Scoring  </b> -
+     * Significant And Scoring. <i>default is FragmentIon.NOT_Sign_NOT_Scoring. </i>
      *
-     * @param aImportance this int value is a measurement of the importance of the fragmentions. It is originally from the ionseries.
+     * @param aImportance this int value is a measurement of the importance of the fragmentions. It is originally from
+     *                    the ionseries.
      */
     public void setImportance(int aImportance) {
         iImportance = aImportance;
@@ -289,8 +273,9 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
 
     /**
      * Returns this double is the default error margin at wich this fragmention should be matched in the mass spectrum.
-     * <br>this Value is necessairy for the spectrumpannel. When this fragmention must be shown on the spectrumpannel, it MUST have a error margin for itself.
-     * <br>the other methods that can be accessed on a fragmention have a parametrical error margin so. These do not interfere, because they work in opposite directions.
+     * <br>this Value is necessairy for the spectrumpannel. When this fragmention must be shown on the spectrumpannel,
+     * it MUST have a error margin for itself. <br>the other methods that can be accessed on a fragmention have a
+     * parametrical error margin so. These do not interfere, because they work in opposite directions.
      *
      * @return this double is the default error margin at wich this fragmention should be matched in the mass spectrum.
      */
@@ -299,8 +284,8 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
     }
 
     /**
-     * This method returns the label of the fragmention. It is a combination of the Number and the Type.
-     * ex: FragmentIon with iNumber=3 and iType=b will return b3 on this method call.
+     * This method returns the label of the fragmention. It is a combination of the Number and the Type. ex: FragmentIon
+     * with iNumber=3 and iType=b will return b3 on this method call.
      *
      * @return String       Label of the framention (Number+Type).
      */
@@ -330,8 +315,8 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
     }
 
     /**
-     * Returns this double holds the mass error between the theoretical fragmention and the matched peakmass.
-     * <b>The fragmention must be a match in the mass spectrum before this method can be used!</b>
+     * Returns this double holds the mass error between the theoretical fragmention and the matched peakmass. <b>The
+     * fragmention must be a match in the mass spectrum before this method can be used!</b>
      *
      * @return this double holds the mass error between the theoretical fragmention and the matched peakmass.
      */
@@ -340,13 +325,16 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
     }
 
     /**
-     * This method checks if the mass of this fragmention was found in the original spectrum with a given ErrorMargin. This method does not take any intensity parameters in count!<br>
-     * If the mass was matched, a 'true' will be returned in the end of this method!
-     * The mass Theoretical and experimental mass error is saved in the iTheoreticalExperimantalMassError double.
+     * This method checks if the mass of this fragmention was found in the original spectrum with a given ErrorMargin.
+     * This method does not take any intensity parameters in count!<br> If the mass was matched, a 'true' will be
+     * returned in the end of this method! The mass Theoretical and experimental mass error is saved in the
+     * iTheoreticalExperimantalMassError double.
      *
-     * @param aPeaks       Peak[] containing all the peak masses from the mass spectrum that was used by the query that delivered this peptidehit.
+     * @param aPeaks       Peak[] containing all the peak masses from the mass spectrum that was used by the query that
+     *                     delivered this peptidehit.
      * @param aErrorMargin This is the mass error to check if this theoretical fragment ion was found in the spectrum.
-     * @return boolean      This boolean says if this theoretical FragmentIon wass found with a mass error aErrorMargin in the spectrum.
+     * @return boolean      This boolean says if this theoretical FragmentIon wass found with a mass error aErrorMargin
+     *         in the spectrum.
      */
     public boolean isMatch(Peak[] aPeaks, double aErrorMargin) {
         if (!boolMatch) {
@@ -363,17 +351,21 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
     }
 
     /**
-     * This method checks if the mass of this fragmention was found in the original spectrum with a given ErrorMargin.<br>
-     * The Peak that is matched must have an intensity above a threshold that is based on the highest intensity of the spectrum.<br>
-     * If the mass was matched, <b>the instance boolean lMatch will be set to true</b>, if there is no match, the boolean will stay false.
-     * This boolean will be returned in the end of this method!
+     * This method checks if the mass of this fragmention was found in the original spectrum with a given
+     * ErrorMargin.<br> The Peak that is matched must have an intensity above a threshold that is based on the highest
+     * intensity of the spectrum.<br> If the mass was matched, <b>the instance boolean lMatch will be set to true</b>,
+     * if there is no match, the boolean will stay false. This boolean will be returned in the end of this method!
      *
-     * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was created.
+     * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
+     *                             created.
      * @param aMaxIntensity        double with the max intensity of the spectrum.
-     * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be (aMaxIntensity*aIntensityPercentage),
-     *                             only matches that are above this threshold will be added to the Vector.
-     * @param aErrorMargin         This is the mass error to check if this theoretical fragment ion was found in the spectrum.
-     * @return boolean      This boolean says if this theoretical FragmentIon wass found with a mass error iErrorMargin in the spectrum.
+     * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be
+     *                             (aMaxIntensity*aIntensityPercentage), only matches that are above this threshold will
+     *                             be added to the Vector.
+     * @param aErrorMargin         This is the mass error to check if this theoretical fragment ion was found in the
+     *                             spectrum.
+     * @return boolean      This boolean says if this theoretical FragmentIon wass found with a mass error iErrorMargin
+     *         in the spectrum.
      */
     public boolean isMatchAboveIntensityThreshold(Peak[] aPeaks, double aMaxIntensity, double aIntensityPercentage, double aErrorMargin) {
         if (!boolMatch) { // If the ion has not been matched before,

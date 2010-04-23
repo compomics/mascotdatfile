@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
@@ -42,6 +44,9 @@ import java.util.Vector;
  * This class implements the test scenario for the class.
  */
 public class TestThreshold extends TestCaseLM {
+    // Class specific log4j logger for TestThreshold instances.
+    private static Logger logger = Logger.getLogger(TestThreshold.class);
+
     public TestThreshold() {
         super("This is the test scenario for Threshold functionality of the PeptideHit Class.");
     }

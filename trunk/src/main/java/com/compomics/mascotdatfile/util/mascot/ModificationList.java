@@ -23,21 +23,20 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenny
- * Date: 26-feb-2006
- * Time: 13:55:30
- * This class holds 2 vectors,
- * 1 with fixed modifications
- * 1 with variable modifications.
+ * Created by IntelliJ IDEA. User: Kenny Date: 26-feb-2006 Time: 13:55:30 This class holds 2 vectors, 1 with fixed
+ * modifications 1 with variable modifications.
  */
-public class ModificationList  implements Serializable {
+public class ModificationList implements Serializable {
+    // Class specific log4j logger for ModificationList instances.
+    private static Logger logger = Logger.getLogger(ModificationList.class);
     /**
      * This Vector holds the different Fixed Modificatins used in this Mascot search.
      */
@@ -63,7 +62,9 @@ public class ModificationList  implements Serializable {
      *
      * @param aFModStringArrayList FixedModifications ArrayList
      * @param aFixedModifications_ParameterSection
-     *                             String with the fixed modifications as read from the parameters-section. They will not contain mass data!! This is only functional to create a complete modifiedSequence in older datfiles.
+     *                             String with the fixed modifications as read from the parameters-section. They will
+     *                             not contain mass data!! This is only functional to create a complete modifiedSequence
+     *                             in older datfiles.
      */
     public ModificationList(ArrayList aFModStringArrayList, ArrayList aVModStringArrayList, String aFixedModifications_ParameterSection) {
         generateVModVector(aVModStringArrayList);
@@ -102,7 +103,7 @@ public class ModificationList  implements Serializable {
             String[] lNameArray = parseVariableModName(lTypeAndLocation);
             String lType = lNameArray[0].trim();
             String lLocation = lNameArray[1];
-            if(lLocation != null) {
+            if (lLocation != null) {
                 lLocation = lLocation.trim();
             }
 
@@ -217,8 +218,7 @@ public class ModificationList  implements Serializable {
     }
 
     /**
-     * method
-     * Use the static TestModificationConversion instance HashMap.
+     * method Use the static TestModificationConversion instance HashMap.
      *
      * @param aKey String    Modification Type.
      * @return ShortType   String    Modification ShortType.
@@ -228,18 +228,17 @@ public class ModificationList  implements Serializable {
     }
 
     /**
-     * Method
-     * Parse the name string of a variable modidication into type of modifiction(ex: 'Acetyl') and the location(ex:'N-term')
+     * Method Parse the name string of a variable modidication into type of modifiction(ex: 'Acetyl') and the
+     * location(ex:'N-term')
      *
      * @param aName String with modificationType and modificationLocation.
-     * @return String[] with the parsed modificationType and modificationLocation.
-     *         input example: 'Pyro-cmC (N-term camC)'
-     *         returns [0]='Pyro-cmC'  [1]='N-term camC'
+     * @return String[] with the parsed modificationType and modificationLocation. input example: 'Pyro-cmC (N-term
+     *         camC)' returns [0]='Pyro-cmC'  [1]='N-term camC'
      */
     private String[] parseVariableModName(String aName) {
         String[] lNameArray = new String[2];
         int lBeginIndex = aName.lastIndexOf('(');
-        if(lBeginIndex > 0) {
+        if (lBeginIndex > 0) {
             int lEndIndex = aName.lastIndexOf(')');
             lNameArray[0] = aName.substring(0, (lBeginIndex));
             lNameArray[1] = aName.substring(lBeginIndex + 1, lEndIndex);
@@ -251,20 +250,17 @@ public class ModificationList  implements Serializable {
     }
 
     /**
-     * Method
-     * Parse the name string of a fixed modidication into type of modifiction(ex: 'Acetyl_heavy').
+     * Method Parse the name string of a fixed modidication into type of modifiction(ex: 'Acetyl_heavy').
      *
      * @param aName String with modificationType( and modificationLocation).
-     * @return String with the parsed modificationType.
-     *         input example: 'Arg 6xC(13) (R)'
-     *         returns 'Arg 6xC(13)'
+     * @return String with the parsed modificationType. input example: 'Arg 6xC(13) (R)' returns 'Arg 6xC(13)'
      */
     private String parseFixedModName(String aName) {
         aName = aName.trim();                               //Cut of the leading whitespace.
         int lEndIndex = aName.lastIndexOf('(') - 1;         //Find the last ')' bracket; minus 1 is the end of the Mod type.
-		if (lEndIndex >= 0) {
-			aName = aName.substring(0, lEndIndex);
-		}
-		return aName;
+        if (lEndIndex >= 0) {
+            aName = aName.substring(0, lEndIndex);
+        }
+        return aName;
     }
 }

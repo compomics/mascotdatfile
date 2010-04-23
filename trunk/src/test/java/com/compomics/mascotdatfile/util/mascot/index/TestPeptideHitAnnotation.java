@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
@@ -44,6 +46,8 @@ import java.util.Vector;
  * This class implements the test scenario for the class.
  */
 public class TestPeptideHitAnnotation extends TestCaseLM {
+    // Class specific log4j logger for TestPeptideHitAnnotation instances.
+    private static Logger logger = Logger.getLogger(TestPeptideHitAnnotation.class);
 
     public TestPeptideHitAnnotation() {
         super("This is the test scenario for a PeptideHitAnnotation instance.");
@@ -98,8 +102,8 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     /**
-     * This method will test the B and Y ion genereation in the constructor.
-     * The identifications that will be tested carry a fixed Cterminal modification.
+     * This method will test the B and Y ion genereation in the constructor. The identifications that will be tested
+     * carry a fixed Cterminal modification.
      */
     public void testBYIons2() {
         MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F016486.dat"));
@@ -138,8 +142,8 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     /**
-     * This method will test the B and Y ion genereation in the constructor.
-     * The identifications that will be tested carry a fixed Cterminal modification.
+     * This method will test the B and Y ion genereation in the constructor. The identifications that will be tested
+     * carry a fixed Cterminal modification.
      */
     public void testBYIons3() {
         MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F016528.dat"));

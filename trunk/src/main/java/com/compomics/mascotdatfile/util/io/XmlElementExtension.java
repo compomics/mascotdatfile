@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.io;
 
+import org.apache.log4j.Logger;
+
 import java.util.HashMap;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -12,10 +14,12 @@ import java.util.Vector;
  */
 
 /**
- * This class extends the XmlElement.
- * This class parses the xml element and can hold XmlElement attribute information, title, value and children of the XmlElements
+ * This class extends the XmlElement. This class parses the xml element and can hold XmlElement attribute information,
+ * title, value and children of the XmlElements
  */
 public class XmlElementExtension {
+    // Class specific log4j logger for XmlElementExtension instances.
+    private static Logger logger = Logger.getLogger(XmlElementExtension.class);
 
     /**
      * Value of this XmlElementExtension
@@ -51,7 +55,8 @@ public class XmlElementExtension {
      *
      * @param aXmlString             String with the whole xml tag
      * @param aIndexElementExtension The IndexElementExtensio of the XmlElementExtension
-     * @param aChild                 Boolean that states if this XmlElementExtension is a child of another XmlElementExtension
+     * @param aChild                 Boolean that states if this XmlElementExtension is a child of another
+     *                               XmlElementExtension
      */
     public XmlElementExtension(String aXmlString, IndexElementExtension aIndexElementExtension, boolean aChild) {
         this.iIndexElementExtension = aIndexElementExtension;
@@ -224,8 +229,8 @@ public class XmlElementExtension {
     /**
      * This method gives an XmlElementExtension that is a child with a specific title
      *
-     * @param aTitle Title of the child (first/second/third)
-     *               If the title of this child is "first", the children of this child will be asked with title "second/third"
+     * @param aTitle Title of the child (first/second/third) If the title of this child is "first", the children of this
+     *               child will be asked with title "second/third"
      * @return Vector<XmlElementExtension> with the asked childs
      */
     public Vector<XmlElementExtension> getChildByTitle(String aTitle) {

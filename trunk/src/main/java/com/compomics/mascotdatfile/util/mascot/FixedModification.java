@@ -23,6 +23,9 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.interfaces.Modification;
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 
 /**
@@ -33,9 +36,12 @@ import java.io.Serializable;
  */
 
 /**
- * Instances of this class represent 1 fixed modifications that will be on every peptideHit while doing the Mascot search.
+ * Instances of this class represent 1 fixed modifications that will be on every peptideHit while doing the Mascot
+ * search.
  */
-public class FixedModification implements com.compomics.mascotdatfile.util.interfaces.Modification, Serializable {
+public class FixedModification implements Modification, Serializable {
+    // Class specific log4j logger for FixedModification instances.
+    private static Logger logger = Logger.getLogger(FixedModification.class);
     /**
      * The standard name of the modification, read from the '.dta' file
      */
@@ -45,8 +51,8 @@ public class FixedModification implements com.compomics.mascotdatfile.util.inter
      */
     private double iMass = 0;
     /**
-     * The one-lettercode of the aminoacids with Fixed ModificationList.
-     * Multi aminoacid's are possible. (ex: QN * Dam) The "QN" String will be converted to a char[] if necissairy in the PeptideHit instance.
+     * The one-lettercode of the aminoacids with Fixed ModificationList. Multi aminoacid's are possible. (ex: QN * Dam)
+     * The "QN" String will be converted to a char[] if necissairy in the PeptideHit instance.
      */
     private String iLocation = null;
     /**
@@ -60,8 +66,7 @@ public class FixedModification implements com.compomics.mascotdatfile.util.inter
 
 
     /**
-     * Contructor
-     * Generate a fixed modification containing different parameters of the modification.
+     * Contructor Generate a fixed modification containing different parameters of the modification.
      *
      * @param aType           standard name by mascot
      * @param aMass           mass
@@ -77,9 +82,9 @@ public class FixedModification implements com.compomics.mascotdatfile.util.inter
     }
 
     /**
-     * Contructor
-     * Generate a fixed modification containing different parameters of the modification except for the mass!
-     * This constructor needs to be called when parsing old datfiles, they dont contain the mass of the fixed modifications.
+     * Contructor Generate a fixed modification containing different parameters of the modification except for the mass!
+     * This constructor needs to be called when parsing old datfiles, they dont contain the mass of the fixed
+     * modifications.
      *
      * @param aType           standard name by mascot
      * @param aLocation       location
@@ -120,7 +125,8 @@ public class FixedModification implements com.compomics.mascotdatfile.util.inter
      * Returns the mass of the modification.
      *
      * @return the mass of the modification.
-     * @throws IllegalAccessError // If the mass was set to -2, then the mass of the fixed modification was not supplied by the (old) datfile.
+     * @throws IllegalAccessError // If the mass was set to -2, then the mass of the fixed modification was not supplied
+     *                            by the (old) datfile.
      */
     public double getMass() {
         if (iMass == -2) {

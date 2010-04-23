@@ -1,18 +1,19 @@
 package com.compomics.mascotdatfile.util.mascot.quantitation;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.mascot.Peak;
 import com.compomics.mascotdatfile.util.mascot.enumeration.Mass;
 
 import java.math.BigDecimal;
 
 /**
- * Created by IntelliJ IDEA.
- * User: kenny
- * Date: Mar 16, 2009
- * Time: 5:35:40 PM
- * To change this template use File | Settings | File Templates.
+ * Created by IntelliJ IDEA. User: kenny Date: Mar 16, 2009 Time: 5:35:40 PM To change this template use File | Settings
+ * | File Templates.
  */
 public class Ratio {
+    // Class specific log4j logger for Ratio instances.
+    private static Logger logger = Logger.getLogger(Ratio.class);
 
     public static double NUMERATOR_NOT_FOUND = -1.0;
     public static double DENOMINATOR_NOT_FOUND = -2.0;
@@ -55,13 +56,10 @@ public class Ratio {
      * Calculates the Ratio for the Components within the given peaks from.
      *
      * @param aPeaks
-     * @return The calculated ratio. If these were set, the intensities will be weighted by their coefficient.
-     *         If one of the Peaks was not found, the returning is negative.
-     *         <ul>
-     *         <li>-1 means the numerator peak is missing</li>
-     *         <li>-2 means the denominator peak is missing</li>
-     *         <li>-3 means both the numerator and the denominator peak are missing</li>
-     *         </ul>
+     * @return The calculated ratio. If these were set, the intensities will be weighted by their coefficient. If one of
+     *         the Peaks was not found, the returning is negative. <ul> <li>-1 means the numerator peak is missing</li>
+     *         <li>-2 means the denominator peak is missing</li> <li>-3 means both the numerator and the denominator
+     *         peak are missing</li> </ul>
      */
     public double calculate(Peak[] aPeaks, double aIonTolerance, Mass aMassType) {
         double lResult = 0;

@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
 import com.compomics.mascotdatfile.util.mascot.enumeration.Mass;
@@ -12,13 +14,12 @@ import junit.framework.Assert;
 import java.util.ArrayList;
 
 /**
- * Created by IntelliJ IDEA.
- * User: kenny
- * Date: Mar 16, 2009
- * Time: 3:59:08 PM
- * To change this template use File | Settings | File Templates.
+ * Created by IntelliJ IDEA. User: kenny Date: Mar 16, 2009 Time: 3:59:08 PM To change this template use File | Settings
+ * | File Templates.
  */
 public class TestQuantitation extends TestCaseLM {
+    // Class specific log4j logger for TestQuantitation instances.
+    private static Logger logger = Logger.getLogger(TestQuantitation.class);
 
     public TestQuantitation() {
         super("Testscenario for quantitation class.");

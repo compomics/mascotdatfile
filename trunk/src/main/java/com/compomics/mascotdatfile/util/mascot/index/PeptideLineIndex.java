@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import java.util.Iterator;
 
 /**
@@ -7,20 +9,22 @@ import java.util.Iterator;
  * File Templates.
  */
 public class PeptideLineIndex {
+    // Class specific log4j logger for PeptideLineIndex instances.
+    private static Logger logger = Logger.getLogger(PeptideLineIndex.class);
     Integer[] iLines;
 
     public PeptideLineIndex(final Integer[] aLines) {
         iLines = aLines;
     }
 
-    public int getNumberOfPeptides(){
+    public int getNumberOfPeptides() {
         return iLines.length;
     }
 
-    public int getLine(int aPeptideNumber){
+    public int getLine(int aPeptideNumber) {
         if (aPeptideNumber <= iLines.length) {
-            return iLines[aPeptideNumber-1];
-        }else{
+            return iLines[aPeptideNumber - 1];
+        } else {
             return -1;
         }
     }

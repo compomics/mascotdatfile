@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.Peak;
 import com.compomics.mascotdatfile.util.mascot.Quantitation;
@@ -46,6 +48,9 @@ import java.util.ArrayList;
  * This class implements the test scenario for the Masses class.
  */
 public class TestQuantitation extends TestCaseLM {
+    // Class specific log4j logger for TestQuantitation instances.
+    private static Logger logger = Logger.getLogger(TestQuantitation.class);
+
     public TestQuantitation() {
         super("Testscenario for quantitation class.");
     }

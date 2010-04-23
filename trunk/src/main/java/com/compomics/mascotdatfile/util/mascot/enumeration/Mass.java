@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot.enumeration;
 
+import org.apache.log4j.Logger;
+
 /**
  * Created by IntelliJ IDEA.
  * User: kenny

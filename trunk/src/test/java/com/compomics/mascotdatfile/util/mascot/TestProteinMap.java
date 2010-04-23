@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
@@ -11,11 +13,11 @@ import junit.framework.Assert;
  */
 
 /**
- * TestClass description:
- * ------------------
- * This TestClass was developed to test the ProteinMap.
+ * TestClass description: ------------------ This TestClass was developed to test the ProteinMap.
  */
 public class TestProteinMap extends TestCaseLM {
+    // Class specific log4j logger for TestProteinMap instances.
+    private static Logger logger = Logger.getLogger(TestProteinMap.class);
     ProteinMap iProteinMap = null;
 
 

@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
 import com.compomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
@@ -11,6 +13,8 @@ import junit.framework.Assert;
  * File Templates.
  */
 public class TestFactory extends TestCaseLM {
+    // Class specific log4j logger for TestFactory instances.
+    private static Logger logger = Logger.getLogger(TestFactory.class);
 
     public TestFactory(String s) {
         super(s);
@@ -19,7 +23,7 @@ public class TestFactory extends TestCaseLM {
     public void testReadMemory() {
         //1. Create a new DatfileID instance of the first datfile.
         MascotDatfileInf lDfid = MascotDatfileFactory.create(getFullFilePath("F009911.dat"), MascotDatfileType.MEMORY);
-        
+
 
         Assert.assertTrue(lDfid instanceof MascotDatfile);
         //No further variables or functions in the Header instance. If this works, this object works fine.
@@ -30,6 +34,6 @@ public class TestFactory extends TestCaseLM {
         MascotDatfileInf lDfid = MascotDatfileFactory.create(getFullFilePath("F009911.dat"), MascotDatfileType.INDEX);
         //2. Get the the header object to run the tests on.
         Assert.assertTrue(lDfid instanceof MascotDatfile_Index);
-        
+
     }
 }

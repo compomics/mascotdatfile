@@ -29,6 +29,8 @@
  */
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.StringTokenizer;
@@ -41,6 +43,8 @@ import java.util.StringTokenizer;
  * Acetyl_heavy (N-term) Value:   shortname   AcD3
  */
 public class ModificationConversion {
+    // Class specific log4j logger for ModificationConversion instances.
+    private static Logger logger = Logger.getLogger(ModificationConversion.class);
 // ------------------------------ FIELDS ------------------------------
 
     private static ModificationConversion singleton = null;
@@ -64,10 +68,11 @@ public class ModificationConversion {
 
     /**
      * Get the singleton instance of the modificationConversion instance.
+     *
      * @return
      */
-    public static ModificationConversion getInstance(){
-        if(singleton == null){
+    public static ModificationConversion getInstance() {
+        if (singleton == null) {
             singleton = new ModificationConversion();
         }
         return singleton;
@@ -107,7 +112,7 @@ public class ModificationConversion {
             // First, try to find the modificationconversion file in the "resources" jar launcher folder.
             String path = "" + this.getClass().getProtectionDomain().getCodeSource().getLocation();
             path = path.substring(5, path.lastIndexOf("/"));
-            if(path.endsWith("/lib")){
+            if (path.endsWith("/lib")) {
                 path = path.substring(0, path.length() - 4);
             }
             path = path + "/resources/modificationConversion.txt";
@@ -116,11 +121,12 @@ public class ModificationConversion {
             File lFile = new File(path);
             if (lFile.exists()) {
                 lBuf = new BufferedReader(new InputStreamReader(new FileInputStream(lFile)));
+                logger.debug("Using modificationConversion from disk (/resources/modificationConversion.txt)");
             } else {
                 // Second, if not found - try to find the file in the classpath.
                 InputStreamReader lReader = new InputStreamReader(ClassLoader.getSystemResourceAsStream("modificationConversion.txt"));
 
-                if(lReader == null){
+                if (lReader == null) {
                     lReader = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("modificationConversion.txt"));
                 }
 
@@ -134,7 +140,7 @@ public class ModificationConversion {
             } else {
                 String line = null;
                 while ((line = lBuf.readLine()) != null) {
-                // Skip comments and empty lines.
+                    // Skip comments and empty lines.
                     if (line.trim().startsWith("#") || line.trim().equals("")) {
                         continue;
                     }

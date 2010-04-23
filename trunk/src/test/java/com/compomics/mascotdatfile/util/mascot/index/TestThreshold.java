@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
@@ -46,6 +48,9 @@ import java.util.Vector;
  * This class implements the test scenario for the class.
  */
 public class TestThreshold extends TestCaseLM {
+    // Class specific log4j logger for TestThreshold instances.
+    private static Logger logger = Logger.getLogger(TestThreshold.class);
+
     public TestThreshold() {
         super("This is the test scenario for Threshold functionality of the PeptideHit Class.");
     }
@@ -83,7 +88,7 @@ public class TestThreshold extends TestCaseLM {
                     Assert.assertEquals(lBufferedReader.readLine(), lPeptideHit.getModifiedSequence() + "," + i);
                 }
             }
-            
+
             Assert.assertEquals(45, lCount);
         } catch (IOException e) {
             e.printStackTrace();

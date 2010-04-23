@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.script;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.research.util.DatfileLocation;
 import com.compomics.mascotdatfile.util.mascot.*;
 import com.compomics.util.gui.spectrum.SpectrumPanel;
@@ -36,26 +38,23 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenny
- * Date: 5-apr-2006
- * Time: 16:48:21
+ * Created by IntelliJ IDEA. User: Kenny Date: 5-apr-2006 Time: 16:48:21
  */
 public class DrawSpectrum {
+    // Class specific log4j logger for DrawSpectrum instances.
+    private static Logger logger = Logger.getLogger(DrawSpectrum.class);
 
     /**
      * Main() method draws the spectrumpannel of the requested peptidehit.
      *
-     * @param args [0] = source of the datfile ( 0 is hard disk, 1 is localDB, 2 is Muppet, 3 is URL)
-     *             [1] =   1) if datfile is on hard disk; args[1] must be the path and filename.
-     *             2) if datfile comes from db, args[1] can be the datfileID or the filename.
-     *             3) if datfile comes from the internet, args[1] should be the filename. (F010834.dat)
-     *             [2] = Querynumber.
-     *             [3] =  nth PeptideHit resulting from Query.
-     *             [4] = if connection to muppet03 database, this parameter should be the username. (ex: kenny)
-     *             if datfile comes from the internet, this parameter should be the server. (ex: http://cavell.ugent.be/)
-     *             [5] = if connection to muppet03 database, this parameter should be the password. (ex: 000)
-     *             if datfile comes from the internet, this parameter should be the date. (ex: 20061130)
+     * @param args [0] = source of the datfile ( 0 is hard disk, 1 is localDB, 2 is Muppet, 3 is URL) [1] =   1) if
+     *             datfile is on hard disk; args[1] must be the path and filename. 2) if datfile comes from db, args[1]
+     *             can be the datfileID or the filename. 3) if datfile comes from the internet, args[1] should be the
+     *             filename. (F010834.dat) [2] = Querynumber. [3] =  nth PeptideHit resulting from Query. [4] = if
+     *             connection to muppet03 database, this parameter should be the username. (ex: kenny) if datfile comes
+     *             from the internet, this parameter should be the server. (ex: http://cavell.ugent.be/) [5] = if
+     *             connection to muppet03 database, this parameter should be the password. (ex: 000) if datfile comes
+     *             from the internet, this parameter should be the date. (ex: 20061130)
      */
     public static void main(String[] args) {
         DatfileLocation lDatfileLocation = null;
@@ -72,7 +71,7 @@ public class DrawSpectrum {
                     lMascotDatfile = lDatfileLocation.getDatfile();
                     break Label;
                 }
-            }else if (lDatfileLocationType == DatfileLocation.URL) {
+            } else if (lDatfileLocationType == DatfileLocation.URL) {
                 {
                     lDatfileLocation = new DatfileLocation(DatfileLocation.URL, new String[]{args[4], args[5], args[1]});
                     lMascotDatfile = lDatfileLocation.getDatfile();
@@ -182,7 +181,8 @@ public class DrawSpectrum {
     }
 
     /**
-     * This static method returns an annotated spectrumpanel by passing the MascotDatfile, the Querynumber and the PeptidehitNumber.
+     * This static method returns an annotated spectrumpanel by passing the MascotDatfile, the Querynumber and the
+     * PeptidehitNumber.
      *
      * @param aMdf                 MascotDatfile instance
      * @param aQueryNumber         Querynumber
@@ -227,7 +227,8 @@ public class DrawSpectrum {
     }
 
     /**
-     * This static method returns an annotated spectrumpanel by passing the MascotDatfile, the Querynumber and the PeptidehitNumber.
+     * This static method returns an annotated spectrumpanel by passing the MascotDatfile, the Querynumber and the
+     * PeptidehitNumber.
      *
      * @param aMdf              MascotDatfile instance
      * @param aQueryNumber      Querynumber

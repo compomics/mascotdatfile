@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
@@ -44,6 +46,9 @@ import java.util.ArrayList;
  * This class implements the test scenario for the PeptideHit Class.
  */
 public class TestPeptideHit extends TestCaseLM {
+    // Class specific log4j logger for TestPeptideHit instances.
+    private static Logger logger = Logger.getLogger(TestPeptideHit.class);
+
     public TestPeptideHit() {
         super("Testscenario for the peptidehit Class. ");
     }
@@ -220,6 +225,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     // This is from an old datfile from the platelets projects. The fixed mods are read from the parameters this time!!
+
     public void testModifiedSequenceD() {
         MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F001326.dat"));
         QueryToPeptideMapInf lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
@@ -233,10 +239,10 @@ public class TestPeptideHit extends TestCaseLM {
         MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F001326.dat"));
         QueryToPeptideMapInf lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideHit lPeptideHit = lQueryToPeptideMap.getPeptideHitOfOneQuery(497, 8);
-        Assert.assertEquals(41.2067, lPeptideHit.calculateIdentityThreshold(),0.01);
-        Assert.assertEquals(38.1964, lPeptideHit.calculateIdentityThreshold(0.10),0.01);
-        Assert.assertEquals(31.2067, lPeptideHit.calculateIdentityThreshold(0.50),0.01);
-        Assert.assertEquals(30.7936, lPeptideHit.getHomologyThreshold(),0.01);
+        Assert.assertEquals(41.2067, lPeptideHit.calculateIdentityThreshold(), 0.01);
+        Assert.assertEquals(38.1964, lPeptideHit.calculateIdentityThreshold(0.10), 0.01);
+        Assert.assertEquals(31.2067, lPeptideHit.calculateIdentityThreshold(0.50), 0.01);
+        Assert.assertEquals(30.7936, lPeptideHit.getHomologyThreshold(), 0.01);
     }
 
     public void testGetModifiedSequenceComponents() {

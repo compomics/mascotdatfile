@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
 import com.compomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
@@ -12,6 +14,8 @@ import junit.framework.Assert;
  * File Templates.
  */
 public class TestQueryEnumerator extends TestCaseLM {
+    // Class specific log4j logger for TestQueryEnumerator instances.
+    private static Logger logger = Logger.getLogger(TestQueryEnumerator.class);
 
     public TestQueryEnumerator(String s) {
         super(s);
@@ -24,8 +28,8 @@ public class TestQueryEnumerator extends TestCaseLM {
 
         int lCounter = 0;
 
-        while(e.hasMoreElements()){
-            if(e.nextElement() instanceof Query){
+        while (e.hasMoreElements()) {
+            if (e.nextElement() instanceof Query) {
                 lCounter++;
             }
         }

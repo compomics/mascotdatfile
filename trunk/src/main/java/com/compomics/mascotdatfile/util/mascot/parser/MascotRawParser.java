@@ -8,6 +8,8 @@
  */
 package com.compomics.mascotdatfile.util.mascot.parser;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,19 +27,19 @@ import java.util.Vector;
  * This class provides a parser for parsing a raw results file of Mascot.
  */
 public class MascotRawParser {
+    // Class specific log4j logger for MascotRawParser instances.
+    private static Logger logger = Logger.getLogger(MascotRawParser.class);
 
     /**
-     * This HashMap will hold each section in the Mascot raw results file as
-     * key-value pairs, where the key is the name of the section and the value a
-     * HashMap with all the entries in that section as key-value pairs.
+     * This HashMap will hold each section in the Mascot raw results file as key-value pairs, where the key is the name
+     * of the section and the value a HashMap with all the entries in that section as key-value pairs.
      */
     private HashMap allSections = new HashMap(400);
 
     /**
-     * This variable will hold the number of queries contained in the results
-     * after the first call to 'getNumberOfQueries()'. <br />
-     * <b>Please note</b> that you should never access this variable directly
-     * since it is lazily cached!!!
+     * This variable will hold the number of queries contained in the results after the first call to
+     * 'getNumberOfQueries()'. <br /> <b>Please note</b> that you should never access this variable directly since it is
+     * lazily cached!!!
      */
     private int numQueries = -1;
 
@@ -45,20 +47,17 @@ public class MascotRawParser {
      * This method allows the caller to add a section to this wrapper.
      *
      * @param aKey     String with the name of the section.
-     * @param aSection HashMap with the contents of the section as
-     *                 key-value pairs.
+     * @param aSection HashMap with the contents of the section as key-value pairs.
      */
     public void addSection(String aKey, HashMap aSection) {
         allSections.put(aKey, aSection);
     }
 
     /**
-     * This method allows the caller to retrieve a section as a HashMap
-     * by providing the name of that section.
+     * This method allows the caller to retrieve a section as a HashMap by providing the name of that section.
      *
      * @param aKey String with the name for the section.
-     * @return HashMap with the contents of the requested section as
-     *         key-value pairs, or 'null' if the section has not
+     * @return HashMap with the contents of the requested section as key-value pairs, or 'null' if the section has not
      *         been found.
      */
     public HashMap getSection(String aKey) {
@@ -66,9 +65,8 @@ public class MascotRawParser {
     }
 
     /**
-     * This method returns a String representation of the data wrapped. <br />
-     * <b>Please note</b> that this is not the same as the original format
-     * of the file from which the data came!!!
+     * This method returns a String representation of the data wrapped. <br /> <b>Please note</b> that this is not the
+     * same as the original format of the file from which the data came!!!
      *
      * @return String   with the String representation of this wrapper.
      */
@@ -82,8 +80,7 @@ public class MascotRawParser {
     }
 
     /**
-     * This method reports on the number of queries contained in this
-     * wrapper.
+     * This method reports on the number of queries contained in this wrapper.
      *
      * @return int with the number of queries.
      */
@@ -99,7 +96,7 @@ public class MascotRawParser {
      * This method is useful for parsing a result file stored locally.
      *
      * @param aFile File pointing to the raw Mascot result file.
-     * @throws IOException if reading the file fails.
+     * @throws java.io.IOException if reading the file fails.
      */
     public MascotRawParser(File aFile) throws IOException {
         BufferedReader lbr = new BufferedReader(new InputStreamReader(new FileInputStream(aFile)));
@@ -126,7 +123,7 @@ public class MascotRawParser {
      * This method is useful for parsing a result file from a Reader.
      *
      * @param abr BufferedReader, connected to the contents of the raw Mascot result file.
-     * @throws IOException if reading the file fails.
+     * @throws java.io.IOException if reading the file fails.
      */
     public MascotRawParser(BufferedReader abr) throws IOException {
         this.parseFromReader(abr);
@@ -136,7 +133,7 @@ public class MascotRawParser {
      * This method is useful for parsing a result file from a Reader.
      *
      * @param abr BufferedReader, connected to the contents of the raw Mascot result file.
-     * @throws IOException if reading the file fails.
+     * @throws java.io.IOException if reading the file fails.
      */
     private void parseFromReader(BufferedReader abr) throws IOException {
         // Parse!
@@ -214,8 +211,7 @@ public class MascotRawParser {
     }
 
     /**
-     * This method parses the content of a section into key-value pairs and
-     * stores these in a HashMap.
+     * This method parses the content of a section into key-value pairs and stores these in a HashMap.
      *
      * @param aContent the content of the section to be parsed.
      * @return HashMap with the contents of the section as key-value pairs.
@@ -291,9 +287,7 @@ public class MascotRawParser {
     }
 
     /**
-     * This method finds a property, associated by a name in the following
-     * context: <br />
-     * NAME=VALUE
+     * This method finds a property, associated by a name in the following context: <br /> NAME=VALUE
      *
      * @param line     String with the line on which the 'KEY=VALUE' pair is to be found.
      * @param propName String with the name of the KEY.

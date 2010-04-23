@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.interfaces;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.mascot.Peak;
 /**
  * Created by IntelliJ IDEA.

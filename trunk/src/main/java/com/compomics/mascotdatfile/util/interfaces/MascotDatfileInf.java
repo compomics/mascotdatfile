@@ -1,9 +1,12 @@
 package com.compomics.mascotdatfile.util.interfaces;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.mascot.*;
 import com.compomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Vector;
 
 /**
@@ -62,6 +65,13 @@ public interface MascotDatfileInf {
      *             to retrieve a single Query or <code>getQueryEnumerator()</code> to enumerate all Queries.
      */
     public Vector getQueryList();
+
+    /**
+     * Returns an Iterator for all Query objects inside the MascotDatfile.
+     * @return Iterator instance for all underlying Query instances.
+     */
+    public Iterator getQueryIterator();
+
 
     /**
      * Returns a single MS/MS spectrum as a Query instance.
