@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.Spectrum;
 
 import java.io.Serializable;
@@ -30,12 +32,11 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenny
- * Date: 23-feb-2006
- * Time: 9:03:50
+ * Created by IntelliJ IDEA. User: Kenny Date: 23-feb-2006 Time: 9:03:50
  */
 public class Query implements Spectrum, Serializable {
+    // Class specific log4j logger for Query instances.
+    private static Logger logger = Logger.getLogger(Query.class);
 
     /**
      * The title of the MS/MS spectrum.
@@ -82,8 +83,8 @@ public class Query implements Spectrum, Serializable {
      */
     private int iNumberOfPeaks = 0;
     /**
-     * Number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot.
-     * This will be -1 by default.
+     * Number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot. This will be -1
+     * by default.
      */
     private int iNumberUsed1 = -1;
     /**
@@ -102,11 +103,9 @@ public class Query implements Spectrum, Serializable {
 
 
     /**
-     * 090110
-     * This boolean indicates whether or not the Query filenames must be transformed.
-     * When Mascot Distiller performs the searches out of the raw data - there is no control on the filename.
-     * If set to true, this boolean will transform the distiller filename into a shorter sensible filename
-     * as used in ms_lims.
+     * 090110 This boolean indicates whether or not the Query filenames must be transformed. When Mascot Distiller
+     * performs the searches out of the raw data - there is no control on the filename. If set to true, this boolean
+     * will transform the distiller filename into a shorter sensible filename as used in ms_lims.
      */
     private static boolean iDistillerFilenameConversion = false;
 
@@ -116,7 +115,8 @@ public class Query implements Spectrum, Serializable {
     private Parameters iParameters = null;
 
     /**
-     * Constructor that takes a Mascot datfile Query Section as input and parses all the data into an instance of Query and its variables.
+     * Constructor that takes a Mascot datfile Query Section as input and parses all the data into an instance of Query
+     * and its variables.
      *
      * @param aQueryMap This is the HashMap that contains data about the Mascot datfile Query Section.
      */
@@ -129,7 +129,8 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * Constructor that takes a Mascot datfile Query Section as input and parses all the data into an instance of Query and its variables.
+     * Constructor that takes a Mascot datfile Query Section as input and parses all the data into an instance of Query
+     * and its variables.
      *
      * @param aQueryMap This is the HashMap that contains data about the Mascot datfile Query Section.
      */
@@ -196,7 +197,8 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * This method gets the unparsed Title value out of the Query Hashmap, parses the String and returns a readable String.
+     * This method gets the unparsed Title value out of the Query Hashmap, parses the String and returns a readable
+     * String.
      *
      * @return String   Readable filename
      */
@@ -322,8 +324,7 @@ public class Query implements Spectrum, Serializable {
     /**
      * Returns the retention time string for the spectrum.
      *
-     * @return String with the retention time string, can
-     *         be 'null' if no retention time was specified.
+     * @return String with the retention time string, can be 'null' if no retention time was specified.
      */
     public String getRetentionTimeInSeconds() {
         return iRetentionTimeInSeconds;
@@ -379,7 +380,8 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * This static swithch will transform the Distiller based "long" filename into a "shorter" functional name for ms_lims.
+     * This static swithch will transform the Distiller based "long" filename into a "shorter" functional name for
+     * ms_lims.
      */
     public static void setDistillerFilenameProcessing(boolean status) {
         iDistillerFilenameConversion = status;
@@ -476,8 +478,8 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * Returns number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot.
-     * This will be -1 by default.
+     * Returns number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot. This
+     * will be -1 by default.
      *
      * @return number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot.
      */
@@ -486,10 +488,11 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * Sets number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot.
-     * This will be -1 by default.
+     * Sets number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot. This will
+     * be -1 by default.
      *
-     * @param aNumberUsed1 number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot.
+     * @param aNumberUsed1 number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of
+     *                     mascot.
      */
     public void setNumberUsed1(int aNumberUsed1) {
         iNumberUsed1 = aNumberUsed1;
@@ -570,10 +573,10 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * This method calculates the number of bins mascot has used for this massspectrum.
-     * Mascot separates the massspectrum by a series of bins. <br>The first round, the peak with the highest intensity of each bin is used to check for ion matches.
-     * <br>The second round, the peak with the second highest intensity of each bin is used to check for ion matches.
-     * <br>etc..
+     * This method calculates the number of bins mascot has used for this massspectrum. Mascot separates the
+     * massspectrum by a series of bins. <br>The first round, the peak with the highest intensity of each bin is used to
+     * check for ion matches. <br>The second round, the peak with the second highest intensity of each bin is used to
+     * check for ion matches. <br>etc..
      *
      * @return int     The number of bins mascot is using for this massspectrum.
      */
@@ -592,8 +595,8 @@ public class Query implements Spectrum, Serializable {
 
 
     /**
-     * This method returns a filename for the .mgf file custom created by its 'TITLE' value.
-     * Parameters from a static Parameters instance are also used.
+     * This method returns a filename for the .mgf file custom created by its 'TITLE' value. Parameters from a static
+     * Parameters instance are also used.
      *
      * @param aTitle The 'TITLE' value from the .mgf file.
      * @return The filename as created for the given 'TITLE' by the MascotDistillerMergeFileReader.

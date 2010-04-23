@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import java.util.Enumeration;
 import java.util.Vector;
 
@@ -11,9 +13,12 @@ import java.util.Vector;
  */
 
 /**
- * This Class represents one entry in the ProteinSection of a raw datfile along with the sources where peptides of this Protein were found.
+ * This Class represents one entry in the ProteinSection of a raw datfile along with the sources where peptides of this
+ * Protein were found.
  */
 public class ProteinID {
+    // Class specific log4j logger for ProteinID instances.
+    private static Logger logger = Logger.getLogger(ProteinID.class);
 
     /**
      * Protein mass.
@@ -28,14 +33,9 @@ public class ProteinID {
      */
     private String iDescription;
     /**
-     * Vector with int[] describing the protein sources.
-     * </br>
-     * Example:
-     * <i></br>
-     * If PeptideHit "KENNYHELSER" was found in the second Hit of Query 567 and the first hit of Query 568;
-     * then this Vector's will contain two int[], wherein [0] is the QueryNumber and [1] is the HitNumber</br>
-     * Vector.get(0)=[567][2]</br>
-     * Vector.get(1)=[568][1]</i>
+     * Vector with int[] describing the protein sources. </br> Example: <i></br> If PeptideHit "KENNYHELSER" was found
+     * in the second Hit of Query 567 and the first hit of Query 568; then this Vector's will contain two int[], wherein
+     * [0] is the QueryNumber and [1] is the HitNumber</br> Vector.get(0)=[567][2]</br> Vector.get(1)=[568][1]</i>
      */
     private Vector iSources = null;
 
@@ -46,15 +46,10 @@ public class ProteinID {
     }
 
     /**
-     * This method adds a source to the Vector with int[] describing the protein sources.
-     * Query and peptidehits are 1-based! Query 1 returns the first query.
-     * </br>
-     * Example:
-     * <i></br>
-     * If PeptideHit "KENNYHELSER" was found in the second Hit of Query 567 and the first hit of Query 568;
-     * then this Vector's will contain two int[], wherein [0] is the QueryNumber and [1] is the HitNumber</br>
-     * Vector.get(0)=[567][2]</br>
-     * Vector.get(1)=[568][1]</i>
+     * This method adds a source to the Vector with int[] describing the protein sources. Query and peptidehits are
+     * 1-based! Query 1 returns the first query. </br> Example: <i></br> If PeptideHit "KENNYHELSER" was found in the
+     * second Hit of Query 567 and the first hit of Query 568; then this Vector's will contain two int[], wherein [0] is
+     * the QueryNumber and [1] is the HitNumber</br> Vector.get(0)=[567][2]</br> Vector.get(1)=[568][1]</i>
      *
      * @param aQueryNumber      Querynumber wherein the ProteinHit was found.
      * @param aPeptidehitNumber PeptideHit number in the Query.
@@ -110,8 +105,8 @@ public class ProteinID {
     }
 
     /**
-     * Getter for property 'queryNumbersAndPeptideHits'.
-     * Querynumber in first dimension, PeptideHit in second dimension.
+     * Getter for property 'queryNumbersAndPeptideHits'. Querynumber in first dimension, PeptideHit in second
+     * dimension.
      *
      * @return Value for property 'queryNumbersAndPeptideHits'.
      */

@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
@@ -11,11 +13,11 @@ import junit.framework.Assert;
  */
 
 /**
- * TestClass description:
- * ------------------
- * This TestClass was developed to test
+ * TestClass description: ------------------ This TestClass was developed to test
  */
 public class TestProteinID extends TestCaseLM {
+    // Class specific log4j logger for TestProteinID instances.
+    private static Logger logger = Logger.getLogger(TestProteinID.class);
     ProteinID iProteinID;
 
     public TestProteinID() {

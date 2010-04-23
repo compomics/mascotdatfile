@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
@@ -38,13 +40,15 @@ import java.util.Vector;
  * This class implements the test scenario for the class.
  */
 public class TestModification extends TestCaseLM {
+    // Class specific log4j logger for TestModification instances.
+    private static Logger logger = Logger.getLogger(TestModification.class);
+
     public TestModification() {
         super("Testscenario for ModificationList class.");
     }
 
     /**
-     * method
-     * 'equal' tests on the instance variables of a FixedModification Vector of the ModificationList Class.
+     * method 'equal' tests on the instance variables of a FixedModification Vector of the ModificationList Class.
      */
     public void testReadFixedModification() {
         // 1. Create a MascotDatfile instance.
@@ -85,8 +89,8 @@ public class TestModification extends TestCaseLM {
     }
 
     /**
-     * method
-     * 'equal' tests on the instance variables of a VariableModification Vector of the ModificationList Class(F009911.Dat).
+     * method 'equal' tests on the instance variables of a VariableModification Vector of the ModificationList
+     * Class(F009911.Dat).
      */
     public void testReadVariableModification() {
 
@@ -172,7 +176,7 @@ public class TestModification extends TestCaseLM {
         lMascotDatfile = new MascotDatfile(getFullFilePath("F046001.dat"));
         lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(1);
         Assert.assertEquals(10, lPeptideHit.getVariableModificationsArray()[3]);
-        
+
     }
 
     public void testModificationInterface() {

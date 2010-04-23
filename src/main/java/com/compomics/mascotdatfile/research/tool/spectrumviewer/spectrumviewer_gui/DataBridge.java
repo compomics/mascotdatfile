@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 
 /**

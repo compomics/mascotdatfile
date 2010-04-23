@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.script;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
 import com.compomics.mascotdatfile.util.mascot.*;
 
@@ -37,13 +39,15 @@ import java.util.Vector;
  */
 
 /**
- * 'The Research goals of this script are:'
- *  Print all the peptidehits above a parametrical threshold into a CSV-file.
+ * 'The Research goals of this script are:' Print all the peptidehits above a parametrical threshold into a CSV-file.
  */
 
 public class SequenceCoverage {
+    // Class specific log4j logger for SequenceCoverage instances.
+    private static Logger logger = Logger.getLogger(SequenceCoverage.class);
+
     public static void main(String[] args) {
-        if(args == null || args.length != 4){
+        if (args == null || args.length != 4) {
             printUsage();
         }
         // Read the params.
@@ -66,40 +70,40 @@ public class SequenceCoverage {
             MascotDatfile mdf = new MascotDatfile(lDatfilePathAndFilename);
             QueryToPeptideMap lQuery2P = mdf.getQueryToPeptideMap();
             Vector lQueries = mdf.getQueryList();
-            for(int i = 0; i < lQuery2P.getNumberOfQueries(); i++) {
+            for (int i = 0; i < lQuery2P.getNumberOfQueries(); i++) {
 
                 //Get all the best peptideHit of Query (i+1)
                 PeptideHit ph = (PeptideHit) lQuery2P.getPeptideHitOfOneQuery(i + 1);
 
                 //If no peptideHit is null, no further information is written to the target file, else the script continues.
-                if(ph != null) {
-                     if(ph.scoresAboveIdentityThreshold(lIDentityThreshold)){
+                if (ph != null) {
+                    if (ph.scoresAboveIdentityThreshold(lIDentityThreshold)) {
                         PeptideHitAnnotation lPha = ph.getPeptideHitAnnotation(mdf.getMasses(), mdf.getParametersSection());
-                        Query q = (Query)lQueries.get(i);
+                        Query q = (Query) lQueries.get(i);
 
                         // 1.a) Get a vector with Fragmentions that were matched by the fused matching method(see javadoc).
                         Vector lFM = lPha.getFusedMatchedIons(q.getPeakList(), ph.getPeaksUsedFromIons1(), q.getMaxIntensity(), 0.1);
                         // 1.b) Analyse the fused matches against the sequence to calculate sequence coverage of this peptidehit.
-                        int[] lFusedCoverage  = getCoverage(lFM,ph.getSequence().length());
+                        int[] lFusedCoverage = getCoverage(lFM, ph.getSequence().length());
 
                         // 2.a) Get a vector with Fragmentions that were matched by the Mascot matching method(see javadoc)
                         lFM = lPha.getMatchedIonsByMascot(q.getPeakList(), ph.getPeaksUsedFromIons1());
                         // 2.b) Analyse the mascot matches against the sequence to calculate sequence coverage of this peptidehit.
-                        int[] lMascotCoverage  = getCoverage(lFM,ph.getSequence().length());
+                        int[] lMascotCoverage = getCoverage(lFM, ph.getSequence().length());
 
                         bw.write(
-                                "Query _ "  + (i + 1) + ";" +
-                                ph.getModifiedSequence() + ";" +
-                                ph.getSequence() + ";" +
-                                ph.getSequence().length() + ";" +
-                                ph.getIonsScore() + ";" +
-                                ph.calculateIdentityThreshold(lIDentityThreshold) + ";" +
-                                lMascotCoverage[0] + ";" +
-                                lMascotCoverage[1] + ";" +
-                                lMascotCoverage[2] + ";" +
-                                lFusedCoverage[0] + ";" +
-                                lFusedCoverage[1] + ";" +
-                                lFusedCoverage[2] + ";");
+                                "Query _ " + (i + 1) + ";" +
+                                        ph.getModifiedSequence() + ";" +
+                                        ph.getSequence() + ";" +
+                                        ph.getSequence().length() + ";" +
+                                        ph.getIonsScore() + ";" +
+                                        ph.calculateIdentityThreshold(lIDentityThreshold) + ";" +
+                                        lMascotCoverage[0] + ";" +
+                                        lMascotCoverage[1] + ";" +
+                                        lMascotCoverage[2] + ";" +
+                                        lFusedCoverage[0] + ";" +
+                                        lFusedCoverage[1] + ";" +
+                                        lFusedCoverage[2] + ";");
                         bw.newLine();
                         bw.flush();
                     }
@@ -108,9 +112,9 @@ public class SequenceCoverage {
             bw.flush();
             bw.close();
 
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } finally {
             try {
@@ -123,14 +127,14 @@ public class SequenceCoverage {
 
     /**
      * This method calculates ioncoverage of a PeptideSequence and matched fragmentions.
-     * @param aFM - A Vector with fragmentions that were matched.
+     *
+     * @param aFM     - A Vector with fragmentions that were matched.
      * @param aLength - The Peptide's length
-     * @return int[] with the distinct number fragmentions that covered the sequence. <br />
-     *              <b>[0]</b> number of b-ions covering the peptide's sequence.<br />
-     *              <b>[1]</b> number of y-ions covering the peptide's sequence.<br />
-     *              <b>[2]</b> number of b- and -ions covering the peptide's sequence.
+     * @return int[] with the distinct number fragmentions that covered the sequence. <br /> <b>[0]</b> number of b-ions
+     *         covering the peptide's sequence.<br /> <b>[1]</b> number of y-ions covering the peptide's sequence.<br />
+     *         <b>[2]</b> number of b- and -ions covering the peptide's sequence.
      */
-    private static int[] getCoverage(Vector aFM,int aLength){
+    private static int[] getCoverage(Vector aFM, int aLength) {
         /**
          * This int array will return the distinct number of fragmentions.
          * [0] - b
@@ -138,61 +142,61 @@ public class SequenceCoverage {
          * [2] - all
          */
         int[] lCoverage = new int[3];
-        int[] lB = new int[aLength-1];
-        int[] lY = new int[aLength-1];
+        int[] lB = new int[aLength - 1];
+        int[] lY = new int[aLength - 1];
         int[] lAll = new int[aLength];
         Iterator iterator = aFM.iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             FragmentIon fm = (FragmentIon) iterator.next();
-            int lNumber = fm.getNumber()-1;
+            int lNumber = fm.getNumber() - 1;
 
-            if(0 < fm.getID() && fm.getID()< 7){
-            //b-ion and its associated ions.
-                if(lB[lNumber] == 0){
+            if (0 < fm.getID() && fm.getID() < 7) {
+                //b-ion and its associated ions.
+                if (lB[lNumber] == 0) {
                     lB[lNumber] = 1;
                 }
-                if(lAll[lNumber] == 0){
+                if (lAll[lNumber] == 0) {
                     lAll[lNumber] = 1;
                 }
-            }else if(12 < fm.getID() && fm.getID()< 19){
-            //a-ion and its associated ions.(b-derivated!)
-                if(lB[lNumber] == 0){
+            } else if (12 < fm.getID() && fm.getID() < 19) {
+                //a-ion and its associated ions.(b-derivated!)
+                if (lB[lNumber] == 0) {
                     lB[lNumber] = 1;
                 }
-                if(lAll[lNumber] == 0){
+                if (lAll[lNumber] == 0) {
                     lAll[lNumber] = 1;
                 }
-            }else if(6 < fm.getID() && fm.getID()< 13){
-            //y-ion and its associated ions.
-                if(lY[lNumber] == 0){
+            } else if (6 < fm.getID() && fm.getID() < 13) {
+                //y-ion and its associated ions.
+                if (lY[lNumber] == 0) {
                     lY[lNumber] = 1;
                 }
-                if(lAll[aLength-(lNumber+1)] == 0){
-                    lAll[aLength-(lNumber+1)] = 1;
+                if (lAll[aLength - (lNumber + 1)] == 0) {
+                    lAll[aLength - (lNumber + 1)] = 1;
                 }
-            }else if(20 < fm.getID() && fm.getID()< 23){
-            //c and c++
-                if(lB[lNumber] == 0){
+            } else if (20 < fm.getID() && fm.getID() < 23) {
+                //c and c++
+                if (lB[lNumber] == 0) {
                     lB[lNumber] = 1;
                 }
-                if(lAll[lNumber] == 0){
+                if (lAll[lNumber] == 0) {
                     lAll[lNumber] = 1;
                 }
-            }else if(18 < fm.getID() && fm.getID()< 21){
-             //x and x++
-                if(lY[lNumber] == 0){
+            } else if (18 < fm.getID() && fm.getID() < 21) {
+                //x and x++
+                if (lY[lNumber] == 0) {
                     lY[lNumber] = 1;
                 }
-                if(lAll[aLength-(lNumber+1)] == 0){
-                    lAll[aLength-(lNumber+1)] = 1;
+                if (lAll[aLength - (lNumber + 1)] == 0) {
+                    lAll[aLength - (lNumber + 1)] = 1;
                 }
-            }else if(22 < fm.getID() && fm.getID()< 25){
-             //z and z++
-                if(lY[lNumber] == 0){
+            } else if (22 < fm.getID() && fm.getID() < 25) {
+                //z and z++
+                if (lY[lNumber] == 0) {
                     lY[lNumber] = 1;
                 }
-                if(lAll[aLength-(lNumber+1)] == 0){
-                    lAll[aLength-(lNumber+1)] = 1;
+                if (lAll[aLength - (lNumber + 1)] == 0) {
+                    lAll[aLength - (lNumber + 1)] = 1;
                 }
             }
 
@@ -204,10 +208,10 @@ public class SequenceCoverage {
 
     }
 
-    private static int getDistinctNumber(int[] aCoverage){
+    private static int getDistinctNumber(int[] aCoverage) {
         int lCount = 0;
-        for(int i = 0; i < aCoverage.length; i++) {
-            if(aCoverage[i] == 1){
+        for (int i = 0; i < aCoverage.length; i++) {
+            if (aCoverage[i] == 1) {
                 lCount++;
             }
         }
@@ -217,7 +221,7 @@ public class SequenceCoverage {
     /**
      * This method prints the usage to the errorstream.
      */
-    private static void printUsage(){
+    private static void printUsage() {
         String lMessage = "\"Usage:\tSequenceCoverage <1. Path and filename from datfile> " +
                 "<2. Target path> <3. Target filename> <4. Confidence (alpha)> \"\n" +
                 "Example:\n\t\tSequenceCoverage C:\\mascot\\datfiles\\F010345.dat C:\\target F010345.csv 0.05\n" +
@@ -229,7 +233,7 @@ public class SequenceCoverage {
     /**
      * This method prints error messages to the errorstream.
      */
-    private static void printError(String aMessage){
+    private static void printError(String aMessage) {
         System.err.println(aMessage);
         System.exit(0);
     }
@@ -237,7 +241,7 @@ public class SequenceCoverage {
     /**
      * This method writes information about the csv values that will be printed.
      */
-    private static void printCSVheaders(BufferedWriter bw, String aDatfilePathAndFilename) throws IOException{
+    private static void printCSVheaders(BufferedWriter bw, String aDatfilePathAndFilename) throws IOException {
         bw.write("SequenceCoverage.java analysis of " + aDatfilePathAndFilename + ".");
         bw.newLine();
         bw.write("Query_ID;ModifiedPeptideSequence;PeptideSequence;PeptideLength;PeptideScore;PeptideThreshold;MASCOT_b-covering ions;MASCOT_y-covering ions;MASCOT_all-covering ions;FUSED_b-covering ions;FUSED_y-covering ions;FUSED_all-covering ions");

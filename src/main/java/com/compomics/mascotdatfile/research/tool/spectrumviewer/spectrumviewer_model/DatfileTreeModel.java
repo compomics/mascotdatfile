@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.Query;
@@ -33,13 +35,12 @@ import javax.swing.tree.TreePath;
 import java.util.Vector;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenni
- * Date: 1-jun-2006
- * Time: 14:18:41
- * To change this template use File | Settings | File Templates.
+ * Created by IntelliJ IDEA. User: Kenni Date: 1-jun-2006 Time: 14:18:41 To change this template use File | Settings |
+ * File Templates.
  */
-public class DatfileTreeModel implements TreeModel{
+public class DatfileTreeModel implements TreeModel {
+    // Class specific log4j logger for DatfileTreeModel instances.
+    private static Logger logger = Logger.getLogger(DatfileTreeModel.class);
     /**
      * MascotDatfile instance passes by the constructor.
      */
@@ -60,20 +61,24 @@ public class DatfileTreeModel implements TreeModel{
         iRoot = aRoot;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Object getRoot() {
         return iRoot;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Object getChild(Object parent, int index) {
         Object result = new Object();
-        if(parent instanceof String){
-            if(iFilteredQueries == null){
+        if (parent instanceof String) {
+            if (iFilteredQueries == null) {
                 CalculateFilteredQueries();
             }
             result = iFilteredQueries.get(index);
-        }else if(parent instanceof Query){
+        } else if (parent instanceof Query) {
             int lQueryNumber = ((Query) parent).getQueryNumber();
             Vector lPeptidehits = iMascotDatfile.getQueryToPeptideMap().getPeptideHitsAboveIdentityThreshold(lQueryNumber, iFilterSettingThreshold);
             result = lPeptidehits.get(index);
@@ -81,15 +86,17 @@ public class DatfileTreeModel implements TreeModel{
         return result;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public int getChildCount(Object parent) {
         int lChildCount = 0;
-        if(parent instanceof String){
-            if(iFilteredQueries == null){
+        if (parent instanceof String) {
+            if (iFilteredQueries == null) {
                 CalculateFilteredQueries();
             }
             lChildCount = iFilteredQueries.size();
-        }else if(parent instanceof Query){
+        } else if (parent instanceof Query) {
             int lQueryNumber = ((Query) parent).getQueryNumber();
             Vector lPeptidehits = iMascotDatfile.getQueryToPeptideMap().getPeptideHitsAboveIdentityThreshold(lQueryNumber, iFilterSettingThreshold);
             lChildCount = lPeptidehits.size();
@@ -98,38 +105,48 @@ public class DatfileTreeModel implements TreeModel{
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean isLeaf(Object node) {
         boolean isLeaf = false;
-        if(node instanceof PeptideHit){
+        if (node instanceof PeptideHit) {
             isLeaf = true;
         }
         return isLeaf;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public int getIndexOfChild(Object parent, Object child) {
         int lChildCount = getChildCount(parent);
         int result = 0;
         for (int i = 0; i < lChildCount; i++) {
-            if(getChild(parent, i).equals(child)){
+            if (getChild(parent, i).equals(child)) {
                 result = i;
             }
         }
         return result;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void valueForPathChanged(TreePath path, Object newValue) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void addTreeModelListener(TreeModelListener l) {
 
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void removeTreeModelListener(TreeModelListener l) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -137,6 +154,7 @@ public class DatfileTreeModel implements TreeModel{
 
     /**
      * Sets the setting to filter the threshold.
+     *
      * @param aFilterSettingThreshold
      */
     public void setFilterSettingThreshold(double aFilterSettingThreshold) {
@@ -145,21 +163,23 @@ public class DatfileTreeModel implements TreeModel{
 
     /**
      * Get the threshold setting.
+     *
      * @return double threshold setting (alpha).
      */
-    public double getFilterSettingThreshold(){
+    public double getFilterSettingThreshold() {
         return iFilterSettingThreshold;
     }
 
-    public String getFilterSettingThresholdString(){
-        return (new Double((1-iFilterSettingThreshold)*100)).intValue() + "%"; 
+    public String getFilterSettingThresholdString() {
+        return (new Double((1 - iFilterSettingThreshold) * 100)).intValue() + "%";
     }
 
     /**
      * Calculate filteredQueries by the current iFilterSettingThreshold.
+     *
      * @return Vector with Filtered
      */
-    private Vector CalculateFilteredQueries(){
+    private Vector CalculateFilteredQueries() {
         iFilteredQueries = iMascotDatfile.getQueryToPeptideMap().getIdentifiedQueries(iFilterSettingThreshold, iMascotDatfile.getQueryList());
         return iFilteredQueries;
     }

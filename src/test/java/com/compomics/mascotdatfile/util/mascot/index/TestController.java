@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
@@ -8,6 +10,8 @@ import junit.framework.Assert;
  * File Templates.
  */
 public class TestController extends TestCaseLM {
+    // Class specific log4j logger for TestController instances.
+    private static Logger logger = Logger.getLogger(TestController.class);
     Controller iController;
 
     public TestController() {

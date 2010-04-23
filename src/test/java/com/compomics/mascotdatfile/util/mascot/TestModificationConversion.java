@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import junit.TestCaseLM;
 import junit.framework.Assert;
 /**
@@ -36,6 +38,8 @@ import junit.framework.Assert;
  * This class implements the test scenario for the TestModificationConversion Class.
  */
 public class TestModificationConversion extends TestCaseLM {
+    // Class specific log4j logger for TestModificationConversion instances.
+    private static Logger logger = Logger.getLogger(TestModificationConversion.class);
 
     /**
      * Constructor.

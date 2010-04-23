@@ -29,6 +29,8 @@
  */
 package com.compomics.mascotdatfile.research.script;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.research.util.DatfileLocation;
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
 import com.compomics.mascotdatfile.util.mascot.*;
@@ -48,41 +50,42 @@ import java.util.Vector;
  */
 
 /**
- * This class scores individual amino acids based on the presence of flanking b (underlined)
- * and y-ions (red).
+ * This class scores individual amino acids based on the presence of flanking b (underlined) and y-ions (red).
  *
  * @author Lennart Martens
  * @version $Id: AminoAcidScoring.java,v 1.5 2008/07/23 08:55:58 kenny Exp $
  */
 public class AminoAcidScoring {
+    // Class specific log4j logger for AminoAcidScoring instances.
+    private static Logger logger = Logger.getLogger(AminoAcidScoring.class);
 
     public static void main(String[] args) {
-        if(args == null || args.length != 4) {
+        if (args == null || args.length != 4) {
             printUsage();
         }
         // Check tne input file.
         File testExistence = new File(args[0]);
-        if(!testExistence.exists()) {
+        if (!testExistence.exists()) {
             printError("The datfile you specified ('" + args[0] + "') does not exist!");
         }
         // Check the querynumber.
         int queryNumber = -1;
         try {
             queryNumber = Integer.parseInt(args[1]);
-            if(queryNumber < 0) {
+            if (queryNumber < 0) {
                 throw new NumberFormatException();
             }
-        } catch(NumberFormatException nfe) {
+        } catch (NumberFormatException nfe) {
             printError("The querynumber you specified ('" + args[1] + "') is not a positive, whole number!");
         }
         // Check the peptidehitnumber.
         int peptideHitNumber = -1;
         try {
             peptideHitNumber = Integer.parseInt(args[2]);
-            if(peptideHitNumber < 0) {
+            if (peptideHitNumber < 0) {
                 throw new NumberFormatException();
             }
-        } catch(NumberFormatException nfe) {
+        } catch (NumberFormatException nfe) {
             printError("The peptidehit number you specified ('" + args[2] + "') is not a positive, whole number!");
         }
 
@@ -90,10 +93,10 @@ public class AminoAcidScoring {
         int scoretype = -1;
         try {
             scoretype = Integer.parseInt(args[3]);
-            if(scoretype < 0 || scoretype > 1) {
+            if (scoretype < 0 || scoretype > 1) {
                 throw new NumberFormatException();
             }
-        } catch(NumberFormatException nfe) {
+        } catch (NumberFormatException nfe) {
             printError("The scoringtype you specified ('" + args[3] + "') is not known to me.\nRun this program without parameters to find out about valid options for this parameter.!");
         }
 
@@ -103,18 +106,18 @@ public class AminoAcidScoring {
         try {
             MascotDatfile mdf = dfl.getDatfile();
             // Get the query.
-            Query query = (Query)mdf.getQueryList().get(queryNumber-1);
+            Query query = (Query) mdf.getQueryList().get(queryNumber - 1);
             // Get the peptidehit.
             QueryToPeptideMap qtpm = mdf.getQueryToPeptideMap();
-            PeptideHit ph = qtpm.getPeptideHitOfOneQuery(queryNumber,peptideHitNumber);
-            if(ph == null){
+            PeptideHit ph = qtpm.getPeptideHitOfOneQuery(queryNumber, peptideHitNumber);
+            if (ph == null) {
                 printError("Peptidehit " + peptideHitNumber + " from Query " + queryNumber + " does not exist!!");
             }
             // Get paptidehitannotation object.
-            PeptideHitAnnotation pha = ph.getPeptideHitAnnotation(mdf.getMasses(),mdf.getParametersSection());
+            PeptideHitAnnotation pha = ph.getPeptideHitAnnotation(mdf.getMasses(), mdf.getParametersSection());
             // Match Mascot ions.
             Vector ions = null;
-            switch(scoretype) {
+            switch (scoretype) {
                 case 0:
                     ions = pha.getMatchedIonsByMascot(query.getPeakList(), ph.getPeaksUsedFromIons1());
                     break;
@@ -130,13 +133,13 @@ public class AminoAcidScoring {
             boolean[] bIons = new boolean[length];
             // Fill out arrays.
             for (int i = 0; i < ions.size(); i++) {
-                FragmentIon lFragmentIon = (FragmentIon)ions.elementAt(i);
-                switch(lFragmentIon.getID()) {
+                FragmentIon lFragmentIon = (FragmentIon) ions.elementAt(i);
+                switch (lFragmentIon.getID()) {
                     case FragmentIon.Y_ION:
-                        yIons[lFragmentIon.getNumber()-1] = true;
+                        yIons[lFragmentIon.getNumber() - 1] = true;
                         break;
                     case FragmentIon.B_ION:
-                        bIons[lFragmentIon.getNumber()-1] = true;
+                        bIons[lFragmentIon.getNumber() - 1] = true;
                         break;
                     default:
                         System.err.println(" * Ion found by Mascot that is disregarded: " + lFragmentIon.getLabel());
@@ -150,37 +153,37 @@ public class AminoAcidScoring {
                 boolean italic = false;
                 boolean bold = false;
                 // First and last one only have 50% coverage anyway
-                if(i == 0) {
-                    if(bIons[i]) {
+                if (i == 0) {
+                    if (bIons[i]) {
                         italic = true;
                     }
-                    if(yIons[yIons.length-(i+1)] && yIons[yIons.length-(i+2)]) {
+                    if (yIons[yIons.length - (i + 1)] && yIons[yIons.length - (i + 2)]) {
                         bold = true;
                     }
-                } else if(i == (length-1)) {
-                    if(bIons[i] && bIons[i-1]) {
+                } else if (i == (length - 1)) {
+                    if (bIons[i] && bIons[i - 1]) {
                         italic = true;
                     }
-                    if(yIons[yIons.length-(i+1)]) {
+                    if (yIons[yIons.length - (i + 1)]) {
                         bold = true;
                     }
                 } else {
                     // Aha, two ions needed here.
-                    if(bIons[i] && bIons[i-1]) {
+                    if (bIons[i] && bIons[i - 1]) {
                         italic = true;
                     }
-                    if(yIons[yIons.length-(i+1)] && yIons[yIons.length-(i+2)]) {
+                    if (yIons[yIons.length - (i + 1)] && yIons[yIons.length - (i + 2)]) {
                         bold = true;
                     }
                 }
                 // Actually add the next char.
                 formattedSequence.append(
-                        (italic?"<u>":"") +
-                        (bold?"<font color=\"red\">":"") +
-                        modifiedAA[i].replaceAll("<","&lt;").replaceAll(">","&gt;") +
-                        (italic?"</u>":"") +
-                        (bold?"</font>":"")
-                    );
+                        (italic ? "<u>" : "") +
+                                (bold ? "<font color=\"red\">" : "") +
+                                modifiedAA[i].replaceAll("<", "&lt;").replaceAll(">", "&gt;") +
+                                (italic ? "</u>" : "") +
+                                (bold ? "</font>" : "")
+                );
             }
             // Finalize HTML'ized label text.
             formattedSequence.append("</html>");
@@ -188,9 +191,9 @@ public class AminoAcidScoring {
             // Create label and set text.
             JLabel label = new JLabel(formattedSequence.toString());
 // *********************** END OF PART THAT ACTUALLY DOES SOMETHING *********************** \\
-            SpectrumPanel sp1 = new SpectrumPanel(query.getMZArray(),query.getIntensityArray(), query.getPrecursorMZ(), query.getChargeString(), query.getTitle());
+            SpectrumPanel sp1 = new SpectrumPanel(query.getMZArray(), query.getIntensityArray(), query.getPrecursorMZ(), query.getChargeString(), query.getTitle());
             sp1.setAnnotations(ions);
-            JFrame app1 = new JFrame("Spectrum for " + query.getTitle() + " - " + ph.getModifiedSequence() + " (Mascot ions)" + " - "+ "Score: " + ph.getIonsScore());
+            JFrame app1 = new JFrame("Spectrum for " + query.getTitle() + " - " + ph.getModifiedSequence() + " (Mascot ions)" + " - " + "Score: " + ph.getIonsScore());
             app1.addWindowListener(new WindowAdapter() {
                 /**
                  * Invoked when a window is in the process of being closed.
@@ -210,7 +213,7 @@ public class AminoAcidScoring {
             app1.setVisible(true);
 
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -218,33 +221,33 @@ public class AminoAcidScoring {
     private static String[] parseModifiedStringIntoComponents(String aModSeq) {
         Vector parts = new Vector();
         String temp = aModSeq;
-        String part = temp.substring(0, temp.indexOf("-")+1).trim();
-        int start = temp.indexOf("-")+1;
+        String part = temp.substring(0, temp.indexOf("-") + 1).trim();
+        int start = temp.indexOf("-") + 1;
         temp = temp.substring(start).trim();
         int endIndex = 1;
-        if(temp.charAt(endIndex) == '<') {
+        if (temp.charAt(endIndex) == '<') {
             endIndex++;
-            while(temp.charAt(endIndex) != '>') {
+            while (temp.charAt(endIndex) != '>') {
                 endIndex++;
             }
             endIndex++;
         }
-        part += temp.substring(0,endIndex);
+        part += temp.substring(0, endIndex);
         temp = temp.substring(endIndex);
         parts.add(part);
-        while(temp.length() > 0) {
+        while (temp.length() > 0) {
             start = 0;
             endIndex = 1;
-            if(temp.charAt(start+endIndex) == '<') {
+            if (temp.charAt(start + endIndex) == '<') {
                 endIndex++;
-                while(temp.charAt(start + endIndex) != '>') {
+                while (temp.charAt(start + endIndex) != '>') {
                     endIndex++;
                 }
                 endIndex++;
-            } else if(temp.charAt(start+endIndex) == '-') {
+            } else if (temp.charAt(start + endIndex) == '-') {
                 endIndex = temp.length();
             }
-            part = temp.substring(0,endIndex);
+            part = temp.substring(0, endIndex);
             temp = temp.substring(endIndex);
             parts.add(part);
         }

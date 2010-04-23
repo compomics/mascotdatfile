@@ -23,12 +23,16 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 
 /**
  * This inner class holds the data for just one peak in the spectrum.
  */
-public class Peak  implements Serializable {
+public class Peak implements Serializable {
+    // Class specific log4j logger for Peak instances.
+    private static Logger logger = Logger.getLogger(Peak.class);
     /**
      * The mass of the peak.
      */

@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
@@ -36,6 +38,9 @@ import java.util.Vector;
  * * This class implements the test scenario for the PeptideHit Class.
  */
 public class TestQueryToPeptideMap extends TestCaseLM {
+    // Class specific log4j logger for TestQueryToPeptideMap instances.
+    private static Logger logger = Logger.getLogger(TestQueryToPeptideMap.class);
+
     public TestQueryToPeptideMap() {
         super("This is the test scenario for a QueryToPeptideMap instance.");
     }

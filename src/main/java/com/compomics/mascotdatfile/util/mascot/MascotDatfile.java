@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
 import com.compomics.mascotdatfile.util.mascot.parser.MascotRawParser;
@@ -31,17 +33,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenny
- * Date: 21-feb-2006
- * Time: 16:22:19
- * This was done by Kenny
+ * Created by IntelliJ IDEA. User: Kenny Date: 21-feb-2006 Time: 16:22:19 This was done by Kenny
  */
 public class MascotDatfile implements MascotDatfileInf {
+    // Class specific log4j logger for MascotDatfile instances.
+    private static Logger logger = Logger.getLogger(MascotDatfile.class);
 
     /**
      * Private variable iHeader is a (lazy) instance of Header.
@@ -54,8 +55,7 @@ public class MascotDatfile implements MascotDatfileInf {
     private Masses iMasses = null;
 
     /**
-     * Private variable iMRP is an instance of MascotRawParser.
-     * Elementary datfile parsing object.
+     * Private variable iMRP is an instance of MascotRawParser. Elementary datfile parsing object.
      */
     private MascotRawParser iMRP = null;
 
@@ -90,8 +90,8 @@ public class MascotDatfile implements MascotDatfileInf {
     private QueryToPeptideMap iQueryToPeptideMap = null;
 
     /**
-     * Private variable iQueryToPeptideMap is a (lazy) instance of QueryToPeptideMap.
-     * This Instance holds the decoy hits.
+     * Private variable iQueryToPeptideMap is a (lazy) instance of QueryToPeptideMap. This Instance holds the decoy
+     * hits.
      */
     private QueryToPeptideMap iDecoyQueryToPeptideMap = null;
 
@@ -101,21 +101,21 @@ public class MascotDatfile implements MascotDatfileInf {
     private Vector iQueryList = null;
 
     /**
-     * Private variable iQuerynumberToSpectrumfilename is a (lazy) HashMap mapping the Querynumbers
-     * of this datfile to the spectrumfilenames.
+     * Private variable iQuerynumberToSpectrumfilename is a (lazy) HashMap mapping the Querynumbers of this datfile to
+     * the spectrumfilenames.
      */
     private HashMap iQuerynumberToSpectrumfilename = null;
 
     /**
-     * Private variable iThreshold holds the threshold values in 2 dimensions.
-     * iThreshold[i][j] with i+1 the Querynumber and j=0 homology (QPLUGHOLE) and j=1 identity (QMATCH) threshold of Query i.
+     * Private variable iThreshold holds the threshold values in 2 dimensions. iThreshold[i][j] with i+1 the Querynumber
+     * and j=0 homology (QPLUGHOLE) and j=1 identity (QMATCH) threshold of Query i.
      */
     private double[][] iThreshold = null;
 
     /**
-     * Private variable iThreshold holds the threshold values in 2 dimensions.
-     * This concerns the thresholds related to the Decoy search.
-     * iThreshold[i][j] with i+1 the Querynumber and j=0 homology (QPLUGHOLE) and j=1 identity (QMATCH) threshold of Query i.
+     * Private variable iThreshold holds the threshold values in 2 dimensions. This concerns the thresholds related to
+     * the Decoy search. iThreshold[i][j] with i+1 the Querynumber and j=0 homology (QPLUGHOLE) and j=1 identity
+     * (QMATCH) threshold of Query i.
      */
     private double[][] iDecoyThreshold = null;
 
@@ -172,9 +172,8 @@ public class MascotDatfile implements MascotDatfileInf {
 
 
     /**
-     * This method creates a new Header instance.
-     * 1.Submit the header HashMap in the constructor.
-     * 2.Receive the parsed data into a Header instance.
+     * This method creates a new Header instance. 1.Submit the header HashMap in the constructor. 2.Receive the parsed
+     * data into a Header instance.
      *
      * @return Header   instance of Header with all the parsed data of the header section of the datfile.
      */
@@ -186,9 +185,8 @@ public class MascotDatfile implements MascotDatfileInf {
     }
 
     /**
-     * This method creates a new Masses instance.
-     * 1.Submit the masses HashMap in the constructor.
-     * 2.Receive the parsed data into an Masses instance.
+     * This method creates a new Masses instance. 1.Submit the masses HashMap in the constructor. 2.Receive the parsed
+     * data into an Masses instance.
      *
      * @return Masses   instance of Masses with all the parsed data of the masses section of the datfile.
      */
@@ -200,10 +198,8 @@ public class MascotDatfile implements MascotDatfileInf {
     }
 
     /**
-     * This method creates a new ModificationList instance.
-     * 1.Get the Fixed and Variable ModificationList ArrayList from the Masses object.
-     * 2.Create a new ModificationList instance owning:
-     * a)Vector with VariableModification instances.
+     * This method creates a new ModificationList instance. 1.Get the Fixed and Variable ModificationList ArrayList from
+     * the Masses object. 2.Create a new ModificationList instance owning: a)Vector with VariableModification instances.
      * b)Vector with FixedModification instances.
      *
      * @return ModificationList     holding 2 vectors with modification instances.
@@ -231,9 +227,9 @@ public class MascotDatfile implements MascotDatfileInf {
     }
 
     /**
-     * This Class creates a map with all the peptide hits in 2 dimensions.
-     * The first level holds the results of the queries in a hashmap (Key: Querynumber  Value:Vector with PeptideHits).
-     * The second dimension holds a Vector with the corresponding peptide hits of the query.
+     * This Class creates a map with all the peptide hits in 2 dimensions. The first level holds the results of the
+     * queries in a hashmap (Key: Querynumber  Value:Vector with PeptideHits). The second dimension holds a Vector with
+     * the corresponding peptide hits of the query.
      *
      * @return QueryToPeptideMap instance with the queries and peptidehits of this MascotDatfile.
      */
@@ -250,13 +246,12 @@ public class MascotDatfile implements MascotDatfileInf {
     }
 
     /**
-     * <b>This is based on the decoy peptides section!!</b>
-     * This Class creates a map with all the peptide hits in 2 dimensions.
-     * The first level holds the results of the queries in a hashmap (Key: Querynumber  Value:Vector with PeptideHits).
-     * The second dimension holds a Vector with the corresponding peptide hits of the query.
+     * <b>This is based on the decoy peptides section!!</b> This Class creates a map with all the peptide hits in 2
+     * dimensions. The first level holds the results of the queries in a hashmap (Key: Querynumber  Value:Vector with
+     * PeptideHits). The second dimension holds a Vector with the corresponding peptide hits of the query.
      *
-     * @return QueryToPeptideMap instance with the queries and peptidehits of this MascotDatfile.
-     *         <b>Can return null if no decoy search was done.</b>
+     * @return QueryToPeptideMap instance with the queries and peptidehits of this MascotDatfile. <b>Can return null if
+     *         no decoy search was done.</b>
      */
     public QueryToPeptideMap getDecoyQueryToPeptideMap() {
         if (iDecoyQueryToPeptideMap == null) {
@@ -272,7 +267,8 @@ public class MascotDatfile implements MascotDatfileInf {
 
 
     /**
-     * This method parses all the datfile Query sections into a Vector with Query instances containing all the original data.
+     * This method parses all the datfile Query sections into a Vector with Query instances containing all the original
+     * data.
      *
      * @return Vector with the corresponding Query instances. Query n is located at <Vector>.get(n-1)
      */
@@ -306,6 +302,14 @@ public class MascotDatfile implements MascotDatfileInf {
         return iQueryList;
     }
 
+    /**
+     * Returns an Iterator implementation for all Query instances captured inside the MascotDatfile.
+     * @return Iterator instance
+     */
+    public Iterator getQueryIterator() {
+        return getQueryList().iterator();
+    }
+
     public Query getQuery(final int aQueryNumber) {
         return (Query) getQueryList().get(aQueryNumber - 1);  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -318,9 +322,8 @@ public class MascotDatfile implements MascotDatfileInf {
     }
 
     /**
-     * This method creates a new Parameters instance.
-     * 1.Submit the paramaters HashMap in the constructor.
-     * 2.Receive the parsed data into an Parameters instance.
+     * This method creates a new Parameters instance. 1.Submit the paramaters HashMap in the constructor. 2.Receive the
+     * parsed data into an Parameters instance.
      *
      * @return Parameters   instance of Parameters with all the parsed data of the parameters section of the datfile.
      */
@@ -366,8 +369,8 @@ public class MascotDatfile implements MascotDatfileInf {
     }
 
     /**
-     * This method gets the ProteinMap.
-     * All the proteins from the protein section are included. The proteinID's include a 2D array with the queries and peptidehits wherein they were found.
+     * This method gets the ProteinMap. All the proteins from the protein section are included. The proteinID's include
+     * a 2D array with the queries and peptidehits wherein they were found.
      *
      * @return ProteinMap
      */
@@ -402,13 +405,12 @@ public class MascotDatfile implements MascotDatfileInf {
     }
 
     /**
-     * method that creates iThreshold.<br> It creates the private variable iThreshold that is holding the threshold values in 2 dimensions.<br>
-     * iThreshold[i][j] with i+1 the Querynumber and j=0 homology and j=1 identity score threshold of Query i.
+     * method that creates iThreshold.<br> It creates the private variable iThreshold that is holding the threshold
+     * values in 2 dimensions.<br> iThreshold[i][j] with i+1 the Querynumber and j=0 homology and j=1 identity score
+     * threshold of Query i.
      *
-     * @return Double[][]
-     *         ex:          iThreshold[5] holds the thresholds of query 6.
-     *         iThreshold[5][0] holds the homology threshold of query 6.
-     *         iThreshold[5][0] holds the identity threshold of query 6.
+     * @return Double[][] ex:          iThreshold[5] holds the thresholds of query 6. iThreshold[5][0] holds the
+     *         homology threshold of query 6. iThreshold[5][0] holds the identity threshold of query 6.
      */
     public double[][] getThresholds() {
         if (iThreshold == null) {
@@ -424,13 +426,12 @@ public class MascotDatfile implements MascotDatfileInf {
 
 
     /**
-     * method that creates iThreshold.<br> It creates the private variable iThreshold that is holding the threshold values in 2 dimensions.<br>
-     * iThreshold[i][j] with i+1 the Querynumber and j=0 homology and j=1 identity score threshold of Query i.
+     * method that creates iThreshold.<br> It creates the private variable iThreshold that is holding the threshold
+     * values in 2 dimensions.<br> iThreshold[i][j] with i+1 the Querynumber and j=0 homology and j=1 identity score
+     * threshold of Query i.
      *
-     * @return Double[][]
-     *         ex:          iThreshold[5] holds the thresholds of query 6.
-     *         iThreshold[5][0] holds the homology threshold of query 6.
-     *         iThreshold[5][0] holds the identity threshold of query 6.
+     * @return Double[][] ex:          iThreshold[5] holds the thresholds of query 6. iThreshold[5][0] holds the
+     *         homology threshold of query 6. iThreshold[5][0] holds the identity threshold of query 6.
      */
     public double[][] getDecoyThresholds() {
         if (iDecoyThreshold == null) {

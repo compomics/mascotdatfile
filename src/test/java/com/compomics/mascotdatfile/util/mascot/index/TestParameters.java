@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
 import com.compomics.mascotdatfile.util.mascot.Parameters;
@@ -41,6 +43,9 @@ import java.util.HashMap;
  * This class implements the test scenario for the Parameters Class.
  */
 public class TestParameters extends TestCaseLM {
+    // Class specific log4j logger for TestParameters instances.
+    private static Logger logger = Logger.getLogger(TestParameters.class);
+
     public TestParameters() {
         super("Testscenario for masses class.");
     }

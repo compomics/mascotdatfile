@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 import java.util.StringTokenizer; /**
  * Created by IntelliJ IDEA.
@@ -32,10 +34,13 @@ import java.util.StringTokenizer; /**
  */
 
 /**
- * An instance of this Class contains information about a ProteinHit (=origin of the Peptide).
- * <b>NOTE:</b>The protein description can be requested on the top-level MascotDatfile _ getProteinDiscritptionByAccessionNumber.
+ * An instance of this Class contains information about a ProteinHit (=origin of the Peptide). <b>NOTE:</b>The protein
+ * description can be requested on the top-level MascotDatfile _ getProteinDiscritptionByAccessionNumber.
  */
-public class ProteinHit  implements Serializable {
+public class ProteinHit implements Serializable {
+    // Class specific log4j logger for ProteinHit instances.
+    private static Logger logger = Logger.getLogger(ProteinHit.class);
+
     public ProteinHit(String aPeptideHit_prot) {
         parsePeptideHit_protString(aPeptideHit_prot);
 
@@ -63,20 +68,19 @@ public class ProteinHit  implements Serializable {
     private int iMultiplicity = 0;
 
     /**
-     * Method
-     * Parse the PeptideHit_protString into separate insctance variables of 'this' object.
+     * Method Parse the PeptideHit_protString into separate insctance variables of 'this' object.
      *
      * @param aProt String with proteinHit info. (ex: ["Q16363 (1694-1723)":0:1:30:1])
      */
     private void parsePeptideHit_protString(String aProt) {
         // 1. Extract the accession in between quotes.
         int lQuote1 = aProt.indexOf('"');
-        int lQuote2 = aProt.indexOf('"', lQuote1+1);
+        int lQuote2 = aProt.indexOf('"', lQuote1 + 1);
 
-        if(lQuote1 < 0 || lQuote2 < 0){
+        if (lQuote1 < 0 || lQuote2 < 0) {
             throw new IllegalArgumentException("ProteinHit accession not found. The protein             instance could not be created.");
         }
-        
+
         iAccession = aProt.substring(lQuote1 + 1, lQuote2);
 
         // 2.Strip the rest of the String and splice in different Tokens.
@@ -177,7 +181,7 @@ public class ProteinHit  implements Serializable {
      */
     public int getMultiplicity() {
         return iMultiplicity;
-        
+
     }
 
     /**
@@ -190,14 +194,13 @@ public class ProteinHit  implements Serializable {
     }
 
     /**
-     * This method should only be used of the Protein accession comes from a PeptideCentric database as can be generated with DBToolkit. (http://genesis.ugent.be/dbtoolkit/)
-     * These databases contain peptides, so being truncated proteins, as fasta entries.
-     * Example:
-     * >sw|Q9P1Y5 (716-726)|K1543_HUMAN Protein KIAA1543.
-     * DMQRLTDQQQR
+     * This method should only be used of the Protein accession comes from a PeptideCentric database as can be generated
+     * with DBToolkit. (http://genesis.ugent.be/dbtoolkit/) These databases contain peptides, so being truncated
+     * proteins, as fasta entries. Example: >sw|Q9P1Y5 (716-726)|K1543_HUMAN Protein KIAA1543. DMQRLTDQQQR
      * <p/>
-     * Is a fasta entry in the truncated database. The Sequence is the Peptide from 716-726 in HUMAN Protein KIAA1543 - Q9P1Y5.
-     * Mascot takes these as protein entries, and the protein hits will have a start site of 1 if this peptide is identified. This method will return 716 as the correct start site.
+     * Is a fasta entry in the truncated database. The Sequence is the Peptide from 716-726 in HUMAN Protein KIAA1543 -
+     * Q9P1Y5. Mascot takes these as protein entries, and the protein hits will have a start site of 1 if this peptide
+     * is identified. This method will return 716 as the correct start site.
      *
      * @return int Start position of the peptide in a protein when working with PeptideCentric databases.
      */
@@ -214,17 +217,16 @@ public class ProteinHit  implements Serializable {
         }
         return Integer.parseInt(result);
     }
-      
+
 
     /**
-     * This method should only be used of the Protein accession comes from a PeptideCentric database as can be generated with DBToolkit. (http://genesis.ugent.be/dbtoolkit/)
-     * These databases contain peptides, so being truncated proteins, as fasta entries.
-     * Example:
-     * >sw|Q9P1Y5 (716-726)|K1543_HUMAN Protein KIAA1543.
-     * DMQRLTDQQQR
+     * This method should only be used of the Protein accession comes from a PeptideCentric database as can be generated
+     * with DBToolkit. (http://genesis.ugent.be/dbtoolkit/) These databases contain peptides, so being truncated
+     * proteins, as fasta entries. Example: >sw|Q9P1Y5 (716-726)|K1543_HUMAN Protein KIAA1543. DMQRLTDQQQR
      * <p/>
-     * Is a fasta entry in the truncated database. The Sequence is the Peptide from 716-726 in HUMAN Protein KIAA1543 - Q9P1Y5.
-     * Mascot takes these as protein entries, and the protein hits will have a stop site of 10 if this peptide is identified. This method will return 726 as the correct stop site.
+     * Is a fasta entry in the truncated database. The Sequence is the Peptide from 716-726 in HUMAN Protein KIAA1543 -
+     * Q9P1Y5. Mascot takes these as protein entries, and the protein hits will have a stop site of 10 if this peptide
+     * is identified. This method will return 726 as the correct stop site.
      *
      * @return int Stop position of the peptide in a protein when working with PeptideCentric databases.
      */

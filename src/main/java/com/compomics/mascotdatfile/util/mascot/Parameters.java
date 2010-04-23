@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,6 +42,8 @@ import java.util.Vector;
  * This class contains all the parsed data from the parameters section of the datfile.
  */
 public class Parameters implements Serializable {
+    // Class specific log4j logger for Parameters instances.
+    private static Logger logger = Logger.getLogger(Parameters.class);
 
     /**
      * The licence information in a String.
@@ -237,14 +241,15 @@ public class Parameters implements Serializable {
      */
     private String iUserID = null;
     /**
-     * For an MS/MS Ions Search, choose the description which best matches the type of instrument used to acquire the data.
-     * This setting determines which fragment ion series will be used for scoring, according to the following table.
+     * For an MS/MS Ions Search, choose the description which best matches the type of instrument used to acquire the
+     * data. This setting determines which fragment ion series will be used for scoring, according to the following
+     * table.
      */
     private int[] iRules = null;
 
     /**
-     * This variable stores the 'Distiller' origin status.
-     * This boolean is used in order to parse the filename of the MS/MS spectra appropriateley.
+     * This variable stores the 'Distiller' origin status. This boolean is used in order to parse the filename of the
+     * MS/MS spectra appropriateley.
      */
     private boolean iDistillerMultiFile = false;
 
@@ -257,7 +262,8 @@ public class Parameters implements Serializable {
      */
     private HashMap iDistillerOptions = null;
     /**
-     * The Distiller processing boolean reports on whether or not this data has been processed & searched by Mascot Distiller.
+     * The Distiller processing boolean reports on whether or not this data has been processed & searched by Mascot
+     * Distiller.
      */
     private boolean iDistillerProcessing = false;
 
@@ -1595,18 +1601,22 @@ public class Parameters implements Serializable {
     }
 
     /**
-     * Returns the list with the rule numbers that define the instrument type in the configuration file fragmentation_rules.
+     * Returns the list with the rule numbers that define the instrument type in the configuration file
+     * fragmentation_rules.
      *
-     * @return the list with the rule numbers that define the instrument type in the configuration file fragmentation_rules.
+     * @return the list with the rule numbers that define the instrument type in the configuration file
+     *         fragmentation_rules.
      */
     public int[] getRules() {
         return iRules;
     }
 
     /**
-     * Sets the list with the rule numbers that define the instrument type in the configuration file fragmentation_rules.
+     * Sets the list with the rule numbers that define the instrument type in the configuration file
+     * fragmentation_rules.
      *
-     * @param aRules the list with the rule numbers that define the instrument type in the configuration file fragmentation_rules.
+     * @param aRules the list with the rule numbers that define the instrument type in the configuration file
+     *               fragmentation_rules.
      */
     public void setRules(int[] aRules) {
         iRules = aRules;

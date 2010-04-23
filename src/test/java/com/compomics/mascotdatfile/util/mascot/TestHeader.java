@@ -23,16 +23,17 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenny
- * Date: 24-feb-2006
- * Time: 14:13:50
+ * Created by IntelliJ IDEA. User: Kenny Date: 24-feb-2006 Time: 14:13:50
  */
 public class TestHeader extends TestCaseLM {
+    // Class specific log4j logger for TestHeader instances.
+    private static Logger logger = Logger.getLogger(TestHeader.class);
 
     public TestHeader() {
         super("Testscenario for header class.");

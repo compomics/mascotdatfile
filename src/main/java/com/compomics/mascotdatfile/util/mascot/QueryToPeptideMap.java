@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 
 import java.util.HashMap;
@@ -36,17 +38,18 @@ import java.util.Vector;
  */
 
 /**
- * This Class creates a map with all the peptide hits in 2 dimensions.
- * The first level holds the results of the queries in a hashmap (Key: Querynumber  Value:Vector with PeptideHits).
- * The second dimension holds a Vector with the corresponding peptide hits of the query.
+ * This Class creates a map with all the peptide hits in 2 dimensions. The first level holds the results of the queries
+ * in a hashmap (Key: Querynumber  Value:Vector with PeptideHits). The second dimension holds a Vector with the
+ * corresponding peptide hits of the query.
  */
 public class QueryToPeptideMap implements QueryToPeptideMapInf {
+    // Class specific log4j logger for QueryToPeptideMap instances.
+    private static Logger logger = Logger.getLogger(QueryToPeptideMap.class);
 // ------------------------------ FIELDS ------------------------------
 
     /**
-     * a 2-dimensional HashMap.
-     * The first dimension holds the results of the queries in a hashmap.
-     * The second dimension holds a vector with the corresponding peptide hits of the query.
+     * a 2-dimensional HashMap. The first dimension holds the results of the queries in a hashmap. The second dimension
+     * holds a vector with the corresponding peptide hits of the query.
      */
     private HashMap iPeptideMap = null;
     /**
@@ -67,7 +70,8 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
      * @param aNumberOfQueries Number of getQueryList done.
      * @param aProteinMap      ProteinMap is a structured version of the ProteinSection.
      * @param aMod             ModificationList to create a different Modification[] for each PeptideHit.
-     * @param aThreshold       2-Dimensional int[] with treshold values. int[i][j] with i+1 the Querynumber and j=0 homology and j=1 identity score treshold.
+     * @param aThreshold       2-Dimensional int[] with treshold values. int[i][j] with i+1 the Querynumber and j=0
+     *                         homology and j=1 identity score treshold.
      */
     public QueryToPeptideMap(HashMap aPeptidesSection, ProteinMap aProteinMap, int aNumberOfQueries, ModificationList aMod, double[][] aThreshold) {
         iNumberOfQueries = aNumberOfQueries;
@@ -82,7 +86,8 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
      * @param aNumberOfQueries    Number of getQueryList done.
      * @param aProteinMap         ProteinMap is a structured version of the ProteinSection.
      * @param aModificationList   ModificationList to create a different Modification[] for each PeptideHit.
-     * @param aThresholds         2-Dimensional int[] with treshold values. int[i][j] with i+1 the Querynumber and j=0 homology and j=1 identity score treshold.
+     * @param aThresholds         2-Dimensional int[] with treshold values. int[i][j] with i+1 the Querynumber and j=0
+     *                            homology and j=1 identity score treshold.
      */
 
     public QueryToPeptideMap(final HashMap aPeptidesSection, final HashMap aETSPeptidesSection, final ProteinMap aProteinMap, final int aNumberOfQueries, final ModificationList aModificationList, final double[][] aThresholds) {
@@ -98,8 +103,8 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
      * @param aNumberOfQueries    Number of getQueryList done.
      * @param aProteinMap         ProteinMap is a structured version of the ProteinSection.
      * @param aModificationList   ModificationList to create a different Modification[] for each PeptideHit.
-     * @return HashMap          a 2dimensional hashmap (String,Vector(PeptideHits)).
-     *         the first key is q1 and it goes untill qx where x=aNumberOfQueries.
+     * @return HashMap          a 2dimensional hashmap (String,Vector(PeptideHits)). the first key is q1 and it goes
+     *         untill qx where x=aNumberOfQueries.
      */
     private HashMap generatePeptideMap(final HashMap aPeptidesSection, final HashMap aETSPeptidesSection, final ProteinMap aProteinMap, final int aNumberOfQueries, final ModificationList aModificationList, final double[][] aThresholds) {
         // 1. Generate the HashMap on the first level(Key: query number(ex:q1) - Value: Vector of PeptideHit instances.)
@@ -194,8 +199,8 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
      * @param aProteinMap      ProteinMap is a structured version of the ProteinSection.
      * @param aNumberOfQueries Number of getQueryList done in the Mascot search.
      * @param aMod             Modificationlist to create a different Modification[] for each PeptideHit.
-     * @return HashMap          a 2dimensional hashmap (String,Vector(PeptideHits)).
-     *         the first key is q1 and it goes untill qx where x=aNumberOfQueries.
+     * @return HashMap          a 2dimensional hashmap (String,Vector(PeptideHits)). the first key is q1 and it goes
+     *         untill qx where x=aNumberOfQueries.
      */
     private HashMap generatePeptideMap(HashMap m, ProteinMap aProteinMap, int aNumberOfQueries, ModificationList aMod, double[][] aThreshold) {
         // 1. Generate the HashMap on the first level(Key: query number(ex:q1) - Value: Vector of PeptideHit instances.)
@@ -245,8 +250,8 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
     }
 
     /**
-     * Method puts the Qmatch and Plughole values for the Query in a double array.
-     * If the values are = 0, the average Qmatch and Plughole values are put in the array.
+     * Method puts the Qmatch and Plughole values for the Query in a double array. If the values are = 0, the average
+     * Qmatch and Plughole values are put in the array.
      *
      * @param aQueryNumber     The thresholds of this query.
      * @param aThreshold       All the thresholds, to calculate the average if needed.
@@ -304,9 +309,9 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
     }
 
     /**
-     * Returns a 2-dimensional HashMap.
-     * The first dimension holds the results of the queries in a hashmap.
-     * The second dimension holds a hashmap with the corresponding peptide hits of the query. If there are no peptidehits from a query, a <b>nullpointer</b> is inside the HashMap!!
+     * Returns a 2-dimensional HashMap. The first dimension holds the results of the queries in a hashmap. The second
+     * dimension holds a hashmap with the corresponding peptide hits of the query. If there are no peptidehits from a
+     * query, a <b>nullpointer</b> is inside the HashMap!!
      *
      * @return a 2-dimensional HashMap.
      */
@@ -323,9 +328,11 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
     /**
      * This method returns a PeptideHit of the QueryNumber that is given by two parameters.
      *
-     * @param aQueryNumber      Requested query by number! <br>45 as parameter will return the <i>aPeptideHitsNumber</i> PeptideHit of Query 45.
+     * @param aQueryNumber      Requested query by number! <br>45 as parameter will return the <i>aPeptideHitsNumber</i>
+     *                          PeptideHit of Query 45.
      * @param aPeptideHitNumber The PeptideHit in the requested Query. The best peptideHit is peptidehit 1.
-     * @return PeptideHit       returns the requested PeptideHit of the requested QueryNumber. <br>Returns PeptideHit = null if PeptideHit is null.
+     * @return PeptideHit       returns the requested PeptideHit of the requested QueryNumber. <br>Returns PeptideHit =
+     *         null if PeptideHit is null.
      */
     public PeptideHit getPeptideHitOfOneQuery(int aQueryNumber, int aPeptideHitNumber) {
         PeptideHit ph = null;
@@ -341,24 +348,24 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
     }
 
     /**
-     * Method
-     * The requested query in a Vector with PeptideHit instances.
+     * Method The requested query in a Vector with PeptideHit instances.
      *
      * @param aQueryNumber Requested query by number! <br>45 as parameter will return all the PeptideHits of Query 45.
-     * @return Vector       Vector containing the PeptideHits of the requested query, <br>'null' if the query number
-     *         was not found or no identifications were made from the query.
+     * @return Vector       Vector containing the PeptideHits of the requested query, <br>'null' if the query number was
+     *         not found or no identifications were made from the query.
      */
     public Vector getAllPeptideHits(int aQueryNumber) {
         return (Vector) iPeptideMap.get("q" + aQueryNumber);
     }
 
     /**
-     * Method
-     * The number of PeptideHits in the requested querynumber.
+     * Method The number of PeptideHits in the requested querynumber.
      *
      * @param aQueryNumber int       The querynumber you want to get the amount of PeptideHits from.
-     * @return size             int       The number of peptidehits in the query, or 0 if the querynumber does not exist.
-     *         <b>Remark:</b> If there are no peptidehits in the query(ex: 'q1_p1 = -1'), a PeptideHit with value = null is created. So if the querynumber exists it will always have at least 1 PeptideHit. This will cause a NullPointerException if you try to acces such a null_PeptideHit.
+     * @return size             int       The number of peptidehits in the query, or 0 if the querynumber does not
+     *         exist. <b>Remark:</b> If there are no peptidehits in the query(ex: 'q1_p1 = -1'), a PeptideHit with value
+     *         = null is created. So if the querynumber exists it will always have at least 1 PeptideHit. This will
+     *         cause a NullPointerException if you try to acces such a null_PeptideHit.
      */
     public int getNumberOfPeptideHits(int aQueryNumber) {
         Vector v = (Vector) iPeptideMap.get("q" + aQueryNumber);
@@ -370,10 +377,11 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
     }
 
     /**
-     * This method returns the best PeptideHit of each Query in a Vector.
-     * Vector.get(5) returns the best PeptideHit of Query 6 (5+1).
+     * This method returns the best PeptideHit of each Query in a Vector. Vector.get(5) returns the best PeptideHit of
+     * Query 6 (5+1).
      *
-     * @return Vector with all the best PeptideHits next to their QueryNumber. Vector[0] contains info of Query 1. Vector[999] contains info of Query 1000.
+     * @return Vector with all the best PeptideHits next to their QueryNumber. Vector[0] contains info of Query 1.
+     *         Vector[999] contains info of Query 1000.
      */
     public Vector getBestPeptideHits() {
         return getPeptideHits(1);
@@ -383,7 +391,8 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
      * This method returns the PeptideHits of one number of each query in a Vector.
      *
      * @param aPeptideHitNumber The PeptideHit in the requested Query. The best peptideHit is peptidehit 1.
-     * @return Vector with PeptideHit<aPeptideHitNumber> of every query. Vector[0] contains info of Query 1. Vector[999] contains info of Query 1000.
+     * @return Vector with PeptideHit<aPeptideHitNumber> of every query. Vector[0] contains info of Query 1. Vector[999]
+     *         contains info of Query 1000.
      */
     public Vector getPeptideHits(int aPeptideHitNumber) {
         Vector lBestPeptideHits = new Vector(iNumberOfQueries);
@@ -397,8 +406,8 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
      * This method returns the best PeptideHit(P1) of the QueryNumber that is given by a parameter.
      *
      * @param aQueryNumber Requested query by number! <br>45 as parameter will return the best PeptideHit of Query 45.
-     * @return PeptideHit      returns the best PeptideHit of the requested QueryNumber.
-     *         returns PeptideHit = null if PeptideHit is null.
+     * @return PeptideHit      returns the best PeptideHit of the requested QueryNumber. returns PeptideHit = null if
+     *         PeptideHit is null.
      */
     public PeptideHit getPeptideHitOfOneQuery(int aQueryNumber) {
         PeptideHit ph = null;
@@ -441,7 +450,8 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
     /**
      * This method returns all the peptidehits above 95% threshold from one specified query.
      *
-     * @param aQueryNumber Requested query by number! <br>45 as parameter will return all the PeptideHits of Query 45 above their 95% identity threshold.
+     * @param aQueryNumber Requested query by number! <br>45 as parameter will return all the PeptideHits of Query 45
+     *                     above their 95% identity threshold.
      * @return Vector       Vector with peptidehits above threshold.
      */
     public Vector getPeptideHitsAboveIdentityThreshold(int aQueryNumber) {
@@ -451,8 +461,10 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
     /**
      * This method returns all the peptidehits above a parametrical threshold from one specified query.
      *
-     * @param aQueryNumber        Requested query by number! <br>45 as parameter will return all the PeptideHits of Query 45.
-     * @param aConfidenceInterval The confidence the identification has to match, this value equals alpha. So for a 90% confidence alpha is 0.10.
+     * @param aQueryNumber        Requested query by number! <br>45 as parameter will return all the PeptideHits of
+     *                            Query 45.
+     * @param aConfidenceInterval The confidence the identification has to match, this value equals alpha. So for a 90%
+     *                            confidence alpha is 0.10.
      * @return Vector       Vector with peptidehits above threshold.
      */
     public Vector getPeptideHitsAboveIdentityThreshold(int aQueryNumber, double aConfidenceInterval) {

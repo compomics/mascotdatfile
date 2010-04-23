@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
@@ -30,6 +32,7 @@ import com.compomics.mascotdatfile.util.mascot.Query;
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 /**
@@ -43,6 +46,9 @@ import java.util.Vector;
  * * This class implements the test scenario for the PeptideHit Class.
  */
 public class TestQuery extends TestCaseLM {
+    // Class specific log4j logger for TestQuery instances.
+    private static Logger logger = Logger.getLogger(TestQuery.class);
+
     public TestQuery() {
         super("This is the test scenario for a Query instance.");
     }
@@ -150,5 +156,21 @@ public class TestQuery extends TestCaseLM {
         Assert.assertEquals("L446_Bart_081022A_Reverse_17_1491_2621_1_2.mgf", q.getTitle());
         Query.setDistillerFilenameProcessing(false);
     }
+
+    public void testQueryIterator() {
+        MascotDatfile_Index lMDF = new MascotDatfile_Index(getFullFilePath("F004071.dat"));
+        Iterator iter = lMDF.getQueryIterator();
+        int lCounter = 0;
+        while(iter.hasNext()){
+            Object o = iter.next();
+            if(lCounter == 0){
+                Assert.assertTrue(o instanceof Query);
+            }
+            lCounter++;
+        }
+        Assert.assertEquals(lCounter, lMDF.getNumberOfQueries());
+    }
+
+
 
 }

@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.util.gui.JLabelAndComponentPanel;
 
 import javax.swing.*;
@@ -32,12 +34,11 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * Created by IntelliJ IDEA.
- * User: kenny
- * Date: 30-okt-2006
- * Time: 16:50:49
+ * Created by IntelliJ IDEA. User: kenny Date: 30-okt-2006 Time: 16:50:49
  */
 public class SpectrumViewer_Filter_JDialog extends JDialog {
+    // Class specific log4j logger for SpectrumViewer_Filter_JDialog instances.
+    private static Logger logger = Logger.getLogger(SpectrumViewer_Filter_JDialog.class);
 
     DataBridge iTarget = null;
     String iPropsFile = null;
@@ -50,11 +51,12 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
 
     /**
      * Basic constructor
-     * @param aOwner    Owner Frame of this Dialog.
-     * @param aTarget   Databridge to pass the filter settings.
-     * @param aTitle    Title of the dialog.
-     * @param aPropsFile    Properties file path for default settings.
-     * @throws HeadlessException
+     *
+     * @param aOwner     Owner Frame of this Dialog.
+     * @param aTarget    Databridge to pass the filter settings.
+     * @param aTitle     Title of the dialog.
+     * @param aPropsFile Properties file path for default settings.
+     * @throws java.awt.HeadlessException
      */
     public SpectrumViewer_Filter_JDialog(Frame aOwner, DataBridge aTarget, String aTitle, String aPropsFile) throws HeadlessException {
         super(aOwner, aTitle, true);
@@ -63,7 +65,7 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
         this.show_Filter_JDialog();
     }
 
-    private void show_Filter_JDialog(){
+    private void show_Filter_JDialog() {
         this.addWindowListener(new WindowAdapter() {
             /**
              * Invoked when a window is in the process of being closed.
@@ -85,13 +87,13 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
     /**
      * This method will initialize and lay-out all components.
      */
-    private void constructScreen(){
+    private void constructScreen() {
         btnApply = new JButton("Apply");
         btnApply.setMnemonic(KeyEvent.VK_A);
         btnApply.addActionListener(new ActionListener() {
             /** {@inheritDoc} */
             public void actionPerformed(ActionEvent e) {
-                 btnApplyTriggered();
+                btnApplyTriggered();
             }
         });
         btnApply.addKeyListener(new KeyAdapter() {
@@ -100,7 +102,7 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
              * This event occurs when a key press is followed by a key release.
              */
             public void keyTyped(KeyEvent e) {
-                if(e.getKeyChar() == KeyEvent.VK_ENTER) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     btnApply.requestFocus();
                 } else {
                     super.keyTyped(e);
@@ -113,7 +115,7 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
         btnCancel.addActionListener(new ActionListener() {
             /** {@inheritDoc} */
             public void actionPerformed(ActionEvent e) {
-                 btnCancelTriggered();
+                btnCancelTriggered();
             }
         });
         btnCancel.addKeyListener(new KeyAdapter() {
@@ -122,7 +124,7 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
              * This event occurs when a key press is followed by a key release.
              */
             public void keyTyped(KeyEvent e) {
-                if(e.getKeyChar() == KeyEvent.VK_ENTER) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     btnCancel.requestFocus();
                 } else {
                     super.keyTyped(e);
@@ -137,14 +139,14 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
              * This event occurs when a key press is followed by a key release.
              */
             public void keyTyped(KeyEvent e) {
-                if(e.getKeyChar() == KeyEvent.VK_ENTER) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     txtThreshold.requestFocus();
                 } else {
                     super.keyTyped(e);
                 }
             }
         });
-        JLabelAndComponentPanel jpanCenter = new JLabelAndComponentPanel(new JLabel[] {new JLabel("Identity threshold (0.05 means 95% confidence).")},
+        JLabelAndComponentPanel jpanCenter = new JLabelAndComponentPanel(new JLabel[]{new JLabel("Identity threshold (0.05 means 95% confidence).")},
                 new JTextField[]{txtThreshold});
         jpanCenter.setToolTipText("Set an identitythreshold to filter the tree so it only contains PeptideHits scoring " +
                 "above the entered threshold. If you want the tree to list PeptideHits scoring above 95% Confidence," +
@@ -174,7 +176,7 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
     /**
      * Gather and pass the settings by the DataBridge.
      */
-    public void btnApplyTriggered(){
+    public void btnApplyTriggered() {
         double lIdentityThreshold = Double.parseDouble(txtThreshold.getText());
         iTarget.passFilterSettings(lIdentityThreshold);
         super.pack();
@@ -185,25 +187,23 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
     /**
      * Cancel without saving any settings.
      */
-    public void btnCancelTriggered(){
+    public void btnCancelTriggered() {
         this.setVisible(false);
         this.dispose();
     }
 
-     /**
-     * This method attempts to load connection parameters from
-     * a properties file in the classpath.
-     * If this file is not found, nothing happens.
-     * If it is found, the parameters found will be filled out.
+    /**
+     * This method attempts to load connection parameters from a properties file in the classpath. If this file is not
+     * found, nothing happens. If it is found, the parameters found will be filled out.
      */
-    private void tryToLoadParams(){
-        if(iPropsFile != null) {
+    private void tryToLoadParams() {
+        if (iPropsFile != null) {
             try {
                 Properties p = new Properties();
                 InputStream is = ClassLoader.getSystemResourceAsStream(iPropsFile);
-                if(is == null) {
+                if (is == null) {
                     is = this.getClass().getClassLoader().getResourceAsStream(iPropsFile);
-                    if(is == null) {
+                    if (is == null) {
                         // Leave it at that.
                         return;
                     }
@@ -212,11 +212,11 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
                 p.load(is);
 
                 String lDatfile = p.getProperty("FILTER_THRESHOLD");
-                if(lDatfile != null){
+                if (lDatfile != null) {
                     this.txtThreshold.setText(lDatfile.trim());
                 }
                 is.close();
-            } catch(Exception e) {
+            } catch (Exception e) {
                 // Do nothing.
                 e.printStackTrace();
             }

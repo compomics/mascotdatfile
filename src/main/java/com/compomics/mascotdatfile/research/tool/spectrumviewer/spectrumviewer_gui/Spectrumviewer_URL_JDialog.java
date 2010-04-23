@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.research.util.DatfileLocation;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.compomics.util.gui.JLabelAndComponentPanel;
@@ -40,6 +42,8 @@ import java.util.Properties;
  * <br>This Class is a JDialog to retrieve Spectrum information from a URL</br>
  */
 public class Spectrumviewer_URL_JDialog extends JDialog {
+    // Class specific log4j logger for Spectrumviewer_URL_JDialog instances.
+    private static Logger logger = Logger.getLogger(Spectrumviewer_URL_JDialog.class);
 
     private DataBridge iTarget = null;
     private String iPropsFile = null;
@@ -60,8 +64,7 @@ public class Spectrumviewer_URL_JDialog extends JDialog {
     }
 
     /**
-     * This method actually shows the Spectrumviewer_URL_JDialog.
-     * It takes care of the GUI related stuff.
+     * This method actually shows the Spectrumviewer_URL_JDialog. It takes care of the GUI related stuff.
      */
     private void showSpectrumviewer_URL_JDialog() {
         this.addWindowListener(new WindowAdapter() {
@@ -86,50 +89,50 @@ public class Spectrumviewer_URL_JDialog extends JDialog {
      * This method will initialize and lay-out all components.
      */
     private void constructScreen() {
-    txtServer = new JTextField(25);
-    txtServer.addKeyListener(new KeyAdapter() {
-        /**
-         * Invoked when a key has been typed.
-         * This event occurs when a key press is followed by a key release.
-         */
-        public void keyTyped(KeyEvent e) {
-            if(e.getKeyChar() == KeyEvent.VK_ENTER) {
-                txtDate.requestFocus();
-            } else {
-                super.keyTyped(e);
+        txtServer = new JTextField(25);
+        txtServer.addKeyListener(new KeyAdapter() {
+            /**
+             * Invoked when a key has been typed.
+             * This event occurs when a key press is followed by a key release.
+             */
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+                    txtDate.requestFocus();
+                } else {
+                    super.keyTyped(e);
+                }
             }
-        }
-    });
-    txtDate = new JTextField(25);
-    txtDate.addKeyListener(new KeyAdapter() {
-        /**
-         * Invoked when a key has been typed.
-         * This event occurs when a key press is followed by a key release.
-         */
-        public void keyTyped(KeyEvent e) {
-            if(e.getKeyChar() == KeyEvent.VK_ENTER) {
-                txtDatfile.requestFocus();
-            } else {
-                super.keyTyped(e);
+        });
+        txtDate = new JTextField(25);
+        txtDate.addKeyListener(new KeyAdapter() {
+            /**
+             * Invoked when a key has been typed.
+             * This event occurs when a key press is followed by a key release.
+             */
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+                    txtDatfile.requestFocus();
+                } else {
+                    super.keyTyped(e);
+                }
             }
-        }
-    });
-    txtDatfile = new JTextField(25);
-    txtDatfile.addKeyListener(new KeyAdapter() {
-        /**
-         * Invoked when a key has been typed.
-         * This event occurs when a key press is followed by a key release.
-         */
-        public void keyTyped(KeyEvent e) {
-            if(e.getKeyChar() == KeyEvent.VK_ENTER) {
-                txtDatfile.requestFocus();
-            } else {
-                super.keyTyped(e);
+        });
+        txtDatfile = new JTextField(25);
+        txtDatfile.addKeyListener(new KeyAdapter() {
+            /**
+             * Invoked when a key has been typed.
+             * This event occurs when a key press is followed by a key release.
+             */
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+                    txtDatfile.requestFocus();
+                } else {
+                    super.keyTyped(e);
+                }
             }
-        }
-    });
-        JLabelAndComponentPanel jpanTop = new JLabelAndComponentPanel(new JLabel[] {new JLabel("Mascot Server"), new JLabel("Date"), new JLabel("Datfile")},
-                                                            new JTextField[]{txtServer, txtDate, txtDatfile});
+        });
+        JLabelAndComponentPanel jpanTop = new JLabelAndComponentPanel(new JLabel[]{new JLabel("Mascot Server"), new JLabel("Date"), new JLabel("Datfile")},
+                new JTextField[]{txtServer, txtDate, txtDatfile});
         jpanTop.setBorder(BorderFactory.createTitledBorder("Datfile source"));
 
         btnShow = new JButton("Show");
@@ -146,7 +149,7 @@ public class Spectrumviewer_URL_JDialog extends JDialog {
              * This event occurs when a key press is followed by a key release.
              */
             public void keyTyped(KeyEvent e) {
-                if(e.getKeyChar() == KeyEvent.VK_ENTER) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     btnShowTriggered();
                 }
             }
@@ -165,7 +168,7 @@ public class Spectrumviewer_URL_JDialog extends JDialog {
              * This event occurs when a key press is followed by a key release.
              */
             public void keyTyped(KeyEvent e) {
-                if(e.getKeyChar() == KeyEvent.VK_ENTER) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     btnCancelTriggered();
                 }
             }
@@ -194,19 +197,19 @@ public class Spectrumviewer_URL_JDialog extends JDialog {
      */
     private void btnShowTriggered() {
         String lServer = txtServer.getText().trim();
-        if( lServer.charAt(lServer.length()-1) != '/'){
+        if (lServer.charAt(lServer.length() - 1) != '/') {
             lServer = lServer + '/';
         }
         String lDate = txtDate.getText().trim();
         String lDatfile = txtDatfile.getText().trim();
 
-        if(lServer.equals("")) {
+        if (lServer.equals("")) {
             JOptionPane.showMessageDialog(this, "Datfile source server needs to be specified!!", "No server specified!", JOptionPane.ERROR_MESSAGE);
             txtServer.requestFocus();
             return;
         }
 
-        if(lDate.equals("")) {
+        if (lDate.equals("")) {
             JOptionPane.showMessageDialog(this, "Creation date of datfile needs to be specified!", "No date specified!", JOptionPane.ERROR_MESSAGE);
             txtDate.requestFocus();
             return;
@@ -218,17 +221,17 @@ public class Spectrumviewer_URL_JDialog extends JDialog {
             this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             DatfileLocation dfl = new DatfileLocation(DatfileLocation.URL, new String[]{lServer, lDate, lDatfile});
             lMdf = dfl.getDatfile();
-        } catch(ClassNotFoundException cnfe) {
+        } catch (ClassNotFoundException cnfe) {
             errorString = "URL class was not found! (" + cnfe.getMessage() + ")";
-        } catch(IllegalAccessException iae) {
+        } catch (IllegalAccessException iae) {
             errorString = "(" + iae.getMessage() + ")";
-        } catch(InstantiationException ie) {
+        } catch (InstantiationException ie) {
             errorString = "Could not create instance of the MascotDatfile class! (" + ie.getMessage() + ")";
-        } catch(SQLException sqle) {
+        } catch (SQLException sqle) {
             errorString = "(" + sqle.getMessage() + ")";
         }
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        if(errorString != null) {
+        if (errorString != null) {
             JOptionPane.showMessageDialog(this, new String[]{"Unable to load " + lDatfile + "from '" + lServer + ". " + errorString, "\n"}, "Unable to get the datfile!", JOptionPane.ERROR_MESSAGE);
         } else {
             this.iTarget.passMascotDatfile(lMdf, lDatfile);
@@ -247,19 +250,17 @@ public class Spectrumviewer_URL_JDialog extends JDialog {
     }
 
     /**
-     * This method attempts to load connection parameters from
-     * a properties file in the classpath.
-     * If this file is not found, nothing happens.
-     * If it is found, the parameters found will be filled out.
+     * This method attempts to load connection parameters from a properties file in the classpath. If this file is not
+     * found, nothing happens. If it is found, the parameters found will be filled out.
      */
     private void tryToLoadParams() {
-        if(iPropsFile != null) {
+        if (iPropsFile != null) {
             try {
                 Properties p = new Properties();
                 InputStream is = ClassLoader.getSystemResourceAsStream(iPropsFile);
-                if(is == null) {
+                if (is == null) {
                     is = this.getClass().getClassLoader().getResourceAsStream(iPropsFile);
-                    if(is == null) {
+                    if (is == null) {
                         // Leave it at that.
                         return;
                     }
@@ -268,19 +269,19 @@ public class Spectrumviewer_URL_JDialog extends JDialog {
                 p.load(is);
 
                 String lServer = p.getProperty("URL_SERVER");
-                if(lServer != null) {
+                if (lServer != null) {
                     this.txtServer.setText(lServer.trim());
                 }
                 String lDate = p.getProperty("URL_DATE");
-                if(lDate != null) {
+                if (lDate != null) {
                     this.txtDate.setText(lDate.trim());
                 }
                 String lDatfile = p.getProperty("DATFILE");
-                if(lDatfile != null){
+                if (lDatfile != null) {
                     this.txtDatfile.setText(lDatfile.trim());
                 }
                 is.close();
-            } catch(Exception e) {
+            } catch (Exception e) {
                 // Do nothing.
                 e.printStackTrace();
             }

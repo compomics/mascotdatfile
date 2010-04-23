@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +41,8 @@ import java.util.Iterator;
  * This class contains all the parsed data from the 'masses' section of the datfile.
  */
 public class Masses implements Serializable {
+    // Class specific log4j logger for Masses instances.
+    private static Logger logger = Logger.getLogger(Masses.class);
     /**
      * This HashMap holds all the masses that are written in the datfile Masses section.
      */
@@ -53,8 +57,8 @@ public class Masses implements Serializable {
     private ArrayList iVariableModifications = null;
 
     /**
-     * This method parses all the fixed modifications into an array of ModificationList Strings.
-     * The String array will be used later on to create Fixed ModificationList instances.
+     * This method parses all the fixed modifications into an array of ModificationList Strings. The String array will
+     * be used later on to create Fixed ModificationList instances.
      *
      * @param m Hashmap         masses section
      * @return ArrayList    ArrayList with all the data from 1 fixed modification.
@@ -81,8 +85,8 @@ public class Masses implements Serializable {
     }
 
     /**
-     * This method parses all the variable modifications into an array of variable ModificationList Strings.
-     * The String array will be used later on to create Variable ModificationList instances.
+     * This method parses all the variable modifications into an array of variable ModificationList Strings. The String
+     * array will be used later on to create Variable ModificationList instances.
      *
      * @param m Hashmap         masses section
      * @return ArrayList    ArrayList with all the data from 1 variable modification.
@@ -110,18 +114,18 @@ public class Masses implements Serializable {
     }
 
     /**
-     * This constructor reads out all of the data that comes with the hashmap.
-     * This hashmap actually coppied to a local HashMap that contains Double values for the masses now!
+     * This constructor reads out all of the data that comes with the hashmap. This hashmap actually coppied to a local
+     * HashMap that contains Double values for the masses now!
      *
      * @param m HashMap     Masses section of the datfile.
      */
     public Masses(HashMap m) {
         //parse all the key-values into instance variables.
-		Iterator iter = m.keySet().iterator();
-		while (iter.hasNext()) {
-			Object o = iter.next();
-			iMasses.put(o, m.get(o));
-		}
+        Iterator iter = m.keySet().iterator();
+        while (iter.hasNext()) {
+            Object o = iter.next();
+            iMasses.put(o, m.get(o));
+        }
         iFixedModifications = getFixedModifications(m);
         iVariableModifications = getVariableModifications(m);
     }

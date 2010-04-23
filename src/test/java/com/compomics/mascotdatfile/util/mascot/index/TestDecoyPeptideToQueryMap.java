@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
@@ -40,6 +42,8 @@ import junit.framework.Assert;
  * This class implements the test scenario for the PeptideToQueryMap class.
  */
 public class TestDecoyPeptideToQueryMap extends TestCaseLM {
+    // Class specific log4j logger for TestDecoyPeptideToQueryMap instances.
+    private static Logger logger = Logger.getLogger(TestDecoyPeptideToQueryMap.class);
 
 
     public TestDecoyPeptideToQueryMap() {

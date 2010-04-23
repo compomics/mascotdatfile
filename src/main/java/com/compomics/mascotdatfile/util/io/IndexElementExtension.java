@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.io;
 
+import org.apache.log4j.Logger;
+
 import psidev.psi.tools.xxindex.StandardXpathAccess;
 import psidev.psi.tools.xxindex.index.IndexElement;
 
@@ -16,9 +18,12 @@ import java.util.Vector;
  */
 
 /**
- * This class holds an IndexElement, the accessor for that IndexElement and the xml title tag linked to the accassor and the IndexElement
+ * This class holds an IndexElement, the accessor for that IndexElement and the xml title tag linked to the accassor and
+ * the IndexElement
  */
 public class IndexElementExtension {
+    // Class specific log4j logger for IndexElementExtension instances.
+    private static Logger logger = Logger.getLogger(IndexElementExtension.class);
 
     /**
      * The IndexElement
@@ -50,7 +55,7 @@ public class IndexElementExtension {
      * Getter for the XmlElementExtensions linked to the accessor and IndexElement
      *
      * @return
-     * @throws IOException
+     * @throws java.io.IOException
      */
     public Vector<XmlElementExtension> getExtendedXmlElement() throws IOException {
         Vector<XmlElementExtension> lElements = new Vector<XmlElementExtension>();

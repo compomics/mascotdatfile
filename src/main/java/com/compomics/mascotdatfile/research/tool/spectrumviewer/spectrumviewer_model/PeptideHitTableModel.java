@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 
 import javax.swing.table.AbstractTableModel;
@@ -34,14 +36,16 @@ import java.util.Hashtable;
  * <br>This Class </br>
  */
 public class PeptideHitTableModel extends AbstractTableModel {
+    // Class specific log4j logger for PeptideHitTableModel instances.
+    private static Logger logger = Logger.getLogger(PeptideHitTableModel.class);
 
     private Hashtable iRowElements = null;
     private PeptideHit[] iPh;
     private static PeptideHitTableModel iPeptideHitTableModel = null;
 
-    private PeptideHitTableModel(PeptideHit[] aPh){
+    private PeptideHitTableModel(PeptideHit[] aPh) {
         iPh = aPh;
-        if(iRowElements == null){
+        if (iRowElements == null) {
             iRowElements = new Hashtable();
             constructRowElements();
         }
@@ -49,22 +53,25 @@ public class PeptideHitTableModel extends AbstractTableModel {
 
     /**
      * Singleton pattern makes sure ther's only one PeptideHitTableModel.
-     * @param aPh   Array with peptidehits that you want to show in the table.
+     *
+     * @param aPh Array with peptidehits that you want to show in the table.
      * @return PeptideHitTableModel     a tablemodel that can handle peptidehits and shows them in a vertical table.
      */
-    public static PeptideHitTableModel getPeptideHitTableModel(PeptideHit[] aPh){
-        if(iPeptideHitTableModel == null){
+    public static PeptideHitTableModel getPeptideHitTableModel(PeptideHit[] aPh) {
+        if (iPeptideHitTableModel == null) {
             iPeptideHitTableModel = new PeptideHitTableModel(aPh);
         }
         return iPeptideHitTableModel;
     }
+
     /**
      * Singleton pattern makes sure ther's only one PeptideHitTableModel.
-     * @param aPh   One peptidehit that you want to show in the table.
+     *
+     * @param aPh One peptidehit that you want to show in the table.
      * @return PeptideHitTableModel     a tablemodel that can handle the peptidehit and shows it in a vertical table.
      */
-    public static PeptideHitTableModel getPeptideHitTableModel(PeptideHit aPh){
-        if(iPeptideHitTableModel == null){
+    public static PeptideHitTableModel getPeptideHitTableModel(PeptideHit aPh) {
+        if (iPeptideHitTableModel == null) {
             iPeptideHitTableModel = new PeptideHitTableModel(new PeptideHit[]{aPh});
         }
         return iPeptideHitTableModel;
@@ -72,7 +79,8 @@ public class PeptideHitTableModel extends AbstractTableModel {
 
     /**
      * Returns the number of rows, in this case the number of peptidehit information rows.
-     * @return  int the number of rows with peptidehitinformation.
+     *
+     * @return int the number of rows with peptidehitinformation.
      */
     public int getRowCount() {
         return iRowElements.size();
@@ -80,7 +88,8 @@ public class PeptideHitTableModel extends AbstractTableModel {
 
     /**
      * Returns the number of colums, in this case the number of peptidehits that are passed by the constructor.
-     * @return  int the number of collums with peptidehits
+     *
+     * @return int the number of collums with peptidehits
      */
     public int getColumnCount() {
         return iPh.length;
@@ -88,28 +97,30 @@ public class PeptideHitTableModel extends AbstractTableModel {
 
     /**
      * Returns the value of one cell
-     * @param rowIndex      the index of the row that needs to be accessed
-     * @param columnIndex   the index of the collumn that needs to be accessed
-     * @return  value of the requested cell
+     *
+     * @param rowIndex    the index of the row that needs to be accessed
+     * @param columnIndex the index of the collumn that needs to be accessed
+     * @return value of the requested cell
      */
     public Object getValueAt(int rowIndex, int columnIndex) {
         Object lValue = null;
-        if(columnIndex == 0 ){
+        if (columnIndex == 0) {
             lValue = getRowElementInformation(rowIndex);
-        }else if(columnIndex > 0){
-            lValue = getPeptideHitInformation(iPh[columnIndex-1], rowIndex);
+        } else if (columnIndex > 0) {
+            lValue = getPeptideHitInformation(iPh[columnIndex - 1], rowIndex);
         }
         return lValue;
     }
 
     /**
      * This method builds the first collumn with row-names.
+     *
      * @param rowIndex
      * @return String with the row-name
      */
-    private String getRowElementInformation(int rowIndex){
+    private String getRowElementInformation(int rowIndex) {
         String lValue = null;
-        switch(rowIndex){
+        switch (rowIndex) {
             case 0:
                 lValue = (String) iRowElements.get(PeptideHit.SEQUENCE);
                 break;
@@ -135,13 +146,14 @@ public class PeptideHitTableModel extends AbstractTableModel {
 
     /**
      * This method builds the peptidehitinformation columns
-     * @param aPh           Peptidehit wherefrom you want the information
-     * @param rowIndex      The index of the information row you want the information from
-     * @return  String with peptidehit-information in this row
+     *
+     * @param aPh      Peptidehit wherefrom you want the information
+     * @param rowIndex The index of the information row you want the information from
+     * @return String with peptidehit-information in this row
      */
-    private String getPeptideHitInformation(PeptideHit aPh, int rowIndex){
+    private String getPeptideHitInformation(PeptideHit aPh, int rowIndex) {
         String lValue = null;
-        switch(rowIndex){
+        switch (rowIndex) {
             case 0:
                 lValue = aPh.getSequence();
                 break;
@@ -169,7 +181,7 @@ public class PeptideHitTableModel extends AbstractTableModel {
     /**
      * This is a HashTable for easy handling the rows.
      */
-    private void constructRowElements(){
+    private void constructRowElements() {
         iRowElements.put(PeptideHit.SEQUENCE, "Sequence");
         iRowElements.put(PeptideHit.MODIFIED_SEQUENCE, "Modified sequence");
         iRowElements.put(PeptideHit.IONS_SCORE, "Score");

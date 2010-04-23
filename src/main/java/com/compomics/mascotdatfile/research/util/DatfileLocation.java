@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.util;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 
 import java.io.BufferedReader;
@@ -34,23 +36,24 @@ import java.net.URLConnection;
 import java.sql.SQLException;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenny
- * Date: 23-apr-2006
- * Time: 19:20:40
+ * Created by IntelliJ IDEA. User: Kenny Date: 23-apr-2006 Time: 19:20:40
  */
 public class DatfileLocation {
+    // Class specific log4j logger for DatfileLocation instances.
+    private static Logger logger = Logger.getLogger(DatfileLocation.class);
 
     /**
      * This String represents the path and filename of the datfile is the datfile is located on the hard disk.
      */
     private String iPathAndFilename = null;
     /**
-     * This String[] must supply URL parameters.<br><ul><li>1. Server (ex: http://cavell.ugent.be/)<li>2. Date (ex:20061130)<li> 3. DatfileName (ex:F009987.dat)</ul><br>.
+     * This String[] must supply URL parameters.<br><ul><li>1. Server (ex: http://cavell.ugent.be/)<li>2. Date
+     * (ex:20061130)<li> 3. DatfileName (ex:F009987.dat)</ul><br>.
      */
     private String[] iURLInformation = null;
     /**
-     * This integer represents the type of the datfilelocation.<br> Its initialised as a negative value, it will be set by one of the final static integers defining the different types of datfileLocations.
+     * This integer represents the type of the datfilelocation.<br> Its initialised as a negative value, it will be set
+     * by one of the final static integers defining the different types of datfileLocations.
      */
     private int iDatfileLocationType = -1;
 
@@ -64,28 +67,31 @@ public class DatfileLocation {
     public final static int URL = 1;
 
 
-
-
     /**
      * Constructor sets up a new DatfileLocation.
-     * @param aDatfileLocationType     source of the datfile ( 0 is hard disk, 1 is localDB, 2 is Muppet)
-     * @param aParams   <ol>
-     *                  <li> if datfile is on hard disk; this String[] must first supply <b>the path and filename as 1 String</b><br />ex: <i>c:\mascot\F010356.dat</i>.
-     *                  <li> if datfile comes from local db, this String[] must supply only the <b>datfileID or the filename</b>.
-     *                  <li> if datfile comes from muppet db, this String[] must supply the <ol><li><b>datfileID or the filename</b>.<li>username<li>password</ol><br>
-     *                  <li> if datfile comes from a New Database that still has to be defined, this String[] must supply the database parameters and the datfile.<ol><li><b>datfileID or filename</b>.<li>username<li>password<li><b>database server</b></ol><br>
-     *                  <li> if datfile comes from the internet, this String[] must supply URL parameters.<br><ol><li>Server (ex: http://cavell.ugent.be/)<li>Date (ex:20061130)<li> DatfileName (ex:F009987.dat)</ol><br>
-     *                  </ol>
+     *
+     * @param aDatfileLocationType source of the datfile ( 0 is hard disk, 1 is localDB, 2 is Muppet)
+     * @param aParams              <ol> <li> if datfile is on hard disk; this String[] must first supply <b>the path and
+     *                             filename as 1 String</b><br />ex: <i>c:\mascot\F010356.dat</i>. <li> if datfile comes
+     *                             from local db, this String[] must supply only the <b>datfileID or the filename</b>.
+     *                             <li> if datfile comes from muppet db, this String[] must supply the
+     *                             <ol><li><b>datfileID or the filename</b>.<li>username<li>password</ol><br> <li> if
+     *                             datfile comes from a New Database that still has to be defined, this String[] must
+     *                             supply the database parameters and the datfile.<ol><li><b>datfileID or
+     *                             filename</b>.<li>username<li>password<li><b>database server</b></ol><br> <li> if
+     *                             datfile comes from the internet, this String[] must supply URL
+     *                             parameters.<br><ol><li>Server (ex: http://cavell.ugent.be/)<li>Date (ex:20061130)<li>
+     *                             DatfileName (ex:F009987.dat)</ol><br> </ol>
      */
     public DatfileLocation(int aDatfileLocationType, String[] aParams) {
         iDatfileLocationType = aDatfileLocationType;
-        switch(iDatfileLocationType){
-            case HARDDISK:{
+        switch (iDatfileLocationType) {
+            case HARDDISK: {
                 // Datfile from hard disk.
                 iPathAndFilename = aParams[0];
                 break;
             }
-            case URL:{
+            case URL: {
                 iURLInformation = aParams;
                 break;
             }
@@ -94,10 +100,10 @@ public class DatfileLocation {
 
     /**
      * Constructor sets up a new DatfileLocation.
-     * @param aDatfileLocationType     source of the datfile ( 0 is hard disk, 1 is localDB, 2 is Muppet)
-     * @param aParam    <ol>
-     *                  <li> if datfile is on hard disk; this String must first supply <b>the path and filename in 1 String</b>.
-     *                  </ol>
+     *
+     * @param aDatfileLocationType source of the datfile ( 0 is hard disk, 1 is localDB, 2 is Muppet)
+     * @param aParam               <ol> <li> if datfile is on hard disk; this String must first supply <b>the path and
+     *                             filename in 1 String</b>. </ol>
      */
     public DatfileLocation(int aDatfileLocationType, String aParam) {
         this(aDatfileLocationType, new String[]{aParam});
@@ -105,31 +111,32 @@ public class DatfileLocation {
 
 
     /**
-         * Constructor sets up a new DatfileLocation.
-         * @param aDatfileLocationType     source of the datfile ( 0 is hard disk, 1 is localDB, 2 is Muppet)
-         * @param aParams   <ol>
-         *                  <li> if datfile comes from local db, this int must supply only the <b>datfileID</b>.
-         *                  </ol>
-         */
+     * Constructor sets up a new DatfileLocation.
+     *
+     * @param aDatfileLocationType source of the datfile ( 0 is hard disk, 1 is localDB, 2 is Muppet)
+     * @param aParams              <ol> <li> if datfile comes from local db, this int must supply only the
+     *                             <b>datfileID</b>. </ol>
+     */
     public DatfileLocation(int aDatfileLocationType, int aParams) {
         this(aDatfileLocationType, new String[]{Integer.toString(aParams)});
     }
 
     /**
      * This method returns an MascotDatfile instance based on the location type that was defined in the constructor.
+     *
      * @return MascotDatfile    MascotDatfile instance defined on the constructor.
      */
     public MascotDatfile getDatfile() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-       MascotDatfile mdf = null;
+        MascotDatfile mdf = null;
 
         Label:
-        if(iDatfileLocationType == HARDDISK) {
+        if (iDatfileLocationType == HARDDISK) {
             {
                 // Datfile from HardDisk.
                 mdf = new MascotDatfile(iPathAndFilename);
                 break Label;
             }
-        } else if(iDatfileLocationType == URL) {
+        } else if (iDatfileLocationType == URL) {
             {
                 // Datfile from URL.
                 String lServer = iURLInformation[0];
@@ -143,26 +150,29 @@ public class DatfileLocation {
                     BufferedReader br = new BufferedReader(new InputStreamReader(lURLConnection.getInputStream()));
                     mdf = new MascotDatfile(br);
 
-                } catch(MalformedURLException e) {
+                } catch (MalformedURLException e) {
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                } catch(IOException ioe) {
+                } catch (IOException ioe) {
                     ioe.printStackTrace();
                 }
             }
         }
         return mdf;
-}
+    }
 
     /**
      * This method returns the type of datfileLocation this is.
-     * @return  String with the datfileLocationType.
+     *
+     * @return String with the datfileLocationType.
      */
-    public String toString(){
+    public String toString() {
         String toString = null;
-        switch(iDatfileLocationType){
-            case HARDDISK:  toString = "Harddisk";
+        switch (iDatfileLocationType) {
+            case HARDDISK:
+                toString = "Harddisk";
                 break;
-            case URL:  toString = "URL";
+            case URL:
+                toString = "URL";
                 break;
         }
         return toString;

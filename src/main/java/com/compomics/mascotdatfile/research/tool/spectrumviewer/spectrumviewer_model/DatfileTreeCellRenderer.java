@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.Query;
 
@@ -39,19 +41,24 @@ import java.awt.*;
  */
 
 /**
- * A TreecellRender for MascotDatfile. Can render a QueryToPeptideMap with QueryNumber as nodes and PeptideHitSequences with score as leafs.
+ * A TreecellRender for MascotDatfile. Can render a QueryToPeptideMap with QueryNumber as nodes and PeptideHitSequences
+ * with score as leafs.
  */
 public class DatfileTreeCellRenderer extends DefaultTreeCellRenderer {
+    // Class specific log4j logger for DatfileTreeCellRenderer instances.
+    private static Logger logger = Logger.getLogger(DatfileTreeCellRenderer.class);
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
         Object temp = value;
-        if(value instanceof Query){
-            temp = "Query " + ((Query)temp).getQueryNumber();
-        } else if(value instanceof PeptideHit){
+        if (value instanceof Query) {
+            temp = "Query " + ((Query) temp).getQueryNumber();
+        } else if (value instanceof PeptideHit) {
             PeptideHit lPeptideHit = (PeptideHit) value;
-            temp = lPeptideHit.getSequence() + " (" +  lPeptideHit.getIonsScore() + ")";
+            temp = lPeptideHit.getSequence() + " (" + lPeptideHit.getIonsScore() + ")";
 
         }
         return super.getTreeCellRendererComponent(tree, temp, sel, expanded, leaf, row, hasFocus);    //To change body of overridden methods use File | Settings | File Templates.

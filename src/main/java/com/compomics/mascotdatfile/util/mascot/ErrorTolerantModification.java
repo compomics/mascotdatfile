@@ -1,16 +1,18 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.interfaces.Modification;
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 
 /**
- * Created by IntelliJ IDEA.
- * User: kenny
- * Date: Jun 15, 2009
- * Time: 12:09:30 PM
+ * Created by IntelliJ IDEA. User: kenny Date: Jun 15, 2009 Time: 12:09:30 PM
  * <p/>
  * This class represents an ErrorTolerantModification.
  */
-public class ErrorTolerantModification implements com.compomics.mascotdatfile.util.interfaces.Modification, Serializable {
+public class ErrorTolerantModification implements Modification, Serializable {
+    // Class specific log4j logger for ErrorTolerantModification instances.
+    private static Logger logger = Logger.getLogger(ErrorTolerantModification.class);
     /**
      * The standard type of the variable modification.
      */
@@ -37,8 +39,7 @@ public class ErrorTolerantModification implements com.compomics.mascotdatfile.ut
     private String iShortType = null;
 
     /**
-     * Contructor
-     * Generate a fixed modification containing different parameters of the modification.
+     * Contructor Generate a fixed modification containing different parameters of the modification.
      *
      * @param aType           standard name by mascot
      * @param aMass           mass
@@ -110,8 +111,8 @@ public class ErrorTolerantModification implements com.compomics.mascotdatfile.ut
     }
 
     /**
-     * Returns the one-lettercode of the aminoacids with Fixed ModificationList.
-     * ( Can be 'null' if location unspecified )
+     * Returns the one-lettercode of the aminoacids with Fixed ModificationList. ( Can be 'null' if location unspecified
+     * )
      *
      * @return the one-lettercode of the aminoacids with Fixed ModificationList.
      */
@@ -120,8 +121,7 @@ public class ErrorTolerantModification implements com.compomics.mascotdatfile.ut
     }
 
     /**
-     * Sets the one-lettercode of the aminoacids with Fixed ModificationList.
-     * ( Can be 'null' if location unspecified )
+     * Sets the one-lettercode of the aminoacids with Fixed ModificationList. ( Can be 'null' if location unspecified )
      *
      * @param aLocation the one-lettercode of the aminoacids with Fixed ModificationList.
      */

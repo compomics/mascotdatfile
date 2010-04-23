@@ -1,16 +1,17 @@
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenny
- * Date: 25-jun-2008
- * Time: 16:12:10
- * To change this template use File | Settings | File Templates.
+ * Created by IntelliJ IDEA. User: Kenny Date: 25-jun-2008 Time: 16:12:10 To change this template use File | Settings |
+ * File Templates.
  */
 public class FileIndexer {
+    // Class specific log4j logger for FileIndexer instances.
+    private static Logger logger = Logger.getLogger(FileIndexer.class);
 
     private HashMap<String, ByteOffset> iSectionMap = null;
     private SummaryIndex iSummaryIndex = SummaryIndex.getInstance();
@@ -21,7 +22,7 @@ public class FileIndexer {
     private ArrayList<PeptideLineIndex> iPeptideLineList;
     private ArrayList<PeptideLineIndex> iDecoyPeptideLineList;
 
-    public FileIndexer(){
+    public FileIndexer() {
         iSectionMap = new HashMap<String, ByteOffset>();
 
         iLineList = new HashMap<Integer, Long>();
@@ -34,41 +35,44 @@ public class FileIndexer {
     }
 
     // Section indexing.
-    protected ByteOffset getSectionIndex(String aSectionName){
-        if(aSectionName.startsWith("query")){
+
+    protected ByteOffset getSectionIndex(String aSectionName) {
+        if (aSectionName.startsWith("query")) {
             Integer lQueryNumber = Integer.parseInt(aSectionName.substring(5));
             lQueryNumber = lQueryNumber - 1;
             return iQueryList.get(lQueryNumber);
-        }else{
+        } else {
             return iSectionMap.get(aSectionName);
         }
     }
 
-    protected void addSectionIndex(String aSectionName, ByteOffset aByteIndex){
-        if(aSectionName.startsWith("query")){
+    protected void addSectionIndex(String aSectionName, ByteOffset aByteIndex) {
+        if (aSectionName.startsWith("query")) {
             Integer lQueryNumber = Integer.parseInt(aSectionName.substring(5));
             iQueryList.add(aByteIndex);
-        }else{
+        } else {
             iSectionMap.put(aSectionName, aByteIndex);
         }
     }
 
     // Line indexing.
-    protected long getLineIndex(int aLineNumber){
+
+    protected long getLineIndex(int aLineNumber) {
         // minus 1 as the arraylist is zero based in opposite to the line numbers.
-        if(iLineList.get(aLineNumber) != null){
+        if (iLineList.get(aLineNumber) != null) {
             return iLineList.get(aLineNumber);
-        }else{
+        } else {
             throw new IllegalArgumentException("Line number \'" + aLineNumber + "\' was not indexed and can therefore not be accessed.");
         }
     }
 
-    protected void addLineIndex(int aLine, long aByte){
+    protected void addLineIndex(int aLine, long aByte) {
         iLineList.put(aLine, aByte);
     }
 
     // Peptide hit indexing.
-    protected long getPeptideLineIndex(int aQueryNumber, int aPeptideHitNumber){
+
+    protected long getPeptideLineIndex(int aQueryNumber, int aPeptideHitNumber) {
         aQueryNumber = aQueryNumber - 1;
         int lLineNumber = iPeptideLineList.get(aQueryNumber).getLine(aPeptideHitNumber);
         if (lLineNumber != -1) {
@@ -88,29 +92,29 @@ public class FileIndexer {
         }
     }
 
-    protected void addPeptideLineIndex(Integer[] aLines){
+    protected void addPeptideLineIndex(Integer[] aLines) {
         iPeptideLineList.add(new PeptideLineIndex(aLines));
     }
 
-    protected void addDecoyPeptideLineIndex(Integer[] aLines){
+    protected void addDecoyPeptideLineIndex(Integer[] aLines) {
         iDecoyPeptideLineList.add(new PeptideLineIndex(aLines));
     }
 
-    protected int getNumberOfPeptides(int aQueryNumber){                                             
+    protected int getNumberOfPeptides(int aQueryNumber) {
         aQueryNumber = aQueryNumber - 1;
         return iPeptideLineList.get(aQueryNumber).getNumberOfPeptides();
     }
 
-    protected int getNumberOfDecoyPeptides(int aQueryNumber){
+    protected int getNumberOfDecoyPeptides(int aQueryNumber) {
         aQueryNumber = aQueryNumber - 1;
         return iDecoyPeptideLineList.get(aQueryNumber).getNumberOfPeptides();
     }
 
-    protected int getNumberOfQueries(){
+    protected int getNumberOfQueries() {
         return iPeptideLineList.size();
     }
 
-    public long getSummaryLineIndex(final int aQueryNumber, final int aSummaryIndex){
+    public long getSummaryLineIndex(final int aQueryNumber, final int aSummaryIndex) {
         int lLineNumber = iSummaryIndex.getSummaryLine(aQueryNumber, aSummaryIndex);
         return getLineIndex(lLineNumber);
     }

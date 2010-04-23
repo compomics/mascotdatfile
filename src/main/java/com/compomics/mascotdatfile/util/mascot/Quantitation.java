@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.io.IndexElementExtension;
 import com.compomics.mascotdatfile.util.io.XmlElementExtension;
 import com.compomics.mascotdatfile.util.mascot.quantitation.Component;
@@ -15,13 +17,12 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * Created by IntelliJ IDEA.
- * User: kenny
- * Date: Mar 16, 2009
- * Time: 4:04:03 PM
- * This class represents the Quantiation section of a MascotDatfile.
+ * Created by IntelliJ IDEA. User: kenny Date: Mar 16, 2009 Time: 4:04:03 PM This class represents the Quantiation
+ * section of a MascotDatfile.
  */
 public class Quantitation {
+    // Class specific log4j logger for Quantitation instances.
+    private static Logger logger = Logger.getLogger(Quantitation.class);
     private Component[] iComponents;
     private Ratio[] iRatios;
     private HashMap iMethod = new HashMap();
@@ -123,8 +124,8 @@ public class Quantitation {
     }
 
     /**
-     * Returns the Ratio's used for this quantitation method.
-     * A Ratio consists of two Components which it can match in a given Spectrum.
+     * Returns the Ratio's used for this quantitation method. A Ratio consists of two Components which it can match in a
+     * given Spectrum.
      *
      * @return Ratio[] found in the Mascot result file.
      */
@@ -148,7 +149,7 @@ public class Quantitation {
      * @param lAccess  StandardXpathAccess
      * @param lXmlPath String with the xml tag name
      * @return Vector<XmlElementExtension> with the XmlElementExtensions
-     * @throws IOException error reading the xml file.
+     * @throws java.io.IOException error reading the xml file.
      */
     public Vector<XmlElementExtension> getXmlElements(StandardXpathIndex lIndex, StandardXpathAccess lAccess, String lXmlPath) throws IOException {
         List<IndexElement> lIndexElements = lIndex.getElements(lXmlPath);

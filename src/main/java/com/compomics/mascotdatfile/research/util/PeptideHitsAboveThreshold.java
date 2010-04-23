@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.util;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.QueryToPeptideMap;
@@ -35,16 +37,14 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Kenny
- * Date: 4-mrt-2006
- * Time: 11:36:42
+ * Created by IntelliJ IDEA. User: Kenny Date: 4-mrt-2006 Time: 11:36:42
  */
 public class PeptideHitsAboveThreshold {
+    // Class specific log4j logger for PeptideHitsAboveThreshold instances.
+    private static Logger logger = Logger.getLogger(PeptideHitsAboveThreshold.class);
 
     /**
-     * Method
-     * Input is a QueryToPeptideMap, it calculates all the peptideHits of the Map that are above the Threshold.
+     * Method Input is a QueryToPeptideMap, it calculates all the peptideHits of the Map that are above the Threshold.
      * All the aOutput is written to a Parameter File
      *
      * @param aQueryTP QueryToPeptideMap
@@ -59,17 +59,17 @@ public class PeptideHitsAboveThreshold {
             BufferedWriter bw = new BufferedWriter(new FileWriter(aOutput));
             bw.write("The following is a list of identified PeptideHits in a QueryToPeptideMap:\n Each Query that has PeptideHits is listed.\n");
             bw.newLine();
-            for(int i = 1; i < lNumberOfQueries + 1; i++) {
+            for (int i = 1; i < lNumberOfQueries + 1; i++) {
                 Vector lPeptideHits = aQueryTP.getAllPeptideHits(i);
-                if(lPeptideHits.get(0) == null) {
+                if (lPeptideHits.get(0) == null) {
                     continue;
                 }
                 bw.write("\nQuery " + i + " has identified " + lPeptideHits.size() + " PeptideHits:");
                 lPeptideHitsCount += lPeptideHits.size();
                 PeptideHit lPh = null;
-                for(int j = 0; j < lPeptideHits.size(); j++) {
+                for (int j = 0; j < lPeptideHits.size(); j++) {
                     lPh = (PeptideHit) lPeptideHits.get(j);
-                    if(lPh.scoresAboveIdentityThreshold(0.01)) {
+                    if (lPh.scoresAboveIdentityThreshold(0.01)) {
                         bw.write("\n" + (j + 1) + ".\t" + lPh.getModifiedSequence());
                         lPeptideHitsAboveIdentityCount++;
                     }
@@ -83,13 +83,14 @@ public class PeptideHitsAboveThreshold {
             bw.flush();
             bw.close();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
      * Use only for a quick and dirty run to get the peptidehits above threshold.
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -102,13 +103,13 @@ public class PeptideHitsAboveThreshold {
         int lDatfileLocationType = Integer.parseInt(args[0]);
         try {
             Label:
-            if(lDatfileLocationType == DatfileLocation.HARDDISK) {
+            if (lDatfileLocationType == DatfileLocation.HARDDISK) {
                 {
                     dfl = new DatfileLocation(DatfileLocation.HARDDISK, new String[]{args[1]});
                     mdf = dfl.getDatfile();
                     break Label;
                 }
-            } else if(lDatfileLocationType == DatfileLocation.URL) {
+            } else if (lDatfileLocationType == DatfileLocation.URL) {
                 {
                     dfl = new DatfileLocation(DatfileLocation.URL, new String[]{args[4], args[5], args[1]});
                     mdf = dfl.getDatfile();
@@ -116,13 +117,13 @@ public class PeptideHitsAboveThreshold {
                 }
             }
             System.out.println("Datfile received.");
-        } catch(ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();  // print ${Exception} information.
-        } catch(InstantiationException e) {
+        } catch (InstantiationException e) {
             e.printStackTrace();  // print ${Exception} information.
-        } catch(IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();  // print ${Exception} information.
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();  // print ${Exception} information.
         }
         QueryToPeptideMap lQueryTP = mdf.getQueryToPeptideMap();
@@ -131,8 +132,7 @@ public class PeptideHitsAboveThreshold {
     }
 
     /**
-     * Method
-     * Input is a QueryToPeptideMap, it calculates all the peptideHits of the Map that are above the Threshold.
+     * Method Input is a QueryToPeptideMap, it calculates all the peptideHits of the Map that are above the Threshold.
      * All the aOutput is written to a Parameter File
      *
      * @param aQueryTP QueryToPeptideMap
@@ -148,13 +148,13 @@ public class PeptideHitsAboveThreshold {
             bw.write("The following is a list of identified PeptideHits in a QueryToPeptideMap:\n Each Query that has a PeptideHit above the threshold is listed followed by it's greatest scoring PeptideHit.");
             bw.newLine();
             PeptideHit lPh = null;
-            for(int i = 1; i < lNumberOfQueries + 1; i++) {
+            for (int i = 1; i < lNumberOfQueries + 1; i++) {
                 Vector lPeptideHits = aQueryTP.getAllPeptideHits(i);
-                if(lPeptideHits.get(0) == null) {
+                if (lPeptideHits.get(0) == null) {
                     continue;
                 }
                 lPh = (PeptideHit) lPeptideHits.get(0);
-                if(lPh.scoresAboveIdentityThreshold(0.05)) {
+                if (lPh.scoresAboveIdentityThreshold(0.05)) {
                     bw.newLine();
                     bw.write(lPh.getModifiedSequence() + "," + i);
                     lPeptideHitsAboveIdentityCount++;
@@ -168,7 +168,7 @@ public class PeptideHitsAboveThreshold {
             bw.flush();
             bw.close();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

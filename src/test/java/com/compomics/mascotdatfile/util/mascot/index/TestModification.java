@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.FixedModification;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
@@ -43,13 +45,15 @@ import java.util.Vector;
  * This class implements the test scenario for the class.
  */
 public class TestModification extends TestCaseLM {
+    // Class specific log4j logger for TestModification instances.
+    private static Logger logger = Logger.getLogger(TestModification.class);
+
     public TestModification() {
         super("Testscenario for ModificationList class.");
     }
 
     /**
-     * method
-     * 'equal' tests on the instance variables of a FixedModification Vector of the ModificationList Class.
+     * method 'equal' tests on the instance variables of a FixedModification Vector of the ModificationList Class.
      */
     public void testReadFixedModification() {
         // 1. Create a MascotDatfile instance.
@@ -90,8 +94,8 @@ public class TestModification extends TestCaseLM {
     }
 
     /**
-     * method
-     * 'equal' tests on the instance variables of a VariableModification Vector of the ModificationList Class(F009911.Dat).
+     * method 'equal' tests on the instance variables of a VariableModification Vector of the ModificationList
+     * Class(F009911.Dat).
      */
     public void testReadVariableModification() {
 

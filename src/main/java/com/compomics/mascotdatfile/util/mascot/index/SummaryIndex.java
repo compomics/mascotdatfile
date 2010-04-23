@@ -1,16 +1,20 @@
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import org.apache.log4j.Logger;
+
 
 /**
  * Created by IntelliJ IDEA. User: Kenny Date: 7-jul-2008 Time: 14:45:00 To change this template use File | Settings |
  * File Templates.
  */
 public class SummaryIndex {
+    // Class specific log4j logger for SummaryIndex instances.
+    private static Logger logger = Logger.getLogger(SummaryIndex.class);
 
     private static SummaryIndex singleton = null;
     private static SummaryIndex decoyInstance;
 
-    public static int QMASS= 0;
+    public static int QMASS = 0;
     public static int QEXP = 1;
     public static int QMATCH = 2;
     public static int QPLUGHOLE = 3;
@@ -39,7 +43,9 @@ public class SummaryIndex {
 
     private int intensity_index = -1;
 
-    /** Do not instantiate SummaryIndex. */
+    /**
+     * Do not instantiate SummaryIndex.
+     */
     private SummaryIndex() {
 
     }
@@ -49,8 +55,8 @@ public class SummaryIndex {
      *
      * @return Value for property 'instance'.
      */
-    public static SummaryIndex getInstance(){
-        if(singleton == null){
+    public static SummaryIndex getInstance() {
+        if (singleton == null) {
             singleton = new SummaryIndex();
         }
         return singleton;
@@ -62,32 +68,32 @@ public class SummaryIndex {
      * @return Value for property 'decoyInstance'.
      */
     public static SummaryIndex getDecoyInstance() {
-        if(decoyInstance == null){
+        if (decoyInstance == null) {
             decoyInstance = new SummaryIndex();
         }
         return decoyInstance;
     }
 
-    public int getSummaryLine(int aQueryNumber, int aType){
+    public int getSummaryLine(int aQueryNumber, int aType) {
         int aTypeIndex = parseType(aType);
-        if(aTypeIndex == -1){
+        if (aTypeIndex == -1) {
             throw new IllegalAccessError("Illegal summary type requested: \'" + aType + "\'.");
         }
-        return iSummaryLineIndex + ((aQueryNumber-1) * iNumberOfIndexes + parseType(aType));
+        return iSummaryLineIndex + ((aQueryNumber - 1) * iNumberOfIndexes + parseType(aType));
     }
 
-    private int parseType(int aType){
-        if(aType == QMATCH){
+    private int parseType(int aType) {
+        if (aType == QMATCH) {
             return match_index;
-        }else if(aType == QPLUGHOLE){
+        } else if (aType == QPLUGHOLE) {
             return plughole_index;
-        }else if(aType == QEXP){
+        } else if (aType == QEXP) {
             return exp_index;
-        }else if(aType == QMASS){
+        } else if (aType == QMASS) {
             return mass_index;
-        }else if(aType == QINTENSITY){
+        } else if (aType == QINTENSITY) {
             return intensity_index;
-        }else{
+        } else {
             return -1;
         }
     }
@@ -201,15 +207,17 @@ public class SummaryIndex {
         intensity_index = aIntensity_index;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String toString() {
         return "SummaryIndex{" +
-               "iSummaryLineIndex=" + iSummaryLineIndex +
-               ", mass_index=" + mass_index +
-               ", exp_index=" + exp_index +
-               ", match_index=" + match_index +
-               ", plughole_index=" + plughole_index +
-               ", intensity_index=" + intensity_index +
-               '}';
+                "iSummaryLineIndex=" + iSummaryLineIndex +
+                ", mass_index=" + mass_index +
+                ", exp_index=" + exp_index +
+                ", match_index=" + match_index +
+                ", plughole_index=" + plughole_index +
+                ", intensity_index=" + intensity_index +
+                '}';
     }
 }

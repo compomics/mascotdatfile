@@ -23,6 +23,9 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.interfaces.Modification;
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 
 /**
@@ -33,9 +36,12 @@ import java.io.Serializable;
  */
 
 /**
- * Instances of this class represent 1 variable modification that can used to create a peptideHit while doing the Mascot search.
+ * Instances of this class represent 1 variable modification that can used to create a peptideHit while doing the Mascot
+ * search.
  */
-public class VariableModification implements com.compomics.mascotdatfile.util.interfaces.Modification, Serializable {
+public class VariableModification implements Modification, Serializable {
+    // Class specific log4j logger for VariableModification instances.
+    private static Logger logger = Logger.getLogger(VariableModification.class);
     /**
      * The standard type of the variable modification.
      */
@@ -62,8 +68,7 @@ public class VariableModification implements com.compomics.mascotdatfile.util.in
     private String iShortType = null;
 
     /**
-     * Contructor
-     * Generate a fixed modification containing different parameters of the modification.
+     * Contructor Generate a fixed modification containing different parameters of the modification.
      *
      * @param aType           standard name by mascot
      * @param aMass           mass
@@ -135,9 +140,9 @@ public class VariableModification implements com.compomics.mascotdatfile.util.in
     }
 
     /**
-     * Returns the one-lettercode of the aminoacids with Fixed ModificationList.
-     * ( Can be 'null' if location unspecified )
-     * 
+     * Returns the one-lettercode of the aminoacids with Fixed ModificationList. ( Can be 'null' if location unspecified
+     * )
+     *
      * @return the one-lettercode of the aminoacids with Fixed ModificationList.
      */
     public String getLocation() {
@@ -145,8 +150,7 @@ public class VariableModification implements com.compomics.mascotdatfile.util.in
     }
 
     /**
-     * Sets the one-lettercode of the aminoacids with Fixed ModificationList.
-     * ( Can be 'null' if location unspecified )
+     * Sets the one-lettercode of the aminoacids with Fixed ModificationList. ( Can be 'null' if location unspecified )
      *
      * @param aLocation the one-lettercode of the aminoacids with Fixed ModificationList.
      */

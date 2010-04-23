@@ -1,5 +1,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
+import org.apache.log4j.Logger;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -12,11 +14,13 @@ import java.util.StringTokenizer;
  */
 
 /**
- * This Class is a Map of all the proteins information in this MascotDatfile.
- * Mind that this Class is using the proteinSection from the raw datfile as a base.
- * Knowing that not all the ProteinHit accessions encountered in the PeptideHits are located in the proteins section of the datfile!
+ * This Class is a Map of all the proteins information in this MascotDatfile. Mind that this Class is using the
+ * proteinSection from the raw datfile as a base. Knowing that not all the ProteinHit accessions encountered in the
+ * PeptideHits are located in the proteins section of the datfile!
  */
 public class ProteinMap {
+    // Class specific log4j logger for ProteinMap instances.
+    private static Logger logger = Logger.getLogger(ProteinMap.class);
     private int iNumberOfProteins;
     private HashMap iProteinMap = new HashMap();
 
@@ -33,8 +37,7 @@ public class ProteinMap {
     }
 
     /**
-     * Private method delegated by the Constructor.
-     * Build of this instance.
+     * Private method delegated by the Constructor. Build of this instance.
      *
      * @param aProteinSection HashMap with the proteinsection of a raw datfile.
      */
@@ -64,10 +67,9 @@ public class ProteinMap {
 
 
     /**
-     * Public method accessed during the QueryToPeptideMap Generation.
-     * If a PeptideHit contains a ProteinHit with an accession found in this ProteinMap,
-     * this method will be called and the corresponding ProteinID instance will be updated
-     * with a QueryNumber & PeptideHitNumber wherein that ProteinID was found.
+     * Public method accessed during the QueryToPeptideMap Generation. If a PeptideHit contains a ProteinHit with an
+     * accession found in this ProteinMap, this method will be called and the corresponding ProteinID instance will be
+     * updated with a QueryNumber & PeptideHitNumber wherein that ProteinID was found.
      *
      * @param aAccession        String identifier of the Protein.
      * @param aQueryNumber      QueryNumber wherein a PeptideHit was linked to this ProteinID.
@@ -88,10 +90,10 @@ public class ProteinMap {
     }
 
     /**
-     * This method returns a ProteinID instance corresponding to aAccession.
-     * Mind that the ProteinMap object is using the proteinSection from the raw datfile as a base.
-     * Know that not all the ProteinHit accessions encountered in the PeptideHits are located in the proteins section of the datfile!
-     * Therefor a ProteinID with aAccesion, mass:-1.0 and "No Description" is returned if the Accession is not found in the ProteinMap.
+     * This method returns a ProteinID instance corresponding to aAccession. Mind that the ProteinMap object is using
+     * the proteinSection from the raw datfile as a base. Know that not all the ProteinHit accessions encountered in the
+     * PeptideHits are located in the proteins section of the datfile! Therefor a ProteinID with aAccesion, mass:-1.0
+     * and "No Description" is returned if the Accession is not found in the ProteinMap.
      *
      * @param aAccession String identifier of the ProteinHit.
      * @return ProteinID instance corresponding to param aAccession.
@@ -107,10 +109,10 @@ public class ProteinMap {
     }
 
     /**
-     * This method returns a description String corresponding to aAccession.
-     * Mind that the ProteinMap object is using the proteinSection from the raw datfile as a base.
-     * Know that not all the ProteinHit accessions encountered in the PeptideHits are located in the proteins section of the datfile!
-     * Therefor a "No Description." String is returned if the Accession is not found in the ProteinMap.
+     * This method returns a description String corresponding to aAccession. Mind that the ProteinMap object is using
+     * the proteinSection from the raw datfile as a base. Know that not all the ProteinHit accessions encountered in the
+     * PeptideHits are located in the proteins section of the datfile! Therefor a "No Description." String is returned
+     * if the Accession is not found in the ProteinMap.
      *
      * @param aAccession String identifier of the ProteinHit.
      * @return ProteinID instance corresponding to param aAccession.
@@ -137,10 +139,10 @@ public class ProteinMap {
     /**
      * Returns an iterator of the keys in the proteinmap.
      *
-     * @return Iterator instance on the keyset of the ProteinMap HashMap.
-     *         Each key can be used in the getProteinID method, this Iterator can as such be used to iterate over all ProteinID's in the MascotDatfile.
+     * @return Iterator instance on the keyset of the ProteinMap HashMap. Each key can be used in the getProteinID
+     *         method, this Iterator can as such be used to iterate over all ProteinID's in the MascotDatfile.
      */
     public Iterator getProteinIDIterator() {
         return iProteinMap.keySet().iterator();
-	}
+    }
 }
