@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by IntelliJ IDEA.
@@ -56,7 +58,14 @@ public class ProteinMap {
             // 3. Strip the " chars from the accession.
             //int lAccessionStart = lAccession.indexOf("\"") + 1;
             //int lAccessionStop = lAccession.lastIndexOf("\"");
-            lAccession = lAccession.substring((lAccession.indexOf("\"") + 1), (lAccession.lastIndexOf("\"")));
+
+            // This is modified by Rui Wang to convert special cases
+            Pattern pattern = Pattern.compile("[\"]?([^\"]+)[\"]?");
+            Matcher m = pattern.matcher(lAccession);
+            if (m.find()) {
+                lAccession = m.group(1);
+                //lAccession = lAccession.substring((lAccession.indexOf("\"") + 1), (lAccession.lastIndexOf("\"")));
+            }
 
             double lMass = Double.parseDouble(lProteinValue.substring(0, lProteinValue.indexOf(",", 0)));
             String lDescription = lProteinValue.substring((lProteinValue.indexOf("\"") + 1), lProteinValue.lastIndexOf("\""));

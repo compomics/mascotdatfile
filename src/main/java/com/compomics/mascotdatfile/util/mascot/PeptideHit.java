@@ -23,13 +23,14 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.Modification;
+import org.apache.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This Class contains all the parsed data from a datfile peptidehit
@@ -301,13 +302,35 @@ public class PeptideHit implements Serializable {
         if (iPeptideHit_prot.indexOf(",") == -1) {
             iProteinHits.add(new ProteinHit(iPeptideHit_prot));
         } else {
+            /* original
             StringTokenizer st = new StringTokenizer(iPeptideHit_prot, ",");
             while (st.hasMoreTokens()) {
-                String p = st.nextToken();
+                String p = "\"" + st.nextToken();
                 // p = p.replaceAll("\"","");
+                System.out.println("&&&& " + p);
                 iProteinHits.add(new ProteinHit(p));
             }
+            */
+            String[] proArr = iPeptideHit_prot.split(",\"");
+            for (int i = 0; i < proArr.length; i++) {
+                if (i == 0) {
+                    iProteinHits.add(new ProteinHit(proArr[i]));
+                } else {
+                    iProteinHits.add(new ProteinHit("\"" + proArr[i]));
+                }
+            }
         }
+    }
+
+    private String extractProtein(String rawProt) {
+        String newProt = rawProt;
+        Pattern pattern = Pattern.compile("[\"]?([^\"]+)[\"]?");
+        Matcher m = pattern.matcher(newProt);
+        if (m.find()) {
+            newProt = m.group(1);
+        }
+        System.out.println(">>> " + newProt);
+        return "\""+newProt+"\"";
     }
 
     /**

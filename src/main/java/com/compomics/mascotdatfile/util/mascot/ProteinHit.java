@@ -73,12 +73,13 @@ public class ProteinHit implements Serializable {
      * @param aProt String with proteinHit info. (ex: ["Q16363 (1694-1723)":0:1:30:1])
      */
     private void parsePeptideHit_protString(String aProt) {
+
         // 1. Extract the accession in between quotes.
         int lQuote1 = aProt.indexOf('"');
         int lQuote2 = aProt.indexOf('"', lQuote1 + 1);
 
         if (lQuote1 < 0 || lQuote2 < 0) {
-            throw new IllegalArgumentException("ProteinHit accession not found. The protein             instance could not be created.");
+            throw new IllegalArgumentException("ProteinHit accession not found. The protein             instance could not be created. " + aProt);
         }
 
         iAccession = aProt.substring(lQuote1 + 1, lQuote2);
@@ -88,7 +89,7 @@ public class ProteinHit implements Serializable {
         StringTokenizer st = new StringTokenizer(aProt, ":");
 
         if (st.countTokens() != 4) {
-            throw new IllegalArgumentException("Illegal amount of tokens(" + st.countTokens() + ") to create the ProteinHit instance. There must be 5 tokens.");
+            throw new IllegalArgumentException("Illegal amount of tokens(" + st.countTokens() + ") to create the ProteinHit instance. There must be 5 tokens. " + aProt);
         }
 
         // 3.OK! now there are 5 tokens, read them out.
