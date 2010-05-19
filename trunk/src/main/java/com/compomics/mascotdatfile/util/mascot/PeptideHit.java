@@ -294,23 +294,16 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * This method parses the String iPeptideHit_prot into protein related variable of this object. Multiple proteinHits
-     * are spliced into Tokens. As long as there are more Tokens, new ProteinHit instances are created and added into
-     * iProteinHits ArrayList.
+     * This method parses the String iPeptideHit_prot into protein related variable of this object.
+     * Multiple proteinHits separated by -"- or -,- characters are split into Tokens.
+     * New ProteinHit instances are then created and added into iProteinHits ArrayList.
      */
     private void parseDatFileProteinString() {
         if (iPeptideHit_prot.indexOf(",") == -1) {
             iProteinHits.add(new ProteinHit(iPeptideHit_prot));
         } else {
-            /* original
-            StringTokenizer st = new StringTokenizer(iPeptideHit_prot, ",");
-            while (st.hasMoreTokens()) {
-                String p = "\"" + st.nextToken();
-                // p = p.replaceAll("\"","");
-                System.out.println("&&&& " + p);
-                iProteinHits.add(new ProteinHit(p));
-            }
-            */
+            // Multiple parent proteins can be separted by -,- characters or -"- charachters,
+            // the split method thereby cuts the proteinhits String into distinct parent protein entities.
             String[] proArr = iPeptideHit_prot.split(",\"");
             for (int i = 0; i < proArr.length; i++) {
                 if (i == 0) {
@@ -320,17 +313,6 @@ public class PeptideHit implements Serializable {
                 }
             }
         }
-    }
-
-    private String extractProtein(String rawProt) {
-        String newProt = rawProt;
-        Pattern pattern = Pattern.compile("[\"]?([^\"]+)[\"]?");
-        Matcher m = pattern.matcher(newProt);
-        if (m.find()) {
-            newProt = m.group(1);
-        }
-        System.out.println(">>> " + newProt);
-        return "\""+newProt+"\"";
     }
 
     /**
