@@ -1,0 +1,161 @@
+# Unimod (Mascot 2.2) - former duplicates in the other & old section. 
+Pyro-carbamidomethyl (N-term C)=Pyr
+Gln->pyro-Glu (N-term Q)=Pyr
+Glu->pyro-Glu (N-term E)=Pyr
+Acetyl (K)=Ace
+Acetyl (ST)=Ace
+Acetyl (N-term)=Ace
+Acetyl:2H(3) (K)=AcD3K
+Acetyl:2H(3) (N-term)=AcD3
+Acetyl:2H(3) (S)=AcD3
+Acetyl:2H(3) (T)=AcD3
+Acetyl:2H(3) (Y)=AcD3
+N-Formyl (Protein)=For
+N-Acetyl (Protein)=AcPr
+Oxidation (M)=Mox
+Deamidated (NQ)=Dam
+TNB (N-term)=TNB
+Thioacyl (N-term)=Tac
+Thioacyl (K)=Tac
+
+# Labels
+Label:13C(6) (K)=c13
+Label:13C(6) (R)=C13
+Label:18O(1) (C-term)=C180i
+Label:18O(2) (C-term)=C18O
+Label:12C(6)D(3) (R)=C12D3
+Label:13C(6)15N(4)D(3) (R)=C13N15D3
+O18Ser (S)=S18O
+O18Thr (T)=T18O
+Lys-SBO18 (K)=KsbH
+Tyr-SBO18 (Y)=YsbH
+Label:13C(5) (P)=C13
+Pro 5xC(13)1xN(15) (P)=C13N15
+Label:13C(6)15N(4) (R)=C13N15
+Label:13C(5)15NMox (M)=C13N15ox
+Label:13C(5)Sulfon (M)=C13Sn
+Label:13C(5)N15(1) (M)=C13N15
+Arg 13C6-15N4 (R)=C13N15
+NMA (R)=NMA
+NMAC13 (R)=NMA
+NMAC13N15 (R)=NMA
+Propionyl (N-term)=prop
+Propionyl (K)=prop
+Propionyl:13C(3) (N-term)=propC13
+Propionyl:13C(3) (K)=propC13
+MetSulfon (M)=sulfon
+Label:13C(5)15NSulfon (M)=C13N15Sn
+Butyl (N-term)=But
+Butyl (N-term)=But
+Butyl (K)=But
+Butinyl (S)=But
+Butinyl (T)=But
+Butyl:13C(2) (K)=But2C13
+Butyl:13C(2) (N-term)=But2C13
+Butyl:13C(4) (K)=But4C13
+Butyl:13C(4) (N-term)=But4C13
+Nethylmaleimide (C)=NEM
+Label:K13C(6)AcD3 (K)=C13,AcD3
+Acetyl:2H(3)C13(2) (N-term)=AcD3C13
+Acetyl:2H(3)C13(2) (K)=AcD3C13
+Ace-HHG (N-term)=AceHHG
+Acetyl:C13(2) (N-term)=Ac2C13
+Acetyl:C13(2) (K)=Ac2C13
+Methyl (C-term)=Met
+Methyl (DE)=Met
+
+# Other & Old.
+Arg 6xC(13) (R)=C13
+Pro 5xC(13) (P)=C13
+Carbamidomethyl (C)=Cmm
+Carbamidomethyloxide (C)=CmmOx
+Carbamidomethylsulfon (C) =CmmS
+Pyr,Carbamidomethyloxide (C)=PyrCmmOx
+Myristoylation (term)=Myr
+Amide (C-term)=Ami
+Acetyl_heavy (N-term)=AcD3
+Acetyl_heavy (K)=AcD3K
+Methyl ester (DE)=Met
+Methyl ester (C-term)=Met
+Phospho (STY)=P
+Phospho (ST)=P
+Phospho (Y)=P
+Sulphone (M)=Sul
+Pyro-cmC (N-term camC)=Pyc
+Pyro-glu (N-term Q)=Pyr
+Pyro-glu (N-term E)=Pyr
+Deamidation (NQ)=Dam
+HSe=Hse
+Propionamide (C)=Prp
+Carbamyl (N-term)=Car
+thioprop (N-term)=Tpr
+thiopropcar (N-term)=Tpc
+ThiopropLys (K)=Tpl
+ThiopropCarbLys (K)=Tcl
+Homoarg (K)=Har
+Biotin-S-S-Lysin (K)=BSL
+Oxidation - 32 (W)=Wox
+Oxidation - 48 (W)=Wo2
+Tyrosinamine (Y)=Yam
+Tyrosineaminesulfon (Y) =YAS
+Tyrosinsulfon (Y) = YS
+N-Formyl (Protein) = For
+Nitro (Y) = NO
+Cysteic_acid (C)=CyA
+4H_reagent (K)=4H
+Carbamyl (K)=Cak
+Phospho-NL (S)=Pnl
+Phospho-NL (T)=Pnl
+NL_h2o_phospho (ST)=Pnl
+hydroxykynurenin (W)=Hkn
+kynurenin (W)=Kyn
+Oxidation (HW)=Ox
+Gly-Gly epsilonNH2(K) = GGe
+Methyl (N-term)=Met
+Tyrosinamine1 (Y)=Yam1
+Lys-DSP (K)=Dsp
+GlyGly (K) = GGe
+Formyl (Protein N-term)=For
+
+
+
+# Bart GH
+6Da/0Da loss 5xC13 1xN15 (M) =Mloss
+6Da/0Da gain (M) =Mgain
+TyrosinamineAcet (Y) =Yamac
+Amino (Y) = Yam
+Acetyltyrosinamine (Y) = Yamacet
+Acetyltyrosinamine (W) = Wamacet
+Tyrosinaminesulfon (Y) = Yamsul
+MoxC13 (Mox) = MoxC13
+Amino (Y) = Yam
+
+# Evy T
+NBS (W)=NBS
+Hydroxyl (P)=Hyp
+
+
+# FSBA mods.
+Tyr-SBA (Y)=Ysba
+Lys-SBA (K)=Ksba
+His-SBA (H)=Hsba
+Cys-SBA (C)=Csba
+Ser-SBA (S)=Ssba
+His-SB (H)=Hsb
+Cys-SB (C)=Csb
+Ser-SB (S)=Ssb
+Lys-SB (K)=Ksb
+Tyr-SB (Y)=Ysb
+
+
+# Carbonylation modifications:
+# Lysine can be converted in Aminoadipic-semialdehyde
+# Arginine and Proline can be converted in Glutamic-semialdehyde
+# Hydrazone formed between Aminoadipic-semialdehyde and 6-Hydrazinonicotinic-Acid-Y(NO2)R
+Lys-CO1 (K)=CO1
+# Hydrazone formed between Glutamic-semialdehyde and 6-Hydrazinonicotinic-Acid-Y(NO2)R
+RP-CO1 (RP)=CO1
+# Hydrazone formed between 2-amino-3-ketobutyric-Acid and 6-Hydrazinonicotinic-Acid-Y(NO2)R
+threo-CO1 (T)=CO1
+# Hydrazone formed between Lysine-4-keto-Benaldehyde and 6-Hydrazinonicotinic-Acid-Y(NO2)R (for in vitro tests)
+Lys-BCO1 (K)=BCO1

@@ -79,7 +79,7 @@ public class ProteinHit implements Serializable {
         int lQuote2 = aProt.indexOf('"', lQuote1 + 1);
 
         if (lQuote1 < 0 || lQuote2 < 0) {
-            throw new IllegalArgumentException("ProteinHit accession not found. The protein             instance could not be created. " + aProt);
+            throw new IllegalArgumentException("ProteinHit accession not found. The protein instance could not be created. " + aProt);
         }
 
         iAccession = aProt.substring(lQuote1 + 1, lQuote2);
