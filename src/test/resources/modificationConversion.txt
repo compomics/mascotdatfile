@@ -1,22 +1,32 @@
 # Unimod (Mascot 2.2) - former duplicates in the other & old section. 
 Pyro-carbamidomethyl (N-term C)=Pyr
 Gln->pyro-Glu (N-term Q)=Pyr
+Glu->pyro-glu (N-term E)=Pyr
 Glu->pyro-Glu (N-term E)=Pyr
 Acetyl (K)=Ace
 Acetyl (ST)=Ace
 Acetyl (N-term)=Ace
+Acetyl (Protein N-term)=Ace
+Acetyl:2H(3)C13(2) (N-term)=AcD3C13
+Acetyl:2H(3)C13(2) (K)=AcD3C13
 Acetyl:2H(3) (K)=AcD3K
 Acetyl:2H(3) (N-term)=AcD3
 Acetyl:2H(3) (S)=AcD3
 Acetyl:2H(3) (T)=AcD3
 Acetyl:2H(3) (Y)=AcD3
+Formyl (Protein N-term)=For
 N-Formyl (Protein)=For
 N-Acetyl (Protein)=AcPr
 Oxidation (M)=Mox
+Oxidation (WH)=ox
+Dioxidation (W)=2ox
+Trp->Kynurenin (W)=Kyn
+Trp->Hydroxykynurenin (W)=HKyn
 Deamidated (NQ)=Dam
 TNB (N-term)=TNB
 Thioacyl (N-term)=Tac
 Thioacyl (K)=Tac
+Amidated (C-term)=Ami
 
 # Labels
 Label:13C(6) (K)=c13
@@ -25,6 +35,7 @@ Label:18O(1) (C-term)=C180i
 Label:18O(2) (C-term)=C18O
 Label:12C(6)D(3) (R)=C12D3
 Label:13C(6)15N(4)D(3) (R)=C13N15D3
+Acetyl:C13(2) (N-term)=Ace2C13
 O18Ser (S)=S18O
 O18Thr (T)=T18O
 Lys-SBO18 (K)=KsbH
@@ -33,7 +44,6 @@ Label:13C(5) (P)=C13
 Pro 5xC(13)1xN(15) (P)=C13N15
 Label:13C(6)15N(4) (R)=C13N15
 Label:13C(5)15NMox (M)=C13N15ox
-Label:13C(5)Sulfon (M)=C13Sn
 Label:13C(5)N15(1) (M)=C13N15
 Arg 13C6-15N4 (R)=C13N15
 NMA (R)=NMA
@@ -55,19 +65,23 @@ Butyl:13C(2) (N-term)=But2C13
 Butyl:13C(4) (K)=But4C13
 Butyl:13C(4) (N-term)=But4C13
 Nethylmaleimide (C)=NEM
-Label:K13C(6)AcD3 (K)=C13,AcD3
-Acetyl:2H(3)C13(2) (N-term)=AcD3C13
-Acetyl:2H(3)C13(2) (K)=AcD3C13
-Ace-HHG (N-term)=AceHHG
-Acetyl:C13(2) (N-term)=Ac2C13
-Acetyl:C13(2) (K)=Ac2C13
-Methyl (C-term)=Met
-Methyl (DE)=Met
+Label:K13C(6)AcD3 (K)=AcD3C13
+TMPP (N-term)=TMPP
+TMPP (K)=TMPP
+TMPP-add (N-term)=TMPP2
+GLy (N-term)=Gly
+GLy (K)=Gly
+N15 (ADEFGILPSTVY)=N15
+N15(2) (KNQW)=N15
+N15(3) (H)=N15
+N15(4) (R)=N15
+
 
 # Other & Old.
 Arg 6xC(13) (R)=C13
 Pro 5xC(13) (P)=C13
 Carbamidomethyl (C)=Cmm
+Carbamidomethyl N15 (C)=Cmm15
 Carbamidomethyloxide (C)=CmmOx
 Carbamidomethylsulfon (C) =CmmS
 Pyr,Carbamidomethyloxide (C)=PyrCmmOx
@@ -88,6 +102,8 @@ Deamidation (NQ)=Dam
 HSe=Hse
 Propionamide (C)=Prp
 Carbamyl (N-term)=Car
+cyclic carbamate (N-term S)=Ccar
+cyclic carbamate (N-term T)=Ccar
 thioprop (N-term)=Tpr
 thiopropcar (N-term)=Tpc
 ThiopropLys (K)=Tpl
@@ -102,6 +118,7 @@ Tyrosinsulfon (Y) = YS
 N-Formyl (Protein) = For
 Nitro (Y) = NO
 Cysteic_acid (C)=CyA
+Cysteic acid (C)=CyA
 4H_reagent (K)=4H
 Carbamyl (K)=Cak
 Phospho-NL (S)=Pnl
@@ -115,9 +132,19 @@ Methyl (N-term)=Met
 Tyrosinamine1 (Y)=Yam1
 Lys-DSP (K)=Dsp
 GlyGly (K) = GGe
-Formyl (Protein N-term)=For
-
-
+GlyGlyArg (K) = GGR
+Biotin-PEO3-squarate (N-term) = BioPEO3
+Formyl (N-term) = For
+BS3-X-link (K)=BS3
+BS3-X-link (N-term)=BS3
+BS3-X-link (Protein N-term)=BS3
+Label:-13C(2)D(3) (R)=C2D3
+Label:13C(4)15N(4)2H(-3) (R)=C4N4Hmin3
+Label:13C(6)15N(4)13C(2)D(3) (R)=C6N4C2D3
+Label:13C(2)D(3) (R)=C2D3
+Oxidation N15 (M)=Mox15
+N15 methionine (M)=N15
+O-GlcNAc (ST)=OGlcNac
 
 # Bart GH
 6Da/0Da loss 5xC13 1xN15 (M) =Mloss
@@ -127,12 +154,29 @@ Amino (Y) = Yam
 Acetyltyrosinamine (Y) = Yamacet
 Acetyltyrosinamine (W) = Wamacet
 Tyrosinaminesulfon (Y) = Yamsul
+6Da/0Da loss 5xC13 1xN15 (Mox) =Moxloss
+6Da/0Da gain (Mox) =Moxgain
 MoxC13 (Mox) = MoxC13
 Amino (Y) = Yam
+Methyl (K) = Met
+Trimethyl (K) = Trimet
+Dimethylation (K) = Dimet
+Methyl (H) = Met
 
 # Evy T
 NBS (W)=NBS
 Hydroxyl (P)=Hyp
+
+# FSBG
+FSBG Full (CKSY) = FSBG
+FSBG mod (CKSY) = FSB
+
+# Biotin
+Biotin-PEO3-squarate (N-term) = biotin
+Biotin-PEO3-squarate (CKSTY) = biotin
+
+# Cytomics
+Cyt121598 -boc -208 (C) = Cyt
 
 
 # FSBA mods.
@@ -146,6 +190,11 @@ Cys-SB (C)=Csb
 Ser-SB (S)=Ssb
 Lys-SB (K)=Ksb
 Tyr-SB (Y)=Ysb
+
+
+Copy of Oxidation (M)=Mox
+Copy of Label:13C(6) (K)=c13
+Copy of Label:13C(6) (R)=C13
 
 
 # Carbonylation modifications:
