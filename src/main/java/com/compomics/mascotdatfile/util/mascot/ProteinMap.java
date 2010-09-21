@@ -68,7 +68,7 @@ public class ProteinMap {
             }
 
             double lMass = Double.parseDouble(lProteinValue.substring(0, lProteinValue.indexOf(",", 0)));
-            String lDescription = lProteinValue.substring((lProteinValue.indexOf("\"") + 1), lProteinValue.lastIndexOf("\""));
+            String lDescription = lProteinValue.substring((lProteinValue.indexOf("\"") + 1), lProteinValue.length() - 1);
             lProteinID = new ProteinID(lAccession, lMass, lDescription);
             iProteinMap.put(lAccession, lProteinID);
         }

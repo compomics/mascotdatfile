@@ -128,20 +128,22 @@ public class Controller {
                 // contain an '=', as IPI headers often do)!
                 Object key = null;
                 Object value = null;
-                if ((line.startsWith("h") && line.indexOf("_text=") >= 0) || (line.startsWith("\"") && line.endsWith("\""))) {
-                    key = line.substring(0, line.indexOf("=")).trim();
-                    if (line.length() > line.indexOf("=") + 1) {
-                        value = line.substring(line.indexOf("=") + 1).trim();
+                if (!line.equals("")) {
+                    if ((line.startsWith("h") && line.indexOf("_text=") >= 0) || (line.startsWith("\"") && line.endsWith("\""))) {
+                        key = line.substring(0, line.indexOf("=")).trim();
+                        if (line.length() > line.indexOf("=") + 1) {
+                            value = line.substring(line.indexOf("=") + 1).trim();
+                        }
+                    } else {
+                        StringTokenizer lst = new StringTokenizer(line, "=");
+                        key = lst.nextToken().trim();
+                        value = null;
+                        if (lst.hasMoreTokens()) {
+                            value = lst.nextToken().trim();
+                        }
                     }
-                } else {
-                    StringTokenizer lst = new StringTokenizer(line, "=");
-                    key = lst.nextToken().trim();
-                    value = null;
-                    if (lst.hasMoreTokens()) {
-                        value = lst.nextToken().trim();
-                    }
+                    lhmResult.put(key, value);
                 }
-                lhmResult.put(key, value);
             }
             lbr.close();
         } catch (IOException ioe) {

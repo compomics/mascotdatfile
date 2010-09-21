@@ -23,12 +23,10 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import com.compomics.mascotdatfile.util.mascot.*;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
-import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
-import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
-import com.compomics.mascotdatfile.util.mascot.Query;
 import junit.TestCaseLM;
 import junit.framework.Assert;
 
@@ -170,6 +168,16 @@ public class TestQuery extends TestCaseLM {
         }
         Assert.assertEquals(lCounter, lMDF.getNumberOfQueries());
     }
+
+    /*public void testIndexBugfile() {
+        MascotDatfileInf lMDF = new MascotDatfile_Index("/Users/kennyhelsens/Proteomics/Projects/1006/1006_mascotdatfile_bug/F081535.dat");
+        Parameters p = lMDF.getParametersSection();
+        Header h = lMDF.getHeaderSection();
+        QueryToPeptideMap_Index qtp = (QueryToPeptideMap_Index) lMDF.getQueryToPeptideMap();
+        Query q = (Query) lMDF.getQuery(1);
+        Assert.assertEquals("CapLC15412.431.2.1.mgf", q.getTitle());
+
+    }*/
 
 
 
