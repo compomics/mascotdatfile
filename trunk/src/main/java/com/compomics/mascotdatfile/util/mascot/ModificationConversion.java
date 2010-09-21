@@ -170,7 +170,21 @@ public class ModificationConversion {
         }
     }
 
+    /**
+     * Set the ConversionMap for key-value pairs for long and short peptide modification names.
+     * e.g.
+     * Key:Acetyl (K)
+     * Value:Ace
+     *
+     * Note that the long peptide modification name should correspond to the modifcation name used on the Mascot server!!
+     * @param iConversionMap HashMap with key-value pairs for long and short peptide modification names.
+     */
+    public void setModificationConversionMap(HashMap iConversionMap) {
+        this.iConversionMap = iConversionMap;
+    }
+
     private static void illegalShortName(String aKey, String aValue, char aIllegalCharacter) throws RuntimeException {
         throw new RuntimeException("Illegal character ' " + aIllegalCharacter + "' used in \"" + aValue + "\" for Mascot modification \"" + aKey + "\".\nPlease remove all illegal charaters ('" + aIllegalCharacter + "') in the short names from ModificationCoverion.txt");
     }
 }
+
