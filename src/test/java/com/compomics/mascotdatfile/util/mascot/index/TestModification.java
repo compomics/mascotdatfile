@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
@@ -193,13 +194,13 @@ public class TestModification extends TestCaseLM {
         Assert.assertEquals("K", lFixedModification.getLocation());
         Assert.assertEquals(1, lFixedModification.getModificationID());
         Assert.assertEquals("Ace", lFixedModification.getShortType());
-        boolean lMustBeFalse = true;
+        boolean lErrorThrown = false;
         try {
             lFixedModification.getMass();
-        } catch (IllegalAccessError ia) {
-            lMustBeFalse = false;
+        } catch (MascotDatfileException mde) {
+            lErrorThrown = true;
         }
-        Assert.assertFalse(lMustBeFalse);
+        Assert.assertTrue(lErrorThrown);
 
 
     }
