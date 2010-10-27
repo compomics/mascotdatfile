@@ -29,6 +29,7 @@
  */
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -165,7 +166,7 @@ public class ModificationConversion {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Unable to load file for modification conversion!\n" +
+            throw new MascotDatfileException("Unable to load file for modification conversion!\n" +
                     "The file 'modificationConversion.txt' should be present in your classpath!");
         }
     }
@@ -184,7 +185,7 @@ public class ModificationConversion {
     }
 
     private static void illegalShortName(String aKey, String aValue, char aIllegalCharacter) throws RuntimeException {
-        throw new RuntimeException("Illegal character ' " + aIllegalCharacter + "' used in \"" + aValue + "\" for Mascot modification \"" + aKey + "\".\nPlease remove all illegal charaters ('" + aIllegalCharacter + "') in the short names from ModificationCoverion.txt");
+        throw new MascotDatfileException("Illegal character ' " + aIllegalCharacter + "' used in \"" + aValue + "\" for Mascot modification \"" + aKey + "\".\nPlease remove all illegal charaters ('" + aIllegalCharacter + "') in the short names from ModificationCoverion.txt");
     }
 }
 

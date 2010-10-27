@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -79,7 +80,7 @@ public class ProteinHit implements Serializable {
         int lQuote2 = aProt.indexOf('"', lQuote1 + 1);
 
         if (lQuote1 < 0 || lQuote2 < 0) {
-            throw new IllegalArgumentException("ProteinHit accession not found. The protein instance could not be created. " + aProt);
+            throw new MascotDatfileException("ProteinHit accession not found. The protein instance could not be created. " + aProt);
         }
 
         iAccession = aProt.substring(lQuote1 + 1, lQuote2);
@@ -89,7 +90,7 @@ public class ProteinHit implements Serializable {
         StringTokenizer st = new StringTokenizer(aProt, ":");
 
         if (st.countTokens() != 4) {
-            throw new IllegalArgumentException("Illegal amount of tokens(" + st.countTokens() + ") to create the ProteinHit instance. There must be 5 tokens. " + aProt);
+            throw new MascotDatfileException("Illegal amount of tokens(" + st.countTokens() + ") to create the ProteinHit instance. There must be 5 tokens. " + aProt);
         }
 
         // 3.OK! now there are 5 tokens, read them out.

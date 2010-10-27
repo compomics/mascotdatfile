@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.util.mascot.fragmentions;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
@@ -567,9 +568,9 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
                     break;
 
                 default:
-                    throw new IllegalAccessException("No correct Color could be chosen in the creation of the FragmentIonImpl instance.\nThis means that there was no correct assignement of the fragmention type!");
+                    throw new MascotDatfileException("No correct Color could be chosen in the creation of the FragmentIonImpl instance.\nThis means that there was no correct assignement of the fragmention type!");
             }
-        } catch (IllegalAccessException e) {
+        } catch (MascotDatfileException e) {
             e.printStackTrace();
         }
     }

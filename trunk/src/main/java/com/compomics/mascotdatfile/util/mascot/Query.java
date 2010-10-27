@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.interfaces.Spectrum;
@@ -516,7 +517,7 @@ public class Query implements Spectrum, Serializable {
                 StringTokenizer tempSt = new StringTokenizer(st.nextToken(), ":");
                 //Check if everything goes OK.
                 if (tempSt.countTokens() != 2) {
-                    throw new IllegalArgumentException("The tempSt should contain just 2 elements (mass:intensity) , now it contains " + tempSt.countTokens() + "elements. ");
+                    throw new MascotDatfileException("The tempSt should contain just 2 elements (mass:intensity) , now it contains " + tempSt.countTokens() + "elements. ");
                 }
                 //4.Create a new peak instance with the mass and intensity from tempSt and place it into lPeakArray.
                 lPeakArray[lCount] = new Peak(Double.parseDouble(tempSt.nextToken()), Double.parseDouble(tempSt.nextToken()));
