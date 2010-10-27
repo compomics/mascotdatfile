@@ -1,5 +1,8 @@
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
 
+===3.2.2===
+ * Created a MascotDatfileException for library specific RuntimeExceptions.
+
 ===3.0.2===
  * Bugfix from Pride submission. When the unimod.xml section encompassed in a Mascot results file contains a custom modification with a accented 'é' character, the indexing algorithm failed on UNIX.
  * Bugfix from Pride submission. IPI protein accessions with multiple Trembl references are separated by a ';' character, and this caused an error while parsing the second half of a peptidehit String.
