@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
@@ -780,7 +781,7 @@ public class PeptideHitAnnotation implements Serializable {
                 break;
 
             case 1:
-                throw new IllegalArgumentException("Ionseries index = 1; this is a placeholder!");
+                throw new MascotDatfileException("Ionseries index = 1; this is a placeholder!");
 
             case 2:
                 lFragmentIons = getADoubleSeries();
@@ -791,7 +792,7 @@ public class PeptideHitAnnotation implements Serializable {
                 break;
 
             case 4:
-                throw new IllegalArgumentException("Ionseries index = 4; this is a placeholder!");
+                throw new MascotDatfileException("Ionseries index = 4; this is a placeholder!");
 
             case 5:
                 lFragmentIons = getBDoubleSeries();
@@ -802,7 +803,7 @@ public class PeptideHitAnnotation implements Serializable {
                 break;
 
             case 7:
-                throw new IllegalArgumentException("Ionseries index = 7; this is a placeholder!");
+                throw new MascotDatfileException("Ionseries index = 7; this is a placeholder!");
 
             case 8:
                 lFragmentIons = getYDoubleSeries();
@@ -849,7 +850,7 @@ public class PeptideHitAnnotation implements Serializable {
                 break;
 
             default:
-                throw new IllegalArgumentException("Ionseries index '" + aIonSeriesIndex + "' not handled by MascotDatfile!!");
+                throw new MascotDatfileException("Ionseries index '" + aIonSeriesIndex + "' not handled by MascotDatfile!!");
         }
         return lFragmentIons;
     }

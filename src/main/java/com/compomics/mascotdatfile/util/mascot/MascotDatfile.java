@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
@@ -288,7 +289,7 @@ public class MascotDatfile implements MascotDatfileInf {
                 double lPrecursorMZ = Double.parseDouble(st.nextToken());
                 String lCharge = st.nextToken();
                 if (st.hasMoreTokens()) {
-                    throw new IllegalArgumentException("There are tokens left unused!");
+                    throw new MascotDatfileException("There are tokens left unused!");
                 }
                 // Precursor intensity.
                 double lPrecursorIntensity = -1;
@@ -348,7 +349,7 @@ public class MascotDatfile implements MascotDatfileInf {
             } else if (lErrorTolerantSearch.equals("0")) {
                 return false;
             } else {
-                throw new IllegalArgumentException(
+                throw new MascotDatfileException(
                         "Unexpected value ' " + iParameters.getErrorTolerant() +
                                 "' for error tolerant search parameter!!");
             }

@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import com.compomics.mascotdatfile.util.interfaces.Modification;
 import org.apache.log4j.Logger;
 
@@ -50,6 +51,12 @@ public class FixedModification implements Modification, Serializable {
      * The mass of the modification.
      */
     private double iMass = 0;
+
+    /**
+     * This boolean indicates whether the mass was supplied during construction.
+     */
+    private boolean iHasMass = false;
+
     /**
      * The one-lettercode of the aminoacids with Fixed ModificationList. Multi aminoacid's are possible. (ex: QN * Dam)
      * The "QN" String will be converted to a char[] if necissairy in the PeptideHit instance.
@@ -76,6 +83,7 @@ public class FixedModification implements Modification, Serializable {
     public FixedModification(String aType, String aShortType, double aMass, String aLocation, int aModificationID) {
         iType = aType;
         iMass = aMass;
+        iHasMass = true;
         iLocation = aLocation;
         iModificationID = aModificationID;
         iShortType = aShortType;
@@ -98,9 +106,9 @@ public class FixedModification implements Modification, Serializable {
         iShortType = aShortType;
         iLocation = aLocation;
         iModificationID = aModificationID;
-        // Mass is set to -2, this will cause an exception further on if the mass is requested.
-        // It is impossible to ask the mass of a fixedmodification created by this constructor.
-        iMass = -2;
+
+        // Mass is not supplied!!
+        iHasMass = false;
     }
 
     /**
@@ -112,38 +120,22 @@ public class FixedModification implements Modification, Serializable {
         return iType;
     }
 
-    /**
-     * Sets the standard name of the modification, read from the '.dta' file
-     *
-     * @param aType the standard name of the modification, read from the '.dta' file
-     */
-    public void setType(String aType) {
-        iType = aType;
-    }
+
 
     /**
      * Returns the mass of the modification.
      *
-     * @return the mass of the modification.
-     * @throws IllegalAccessError // If the mass was set to -2, then the mass of the fixed modification was not supplied
-     *                            by the (old) datfile.
+     * @return the mass of the modification by the (old) datfile.
+     * @throws MascotDatfileException - If the
      */
     public double getMass() {
-        if (iMass == -2) {
+        if (isValidMass() == false) {
             // If the mass was set to -2, then the mass of the fixed modification was not supplied by the (old) datfile.
-            throw new IllegalAccessError("You cannot acces the mass as of this fixed modifcation (" + iType + "). It was not supplied in the mascot datfile.");
+            throw new MascotDatfileException("You cannot acces the mass as of this fixed modifcation (" + iType + "). It was not supplied in the mascot datfile.");
         }
         return iMass;
     }
 
-    /**
-     * Sets the mass of the modification.
-     *
-     * @param aMass the mass of the modification.
-     */
-    public void setMass(double aMass) {
-        iMass = aMass;
-    }
 
     /**
      * Returns the one-lettercode of the aminoacids with Fixed ModificationList.
@@ -154,14 +146,7 @@ public class FixedModification implements Modification, Serializable {
         return iLocation;
     }
 
-    /**
-     * Sets the one-lettercode of the aminoacids with Fixed ModificationList.
-     *
-     * @param aLocation the one-lettercode of the aminoacids with Fixed ModificationList.
-     */
-    public void setLocation(String aLocation) {
-        iLocation = aLocation;
-    }
+
 
     /**
      * Returns the int ID of the modification as used in the peptideHits_VariableModificationsString
@@ -172,14 +157,6 @@ public class FixedModification implements Modification, Serializable {
         return iModificationID;
     }
 
-    /**
-     * Sets the int ID of the modification as used in the peptideHits_VariableModificationsString
-     *
-     * @param aModificationID the int ID of the modification as used in the peptideHits_VariableModificationsString
-     */
-    public void setModificationID(int aModificationID) {
-        iModificationID = aModificationID;
-    }
 
     /**
      * Method to identify the object type.
@@ -199,14 +176,12 @@ public class FixedModification implements Modification, Serializable {
         return iShortType;
     }
 
+
     /**
-     * Sets the short end notation for a modifcication.
-     *
-     * @param aShortType the short end notation for a modifcication.
+     * Returns whether this FixedModification instance had a Mass value supplied during construction.
+     * @return True if the FixedModification has a mass. False if else.
      */
-    public void setShortType(String aShortType) {
-        iShortType = aShortType;
+    private boolean isValidMass() {
+        return iHasMass;
     }
-
-
 }

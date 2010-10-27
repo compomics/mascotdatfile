@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -185,7 +186,7 @@ public class Masses implements Serializable {
      */
     public double getMass(String aa) {
         if (!iMasses.containsKey(aa)) {
-            throw new IllegalArgumentException(" The requested mass for " + aa + " is no key in the iMasses HashMap.");
+            throw new MascotDatfileException(" The requested mass for " + aa + " is no key in the iMasses HashMap.");
         } else {
             return Double.parseDouble((String) iMasses.get(aa));
         }

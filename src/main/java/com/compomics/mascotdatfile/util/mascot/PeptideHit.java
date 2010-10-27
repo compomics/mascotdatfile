@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import com.compomics.mascotdatfile.util.interfaces.Modification;
 import org.apache.log4j.Logger;
 
@@ -271,7 +272,7 @@ public class PeptideHit implements Serializable {
     private void parseDatFilePeptideString() {
         StringTokenizer st = new StringTokenizer(iPeptideHit_pep, ",");
         if (st.countTokens() != 11) {
-            throw new IllegalArgumentException("Wrong String with input data to set variable values (found " +
+            throw new MascotDatfileException("Wrong String with input data to set variable values (found " +
                     st.countTokens() + " tokens instead of expected 11).");
         }
         // OK, now we know we have 11 tokens, read them all.

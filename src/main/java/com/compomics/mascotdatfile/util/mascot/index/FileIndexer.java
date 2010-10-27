@@ -1,5 +1,6 @@
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class FileIndexer {
         if (iLineList.get(aLineNumber) != null) {
             return iLineList.get(aLineNumber);
         } else {
-            throw new IllegalArgumentException("Line number \'" + aLineNumber + "\' was not indexed and can therefore not be accessed.");
+            throw new MascotDatfileException("Line number \'" + aLineNumber + "\' was not indexed and can therefore not be accessed.");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.compomics.mascotdatfile.util.mascot.index;
 
+import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
 import org.apache.log4j.Logger;
 
 
@@ -77,7 +78,7 @@ public class SummaryIndex {
     public int getSummaryLine(int aQueryNumber, int aType) {
         int aTypeIndex = parseType(aType);
         if (aTypeIndex == -1) {
-            throw new IllegalAccessError("Illegal summary type requested: \'" + aType + "\'.");
+            throw new MascotDatfileException("Illegal summary type requested: \'" + aType + "\'.");
         }
         return iSummaryLineIndex + ((aQueryNumber - 1) * iNumberOfIndexes + parseType(aType));
     }
