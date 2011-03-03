@@ -1,7 +1,3 @@
-#maven2 distribution of the library.
-
-= Introduction =
-
 MascotDatfile is hosted at our public maven2 repository.
 Add the following code into your pom.xml file:
 
