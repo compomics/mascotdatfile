@@ -1,0 +1,35 @@
+#maven2 distribution of the library.
+
+= Introduction =
+
+MascotDatfile is hosted at our public maven2 repository.
+Add the following code into your pom.xml file:
+
+*Repository*
+{{{
+    <repositories>
+    <!-- Compomics Genesis Maven 2 repository -->
+        <repository>
+            <id>genesis-maven2-repository</id>
+            <name>Genesis maven2 repository</name>
+            <url>http://genesis.UGent.be/maven2</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+}}}
+
+*Dependency*
+
+{{{
+ <dependencies>
+        <dependency>
+            <groupId>com.compomics</groupId>
+            <artifactId>mascotdatfile</artifactId>
+            <version>3.2.1</version>
+            <type>jar</type>
+      </dependency>
+</dependencies>
+}}}
+
+Note that the repository can be manually accessed to download the src or javadocs.
+http://genesis.ugent.be/maven2/com/compomics/mascotdatfile/
