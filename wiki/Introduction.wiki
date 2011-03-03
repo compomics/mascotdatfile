@@ -124,7 +124,7 @@ public class ExampleWiki1 {
     }
 
     public static void main(String[] args) {
-        new ExampleWiki1("/Users/kennyhelsens/Java/mascotdatfile/src/test/resources/F004071.dat");
+        new ExampleWiki1("/home/myfolder/mydatfile.dat");
     }
 }
 
