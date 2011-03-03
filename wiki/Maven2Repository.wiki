@@ -1,0 +1,32 @@
+#maven2 distribution of the library.
+
+= Introduction =
+
+MascotDatfile is hosted at our public maven2 repository.
+
+Add the following code into your pom.xml file:
+
+{{{
+
+
+    <!-- Repositores -->
+    <repositories>
+
+        <!-- UGent Genesis Maven 2 repository -->
+        <repository>
+            <id>genesis-maven2-repository</id>
+            <name>Genesis maven2 repository</name>
+            <url>http://genesis.UGent.be/maven2</url>
+            <layout>default</layout>
+        </repository>
+
+    </repositories>
+
+}}}
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
