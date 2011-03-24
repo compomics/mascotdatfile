@@ -305,7 +305,7 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
         File lDatfileFile = null;
         boolean lbContinue = true;
         while (lbContinue) {
-            JFileChooser lJFileChooser = new JFileChooser("/");
+            JFileChooser lJFileChooser = new JFileChooser("/Users/kennyhelsens/Proteomics/Projects/1103/1103_mascotdatfile_neutralloss");
             int lReturnVal = lJFileChooser.showOpenDialog(this);
             if (lReturnVal == JFileChooser.APPROVE_OPTION) {
                 lDatfileFile = lJFileChooser.getSelectedFile();

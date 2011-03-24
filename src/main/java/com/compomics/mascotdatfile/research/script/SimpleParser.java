@@ -21,12 +21,12 @@ import java.util.Vector;
  * File Templates.
  */
 public class SimpleParser {
-    // Class specific log4j logger for SimpleParser instances.
-    private static Logger logger = Logger.getLogger(SimpleParser.class);
-    private File iOutput = null;
-    private String[] iInput = null;
-    private char iSeparator;
-    private BufferedWriter writer = null;
+// Class specific log4j logger for SimpleParser instances.
+private static Logger logger = Logger.getLogger(SimpleParser.class);
+private File iOutput = null;
+private String[] iInput = null;
+private char iSeparator;
+private BufferedWriter writer = null;
 
     public static void main(String[] args) {
         new SimpleParser();

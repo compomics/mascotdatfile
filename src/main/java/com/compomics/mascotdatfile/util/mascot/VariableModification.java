@@ -186,6 +186,15 @@ public class VariableModification implements Modification, Serializable {
     }
 
     /**
+     * Dummy implementation. Always returns TRUE!
+     * The VariableModification always has a mass supplied during construction, which is in contrast to the FixedModification. 
+     * @return Always returns TRUE.
+     */
+    public boolean isValidMass() {
+        return true;
+    }
+
+    /**
      * Sets the short end notation for a modifcication.
      *
      * @param aShortType the short end notation for a modifcication.

@@ -30,6 +30,9 @@ public class MascotRawParser {
     // Class specific log4j logger for MascotRawParser instances.
     private static Logger logger = Logger.getLogger(MascotRawParser.class);
 
+    private static String iSeparatorA = "=";
+    private static String iSeparatorB = ":";
+
     /**
      * This HashMap will hold each section in the Mascot raw results file as key-value pairs, where the key is the name
      * of the section and the value a HashMap with all the entries in that section as key-value pairs.
@@ -248,11 +251,16 @@ public class MascotRawParser {
                         value = line.substring(line.indexOf("=") + 1).trim();
                     }
                 } else {
-                    StringTokenizer lst = new StringTokenizer(line, "=");
-                    key = lst.nextToken().trim();
-                    value = null;
-                    if (lst.hasMoreTokens()) {
-                        value = lst.nextToken().trim();
+                    // Normal key/value row.
+                    // first option is '=' sign.
+                    String sep = analyseSeparator(line);
+                    if (sep != null) {
+                        StringTokenizer lst = new StringTokenizer(line, sep);
+                        key = lst.nextToken().trim();
+                        value = null;
+                        if (lst.hasMoreTokens()) {
+                            value = lst.nextToken().trim();
+                        }
                     }
                 }
                 lhmResult.put(key, value);
@@ -272,6 +280,21 @@ public class MascotRawParser {
      */
     private String getSectionName(String sectionDefLine) {
         return this.getProp(sectionDefLine, "name");
+    }
+
+    /**
+     * This method returns the required separator for the line tokenizer.
+     *
+     * @param aLine
+     * @return
+     */
+    private String analyseSeparator(String aLine) {
+        if (aLine.indexOf(iSeparatorA) > 0) {
+            return iSeparatorA;
+        } else if (aLine.indexOf(iSeparatorB) > 0) {
+            return iSeparatorB;
+        }
+        return null;
     }
 
     /**

@@ -24,11 +24,10 @@
 package com.compomics.mascotdatfile.util.mascot;
 
 import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
 import com.compomics.mascotdatfile.util.interfaces.Modification;
 import com.compomics.mascotdatfile.util.mascot.fragmentions.FragmentIonImpl;
+import org.apache.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -738,6 +737,81 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
+     * This method returns an array with all possible B neutral loss ions.
+     */
+    public FragmentIonImpl[] getBNeutralLossIons() {
+        Vector<FragmentIonImpl> lNeutralLossIons = new Vector<FragmentIonImpl>();
+        // Iterate all modifications that could possibly yield a neutral loss ion.
+        for (int i = 0; i < iMods.length; i++) {
+            Modification lMod = iMods[i];
+            if (lMod != null && lMod instanceof VariableModification) {
+                double lNeutralLossMass = ((VariableModification) lMod).getNeutralLoss();
+                if (lNeutralLossMass > 0) {
+                    // Ok, this modification is a possible contributor of neutrol loss fragment ions.
+                    // First, get all b-ions and clone plus change the name and mass
+                    try {
+
+                        for (int j = i - 1; j < iBions.length; j++) {
+                            // Iterate b-ions from the modification index.
+                            // KENNYPRR
+                            // e.g.: modification index 5 equals starting from b5, and b-ion5 is located at the b-ion array index 4.
+                            FragmentIonImpl lBion = iBions[j].clone();
+                            lBion.setMZ(lBion.getMZ() - lNeutralLossMass);
+                            lBion.setType(lBion.getType() + "-" + lMod.getShortType() +"-");
+                            lNeutralLossIons.add(lBion);
+                        }
+                    } catch (CloneNotSupportedException e) {
+                        logger.error(e.getMessage(), e);
+                    }
+                }
+            }
+        }
+        if (lNeutralLossIons.size() > 0) {
+            return lNeutralLossIons.toArray(new FragmentIonImpl[lNeutralLossIons.size()]);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * This method returns an array with all possible Y neutral loss ions.
+     */
+    public FragmentIonImpl[] getYNeutralLossIons() {
+        Vector<FragmentIonImpl> lNeutralLossIons = new Vector<FragmentIonImpl>();
+        // Iterate all modifications that could possibly yield a neutral loss ion.
+        for (int i = 0; i < iMods.length; i++) {
+            Modification lMod = iMods[i];
+            if (lMod != null && lMod instanceof VariableModification) {
+                double lNeutralLossMass = ((VariableModification) lMod).getNeutralLoss();
+                if (lNeutralLossMass > 0) {
+                    // Ok, this modification is a possible contributor of neutrol loss fragment ions.
+                    // First, get all b-ions and clone plus change the name and mass
+                    try {
+
+                        for (int j = iMods.length - i - 1; j < iYions.length; j++) {
+                            // KENNYPRR
+                            // e.g.: modification index 5 equals starting from y3, and y-ion3 is located at the y-ion array index 2.
+                            FragmentIonImpl lYion = iYions[j].clone();
+                            lYion.setMZ(lYion.getMZ() - lNeutralLossMass);
+                            lYion.setType(lYion.getType() + "-" + lMod.getShortType());
+                            lNeutralLossIons.add(lYion);
+                        }
+                    } catch (CloneNotSupportedException e) {
+                        logger.error(e.getMessage(), e);
+                    }
+                }
+            }
+        }
+
+        if (lNeutralLossIons.size() > 0) {
+            return lNeutralLossIons.toArray(new FragmentIonImpl[lNeutralLossIons.size()]);
+        } else {
+            return null;
+        }
+    }
+
+
+    /**
      * This method returns a FragmentIonImpl[] with fragmentions. The fragmention type is made up by a switch()
      *
      * @param aIonSeriesIndex
@@ -1043,6 +1117,8 @@ public class PeptideHitAnnotation implements Serializable {
     private FragmentIonImpl[] getBSeries() {
         FragmentIonImpl[] lBH2O = getBH2Oions();
         FragmentIonImpl[] lBNH3 = getBNH3ions();
+        FragmentIonImpl[] lBNL = getBNeutralLossIons();
+
         int lBSeriesLength = iBions.length;
         if (lBH2O != null) {
             lBSeriesLength = lBSeriesLength + lBH2O.length;
@@ -1050,8 +1126,13 @@ public class PeptideHitAnnotation implements Serializable {
         if (lBNH3 != null) {
             lBSeriesLength = lBSeriesLength + lBNH3.length;
         }
+        if (lBNL!= null) {
+            lBSeriesLength = lBSeriesLength + lBNL.length;
+        }
+
         FragmentIonImpl[] lBSeries = new FragmentIonImpl[lBSeriesLength];
         System.arraycopy(iBions, 0, lBSeries, 0, iBions.length);
+
         int lBSeriesIndex = iBions.length;
         if (lBNH3 != null) {
             System.arraycopy(lBNH3, 0, lBSeries, lBSeriesIndex, lBNH3.length);
@@ -1060,6 +1141,10 @@ public class PeptideHitAnnotation implements Serializable {
         if (lBH2O != null) {
             System.arraycopy(lBH2O, 0, lBSeries, (lBSeriesIndex), lBH2O.length);
             lBSeriesIndex = lBSeriesIndex + lBH2O.length;
+        }
+        if (lBNL!= null) {
+            System.arraycopy(lBNL, 0, lBSeries, (lBSeriesIndex), lBNL.length);
+            lBSeriesIndex = lBSeriesIndex + lBNL.length;
         }
         return lBSeries;
     }
@@ -1202,6 +1287,7 @@ public class PeptideHitAnnotation implements Serializable {
     private FragmentIonImpl[] getYSeries() {
         FragmentIonImpl[] lYH2O = getYH2Oions();
         FragmentIonImpl[] lYNH3 = getYNH3ions();
+        FragmentIonImpl[] lYNL = getYNeutralLossIons();
         int lYSeriesLength = iYions.length;
         if (lYH2O != null) {
             lYSeriesLength = lYSeriesLength + lYH2O.length;
@@ -1209,17 +1295,29 @@ public class PeptideHitAnnotation implements Serializable {
         if (lYNH3 != null) {
             lYSeriesLength = lYSeriesLength + lYNH3.length;
         }
+        if (lYNL != null) {
+            lYSeriesLength = lYSeriesLength + lYNL.length;
+        }
+
         FragmentIonImpl[] lYSeries = new FragmentIonImpl[lYSeriesLength];
         System.arraycopy(iYions, 0, lYSeries, 0, iYions.length);
         int lYSeriesIndex = iYions.length;
+
         if (lYNH3 != null) {
             System.arraycopy(lYNH3, 0, lYSeries, lYSeriesIndex, lYNH3.length);
             lYSeriesIndex = lYSeriesIndex + lYNH3.length;
         }
+
         if (lYH2O != null) {
             System.arraycopy(lYH2O, 0, lYSeries, (lYSeriesIndex), lYH2O.length);
             lYSeriesIndex = lYSeriesIndex + lYH2O.length;
         }
+
+        if (lYNL!= null) {
+            System.arraycopy(lYNL, 0, lYSeries, (lYSeriesIndex), lYNL.length);
+            lYSeriesIndex = lYSeriesIndex + lYNL.length;
+        }
+
         return lYSeries;
     }
 
