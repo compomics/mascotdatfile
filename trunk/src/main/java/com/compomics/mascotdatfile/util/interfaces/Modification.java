@@ -23,8 +23,6 @@
 
 package com.compomics.mascotdatfile.util.interfaces;
 
-import org.apache.log4j.Logger;
-
 /**
  * Created by IntelliJ IDEA.
  * User: Kenny
@@ -86,4 +84,11 @@ public interface Modification {
      * @return String   The short end notation for a modifcication.
      */
     String getShortType();
+
+
+    /**
+     * Returns whether this FixedModification instance had a Mass value supplied during construction.
+     * @return True if the FixedModification has a mass. False if else.
+     */
+    boolean isValidMass();
 }

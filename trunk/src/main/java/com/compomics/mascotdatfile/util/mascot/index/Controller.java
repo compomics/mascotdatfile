@@ -24,6 +24,9 @@ public class Controller {
     // Class specific log4j logger for Controller instances.
     private static Logger logger = Logger.getLogger(Controller.class);
 
+    private static String iSeparatorA = "=";
+    private static String iSeparatorB = ":";
+
     private Reader iReader = null;
     private FileIndexer iIndex = new FileIndexer();
 
@@ -135,11 +138,16 @@ public class Controller {
                             value = line.substring(line.indexOf("=") + 1).trim();
                         }
                     } else {
-                        StringTokenizer lst = new StringTokenizer(line, "=");
-                        key = lst.nextToken().trim();
-                        value = null;
-                        if (lst.hasMoreTokens()) {
-                            value = lst.nextToken().trim();
+                        // Normal key/value row.
+                        // first option is '=' sign.
+                        String sep = analyseSeparator(line);
+                        if(sep != null){
+                            StringTokenizer lst = new StringTokenizer(line, sep);
+                            key = lst.nextToken().trim();
+                            value = null;
+                            if (lst.hasMoreTokens()) {
+                                value = lst.nextToken().trim();
+                            }
                         }
                     }
                     lhmResult.put(key, value);
@@ -150,6 +158,20 @@ public class Controller {
             ioe.printStackTrace();
         }
         return lhmResult;
+    }
+
+    /**
+     * This method returns the required separator for the line tokenizer.
+     * @param aLine
+     * @return
+     */
+    private String analyseSeparator(String aLine) {
+        if(aLine.indexOf(iSeparatorA) > 0){
+            return iSeparatorA;
+        }else if(aLine.indexOf(iSeparatorB) > 0){
+            return iSeparatorB;
+        }
+        return null;
     }
 
     /**

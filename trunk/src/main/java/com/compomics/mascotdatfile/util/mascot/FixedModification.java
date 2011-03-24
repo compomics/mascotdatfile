@@ -126,7 +126,7 @@ public class FixedModification implements Modification, Serializable {
      * Returns the mass of the modification.
      *
      * @return the mass of the modification by the (old) datfile.
-     * @throws MascotDatfileException - If the
+     * @throws MascotDatfileException
      */
     public double getMass() {
         if (isValidMass() == false) {
@@ -181,7 +181,7 @@ public class FixedModification implements Modification, Serializable {
      * Returns whether this FixedModification instance had a Mass value supplied during construction.
      * @return True if the FixedModification has a mass. False if else.
      */
-    private boolean isValidMass() {
+    public boolean isValidMass() {
         return iHasMass;
     }
 }

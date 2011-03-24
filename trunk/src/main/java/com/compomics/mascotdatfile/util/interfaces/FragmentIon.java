@@ -23,8 +23,6 @@
 
 package com.compomics.mascotdatfile.util.interfaces;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.mascot.Peak;
 import com.compomics.util.gui.interfaces.SpectrumAnnotation;
 
@@ -187,19 +185,25 @@ public interface FragmentIon extends SpectrumAnnotation {
      */
     public static final int ZHH_DOUBLE_ION = 28;
 
-
     /**
-     * This variable is a hard coded identifier for the Precursor .
+     * This variable is a hard coded identifier for an neutral loss ion.
      */
-    public static final int PRECURSOR = 29;
+    public static final int NEUTRAL_LOSS = 29;
+
     /**
      * This variable is a hard coded identifier for the Precursor, with neutral losses.
      */
     public static final int PRECURSOR_LOSS = 30;
+
+    /**
+     * This variable is a hard coded identifier for the Precursor .
+     */
+    public static final int PRECURSOR = 31;
+
     /**
      * This variable is a hard coded identifier for an immoniumIon.
      */
-    public static final int IMMONIUM = 31;
+    public static final int IMMONIUM = 32;
 
     /**
      * This variable is a hard coded identifier for a fragmention that was of no importance for the score calculation of the peptidehit and if its a match,

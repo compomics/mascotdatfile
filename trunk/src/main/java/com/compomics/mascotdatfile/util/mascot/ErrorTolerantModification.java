@@ -157,6 +157,15 @@ public class ErrorTolerantModification implements Modification, Serializable {
     }
 
     /**
+     * Returns whether this FixedModification instance had a Mass value supplied during construction.
+     *
+     * @return True if the FixedModification has a mass. False if else.
+     */
+    public boolean isValidMass() {
+        return true;
+    }
+
+    /**
      * Sets the short end notation for a modifcication.
      *
      * @param aShortType the short end notation for a modifcication.

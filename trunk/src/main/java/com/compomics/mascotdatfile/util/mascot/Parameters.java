@@ -268,6 +268,21 @@ public class Parameters implements Serializable {
     private boolean iDistillerProcessing = false;
 
     /**
+     * The Proteome Discoverer option to the remote file.
+     */
+    private String iProteomeDiscovererFileTime = null;
+
+    /**
+     * The Proteome Discoverer option to the remote file path.
+     */
+    private String iProteomeDiscovererFilePath = null;
+
+    /**
+     * The Proteome Discoverer option to the remote file size.
+     */
+    private String iProteomeDiscovererFileSize = null;
+
+    /**
      * This method parses a String with numbers presenting the rules that define the instrument type.
      *
      * @param aRules String with rule-numbers
@@ -362,6 +377,11 @@ public class Parameters implements Serializable {
         iUserID = (String) p.get("USERID");
         iRules = parseRules((String) p.get("RULES"));
         iQuantiation = (String) p.get("QUANTITATION");
+
+        // Proteome discoverer specific options.
+        iProteomeDiscovererFileTime = (String) p.get("file time");
+        iProteomeDiscovererFilePath = (String) p.get("file path");
+        iProteomeDiscovererFileSize = (String) p.get("file size");
 
         // If Distiller multifile information is found, parse it.
         Object o = p.get("_DISTILLER_RAWFILE[0]");
@@ -1659,5 +1679,39 @@ public class Parameters implements Serializable {
      */
     public String getQuantiation() {
         return iQuantiation;
+    }
+
+    /**
+     * Returns true if the datfile has been searched by proteome discoverer.
+     * @return
+     */
+    public boolean isProteomeDiscoverer(){
+        return !(iProteomeDiscovererFilePath == null && iProteomeDiscovererFileSize == null && iProteomeDiscovererFileTime == null);
+    }
+
+    /**
+     * Returns the Time specified by Proteome Discoverer. Null if absent.
+     * @return
+     */
+    public String getProteomeDiscovererFileTime() {
+        return iProteomeDiscovererFileTime;
+    }
+
+    /**
+     *
+     * Returns the File Path specified by Proteome Discoverer. Null if absent.
+     * @return
+     */
+    public String getProteomeDiscovererFilePath() {
+        return iProteomeDiscovererFilePath;
+    }
+
+    /**
+     *
+     * Returns the File size specified by Proteome Discoverer. Null if absent.
+     * @return
+     */
+    public String getProteomeDiscovererFileSize() {
+        return iProteomeDiscovererFileSize;
     }
 }
