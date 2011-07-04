@@ -1,5 +1,9 @@
-#labels Featured
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
+===3.2.4 (4 July 2011)===
+ * Created a dedicated tmp directory that is automatically cleaned.
+
+===3.2.3 (1 May 2011)===
+ * Added new optional parameters to be used by the MSF parser.
 
 ===3.2.2 (27 Octobre 2010)===
  * Created a MascotDatfileException for library specific RuntimeExceptions.
