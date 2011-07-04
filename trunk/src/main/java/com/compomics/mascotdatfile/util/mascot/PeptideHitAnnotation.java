@@ -757,7 +757,7 @@ public class PeptideHitAnnotation implements Serializable {
                             // e.g.: modification index 5 equals starting from b5, and b-ion5 is located at the b-ion array index 4.
                             FragmentIonImpl lBion = iBions[j].clone();
                             lBion.setMZ(lBion.getMZ() - lNeutralLossMass);
-                            lBion.setType(lBion.getType() + "-" + lMod.getShortType() +"-");
+                            lBion.setType(lBion.getType() + "-" + lMod.getShortType());
                             lNeutralLossIons.add(lBion);
                         }
                     } catch (CloneNotSupportedException e) {
