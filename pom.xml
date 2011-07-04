@@ -260,13 +260,6 @@
 
     </repositories>
 
-    <!-- Plugin repositories-->
-    <pluginRepositories>
-        <pluginRepository>
-            <id>repository.riedelcastro.org</id>
-            <url>http://repository.riedelcastro.org</url>
-        </pluginRepository>
-    </pluginRepositories>
 
     <!-- Dependencies -->
     <dependencies>
