@@ -186,6 +186,8 @@ public class Controller {
     public void close() {
         try {
             iReader.close();
+            // always try to remove any other old files.
+            Reader.cleanOldFiles();
         } catch (IOException e) {
             System.err.println("Failed to finish the Reader.");
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

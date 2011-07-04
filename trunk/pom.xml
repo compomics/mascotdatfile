@@ -11,7 +11,7 @@
 
     <!-- Set the version number for the whole project -->
     <properties>
-        <version.number>3.2.3</version.number>
+        <version.number>3.2.4</version.number>
         <logging.file.path.name>mascotdatfile_log4j.log</logging.file.path.name>
         <logging.file.max.size>5000KB</logging.file.max.size>
         <logging.pattern>[%d{dd-MMM-yyyy HH:mm:ss} - %p] "%m" (%C:%L)%n</logging.pattern>
@@ -22,6 +22,7 @@
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
+
             <url>LICENSE-2.0.txt</url>
         </license>
     </licenses>
@@ -118,6 +119,25 @@
                             </resources>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>copy-package-license</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}
+                            </outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}</directory>
+                                    <includes>
+                                        <include>LICENSE-2.0.txt</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -192,6 +212,31 @@
                 </configuration>
             </plugin>
 
+            <!-- Assembly plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-5</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/zip.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- this is used for inheritance merges -->
+                        <phase>package</phase>
+                        <!-- append to the packaging phase. -->
+                        <goals>
+                            <goal>single</goal>
+                            <!-- goals == mojos -->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
         </plugins>
     </build>
 
@@ -214,6 +259,14 @@
         </repository>
 
     </repositories>
+
+    <!-- Plugin repositories-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repository.riedelcastro.org</id>
+            <url>http://repository.riedelcastro.org</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <!-- Dependencies -->
     <dependencies>

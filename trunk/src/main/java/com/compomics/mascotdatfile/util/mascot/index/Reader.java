@@ -26,6 +26,11 @@ public class Reader {
     private Controller iController = null;
 
     /**
+     * This directory will specifically hold temporary Mascot result files.
+     */
+    private static File iTempFolder = null;
+
+    /**
      * The name for the temporary file.
      */
     private String lTempFileName = "Reader";
@@ -103,7 +108,7 @@ public class Reader {
             // 1. If the file is not local, we index it local to create the Random Access File.
             //          Therefore, a FileOutputStream writes every read byte into a temp file.
             if (iTempFileNeeded) {
-                iFile = File.createTempFile(lTempFileName + System.currentTimeMillis(), ".tmp");
+                iFile = File.createTempFile(lTempFileName + System.currentTimeMillis(), ".tmp", getTempDirectory());
                 iFile.deleteOnExit();
                 fos = new BufferedOutputStream(new FileOutputStream(iFile));
             }
@@ -211,6 +216,24 @@ public class Reader {
             }
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
+    }
+
+    /**
+     * Return a tmp direct
+     * @return
+     */
+    private static File getTempDirectory() {
+        if(iTempFolder == null){
+            try {
+                File lTempFile = File.createTempFile("anchor", "tmp");
+                iTempFolder = new File(lTempFile.getParent(), "mascotdatfile_raf");
+                iTempFolder.mkdir();
+                lTempFile.delete();
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+            }
+        }
+        return iTempFolder;
     }
 
 
@@ -468,6 +491,17 @@ public class Reader {
             if (iFile.exists()) {
                 iFile.delete();
             }
+        }
+    }
+
+    /**
+     * Calling this method will remove all former tmp files created by various Reader instances.
+     */
+    public static void cleanOldFiles(){
+        File lTempDirectory = getTempDirectory();
+        File[] lFiles = lTempDirectory.listFiles();
+        for (File lFile : lFiles) {
+            lFile.delete();
         }
     }
 

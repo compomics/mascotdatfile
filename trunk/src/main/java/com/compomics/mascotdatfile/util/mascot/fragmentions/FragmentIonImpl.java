@@ -304,11 +304,11 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
             }
             // Simple labels get simple notation.
             // Complex (multi-character) ones get a '[x]' notation.
-//            if (getType().length() > 1) {
-//                label.append(getType().substring(0, 2) + "[" + getNumber() + "]" + getType().substring(1));
-//            } else {
-//            }
-            label.append(getType() + getNumber());
+            if (getType().length() > 1) {
+                label.append(getType().substring(0, 1) + "[" + getNumber() + "]" + getType().substring(1));
+            } else {
+                label.append(getType() + getNumber());
+            }
         } else {
             label.append(iType);
         }
