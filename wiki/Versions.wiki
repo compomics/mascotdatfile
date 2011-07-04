@@ -1,3 +1,4 @@
+#labels Featured
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
 
 ===3.2.2 (27 Octobre 2010)===
