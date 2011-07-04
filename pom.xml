@@ -105,7 +105,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/mascotdatfile-${project.version}
+                            <outputDirectory>${project.build.directory}/classes
                             </outputDirectory>
                             <resources>
                                 <resource>
