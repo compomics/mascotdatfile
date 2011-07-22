@@ -5,18 +5,9 @@
     <groupId>com.compomics</groupId>
     <artifactId>mascotdatfile</artifactId>
     <packaging>jar</packaging>
-    <version>${version.number}</version>
+    <version>3.2.5</version>
     <name>mascotdatfile</name>
     <url>http://mascotdatfile.googlecode.com</url>
-
-    <!-- Set the version number for the whole project -->
-    <properties>
-        <version.number>3.2.4</version.number>
-        <logging.file.path.name>mascotdatfile_log4j.log</logging.file.path.name>
-        <logging.file.max.size>5000KB</logging.file.max.size>
-        <logging.pattern>[%d{dd-MMM-yyyy HH:mm:ss} - %p] "%m" (%C:%L)%n</logging.pattern>
-        <logging.level.default>INFO</logging.level.default>
-    </properties>
 
     <!-- Licence -->
     <licenses>

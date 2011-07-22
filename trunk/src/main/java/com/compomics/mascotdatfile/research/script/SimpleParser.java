@@ -38,10 +38,10 @@ private BufferedWriter writer = null;
             // Create an input File array with n files.
             iInput = new String[1];
             // Fill the Array.
-            iInput[0] = "/Users/kenny/Proteomics/0812/0812_mascotdatfile_bug/F011830.dat";
+            iInput[0] = "/Users/kennyhelsens/tmp/F002691.dat";
 
             // Define an output file.
-            iOutput = new File("/tmp/export.dat");
+            iOutput = new File("/Users/kennyhelsens/tmp/export.txt");
             // Create a buffered output.
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(iOutput)));
             // Define the separator
@@ -58,6 +58,9 @@ private BufferedWriter writer = null;
 
                 // Fetch the QueryToPeptideMap. This indexes all queries.
                 // From 1 to n number of spectra in the corresponding datfile.
+
+                int lQueries = iMascotDatfile.getHeaderSection().getQueries();
+                System.out.println(lQueries);
 
                 QueryToPeptideMapInf lQueryToPeptideMap = iMascotDatfile.getQueryToPeptideMap();
                 // Also explore other methods on the QueryToPeptideMap!!!
