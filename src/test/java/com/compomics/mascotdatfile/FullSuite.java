@@ -42,6 +42,7 @@ import com.compomics.mascotdatfile.util.mascot.TestQueryToPeptideMap;
 import com.compomics.mascotdatfile.util.mascot.TestThreshold;
 import com.compomics.mascotdatfile.util.mascot.index.*;
 import com.compomics.mascotdatfile.util.mascot.parser.TestMascotRawParser;
+import com.compomics.mascotdatfile.util.mascot.quantitation.Component;
 import org.apache.log4j.Logger;
 
 import junit.framework.Test;
@@ -107,6 +108,7 @@ public class FullSuite extends TestCase {
         ts.addTest(new TestSuite(com.compomics.mascotdatfile.util.mascot.index.TestThreshold.class));
         ts.addTest(new TestSuite(TestDecoyPeptideToQueryMap.class));
         ts.addTest(new TestSuite(com.compomics.mascotdatfile.util.mascot.index.TestQuantitation.class));
+        ts.addTest(new TestSuite(TestPortability.class));
 
         ts.addTest(new TestSuite(TestController.class));
 

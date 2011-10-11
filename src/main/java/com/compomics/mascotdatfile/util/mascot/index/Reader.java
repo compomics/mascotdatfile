@@ -2,8 +2,10 @@ package com.compomics.mascotdatfile.util.mascot.index;
 
 import org.apache.log4j.Logger;
 
+import javax.tools.JavaCompiler;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.TreeSet;
 
 /**
@@ -118,47 +120,64 @@ public class Reader {
             // to get the byte indexing right.
             // For each byte that is read, the byte counter increases and the byte is optionally written
             // into the fileoutputstream.
-
+            //checking happens until we hit the end of the line containing the mascot header to make sure the correct byte is used for the rest of the file
+            //from there a check happens if the newline is windows (\r\n) linux or OSX (\n) or old apples (\r)
             Integer lCharacter = -1;
+            ArrayList testarray = new ArrayList<String>();
+            ArrayList<Integer> lNewLineCharacters = new ArrayList<Integer>();
+            boolean newlinefound = false;
             while ((lCharacter = aBufferedReader.read()) != -1) {
-                iByteCount++;
-                if (iTempFileNeeded) {
-                    fos.write(lCharacter);
-                }
-                if (lCharacter == '\r' || lCharacter == '\n') {
-                    // When a new line character is encoutered, store it in an ArrayList.
-                    ArrayList<Integer> lNewLineCharacters = new ArrayList<Integer>();
-                    lNewLineCharacters.add(lCharacter);
-
-                    // Read the next character to see wheter another new line character is encounterd.
-                    // If so, add it tho the ArrayList.
+                while (!newlinefound) {
                     lCharacter = aBufferedReader.read();
                     iByteCount++;
                     if (iTempFileNeeded) {
                         fos.write(lCharacter);
                     }
-                    if (lCharacter == '\r' || lCharacter == '\n') {
-                        lNewLineCharacters.add(lCharacter);
-                        // Proceed!
+                    Object temp = ((char) lCharacter.byteValue());
+                    testarray.add(temp);
+                    if (lCharacter == '\n') {
+                        String tweedetestarray = testarray.toString();
+                        tweedetestarray = tweedetestarray.replaceAll(",", "");
+                        if (tweedetestarray.contains("M a s c o t")) {
+                            lNewLineCharacters.add(lCharacter);
+                            newlinefound = true;
+                        } else {
+                            testarray.clear();
+                        }
+                    } else if (lCharacter == '\r') {
+                        String tweedetestarray = testarray.toString();
+                        tweedetestarray = tweedetestarray.replaceAll(",", "");
+                        if (tweedetestarray.contains("M a s c o t")) {
+                            lCharacter = aBufferedReader.read();
+                            iByteCount++;
+                            if (iTempFileNeeded) {
+                                fos.write(lCharacter);
+                            }
+                            if (lCharacter == '\n') {
+                                lNewLineCharacters.add(13);
+                                lNewLineCharacters.add(10);
+                                newlinefound = true;
+                            } else {
+                                lNewLineCharacters.add(13);
+                            }
+                        } else {
+                            testarray.clear();
+                        }
                     }
-
-                    // OK, now we are at the end of the first line -  we now how
-                    // lines are separated in the file.
-
-                    // Now make this functional and break the byte reading as to proceed to line reading.
-                    iLineSeparator = new byte[lNewLineCharacters.size()];
-                    for (int i = 0; i < lNewLineCharacters.size(); i++) {
-                        byte b = lNewLineCharacters.get(i).byteValue();
-                        iLineSeparator[i] = b;
-                    }
-
-                    iLineCount++;
-                    // No use to index the first line..?
-                    // iController.addLineIndex(iLineCount, 0l);
-                    break;
                 }
+                     // OK, now we are at the end of the line -  we now how
+                     // lines are separated in the file.
+                // Now make this functional and break the byte reading as to proceed to line reading.
+                iLineSeparator = new byte[lNewLineCharacters.size()];
+                for (int i = 0; i < lNewLineCharacters.size(); i++) {
+                    byte b = lNewLineCharacters.get(i).byteValue();
+                    iLineSeparator[i] = b;
+                }
+                iLineCount++;
+                // No use to index the first line..?
+                // iController.addLineIndex(iLineCount, 0l);
+                break;
             }
-
             // 3. LineIndex reading is needed as to make the indexing feasable.
             // Now the buffered reader continues reading line by line.
 
@@ -220,10 +239,11 @@ public class Reader {
 
     /**
      * Return a tmp direct
+     *
      * @return
      */
     private static File getTempDirectory() {
-        if(iTempFolder == null){
+        if (iTempFolder == null) {
             try {
                 File lTempFile = File.createTempFile("anchor", "tmp");
                 iTempFolder = new File(lTempFile.getParent(), "mascotdatfile_raf");
@@ -497,7 +517,7 @@ public class Reader {
     /**
      * Calling this method will remove all former tmp files created by various Reader instances.
      */
-    public static void cleanOldFiles(){
+    public static void cleanOldFiles() {
         File lTempDirectory = getTempDirectory();
         File[] lFiles = lTempDirectory.listFiles();
         for (File lFile : lFiles) {
