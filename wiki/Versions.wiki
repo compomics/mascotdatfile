@@ -1,4 +1,8 @@
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
+
+===3.2.6 (11 October 2011) ===
+ * Fixed an issue where different kinds of newlines at the beginning would upset the indexing of a file
+
 ===3.2.5 (22 July 2011)===
  * Removed the maven filter for generating the log4j configuration file as this lead to NumberFormatExceptions.
 
