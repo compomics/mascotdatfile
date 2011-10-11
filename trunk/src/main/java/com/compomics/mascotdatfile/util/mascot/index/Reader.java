@@ -2,10 +2,8 @@ package com.compomics.mascotdatfile.util.mascot.index;
 
 import org.apache.log4j.Logger;
 
-import javax.tools.JavaCompiler;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.TreeSet;
 
 /**
@@ -123,29 +121,36 @@ public class Reader {
             //checking happens until we hit the end of the line containing the mascot header to make sure the correct byte is used for the rest of the file
             //from there a check happens if the newline is windows (\r\n) linux or OSX (\n) or old apples (\r)
             Integer lCharacter = -1;
-            ArrayList testarray = new ArrayList<String>();
+            ArrayList checkarray = new ArrayList<String>();
             ArrayList<Integer> lNewLineCharacters = new ArrayList<Integer>();
             boolean newlinefound = false;
             while ((lCharacter = aBufferedReader.read()) != -1) {
+                //read in first byte and add
+                iByteCount++;
+                Object temp = ((char) lCharacter.byteValue());
+                    checkarray.add(temp);
                 while (!newlinefound) {
+                   //while we are unsure, continue looking
                     lCharacter = aBufferedReader.read();
                     iByteCount++;
                     if (iTempFileNeeded) {
                         fos.write(lCharacter);
                     }
-                    Object temp = ((char) lCharacter.byteValue());
-                    testarray.add(temp);
+                    temp = ((char) lCharacter.byteValue());
+                    checkarray.add(temp);
                     if (lCharacter == '\n') {
-                        String tweedetestarray = testarray.toString();
-                        tweedetestarray = tweedetestarray.replaceAll(",", "");
-                        if (tweedetestarray.contains("M a s c o t")) {
+                        //if found \n check and if found correct use
+                        String checkarraytostring = checkarray.toString();
+                        checkarraytostring = checkarraytostring.replaceAll(",", "");
+                        if (checkarraytostring.contains("M a s c o t")) {
                             lNewLineCharacters.add(lCharacter);
                             newlinefound = true;
                         } else {
-                            testarray.clear();
+                            checkarray.clear();
                         }
                     } else if (lCharacter == '\r') {
-                        String tweedetestarray = testarray.toString();
+                        //if found \r check if \r is alone, or if it is \r\n
+                        String tweedetestarray = checkarray.toString();
                         tweedetestarray = tweedetestarray.replaceAll(",", "");
                         if (tweedetestarray.contains("M a s c o t")) {
                             lCharacter = aBufferedReader.read();
@@ -161,11 +166,11 @@ public class Reader {
                                 lNewLineCharacters.add(13);
                             }
                         } else {
-                            testarray.clear();
+                            checkarray.clear();
                         }
                     }
                 }
-                     // OK, now we are at the end of the line -  we now how
+                     // OK, now we are at the end of the line -  we know how
                      // lines are separated in the file.
                 // Now make this functional and break the byte reading as to proceed to line reading.
                 iLineSeparator = new byte[lNewLineCharacters.size()];
