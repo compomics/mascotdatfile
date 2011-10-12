@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 public class TestPortability extends TestCaseLM {
   private static Logger logger = Logger.getLogger(TestMascotDatfile.class);
     public TestPortability(String aName) {
-        super("Test scenario for different kinds of newline");
+        super(aName);
     }
   public void testLinuxheadLinuxbody()
     {
