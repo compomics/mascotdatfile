@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
 
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.lowagie.text.*;
 import com.lowagie.text.Rectangle;
 import org.apache.log4j.Logger;
@@ -120,7 +121,17 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
         menuItem1.addActionListener(new ActionListener() {
             /** {@inheritDoc} */
             public void actionPerformed(ActionEvent e) {
-                launch_HDD_JDialog();
+                launch_HDD_JDialog(false);
+            }
+        });
+        menuOpen.add(menuItem1);
+
+        menuItem1 = new JMenuItem("Hard Disk (using index)", KeyEvent.VK_I);
+        menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.ALT_MASK));
+        menuItem1.addActionListener(new ActionListener() {
+            /** {@inheritDoc} */
+            public void actionPerformed(ActionEvent e) {
+                launch_HDD_JDialog(true);
             }
         });
         menuOpen.add(menuItem1);
@@ -189,7 +200,7 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
      *
      * @param mdf MascotDatfile instance
      */
-    public void passMascotDatfile(MascotDatfile mdf, String aFilename) {
+    public void passMascotDatfile(MascotDatfileInf mdf, String aFilename) {
         jpanDatfileTree.removeAll();
 
         // Create a DatfileTreePanel from the returning MascotDatfile.
@@ -301,11 +312,11 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
         JDialog d = new Spectrumviewer_URL_JDialog(this, this, "Spectrumviewer URL dialog", iPropertiesFile);
     }
 
-    private void launch_HDD_JDialog() {
+    private void launch_HDD_JDialog(boolean aIndexed) {
         File lDatfileFile = null;
         boolean lbContinue = true;
         while (lbContinue) {
-            JFileChooser lJFileChooser = new JFileChooser("/Users/kennyhelsens/Proteomics/Projects/1103/1103_mascotdatfile_neutralloss");
+            JFileChooser lJFileChooser = new JFileChooser();
             int lReturnVal = lJFileChooser.showOpenDialog(this);
             if (lReturnVal == JFileChooser.APPROVE_OPTION) {
                 lDatfileFile = lJFileChooser.getSelectedFile();
@@ -320,11 +331,11 @@ public class Spectrumviewer_gui extends JFrame implements DataBridge {
         }
 
         String errorString = null;
-        MascotDatfile lMdf = null;
+        MascotDatfileInf lMdf = null;
         try {
             this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             DatfileLocation dfl = new DatfileLocation(DatfileLocation.HARDDISK, lDatfileFile.getPath());
-            lMdf = dfl.getDatfile();
+            lMdf = dfl.getDatfile(aIndexed);
         } catch (ClassNotFoundException cnfe) {
             errorString = "HD class was not found! (" + cnfe.getMessage() + ")";
         } catch (IllegalAccessException iae) {

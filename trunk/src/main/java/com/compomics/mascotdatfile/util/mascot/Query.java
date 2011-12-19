@@ -711,7 +711,7 @@ public class Query implements Spectrum, Serializable {
         lCompound = Integer.valueOf(aTitle.substring(0, aTitle.indexOf(':')));
 
         // c) Find out the sum of scans
-        if (aTitle.indexOf("Sum") >= 0) {
+        if (aTitle.substring(aTitle.indexOf(':')+1).trim().startsWith("Sum")) {
             // c1 Multiple scans from this spectrum!
             if (aMutliFile) {
                 //in the multifile title the scans are not there, it has to be parsed from the aScans string

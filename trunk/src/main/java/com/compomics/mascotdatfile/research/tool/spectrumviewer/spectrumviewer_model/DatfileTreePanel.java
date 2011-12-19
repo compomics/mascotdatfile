@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model;
 
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
@@ -47,7 +48,7 @@ import java.util.Vector;
 public class DatfileTreePanel extends JPanel {
     // Class specific log4j logger for DatfileTreePanel instances.
     private static Logger logger = Logger.getLogger(DatfileTreePanel.class);
-    private MascotDatfile iMascotDatfile = null;
+    private MascotDatfileInf iMascotDatfile = null;
 
     private JPanel jpanMain = null;
     private JSplitPane splt1 = null;
@@ -65,7 +66,7 @@ public class DatfileTreePanel extends JPanel {
      *
      * @param aMascotDatfile MascotDatfile instance whereby the tree is build.
      */
-    public DatfileTreePanel(MascotDatfile aMascotDatfile) {
+    public DatfileTreePanel(MascotDatfileInf aMascotDatfile) {
         iMascotDatfile = aMascotDatfile;
         setDefaultFilterSettingsOnTreeModel();
         construct();

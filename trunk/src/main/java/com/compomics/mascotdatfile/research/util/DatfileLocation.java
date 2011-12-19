@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.util;
 
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
+import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
@@ -126,14 +128,29 @@ public class DatfileLocation {
      *
      * @return MascotDatfile    MascotDatfile instance defined on the constructor.
      */
-    public MascotDatfile getDatfile() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        MascotDatfile mdf = null;
+    public MascotDatfileInf getDatfile() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        return this.getDatfile(false);
+    }
+
+    /**
+     * This method returns an MascotDatfile instance based on the location type that was defined in the constructor.
+     *
+     * @param aIndexed boolean to indicate whether the file should be loaded using an index or not.
+     * @return MascotDatfile    MascotDatfile instance defined on the constructor.
+     */
+    public MascotDatfileInf getDatfile(boolean aIndexed) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        MascotDatfileInf mdf = null;
 
         Label:
         if (iDatfileLocationType == HARDDISK) {
             {
                 // Datfile from HardDisk.
-                mdf = new MascotDatfile(iPathAndFilename);
+                // See if we need indexed or not indexed.
+                if(aIndexed) {
+                    mdf = new MascotDatfile_Index(iPathAndFilename);
+                } else {
+                    mdf = new MascotDatfile(iPathAndFilename);
+                }
                 break Label;
             }
         } else if (iDatfileLocationType == URL) {

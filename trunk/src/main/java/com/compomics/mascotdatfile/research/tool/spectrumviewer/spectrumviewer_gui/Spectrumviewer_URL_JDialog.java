@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
 
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.research.util.DatfileLocation;
@@ -216,7 +217,7 @@ public class Spectrumviewer_URL_JDialog extends JDialog {
         }
 
         String errorString = null;
-        MascotDatfile lMdf = null;
+        MascotDatfileInf lMdf = null;
         try {
             this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             DatfileLocation dfl = new DatfileLocation(DatfileLocation.URL, new String[]{lServer, lDate, lDatfile});

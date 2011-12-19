@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model;
 
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
@@ -44,7 +45,7 @@ public class DatfileTreeModel implements TreeModel {
     /**
      * MascotDatfile instance passes by the constructor.
      */
-    private MascotDatfile iMascotDatfile = null;
+    private MascotDatfileInf iMascotDatfile = null;
 
     /**
      * Root of the Tree.
@@ -56,7 +57,7 @@ public class DatfileTreeModel implements TreeModel {
     // Default, threshold is 0.05.
     private double iFilterSettingThreshold = 0.05;
 
-    public DatfileTreeModel(final MascotDatfile aMascotDatfile, final String aRoot) {
+    public DatfileTreeModel(final MascotDatfileInf aMascotDatfile, final String aRoot) {
         iMascotDatfile = aMascotDatfile;
         iRoot = aRoot;
     }
