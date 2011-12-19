@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.script;
 
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
+import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.research.util.DatfileLocation;
@@ -58,7 +60,7 @@ public class DrawSpectrum {
      */
     public static void main(String[] args) {
         DatfileLocation lDatfileLocation = null;
-        MascotDatfile lMascotDatfile = null;
+        MascotDatfileInf lMascotDatfile = null;
         int lQueryNumber = Integer.parseInt(args[2]);
         int lPeptideHitNumber = Integer.parseInt(args[3]);
         // Get the datfile from different sources, the DatfileLocation Class guides the process based on the args[0] parameter.
@@ -89,7 +91,7 @@ public class DrawSpectrum {
             e.printStackTrace();  // print ${Exception} information.
         }
 
-        QueryToPeptideMap QueryTP = lMascotDatfile.getQueryToPeptideMap();
+        QueryToPeptideMapInf QueryTP = lMascotDatfile.getQueryToPeptideMap();
         PeptideHit ph = QueryTP.getPeptideHitOfOneQuery(lQueryNumber, lPeptideHitNumber);
         Vector queries = lMascotDatfile.getQueryList();
         Query q = (Query) queries.get(lQueryNumber - 1);

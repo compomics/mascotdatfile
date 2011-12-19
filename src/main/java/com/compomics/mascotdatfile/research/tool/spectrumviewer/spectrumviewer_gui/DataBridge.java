@@ -23,6 +23,7 @@
 
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
 
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
@@ -39,7 +40,7 @@ public interface DataBridge {
      *
      * @param aMdf MascotDatfile instance with a DatfileTreePanel passed by a dialog.
      */
-    public void passMascotDatfile(MascotDatfile aMdf, String aFilename);
+    public void passMascotDatfile(MascotDatfileInf aMdf, String aFilename);
 
     /**
      * This method will be used by the dialogs to pass the FilterSettings to the GUI that contains the DatfileTreePanel.

@@ -9,8 +9,6 @@
 
  3. Changelog
 
- 5. Lalalala
-
 
 
 
@@ -21,7 +19,7 @@ The MascotDatfile library allows the fast analysis of peptide identifications pr
    
 2. About the author
 ----------------
-Kenny Helsens (kenny.helsens AT UGent.be) is a PhD (or predoctoral as we say in Europe) student at the lab of Prof. Dr. Kris Gevaert and Prof. Dr. Joël Vandekerckhove in the VIB Department of Medical Protein Research, UGent - Proteome Analysis and Bioinformatics Unit (http://www.proteomics.be/).
+Kenny Helsens (kenny.helsens AT UGent.be) is a PhD (or predoctoral as we say in Europe) student at the lab of Prof. Dr. Kris Gevaert and Prof. Dr. Joï¿½l Vandekerckhove in the VIB Department of Medical Protein Research, UGent - Proteome Analysis and Bioinformatics Unit (http://www.proteomics.be/).
 
 At the time of this writing he is supported by an IWT scholarship (the IWT is the Institue for encouraging innoation by Science and technology in Flanders, http://www.iwt.be/) and is specializing in bioinformatics with a focus on proteomics.
 

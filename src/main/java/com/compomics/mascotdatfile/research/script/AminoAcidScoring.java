@@ -29,6 +29,8 @@
  */
 package com.compomics.mascotdatfile.research.script;
 
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
+import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.research.util.DatfileLocation;
@@ -104,11 +106,11 @@ public class AminoAcidScoring {
         // Alright, everything checks out. Now do the work!
         DatfileLocation dfl = new DatfileLocation(DatfileLocation.HARDDISK, new String[]{args[0]});
         try {
-            MascotDatfile mdf = dfl.getDatfile();
+            MascotDatfileInf mdf = dfl.getDatfile();
             // Get the query.
             Query query = (Query) mdf.getQueryList().get(queryNumber - 1);
             // Get the peptidehit.
-            QueryToPeptideMap qtpm = mdf.getQueryToPeptideMap();
+            QueryToPeptideMapInf qtpm = mdf.getQueryToPeptideMap();
             PeptideHit ph = qtpm.getPeptideHitOfOneQuery(queryNumber, peptideHitNumber);
             if (ph == null) {
                 printError("Peptidehit " + peptideHitNumber + " from Query " + queryNumber + " does not exist!!");

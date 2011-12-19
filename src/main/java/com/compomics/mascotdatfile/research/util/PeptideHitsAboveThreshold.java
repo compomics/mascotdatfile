@@ -23,6 +23,8 @@
 
 package com.compomics.mascotdatfile.research.util;
 
+import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
+import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
@@ -95,7 +97,7 @@ public class PeptideHitsAboveThreshold {
      */
     public static void main(String[] args) {
         DatfileLocation dfl = null;
-        MascotDatfile mdf = null;
+        MascotDatfileInf mdf = null;
         File file = new File("C:\\temp\\PeptideHitsAboveThreshold.txt");
         int lQueryNumber = Integer.parseInt(args[2]);
         int lPeptideHitNumber = Integer.parseInt(args[3]);
@@ -126,7 +128,7 @@ public class PeptideHitsAboveThreshold {
         } catch (SQLException e) {
             e.printStackTrace();  // print ${Exception} information.
         }
-        QueryToPeptideMap lQueryTP = mdf.getQueryToPeptideMap();
+        QueryToPeptideMapInf lQueryTP = mdf.getQueryToPeptideMap();
         calculateBestPeptideHitAboveThreshold(lQueryTP, file);
 
     }
@@ -138,9 +140,9 @@ public class PeptideHitsAboveThreshold {
      * @param aQueryTP QueryToPeptideMap
      * @param aOutput  aOutput of the datastream
      */
-    public static void calculateBestPeptideHitAboveThreshold(QueryToPeptideMap aQueryTP, File aOutput) {
+    public static void calculateBestPeptideHitAboveThreshold(QueryToPeptideMapInf aQueryTP, File aOutput) {
 
-        int lNumberOfQueries = aQueryTP.getPeptideMap().size();
+        int lNumberOfQueries = aQueryTP.getNumberOfQueries();
         int lPeptideHitsAboveIdentityCount = 0;
         int lPeptideHitsCount = 0;
         try {
