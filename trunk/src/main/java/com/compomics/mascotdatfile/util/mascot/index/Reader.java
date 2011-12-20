@@ -127,8 +127,11 @@ public class Reader {
             while ((lCharacter = aBufferedReader.read()) != -1) {
                 //read in first byte and add
                 iByteCount++;
+                if (iTempFileNeeded) {
+                    fos.write(lCharacter);
+                }
                 Object temp = ((char) lCharacter.byteValue());
-                    checkarray.add(temp);
+                checkarray.add(temp);
                 while (!newlinefound) {
                    //while we are unsure, continue looking
                     lCharacter = aBufferedReader.read();
