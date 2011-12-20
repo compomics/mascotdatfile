@@ -1,6 +1,12 @@
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
 
-===3.2.6 (11 October 2011) ===
+===3.2.8 (20 December 2011) ===
+ * Fixed an issue with temp file indexing, introduced while fixing bug with newline auto-detection.
+
+===3.2.7 (19 December 2011)===
+ * Fixed an issue with Distiller filename parsing
+
+===3.2.6 (11 October 2011)===
  * Fixed an issue where different kinds of newlines at the beginning would upset the indexing of a file
 
 ===3.2.5 (22 July 2011)===
