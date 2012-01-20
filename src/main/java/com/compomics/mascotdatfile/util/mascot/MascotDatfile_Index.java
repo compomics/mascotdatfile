@@ -265,6 +265,21 @@ public class MascotDatfile_Index implements MascotDatfileInf {
      * <b>Can return null if no decoy search was done.</b>
      */
     public QueryToPeptideMap_Index getDecoyQueryToPeptideMap() {
+        return getDecoyQueryToPeptideMap(true);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */ /*
+     * <b>This is based on the decoy peptides section!!</b>
+     * This Class creates a map with all the peptide hits in 2 dimensions.
+     * The first level holds the results of the queries in a hashmap (Key: Querynumber  Value:Vector with PeptideHits).
+     * The second dimension holds a Vector with the corresponding peptide hits of the query.
+     *
+     * @return QueryToPeptideMap instance with the queries and peptidehits of this MascotDatfile.
+     * <b>Can return null if no decoy search was done.</b>
+     */
+    public QueryToPeptideMap_Index getDecoyQueryToPeptideMap(boolean showErrorMessage) {
         if (iDecoyQueryToPeptideMap == null) {
             iDecoyQueryToPeptideMap = new DecoyQueryToPeptideMap_Index(iController, getDecoyProteinMap(), getModificationList());
         }

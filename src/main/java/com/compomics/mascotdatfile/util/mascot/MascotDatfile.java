@@ -255,12 +255,27 @@ public class MascotDatfile implements MascotDatfileInf {
      *         no decoy search was done.</b>
      */
     public QueryToPeptideMap getDecoyQueryToPeptideMap() {
+        return getDecoyQueryToPeptideMap(true);
+    }
+    
+    /**
+     * <b>This is based on the decoy peptides section!!</b> This Class creates a map with all the peptide hits in 2
+     * dimensions. The first level holds the results of the queries in a hashmap (Key: Querynumber  Value:Vector with
+     * PeptideHits). The second dimension holds a Vector with the corresponding peptide hits of the query.
+     *
+     * @param displayError prints an error message to the standard output if no decoy section is found
+     * @return QueryToPeptideMap instance with the queries and peptidehits of this MascotDatfile. <b>Can return null if
+     *         no decoy search was done.</b>
+     */
+    public QueryToPeptideMap getDecoyQueryToPeptideMap(boolean displayError) {
         if (iDecoyQueryToPeptideMap == null) {
             HashMap lHashMap = iMRP.getSection("decoy_peptides");
             if (lHashMap != null) {
                 iDecoyQueryToPeptideMap = new QueryToPeptideMap(lHashMap, getProteinMap(), getNumberOfQueries(), getModificationList(), getThresholds());
             } else {
-                System.err.println("No Decoy section found!!");
+                if (displayError) {
+                    System.err.println("No Decoy section found!!");
+                }
             }
         }
         return iDecoyQueryToPeptideMap;
