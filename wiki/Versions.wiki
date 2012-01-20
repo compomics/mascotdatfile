@@ -1,5 +1,8 @@
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
 
+===3.2.9 (20 January 2012) ===
+ * Added boolean parameter for getDecoyQueryToPeptideMap() method which will or will not throw an exception if the Decoy section is not in the Mascot result file.
+
 ===3.2.8 (20 December 2011) ===
  * Fixed an issue with temp file indexing, introduced while fixing bug with newline auto-detection.
 
