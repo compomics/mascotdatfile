@@ -1,6 +1,5 @@
 package com.compomics.mascotdatfile.util.interfaces;
 
-import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.mascot.*;
 import com.compomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
@@ -52,10 +51,18 @@ public interface MascotDatfileInf {
     /**
      * Returns a mapping from the Query to its decoy Peptidehits as a QueryToPeptideMap implementation.
      *
+     * @param showErrorMessage prints an error message to the standard output if no decoy section is found
+     * @return QueryToPeptideMap implementation. Returns null if the decoy search (Mascot 2.2) was not performed.
+     */
+    public QueryToPeptideMapInf getDecoyQueryToPeptideMap(boolean showErrorMessage);
+
+    /**
+     * Returns a mapping from the Query to its decoy Peptidehits as a QueryToPeptideMap implementation.
+     *
      * @return QueryToPeptideMap implementation. Returns null if the decoy search (Mascot 2.2) was not performed.
      */
     public QueryToPeptideMapInf getDecoyQueryToPeptideMap();
-
+    
     /**
      * Please use the getQuery method to receive the Queries one by one.
      * Returns all the Queries in a vector.
