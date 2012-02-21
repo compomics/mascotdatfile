@@ -24,37 +24,51 @@ public class SimpleParser {
 // Class specific log4j logger for SimpleParser instances.
 private static Logger logger = Logger.getLogger(SimpleParser.class);
 private File iOutput = null;
-private String[] iInput = null;
 private char iSeparator;
 private BufferedWriter writer = null;
 
     public static void main(String[] args) {
-        new SimpleParser();
+        if(args.length < 3){
+            System.out.println("SimpleParser arguments:\n<alpha> <output> <input 1> [<input 2> <input 3> <input ...>]");
+        }else{
+            new SimpleParser(args);
+        }
     }
 
-    public SimpleParser() {
+    public SimpleParser(String[] lArguments) {
         try {
+            double lAlpha = Double.parseDouble(lArguments[0]);
 
-            // Create an input File array with n files.
-            iInput = new String[1];
-            // Fill the Array.
-            iInput[0] = "/Users/kennyhelsens/tmp/F002691.dat";
+            ArrayList<String> lInputs = new ArrayList<String>();
+
+            int i = 2;
+            while (i < lArguments.length) {
+                String lInput = lArguments[i];
+                lInputs.add(lInput);
+                i++;
+            }
 
             // Define an output file.
-            iOutput = new File("/Users/kennyhelsens/tmp/export.txt");
+            iOutput = new File(lArguments[1]);
+
             // Create a buffered output.
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(iOutput)));
+
             // Define the separator
             iSeparator = ';';
 
             // Ready to go!
             MascotDatfileInf iMascotDatfile = null;
 
-            for (int i = 0; i < iInput.length; i++) {
+            for (i = 0; i < lInputs.size(); i++) {
+
+                String lFileName = lInputs.get(i);
+
+                File iInput = new File(lFileName);
                 System.gc();
-                System.out.println("Processing " + iInput[i]);
+                System.out.println("Processing " + iInput);
                 // Create a new MascotDatfile instance for each filename in the Input array.
-                iMascotDatfile = MascotDatfileFactory.create(iInput[i], MascotDatfileType.MEMORY);
+                iMascotDatfile = MascotDatfileFactory.create(lFileName, MascotDatfileType.MEMORY);
 
                 // Fetch the QueryToPeptideMap. This indexes all queries.
                 // From 1 to n number of spectra in the corresponding datfile.
@@ -70,7 +84,7 @@ private BufferedWriter writer = null;
                 // This Vector retrieves the best PeptideHit for each Query.
                 // The Vector is zero based.
                 // ex: Vector[0] contains the peptidehit of Query 1, etc.
-                Vector lBestPeptideHits = lQueryToPeptideMap.getAllPeptideHitsAboveIdentityThreshold();
+                Vector lBestPeptideHits = lQueryToPeptideMap.getAllPeptideHitsAboveIdentityThreshold(lAlpha);
 
                 // Iterate over all ProteinIDs
                 Iterator iter = iMascotDatfile.getProteinMap().getProteinIDIterator();
@@ -116,6 +130,9 @@ private BufferedWriter writer = null;
                             // 6a.
                             list.add(lAccession);
                             list.add("PEPTIDE");
+                            list.add(lFileName);
+                            list.add(j);
+                            list.add(k);
 
                             // 1.
                             list.add(((Query) iMascotDatfile.getQueryList().get(j)).getFilename());
@@ -154,5 +171,7 @@ private BufferedWriter writer = null;
         writer.newLine();
         writer.flush();
     }
+
+
 
 }

@@ -125,13 +125,15 @@ public class ModificationConversion {
                 logger.debug("Using modificationConversion from disk (/resources/modificationConversion.txt)");
             } else {
                 // Second, if not found - try to find the file in the classpath.
-                InputStreamReader lReader = new InputStreamReader(ClassLoader.getSystemResourceAsStream("modificationConversion.txt"));
+            	InputStream isRessource = ClassLoader.getSystemResourceAsStream("modificationConversion.txt");
+                //InputStreamReader lReader = new InputStreamReader(ClassLoader.getSystemResourceAsStream("modificationConversion.txt"));
 
-                if (lReader == null) {
-                    lReader = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("modificationConversion.txt"));
+                if (isRessource == null) {
+                   // lReader = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("modificationConversion.txt"));
+                	 isRessource = this.getClass().getClassLoader().getResourceAsStream("modificationConversion.txt");
                 }
 
-                lBuf = new BufferedReader(lReader);
+                lBuf = new BufferedReader(new InputStreamReader(isRessource));
             }
 
 
