@@ -28,4 +28,8 @@ $ java -jar mascotdatfile-3.2.11.jar 0.05 /tmp/test_peptidehitparser.txt /tmp/ma
 	Processing /tmp/mascot/results/directory/F004071.dat
 	Successfully parsed 77 PSMs from 56 (1000) Queries above alpha 0.05
 
+F004071.dat;3;51008_1.6.1mox_9087_210.mgf;3+;PAQEVYR;Ace-PAQ<Dam>EVYR-COOH;6.66;1;
+F004071.dat;3;51008_1.6.1mox_9087_210.mgf;3+;PAQEVYR;PAQEVYR-COOH;6.66;2;
+
+
 }}}
