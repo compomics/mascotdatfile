@@ -4,7 +4,7 @@ com.compomics.mascotdatfile.research.script.PeptideHitParser
 
 
 === print usage by running the JAR without parameters ===
-{{{
+<code language="xml">
 
 $ java -jar mascotdatfile-3.2.11.jar
 	SimpleParser arguments:	 <alpha> <output> <input 1> [<input 2> <input 3> ... <input n>]
@@ -17,7 +17,7 @@ $ java -jar mascotdatfile-3.2.11.jar
 	Output structure:
 	<MascotDatfile> <query number> <spectrum title> <charge state> <peptide> <peptide+PTM> <ionscore> <rank>
 
-}}}
+</code>
 
 
 === example usage ===
