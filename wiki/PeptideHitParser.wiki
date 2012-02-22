@@ -40,5 +40,5 @@ $ java -jar mascotdatfile-3.2.11.jar 0.05 /tmp/test_peptidehitparser.txt /tmp/ma
 </code>
 
 
-=== notest===
- * if you want to include -ALL- the peptidehits, then set alpha to '100000000' which will produce a negative confidence threshold. As the IonScore is by definition positive, all PeptideHits will be included. 
+=== notes===
+ * If you want to include -ALL- the peptidehits, then set alpha to '100000000' which will produce a negative confidence threshold. As the IonScore is by definition positive, all PeptideHits will be included. 
