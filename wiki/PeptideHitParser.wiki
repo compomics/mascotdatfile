@@ -21,7 +21,7 @@ $ java -jar mascotdatfile-3.2.11.jar
 
 
 === example usage ===
-<code language="txt">
+<code language="xml">
 
 $ java -jar mascotdatfile-3.2.11.jar 0.05 /tmp/test_peptidehitparser.txt /tmp/mascot/results/directory/F004071.dat
 	Processing /tmp/mascot/results/directory/F004071.dat
