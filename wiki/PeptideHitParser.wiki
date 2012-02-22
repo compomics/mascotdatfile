@@ -1,0 +1,33 @@
+== PeptideHitParser ==
+
+com.compomics.mascotdatfile.research.script.PeptideHitParser
+
+
+=== print usage by running the JAR without parameters ===
+{{{
+
+$ java -jar mascotdatfile-3.2.11.jar
+	SimpleParser arguments:	 <alpha> <output> <input 1> [<input 2> <input 3> ... <input n>]
+		
+	Input Structure:
+	<alpha> 	 alpha=0.05 reports peptide hits above 95% probability threshold
+	<output> 	 output file
+	<input> 	 one or more MascotDatfile input files
+
+	Output structure:
+	<MascotDatfile> <query number> <spectrum title> <charge state> <peptide> <peptide+PTM> <ionscore> <rank>
+
+}}}
+
+
+
+
+{{{
+
+$ java -jar mascotdatfile-3.2.11.jar 0.05 /tmp/test_peptidehitparser.txt /tmp/mascot/results/directory/F004071.dat
+	Processing /tmp/mascot/results/directory/F004071.dat
+	Successfully parsed 77 PSMs from 56 (1000) Queries above alpha 0.05
+
+}}}
+
+
