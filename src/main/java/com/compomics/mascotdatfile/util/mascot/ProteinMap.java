@@ -51,28 +51,30 @@ public class ProteinMap {
         while (iter.hasNext()) {
             String lNext = (String) iter.next();
             if (lNext != null) {
-                // 1. Get the next protein accession.
-                String lAccession = lNext;
-                // 2. Get the corresponding protein values.
-                String lProteinValue = (String) aProteinSection.get(lAccession);
-                // ex. 1030.68,"(*CE*) ACYP1_HUMAN Acylphosphatase, organ-common type isozyme (EC 3.6.1.7) (Acylphosphatephosphohydrolase) (Acylphosphatase, erythrocyte isozyme)."
+                if(!lNext.contains("_tax")) {
+                    // 1. Get the next protein accession.
+                    String lAccession = lNext;
+                    // 2. Get the corresponding protein values.
+                    String lProteinValue = (String) aProteinSection.get(lAccession);
+                    // ex. 1030.68,"(*CE*) ACYP1_HUMAN Acylphosphatase, organ-common type isozyme (EC 3.6.1.7) (Acylphosphatephosphohydrolase) (Acylphosphatase, erythrocyte isozyme)."
 
-                // 3. Strip the " chars from the accession.
-                //int lAccessionStart = lAccession.indexOf("\"") + 1;
-                //int lAccessionStop = lAccession.lastIndexOf("\"");
+                    // 3. Strip the " chars from the accession.
+                    //int lAccessionStart = lAccession.indexOf("\"") + 1;
+                    //int lAccessionStop = lAccession.lastIndexOf("\"");
 
-                // This is modified by Rui Wang to convert special cases
-                Pattern pattern = Pattern.compile("[\"]?([^\"]+)[\"]?");
-                Matcher m = pattern.matcher(lAccession);
-                if (m.find()) {
-                    lAccession = m.group(1);
-                    //lAccession = lAccession.substring((lAccession.indexOf("\"") + 1), (lAccession.lastIndexOf("\"")));
+                    // This is modified by Rui Wang to convert special cases
+                    Pattern pattern = Pattern.compile("[\"]?([^\"]+)[\"]?");
+                    Matcher m = pattern.matcher(lAccession);
+                    if (m.find()) {
+                        lAccession = m.group(1);
+                        //lAccession = lAccession.substring((lAccession.indexOf("\"") + 1), (lAccession.lastIndexOf("\"")));
+                    }
+
+                    double lMass = Double.parseDouble(lProteinValue.substring(0, lProteinValue.indexOf(",", 0)));
+                    String lDescription = lProteinValue.substring((lProteinValue.indexOf("\"") + 1), lProteinValue.length() - 1);
+                    lProteinID = new ProteinID(lAccession, lMass, lDescription);
+                    iProteinMap.put(lAccession, lProteinID);
                 }
-
-                double lMass = Double.parseDouble(lProteinValue.substring(0, lProteinValue.indexOf(",", 0)));
-                String lDescription = lProteinValue.substring((lProteinValue.indexOf("\"") + 1), lProteinValue.length() - 1);
-                lProteinID = new ProteinID(lAccession, lMass, lDescription);
-                iProteinMap.put(lAccession, lProteinID);
             }
         }
     }
