@@ -44,6 +44,7 @@
             <!-- Compiler plugin -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
@@ -56,6 +57,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -97,6 +99,7 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.3</version>
                 <executions>
+                    
                     <execution>
                         <id>copy-resources</id>
                         <phase>compile</phase>
@@ -118,6 +121,7 @@
                             </resources>
                         </configuration>
                     </execution>
+                    
                     <execution>
                         <id>copy-package-license</id>
                         <phase>package</phase>
@@ -137,15 +141,7 @@
                             </resources>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-
-            <!-- Resources plugin -->
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.3</version>
-                <!-- Copy resources into appropriate folder upon packaging -->
-                <executions>
+                    
                     <!-- Copy main resources into test classpath when running the tests -->
                     <execution>
                         <id>copy-test-resources</id>
@@ -202,6 +198,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12</version>
                 <configuration>
                     <forkMode>pertest</forkMode>
                     <!-- This is the parameter that matters: max memory needs to be high! -->
@@ -212,7 +209,7 @@
             </plugin>
 
             <!-- Assembly plugin -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.2-beta-5</version>
@@ -223,17 +220,17 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
+                        <id>make-assembly</id>-->
                         <!-- this is used for inheritance merges -->
-                        <phase>package</phase>
+                        <!--<phase>package</phase>-->
                         <!-- append to the packaging phase. -->
-                        <goals>
-                            <goal>single</goal>
+                        <!--<goals>
+                            <goal>single</goal>-->
                             <!-- goals == mojos -->
-                        </goals>
+                        <!--</goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
 
         </plugins>

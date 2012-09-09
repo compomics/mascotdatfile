@@ -70,7 +70,7 @@ public class ModificationConversion {
     /**
      * Get the singleton instance of the modificationConversion instance.
      *
-     * @return
+     * @return the singleton instance of the modificationConversion instance
      */
     public static ModificationConversion getInstance() {
         if (singleton == null) {

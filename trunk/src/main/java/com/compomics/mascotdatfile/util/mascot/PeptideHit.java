@@ -185,7 +185,8 @@ public class PeptideHit implements Serializable {
 
     /**
      * This is a static method that takes a peptideHit String and returns an PeptideHit object with all the parsed
-     * data.
+     * data. Returns a PeptideHit object that contains all the parsed data of the aPeptideHit String. Can be "null" if no
+     * peptide match found.
      *
      * @param aETSPeptideHitString is a String with the unparsed data of the peptidehit.
      * @param aETSPeptideHitMods   is a String with the Error Tolerant Search modification in case.
@@ -194,8 +195,6 @@ public class PeptideHit implements Serializable {
      *                             Mascot Search.
      * @param aThreshold           contains two doubles - qmatch and qplughole, source for the identity and homology
      *                             threshold.
-     * @return an PeptideHit object that contains all the parsed data of the aPeptideHit String can be "null" if no
-     *         peptide match found
      */
     public PeptideHit(final String aETSPeptideHitString, final String aETSPeptideHitMods, final ProteinMap aProteinMap, final ModificationList aModificationList, final double[] aThreshold) {
         splitPeptideHit(aETSPeptideHitString);

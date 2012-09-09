@@ -1645,14 +1645,14 @@ public class Parameters implements Serializable {
     /**
      * Returns the status of the Distiller project as multi or single file.
      *
-     * @return
+     * @return the status of the Distiller project as multi or single file
      */
     public boolean isDistillerMultiFile() {
         return iDistillerMultiFile;
     }
 
     /**
-     * @return
+     * @return trur if Distiller processing.
      */
     public boolean isDistillerProcessing() {
         return iDistillerProcessing;
@@ -1666,7 +1666,7 @@ public class Parameters implements Serializable {
     /**
      * Returns the different raw filenames within a single Distiller multifile project.
      *
-     * @return
+     * @return the different raw filenames within a single Distiller multifile project
      */
     public String[] getDistillerMultiFileNames() {
         return iDistillerMultiFileNames;
@@ -1683,7 +1683,7 @@ public class Parameters implements Serializable {
 
     /**
      * Returns true if the datfile has been searched by proteome discoverer.
-     * @return
+     * @return true if the datfile has been searched by proteome discoverer
      */
     public boolean isProteomeDiscoverer(){
         return !(iProteomeDiscovererFilePath == null && iProteomeDiscovererFileSize == null && iProteomeDiscovererFileTime == null);
@@ -1691,7 +1691,7 @@ public class Parameters implements Serializable {
 
     /**
      * Returns the Time specified by Proteome Discoverer. Null if absent.
-     * @return
+     * @return the Time specified by Proteome Discoverer. Null if absent
      */
     public String getProteomeDiscovererFileTime() {
         return iProteomeDiscovererFileTime;
@@ -1700,7 +1700,7 @@ public class Parameters implements Serializable {
     /**
      *
      * Returns the File Path specified by Proteome Discoverer. Null if absent.
-     * @return
+     * @return the File Path specified by Proteome Discoverer. Null if absent
      */
     public String getProteomeDiscovererFilePath() {
         return iProteomeDiscovererFilePath;
@@ -1709,7 +1709,7 @@ public class Parameters implements Serializable {
     /**
      *
      * Returns the File size specified by Proteome Discoverer. Null if absent.
-     * @return
+     * @return the File size specified by Proteome Discoverer. Null if absent
      */
     public String getProteomeDiscovererFileSize() {
         return iProteomeDiscovererFileSize;
