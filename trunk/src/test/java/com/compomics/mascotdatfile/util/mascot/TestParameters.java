@@ -23,10 +23,10 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 /**
@@ -39,7 +39,7 @@ import java.util.HashMap;
 /**
  * This class implements the test scenario for the Parameters Class.
  */
-public class TestParameters extends TestCaseLM {
+public class TestParameters extends TestCase {
     // Class specific log4j logger for TestParameters instances.
     private static Logger logger = Logger.getLogger(TestParameters.class);
 
@@ -52,7 +52,7 @@ public class TestParameters extends TestCaseLM {
      */
     public void testReadParameters() {
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         //2. Get the the Parameter object to run the tests on.
         Parameters lParameters = lMascotDatfile.getParametersSection();
         //3.Test ALL instance variables.
@@ -138,7 +138,7 @@ public class TestParameters extends TestCaseLM {
      */
     public void testReadDistillerParameters() {
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F000002.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F000002.dat"));
         //2. Get the the Parameter object to run the tests on.
         Parameters lParameters = lMascotDatfile.getParametersSection();
         //3.Test ALL instance variables.

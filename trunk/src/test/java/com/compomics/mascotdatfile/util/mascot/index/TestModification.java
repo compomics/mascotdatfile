@@ -24,15 +24,15 @@
 package com.compomics.mascotdatfile.util.mascot.index;
 
 import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.FixedModification;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
 import com.compomics.mascotdatfile.util.mascot.ModificationList;
 import com.compomics.mascotdatfile.util.mascot.VariableModification;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.Vector;
 /**
@@ -45,7 +45,7 @@ import java.util.Vector;
 /**
  * This class implements the test scenario for the class.
  */
-public class TestModification extends TestCaseLM {
+public class TestModification extends TestCase {
     // Class specific log4j logger for TestModification instances.
     private static Logger logger = Logger.getLogger(TestModification.class);
 
@@ -58,7 +58,7 @@ public class TestModification extends TestCaseLM {
      */
     public void testReadFixedModification() {
         // 1. Create a MascotDatfile instance.
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F009911.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F009911.dat"));
         // 2. Get the ModificationList Instance.
         ModificationList lModificationList = lMascotDatfile.getModificationList();
 
@@ -101,7 +101,7 @@ public class TestModification extends TestCaseLM {
     public void testReadVariableModification() {
 
         // 1. Create a MascotDatfile instance.
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F009911.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F009911.dat"));
         // 2. Get the ModificationList Instance.
         ModificationList lModificationList = lMascotDatfile.getModificationList();
 
@@ -178,14 +178,14 @@ public class TestModification extends TestCaseLM {
 
     public void testModificationInterface() {
         // 1. Create a MascotDatfile instance.
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F009911.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F009911.dat"));
         // 2. Get the ModificationList Instance.
         ModificationList lModificationList = lMascotDatfile.getModificationList();
     }
 
     public void testReadFixedModificationFromParameters() {
         // 1. Create a MascotDatfile instance.
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F001326.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F001326.dat"));
         // 2. Get the ModificationList Instance.
         ModificationList lModificationList = lMascotDatfile.getModificationList();
         Vector lFixedModificationsVec = lModificationList.getFixedModifications();

@@ -23,10 +23,10 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.Vector;
 /**
@@ -39,7 +39,7 @@ import java.util.Vector;
 /**
  * This class implements the test scenario for the PeptideToQueryMap class.
  */
-public class TestPeptideToQueryMap extends TestCaseLM {
+public class TestPeptideToQueryMap extends TestCase {
     // Class specific log4j logger for TestPeptideToQueryMap instances.
     private static Logger logger = Logger.getLogger(TestPeptideToQueryMap.class);
 
@@ -49,7 +49,7 @@ public class TestPeptideToQueryMap extends TestCaseLM {
     }
 
     public void testReadQuery() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideToQueryMap lPeptideToQueryMap = lMascotDatfile.getPeptideToQueryMap();
         PeptideHit lPeptideHit = lQueryToPeptideMap.getPeptideHitOfOneQuery(555, 1);
@@ -62,7 +62,7 @@ public class TestPeptideToQueryMap extends TestCaseLM {
 
     public void testLastQuery() {
         //These tests are grouped together because they all load the same datfile.
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F004071.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F004071.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideToQueryMap lPeptideToQueryMap = lMascotDatfile.getPeptideToQueryMap();
         PeptideHit lPeptideHit = null;

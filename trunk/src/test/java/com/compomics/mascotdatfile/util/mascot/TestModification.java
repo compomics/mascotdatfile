@@ -24,10 +24,10 @@
 package com.compomics.mascotdatfile.util.mascot;
 
 import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
-import org.apache.log4j.Logger;
-
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.Vector;
 /**
@@ -40,7 +40,7 @@ import java.util.Vector;
 /**
  * This class implements the test scenario for the class.
  */
-public class TestModification extends TestCaseLM {
+public class TestModification extends TestCase {
     // Class specific log4j logger for TestModification instances.
     private static Logger logger = Logger.getLogger(TestModification.class);
 
@@ -53,7 +53,7 @@ public class TestModification extends TestCaseLM {
      */
     public void testReadFixedModification() {
         // 1. Create a MascotDatfile instance.
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         // 2. Get the ModificationList Instance.
         ModificationList lModificationList = lMascotDatfile.getModificationList();
 
@@ -96,7 +96,7 @@ public class TestModification extends TestCaseLM {
     public void testReadVariableModification() {
 
         // 1. Create a MascotDatfile instance.
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         // 2. Get the ModificationList Instance.
         ModificationList lModificationList = lMascotDatfile.getModificationList();
 
@@ -169,12 +169,12 @@ public class TestModification extends TestCaseLM {
         Assert.assertFalse(lVariableModificationsVec.get(0).equals(lVariableModificationsVec.get(1)));
 
 
-        lMascotDatfile = new MascotDatfile(getFullFilePath("F009154.dat"));
+        lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009154.dat"));
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(422);
         Assert.assertEquals(1, lPeptideHit.getVariableModificationsArray()[8]);
 
         // Test character-ids for variable modifications. (9th variable modification has id 'A')
-        lMascotDatfile = new MascotDatfile(getFullFilePath("F046001.dat"));
+        lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F046001.dat"));
         lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(1);
         Assert.assertEquals(10, lPeptideHit.getVariableModificationsArray()[3]);
 
@@ -182,14 +182,14 @@ public class TestModification extends TestCaseLM {
 
     public void testModificationInterface() {
         // 1. Create a MascotDatfile instance.
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         // 2. Get the ModificationList Instance.
         ModificationList lModificationList = lMascotDatfile.getModificationList();
     }
 
     public void testReadFixedModificationFromParameters() {
         // 1. Create a MascotDatfile instance.
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F001326.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F001326.dat"));
         // 2. Get the ModificationList Instance.
         ModificationList lModificationList = lMascotDatfile.getModificationList();
         Vector lFixedModificationsVec = lModificationList.getFixedModifications();

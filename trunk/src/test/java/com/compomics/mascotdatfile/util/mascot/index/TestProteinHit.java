@@ -1,13 +1,13 @@
 package com.compomics.mascotdatfile.util.mascot.index;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.ProteinHit;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,14 +19,14 @@ import junit.framework.Assert;
 /**
  * TestClass description: ------------------ This TestClass was developed to test
  */
-public class TestProteinHit extends TestCaseLM {
+public class TestProteinHit extends TestCase {
     // Class specific log4j logger for TestProteinHit instances.
     private static Logger logger = Logger.getLogger(TestProteinHit.class);
     ProteinHit iProteinHit;
 
     public TestProteinHit() {
         super("Testscenario TestProteinHit. ");
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F009911.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F009911.dat"));
         // Get a PeptideHit.
         // ew: q448_p1=0,1816.101181,-0.006109,5,FLKQLLQLKFEDR,10,100030000000000,21.37,00000020000000000,0,0;"Q8IYJ2 (120-132)":0:1:13:1
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(448);

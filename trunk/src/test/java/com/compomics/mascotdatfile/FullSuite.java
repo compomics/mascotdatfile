@@ -24,30 +24,14 @@
 package com.compomics.mascotdatfile;
 
 import com.compomics.mascotdatfile.util.mascot.*;
-import com.compomics.mascotdatfile.util.mascot.TestHeader;
-import com.compomics.mascotdatfile.util.mascot.TestMascotDatfile;
-import com.compomics.mascotdatfile.util.mascot.TestMasses;
-import com.compomics.mascotdatfile.util.mascot.TestModification;
-import com.compomics.mascotdatfile.util.mascot.TestModificationConversion;
-import com.compomics.mascotdatfile.util.mascot.TestParameters;
-import com.compomics.mascotdatfile.util.mascot.TestPeptideHit;
-import com.compomics.mascotdatfile.util.mascot.TestPeptideHitAnnotation;
-import com.compomics.mascotdatfile.util.mascot.TestPeptideToQueryMap;
-import com.compomics.mascotdatfile.util.mascot.TestProteinHit;
-import com.compomics.mascotdatfile.util.mascot.TestProteinID;
-import com.compomics.mascotdatfile.util.mascot.TestProteinMap;
-import com.compomics.mascotdatfile.util.mascot.TestQuantitation;
-import com.compomics.mascotdatfile.util.mascot.TestQuery;
-import com.compomics.mascotdatfile.util.mascot.TestQueryToPeptideMap;
-import com.compomics.mascotdatfile.util.mascot.TestThreshold;
-import com.compomics.mascotdatfile.util.mascot.index.*;
+import com.compomics.mascotdatfile.util.mascot.index.TestController;
+import com.compomics.mascotdatfile.util.mascot.index.TestDecoyPeptideToQueryMap;
+import com.compomics.mascotdatfile.util.mascot.index.TestPortability;
 import com.compomics.mascotdatfile.util.mascot.parser.TestMascotRawParser;
-import com.compomics.mascotdatfile.util.mascot.quantitation.Component;
-import org.apache.log4j.Logger;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.apache.log4j.Logger;
 
 /**
  * Created by IntelliJ IDEA. User: Kenny Date: 24-feb-2006 Time: 15:03:49 This Suite tests all the components of the

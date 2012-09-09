@@ -23,11 +23,11 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 /**
@@ -40,7 +40,7 @@ import java.util.ArrayList;
 /**
  * This class implements the test scenario for the PeptideHit Class.
  */
-public class TestPeptideHit extends TestCaseLM {
+public class TestPeptideHit extends TestCase {
     // Class specific log4j logger for TestPeptideHit instances.
     private static Logger logger = Logger.getLogger(TestPeptideHit.class);
 
@@ -56,7 +56,7 @@ public class TestPeptideHit extends TestCaseLM {
 
     public void testReadPeptideHit() {
 
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
 
         //F009911  q447_p3
@@ -87,7 +87,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     public void testReadProteinHit() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
 
         //F009911  q447_p3
@@ -101,7 +101,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     public void testProteinHitFromPeptideCentricDatabase() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F001326.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F001326.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideHit lPeptideHit = lQueryToPeptideMap.getPeptideHitOfOneQuery(447, 3);
         ProteinHit lProteinHit = (ProteinHit) lPeptideHit.getProteinHits().get(0);
@@ -113,7 +113,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     public void testReadMultipleProteinHits() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F004071.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F004071.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
 
         //F004071  q917_p10
@@ -130,7 +130,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     public void testModification() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
 
         //F009911  q447_p5
@@ -167,7 +167,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     public void testModifiedSequenceA() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
 
         //F009911  q447_p5
@@ -183,7 +183,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     public void testModifiedSequenceB() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
 
 
@@ -207,7 +207,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     public void testModifiedSequenceC() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F004071.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F004071.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideHit lPeptideHit = lQueryToPeptideMap.getPeptideHitOfOneQuery(319, 9);
         Assert.assertEquals("AKWHLGIR", lPeptideHit.getSequence());
@@ -222,7 +222,7 @@ public class TestPeptideHit extends TestCaseLM {
     // This is from an old datfile from the platelets projects. The fixed mods are read from the parameters this time!!
 
     public void testModifiedSequenceD() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F001326.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F001326.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideHit lPeptideHit = lQueryToPeptideMap.getPeptideHitOfOneQuery(497, 8);
         Assert.assertEquals("KDCGQDRR", lPeptideHit.getSequence());
@@ -231,7 +231,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     public void testThreshold() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F001326.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F001326.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideHit lPeptideHit = lQueryToPeptideMap.getPeptideHitOfOneQuery(497, 8);
         Assert.assertEquals(41.2067, lPeptideHit.calculateIdentityThreshold(), 0.01);
@@ -241,7 +241,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     public void testGetModifiedSequenceComponents() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideHit lPeptideHit = lQueryToPeptideMap.getPeptideHitOfOneQuery(256, 3);
         String[] lModifiedSequenceComponents = lPeptideHit.getModifiedSequenceComponents();
@@ -256,7 +256,7 @@ public class TestPeptideHit extends TestCaseLM {
     }
 
     public void testErrorTolerantSearchPeptideHit() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F028476.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F028476.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideHit lPeptideHit = lQueryToPeptideMap.getPeptideHitOfOneQuery(23, 1);
         Assert.assertEquals("TITLEVEPSDTIENVK", lPeptideHit.getSequence());

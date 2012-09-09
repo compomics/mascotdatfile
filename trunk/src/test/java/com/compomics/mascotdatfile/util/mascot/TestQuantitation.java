@@ -1,15 +1,15 @@
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
 import com.compomics.mascotdatfile.util.mascot.enumeration.Mass;
 import com.compomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
 import com.compomics.mascotdatfile.util.mascot.quantitation.Component;
 import com.compomics.mascotdatfile.util.mascot.quantitation.Ratio;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by IntelliJ IDEA. User: kenny Date: Mar 16, 2009 Time: 3:59:08 PM To change this template use File | Settings
  * | File Templates.
  */
-public class TestQuantitation extends TestCaseLM {
+public class TestQuantitation extends TestCase {
     // Class specific log4j logger for TestQuantitation instances.
     private static Logger logger = Logger.getLogger(TestQuantitation.class);
 
@@ -30,7 +30,7 @@ public class TestQuantitation extends TestCaseLM {
      */
     public void testReadMasses() {
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfileInf lMascotDatfile = MascotDatfileFactory.create(getFullFilePath("F000001.dat"), MascotDatfileType.MEMORY);
+        MascotDatfileInf lMascotDatfile = MascotDatfileFactory.create(TestCaseLM.getFullFilePath("F000001.dat"), MascotDatfileType.MEMORY);
         Quantitation lQuantitation = lMascotDatfile.getQuantitation();
         Ratio[] lRatios = lQuantitation.getRatios();
         Component[] lComponents = lQuantitation.getComponents();

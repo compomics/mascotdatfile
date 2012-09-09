@@ -5,7 +5,7 @@
     <groupId>com.compomics</groupId>
     <artifactId>mascotdatfile</artifactId>
     <packaging>jar</packaging>
-    <version>3.3</version>
+    <version>3.4</version>
     <name>mascotdatfile</name>
     <url>http://mascotdatfile.googlecode.com</url>
 
@@ -30,6 +30,14 @@
             </resource>
         </resources>
 
+        <!-- Extensions -->
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-ssh</artifactId>
+                <version>1.0-beta-2</version>
+            </extension>
+        </extensions>
 
         <!-- Plugins -->
         <plugins>
@@ -233,14 +241,6 @@
 
     <!-- Repositores -->
     <repositories>
-        <!-- UGent Genesis Maven 1 repository -->
-        <repository>
-            <id>genesis-maven-repository</id>
-            <name>Genesis maven repository</name>
-            <url>http://genesis.UGent.be/maven</url>
-            <layout>legacy</layout>
-        </repository>
-
         <!-- UGent Genesis Maven 2 repository -->
         <repository>
             <id>genesis-maven2-repository</id>
@@ -249,6 +249,17 @@
             <layout>default</layout>
         </repository>
 
+        <!-- EBI repository -->
+       <repository>
+           <id>ebi-repo</id>
+           <name>The EBI Maven2 repository</name>
+           <url>http://www.ebi.ac.uk/~maven/m2repo</url>
+           <releases>
+           </releases>
+           <snapshots>
+               <enabled>false</enabled>
+           </snapshots>
+       </repository>
     </repositories>
 
 
@@ -260,15 +271,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
-        </dependency>
-        <!-- This project depends on the JAR file "lmjunit-1.0.2.jar" (TestCaseLM)
-           the remote repository root of which is 'http://genesis.UGent.be/maven'.
-        -->
-        <dependency>
-            <groupId>lennart</groupId>
-            <artifactId>lmjunit</artifactId>
-            <version>1.0.2</version>
-            <type>jar</type>
+            <scope>test</scope>
         </dependency>
 
         <!-- This project depends on the utilities JAR file.
@@ -276,7 +279,7 @@
         <dependency>
             <groupId>com.compomics</groupId>
             <artifactId>utilities</artifactId>
-            <version>3.0.7</version>
+            <version>3.8.7</version>
             <type>jar</type>
         </dependency>
 
@@ -311,19 +314,9 @@
         <!-- This project depends on the xxindex JAR file.
         -->
         <dependency>
-            <groupId>lennart</groupId>
-            <artifactId>cpdetector</artifactId>
-            <version>1.0.4</version>
-            <type>jar</type>
-        </dependency>
-
-        <!-- This project depends on the xxindex JAR file.
-        -->
-        <dependency>
-            <groupId>lennart</groupId>
+            <groupId>psidev.psi.tools</groupId>
             <artifactId>xxindex</artifactId>
-            <version>0.5</version>
-            <type>jar</type>
+            <version>0.11</version>
         </dependency>
     </dependencies>
 

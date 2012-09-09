@@ -1,22 +1,22 @@
 package com.compomics.mascotdatfile.util.mascot.index;
 
-import org.apache.log4j.Logger;
-
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 /**
  * Created by IntelliJ IDEA. User: Kenny Date: 4-jul-2008 Time: 12:01:42 To change this template use File | Settings |
  * File Templates.
  */
-public class TestController extends TestCaseLM {
+public class TestController extends TestCase {
     // Class specific log4j logger for TestController instances.
     private static Logger logger = Logger.getLogger(TestController.class);
     Controller iController;
 
     public TestController() {
         super("Testscenario for Controller class.");
-        iController = new Controller(getFullFilePath("F009911.dat"));
+        iController = new Controller(TestCaseLM.getFullFilePath("F009911.dat"));
     }
 
     public void testReadPeptideLineIndex() {

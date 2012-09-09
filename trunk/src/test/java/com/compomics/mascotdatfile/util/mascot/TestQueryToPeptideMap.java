@@ -23,17 +23,17 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.Vector;
 
 /**
  * * This class implements the test scenario for the PeptideHit Class.
  */
-public class TestQueryToPeptideMap extends TestCaseLM {
+public class TestQueryToPeptideMap extends TestCase {
     // Class specific log4j logger for TestQueryToPeptideMap instances.
     private static Logger logger = Logger.getLogger(TestQueryToPeptideMap.class);
 
@@ -42,7 +42,7 @@ public class TestQueryToPeptideMap extends TestCaseLM {
     }
 
     public void testReadQuery() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap Query2P = lMDF.getQueryToPeptideMap();
         PeptideHit ph = Query2P.getPeptideHitOfOneQuery(1, 1);
         Assert.assertNull(ph);
@@ -51,7 +51,7 @@ public class TestQueryToPeptideMap extends TestCaseLM {
     }
 
     public void testReadVectorWithPeptideHits() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap Query2P = lMDF.getQueryToPeptideMap();
         Vector vph = Query2P.getAllPeptideHits(1);
         Assert.assertNull(vph);
@@ -61,7 +61,7 @@ public class TestQueryToPeptideMap extends TestCaseLM {
     }
 
     public void testGetPeptideHitsAboveIdentityThreshold() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap Query2P = lMDF.getQueryToPeptideMap();
         Vector lBestPeptideHitsOfOneQuery = Query2P.getPeptideHitsAboveIdentityThreshold(555);
         Assert.assertEquals(0, lBestPeptideHitsOfOneQuery.size());
@@ -74,7 +74,7 @@ public class TestQueryToPeptideMap extends TestCaseLM {
         Assert.assertEquals("MMGHRPVLVLSQNTKR", ph.getSequence());
 
 
-        lMDF = new MascotDatfile(getFullFilePath("F010983.dat"));
+        lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         Query2P = lMDF.getQueryToPeptideMap();
         lBestPeptideHitsOfOneQuery = Query2P.getPeptideHitsAboveIdentityThreshold(174);
         ph = (PeptideHit) lBestPeptideHitsOfOneQuery.get(0);
@@ -88,7 +88,7 @@ public class TestQueryToPeptideMap extends TestCaseLM {
     }
 
     public void testGetIdentifiedQueries() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap Query2P = lMDF.getQueryToPeptideMap();
         Vector lIdentifiedQueries = Query2P.getIdentifiedQueries(0.05, lMDF.getQueryList());
         Assert.assertEquals(45, lIdentifiedQueries.size());
@@ -97,7 +97,7 @@ public class TestQueryToPeptideMap extends TestCaseLM {
     }
 
     public void testReadDatfileWithoutPeptidehits() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F244227.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F244227.dat"));
         QueryToPeptideMap Query2P = lMDF.getQueryToPeptideMap();
         Assert.assertEquals(5, Query2P.getNumberOfQueries());
         Assert.assertTrue(Query2P.getPeptideMap().isEmpty());

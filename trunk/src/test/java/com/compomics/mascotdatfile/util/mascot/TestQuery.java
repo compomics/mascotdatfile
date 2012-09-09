@@ -23,10 +23,10 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.Vector;
 
@@ -40,7 +40,7 @@ import java.util.Vector;
 /**
  * * This class implements the test scenario for the PeptideHit Class.
  */
-public class TestQuery extends TestCaseLM {
+public class TestQuery extends TestCase {
     // Class specific log4j logger for TestQuery instances.
     private static Logger logger = Logger.getLogger(TestQuery.class);
 
@@ -49,7 +49,7 @@ public class TestQuery extends TestCaseLM {
     }
 
     public void testReadQuery() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         Vector lQueryList = lMDF.getQueryList();
         Assert.assertEquals("Query has wrong size." + lQueryList.size() + " instead of 1000.", 1000, lQueryList.size());
         //get query 55
@@ -69,14 +69,14 @@ public class TestQuery extends TestCaseLM {
     }
 
     public void testReadQueryWithoutCharge() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F001343.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F001343.dat"));
         Vector lQueryList = lMDF.getQueryList();
         Query q = (Query) lQueryList.get(55);
         Assert.assertEquals("1+", q.getChargeString());
     }
 
     public void testQueryWithoutPeaks() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F001343.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F001343.dat"));
         Vector lQueryList = lMDF.getQueryList();
         Query q = (Query) lQueryList.get(766);
         Assert.assertNotNull(q);
@@ -94,7 +94,7 @@ public class TestQuery extends TestCaseLM {
     }
 
     public void testGetNumberOfBins() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         Vector lQueryList = lMDF.getQueryList();
         //get query 1000
         Query q = (Query) lQueryList.get(1000 - 1);
@@ -106,7 +106,7 @@ public class TestQuery extends TestCaseLM {
     //Datfile F001343.dat was modified for testing purposes. Query 894 has no title whereas Query 895 has no peaklist.
 
     public void testNoTitleOrNoPeaks() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F001343.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F001343.dat"));
         Vector lQueryList = lMDF.getQueryList();
         //get query 894 wich has no title.
         Query q = (Query) lQueryList.get(894 - 1);
@@ -133,7 +133,7 @@ public class TestQuery extends TestCaseLM {
     //Datfile F001343.dat was modified for testing purposes. Query 894 has no title whereas Query 895 has no peaklist.
 
     public void testDistillerMultiFileTitleParsing() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F000002.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F000002.dat"));
         Query.setDistillerFilenameProcessing(true);
         Vector lQueryList = lMDF.getQueryList();
         Query q = (Query) lQueryList.get(0);
@@ -143,7 +143,7 @@ public class TestQuery extends TestCaseLM {
     //Datfile F001343.dat was modified for testing purposes. Query 894 has no title whereas Query 895 has no peaklist.
 
     public void testDistillerSingleFileTitleParsing() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F000003.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F000003.dat"));
         Query.setDistillerFilenameProcessing(true);
         Vector lQueryList = lMDF.getQueryList();
         Query q = (Query) lQueryList.get(0);
@@ -153,12 +153,12 @@ public class TestQuery extends TestCaseLM {
     }
 
     public void testRetentionTimeInSeconds() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F000003.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F000003.dat"));
         Vector lQueryList = lMDF.getQueryList();
         Query q = (Query) lQueryList.get(1);
         Assert.assertEquals("1407.2138", q.getRetentionTimeInSeconds());
 
-        lMDF = new MascotDatfile(getFullFilePath("F010983.dat"));
+        lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         lQueryList = lMDF.getQueryList();
         q = (Query) lQueryList.get(1);
         Assert.assertNull(q.getRetentionTimeInSeconds());

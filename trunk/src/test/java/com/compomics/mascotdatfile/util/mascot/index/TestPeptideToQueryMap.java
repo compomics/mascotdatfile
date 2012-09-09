@@ -23,16 +23,16 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.PeptideToQueryMap;
 import com.compomics.mascotdatfile.util.mascot.Query;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.Vector;
 /**
@@ -45,7 +45,7 @@ import java.util.Vector;
 /**
  * This class implements the test scenario for the PeptideToQueryMap class.
  */
-public class TestPeptideToQueryMap extends TestCaseLM {
+public class TestPeptideToQueryMap extends TestCase {
     // Class specific log4j logger for TestPeptideToQueryMap instances.
     private static Logger logger = Logger.getLogger(TestPeptideToQueryMap.class);
 
@@ -55,7 +55,7 @@ public class TestPeptideToQueryMap extends TestCaseLM {
     }
 
     public void testReadQuery() {
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F010062.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMapInf lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideToQueryMap lPeptideToQueryMap = lMascotDatfile.getPeptideToQueryMap();
         PeptideHit lPeptideHit = lQueryToPeptideMap.getPeptideHitOfOneQuery(555, 1);
@@ -68,7 +68,7 @@ public class TestPeptideToQueryMap extends TestCaseLM {
 
     public void testLastQuery() {
         //These tests are grouped together because they all load the same datfile.
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F004071.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F004071.dat"));
         QueryToPeptideMapInf lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideToQueryMap lPeptideToQueryMap = lMascotDatfile.getPeptideToQueryMap();
         PeptideHit lPeptideHit = null;

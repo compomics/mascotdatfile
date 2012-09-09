@@ -23,13 +23,13 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
 import com.compomics.mascotdatfile.util.mascot.Masses;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 /**
  * Created by IntelliJ IDEA.
  * User: Kenny
@@ -40,7 +40,7 @@ import junit.framework.Assert;
 /**
  * This class implements the test scenario for the Masses class.
  */
-public class TestMasses extends TestCaseLM {
+public class TestMasses extends TestCase {
     // Class specific log4j logger for TestMasses instances.
     private static Logger logger = Logger.getLogger(TestMasses.class);
 
@@ -53,7 +53,7 @@ public class TestMasses extends TestCaseLM {
      */
     public void testReadMasses() {
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F009911.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F009911.dat"));
 
 
         //2. Get the the masses object to run the tests on.
@@ -101,7 +101,7 @@ public class TestMasses extends TestCaseLM {
      */
     public void testReadModifications() {
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F010062.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F010062.dat"));
         //2. Get the the masses object to run the tests on.
         Masses m = lMascotDatfile.getMasses();
         //3.Test the modification Strings.

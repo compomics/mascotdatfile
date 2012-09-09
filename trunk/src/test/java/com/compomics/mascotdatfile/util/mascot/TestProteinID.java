@@ -1,9 +1,9 @@
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,7 +15,7 @@ import junit.framework.Assert;
 /**
  * TestClass description: ------------------ This TestClass was developed to test
  */
-public class TestProteinID extends TestCaseLM {
+public class TestProteinID extends TestCase {
     // Class specific log4j logger for TestProteinID instances.
     private static Logger logger = Logger.getLogger(TestProteinID.class);
     ProteinID iProteinID;
@@ -65,7 +65,7 @@ public class TestProteinID extends TestCaseLM {
     }
 
     public void testGetQueryAndPeptideHitsFromMascotDatfile() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         // Get a PeptideHit.
         // ew: q448_p1=0,1816.101181,-0.006109,5,FLKQLLQLKFEDR,10,100030000000000,21.37,00000020000000000,0,0;"Q8IYJ2 (120-132)":0:1:13:1
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(614, 1);
