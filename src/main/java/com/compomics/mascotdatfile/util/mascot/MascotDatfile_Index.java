@@ -289,7 +289,7 @@ public class MascotDatfile_Index implements MascotDatfileInf {
 
     /**
      * @return Vector with the corresponding Query instances. Query n is located at <Vector>.get(n-1)
-     * @Deprecated This method is depracated as it uses a lot of memory. It is better advised the getNumberOfQueries
+     * @deprecated This method is depracated as it uses a lot of memory. It is better advised the getNumberOfQueries
      * method and retrieve the queries one by one with the getQuery() method.
      * <p/>
      * This method parses all the datfile Query sections into a Vector with Query instances containing all the original

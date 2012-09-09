@@ -97,9 +97,7 @@ public class FixedModification implements Modification, Serializable {
      * @param aType           standard name by mascot
      * @param aLocation       location
      * @param aModificationID modification integer ID like it used in a PeptideHit ModificationSequence String.
-     * @param aType
      * @param aShortType
-     * @param aLocation
      */
     public FixedModification(String aType, String aShortType, String aLocation, int aModificationID) {
         iType = aType;

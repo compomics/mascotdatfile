@@ -291,7 +291,7 @@ public class XmlElementExtension {
     /**
      * This getter gives the Keys of the Attribues
      *
-     * @return
+     * @return the Keys of the Attribues
      */
     public HashMap getAttributes() {
         return iAttributes;

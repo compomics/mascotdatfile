@@ -54,7 +54,7 @@ public class IndexElementExtension {
     /**
      * Getter for the XmlElementExtensions linked to the accessor and IndexElement
      *
-     * @return
+     * @return the XmlElementExtensions linked to the accessor and IndexElement
      * @throws java.io.IOException
      */
     public Vector<XmlElementExtension> getExtendedXmlElement() throws IOException {
