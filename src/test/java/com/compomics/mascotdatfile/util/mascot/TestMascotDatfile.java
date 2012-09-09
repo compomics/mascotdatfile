@@ -23,17 +23,17 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 
 /**
  * Created by IntelliJ IDEA. User: kenny Date: 12-okt-2006 Time: 14:11:46
  */
-public class TestMascotDatfile extends TestCaseLM {
+public class TestMascotDatfile extends TestCase {
     // Class specific log4j logger for TestMascotDatfile instances.
     private static Logger logger = Logger.getLogger(TestMascotDatfile.class);
 
@@ -53,7 +53,7 @@ public class TestMascotDatfile extends TestCaseLM {
 
     public void testSpectrumfilenameToQuerynumberMap() {
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         //2. Get the the masses object to run the tests on.
         HashMap m = lMascotDatfile.getSpectrumFilenameToQuerynumberMap();
         //3.Test some QueryNumbers.
@@ -66,7 +66,7 @@ public class TestMascotDatfile extends TestCaseLM {
     public void testGetProteinDescriptionbyAccessionNumber() {
 
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
 
         //2. Test protein discription.
         String lAccession = "O14770 (450-477)";
@@ -80,7 +80,7 @@ public class TestMascotDatfile extends TestCaseLM {
 
     public void testGetFileName() {
         String lFilename = "F009911.dat";
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath(lFilename));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath(lFilename));
         Assert.assertEquals(lFilename, lMascotDatfile.getFileName());
     }
 }

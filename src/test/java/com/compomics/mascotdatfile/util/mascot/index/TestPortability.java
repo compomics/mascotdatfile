@@ -2,7 +2,8 @@ package com.compomics.mascotdatfile.util.mascot.index;
 
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
+import junit.framework.TestCase;
 import org.apache.log4j.Logger;
 
 /**
@@ -11,14 +12,14 @@ import org.apache.log4j.Logger;
  * Date: 11/10/11
  * Time: 14:00
  */
-public class TestPortability extends TestCaseLM {
+public class TestPortability extends TestCase {
   private static Logger logger = Logger.getLogger(TestMascotDatfile.class);
     public TestPortability(String aName) {
         super(aName);
     }
   public void testLinuxheadLinuxbody()
     {
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F028476-linheadlinbody.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F028476-linheadlinbody.dat"));
         lMascotDatfile.getParametersSection();
         lMascotDatfile.getModificationList();
         lMascotDatfile.getMasses();
@@ -26,7 +27,7 @@ public class TestPortability extends TestCaseLM {
     }
     public void testWindowsheadLinuxbody()
     {
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F028476-winheadlinbody.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F028476-winheadlinbody.dat"));
         lMascotDatfile.getParametersSection();
         lMascotDatfile.getModificationList();
         lMascotDatfile.getMasses();
@@ -34,7 +35,7 @@ public class TestPortability extends TestCaseLM {
     }
       public void testMixedheadLinuxbody()
     {
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F028476-mixedheadlinbody.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F028476-mixedheadlinbody.dat"));
         lMascotDatfile.getParametersSection();
         lMascotDatfile.getModificationList();
         lMascotDatfile.getMasses();
@@ -42,7 +43,7 @@ public class TestPortability extends TestCaseLM {
     }
       public void testLinuxheadWindowsbody()
     {
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F028476-linheadwinbody.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F028476-linheadwinbody.dat"));
         lMascotDatfile.getParametersSection();
         lMascotDatfile.getModificationList();
         lMascotDatfile.getMasses();
@@ -50,7 +51,7 @@ public class TestPortability extends TestCaseLM {
     }
           public void testWindowsheadWindowsbody()
     {
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F028476-winheadwinbody.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F028476-winheadwinbody.dat"));
         lMascotDatfile.getParametersSection();
         lMascotDatfile.getModificationList();
         lMascotDatfile.getMasses();
@@ -58,7 +59,7 @@ public class TestPortability extends TestCaseLM {
     }
           public void testMixedheadWindowsbody()
     {
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F028476-mixedheadwinbody.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F028476-mixedheadwinbody.dat"));
         lMascotDatfile.getParametersSection();
         lMascotDatfile.getModificationList();
         lMascotDatfile.getMasses();

@@ -1,13 +1,13 @@
 package com.compomics.mascotdatfile.util.mascot.index;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
 import com.compomics.mascotdatfile.util.mascot.ProteinID;
 import com.compomics.mascotdatfile.util.mascot.ProteinMap;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,7 +19,7 @@ import junit.framework.Assert;
 /**
  * TestClass description: ------------------ This TestClass was developed to test the ProteinMap.
  */
-public class TestProteinMap extends TestCaseLM {
+public class TestProteinMap extends TestCase {
     // Class specific log4j logger for TestProteinMap instances.
     private static Logger logger = Logger.getLogger(TestProteinMap.class);
     ProteinMap iProteinMap = null;
@@ -30,7 +30,7 @@ public class TestProteinMap extends TestCaseLM {
      */
     public TestProteinMap() {
         super("Testscenario TestProteinMap. ");
-        MascotDatfileInf iMascotDatfile = new MascotDatfile_Index(getFullFilePath("F009911.dat"));
+        MascotDatfileInf iMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F009911.dat"));
         iProteinMap = iMascotDatfile.getProteinMap();
     }
 

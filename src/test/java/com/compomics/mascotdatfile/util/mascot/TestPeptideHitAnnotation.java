@@ -23,11 +23,11 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.FragmentIon;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.Vector;
 /**
@@ -40,7 +40,7 @@ import java.util.Vector;
 /**
  * This class implements the test scenario for the class.
  */
-public class TestPeptideHitAnnotation extends TestCaseLM {
+public class TestPeptideHitAnnotation extends TestCase {
     // Class specific log4j logger for TestPeptideHitAnnotation instances.
     private static Logger logger = Logger.getLogger(TestPeptideHitAnnotation.class);
 
@@ -49,7 +49,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     public void testIonSeries() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         // Request PeptideHit @Query 224, sequence: VAIKR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(223, 1);
         // There must be 4 b- and 4 y-ions!
@@ -63,7 +63,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
      * This method will test the B and Y ion genereation in the constructor.
      */
     public void testBYIons() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //QQMENYPK
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(263, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -102,7 +102,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
      * carry a fixed Cterminal modification.
      */
     public void testBYIons2() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F016486.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F016486.dat"));
         //PGVTVKDVNQQEFVR-O18*
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(158, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -142,7 +142,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
      * carry a fixed Cterminal modification.
      */
     public void testBYIons3() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F016528.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F016528.dat"));
         //Ace*-PGVTVKDVNQQEFVR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(961, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -185,7 +185,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
      * This method tests the calculation of the ions minus NH3.
      */
     public void testCZIons() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //QQMENYPK
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(263, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -232,7 +232,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
      * This method tests the calculation of the ions minus NH3.
      */
     public void testCZIons2() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F024982.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F024982.dat"));
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(1916, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
         //get Cions.
@@ -255,7 +255,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
      * This method tests the calculation of the A- and X-ions.
      */
     public void testAXIons() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //QQMENYPK
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(263, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -300,7 +300,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
      * This method tests the calculation of the double charged ions.
      */
     public void testDoubleIons() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //QQMENYPK
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(263, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -337,7 +337,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
      * This method tests the calculation of the ions minus H2O.
      */
     public void testMinusH2OIons() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //QQMENYPK
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(263, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -412,7 +412,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
      * This method tests the calculation of the ions minus NH3.
      */
     public void testMinusNH3Ions() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //METVQLR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(174, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -482,7 +482,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     public void testSignificantTheoreticalFragmentions() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //METVQLR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(174, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -563,7 +563,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     public void testNonSignificantTheoreticalFragmentions() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //METVQLR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(174, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -602,7 +602,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     public void testAllTheoreticalFragmentions() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //METVQLR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(174, 1);
         PeptideHitAnnotation lPeptideHitAnnotation = lPeptideHit.getPeptideHitAnnotation(lMascotDatfile.getMasses(), lMascotDatfile.getParametersSection());
@@ -616,7 +616,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     public void testMascotMatchedIons() {
-        MascotDatfile lMDF = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //HDLLVGAPLYMESR
         PeptideHit lPeptideHit = lMDF.getQueryToPeptideMap().getPeptideHitOfOneQuery(797, 1);
         Vector lQueries = lMDF.getQueryList();
@@ -632,7 +632,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     public void testFusedMatchedIons() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010983.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010983.dat"));
         //HDLLVGAPLYMESR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(797, 1);
         Vector lQueries = lMascotDatfile.getQueryList();
@@ -652,7 +652,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     public void testPrecursorNeutralLoss() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         //PKTISVR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(317, 1);
         Vector lQueries = lMascotDatfile.getQueryList();
@@ -669,7 +669,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     public void testGetMatchedBYions() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         //PKTISVR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(317, 1);
         Vector lQueries = lMascotDatfile.getQueryList();
@@ -686,7 +686,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     public void testGetMascotIonCoverage() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         //PKTISVR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(317, 1);
         Vector lQueries = lMascotDatfile.getQueryList();
@@ -699,7 +699,7 @@ public class TestPeptideHitAnnotation extends TestCaseLM {
     }
 
     public void testGetFusedIonCoverage() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         //PKTISVR
         PeptideHit lPeptideHit = lMascotDatfile.getQueryToPeptideMap().getPeptideHitOfOneQuery(317, 1);
         Vector lQueries = lMascotDatfile.getQueryList();

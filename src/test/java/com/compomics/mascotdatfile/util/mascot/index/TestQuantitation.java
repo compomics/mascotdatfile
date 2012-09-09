@@ -23,8 +23,6 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.Peak;
 import com.compomics.mascotdatfile.util.mascot.Quantitation;
@@ -33,8 +31,10 @@ import com.compomics.mascotdatfile.util.mascot.enumeration.Mass;
 import com.compomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
 import com.compomics.mascotdatfile.util.mascot.quantitation.Component;
 import com.compomics.mascotdatfile.util.mascot.quantitation.Ratio;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 /**
@@ -47,7 +47,7 @@ import java.util.ArrayList;
 /**
  * This class implements the test scenario for the Masses class.
  */
-public class TestQuantitation extends TestCaseLM {
+public class TestQuantitation extends TestCase {
     // Class specific log4j logger for TestQuantitation instances.
     private static Logger logger = Logger.getLogger(TestQuantitation.class);
 
@@ -60,7 +60,7 @@ public class TestQuantitation extends TestCaseLM {
      */
     public void testReadMasses() {
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfileInf lMascotDatfile = MascotDatfileFactory.create(getFullFilePath("F000001.dat"), MascotDatfileType.INDEX);
+        MascotDatfileInf lMascotDatfile = MascotDatfileFactory.create(TestCaseLM.getFullFilePath("F000001.dat"), MascotDatfileType.INDEX);
         Quantitation lQuantitation = lMascotDatfile.getQuantitation();
         Ratio[] lRatios = lQuantitation.getRatios();
         Component[] lComponents = lQuantitation.getComponents();

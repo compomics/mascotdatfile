@@ -23,14 +23,14 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 /**
  * Created by IntelliJ IDEA.
  * User: Kenny
@@ -41,7 +41,7 @@ import junit.framework.Assert;
 /**
  * This class implements the test scenario for the PeptideToQueryMap class.
  */
-public class TestDecoyPeptideToQueryMap extends TestCaseLM {
+public class TestDecoyPeptideToQueryMap extends TestCase {
     // Class specific log4j logger for TestDecoyPeptideToQueryMap instances.
     private static Logger logger = Logger.getLogger(TestDecoyPeptideToQueryMap.class);
 
@@ -51,7 +51,7 @@ public class TestDecoyPeptideToQueryMap extends TestCaseLM {
     }
 
     public void testReadDecoyPeptideHit() {
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F001599.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F001599.dat"));
         QueryToPeptideMapInf lQueryToPeptideMap = lMascotDatfile.getDecoyQueryToPeptideMap();
         //QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         PeptideHit lPeptideHit = lQueryToPeptideMap.getPeptideHitOfOneQuery(1, 10);

@@ -23,9 +23,8 @@
 
 package com.compomics.mascotdatfile;
 
-import org.apache.log4j.Logger;
-
 import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 /**
  * Created by IntelliJ IDEA. User: Kenni Date: 22-jun-2006 Time: 15:51:07 This Suite tests all the components that are

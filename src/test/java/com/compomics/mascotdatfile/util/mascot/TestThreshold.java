@@ -23,10 +23,10 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,7 +43,7 @@ import java.util.Vector;
 /**
  * This class implements the test scenario for the class.
  */
-public class TestThreshold extends TestCaseLM {
+public class TestThreshold extends TestCase {
     // Class specific log4j logger for TestThreshold instances.
     private static Logger logger = Logger.getLogger(TestThreshold.class);
 
@@ -52,7 +52,7 @@ public class TestThreshold extends TestCaseLM {
     }
 
     public void testCalculateThreshold() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
         Assert.assertEquals(26.998377258672452, lQueryToPeptideMap.getPeptideHitOfOneQuery(866, 1).calculateIdentityThreshold(0.05), 0.0);
         Assert.assertEquals(30.008677215312265, lQueryToPeptideMap.getPeptideHitOfOneQuery(866, 1).calculateIdentityThreshold(0.025), 0.0);
@@ -66,11 +66,11 @@ public class TestThreshold extends TestCaseLM {
     }
 
     public void testReadAndAnalyseF010062Conf95() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
 
         try {
-            File input = new File(getFullFilePath("Threshold_test_F010062_conf95.txt"));
+            File input = new File(TestCaseLM.getFullFilePath("Threshold_test_F010062_conf95.txt"));
             BufferedReader lBufferedReader = new BufferedReader(new FileReader(input));
             int lCount = 0;
             for (int i = 1; i < lQueryToPeptideMap.getNumberOfQueries() + 1; i++) {
@@ -91,11 +91,11 @@ public class TestThreshold extends TestCaseLM {
     }
 
     public void testReadAndAnalyseF010062Conf98() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F010062.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
 
         try {
-            File input = new File(getFullFilePath("Threshold_test_F010062_conf98.txt"));
+            File input = new File(TestCaseLM.getFullFilePath("Threshold_test_F010062_conf98.txt"));
             BufferedReader lBufferedReader = new BufferedReader(new FileReader(input));
             int lCount = 0;
             for (int i = 1; i < lQueryToPeptideMap.getNumberOfQueries() + 1; i++) {
@@ -117,11 +117,11 @@ public class TestThreshold extends TestCaseLM {
     }
 
     public void testReadAndAnalyseF009911Conf95() {
-        MascotDatfile lMascotDatfile = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lMascotDatfile = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         QueryToPeptideMap lQueryToPeptideMap = lMascotDatfile.getQueryToPeptideMap();
 
         try {
-            File input = new File(getFullFilePath("Threshold_test_F009911_conf95.txt"));
+            File input = new File(TestCaseLM.getFullFilePath("Threshold_test_F009911_conf95.txt"));
             BufferedReader lBufferedReader = new BufferedReader(new FileReader(input));
             int lCount = 0;
             for (int i = 1; i < lQueryToPeptideMap.getNumberOfQueries() + 1; i++) {

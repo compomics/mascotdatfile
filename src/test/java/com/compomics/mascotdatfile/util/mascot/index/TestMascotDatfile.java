@@ -23,19 +23,19 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile_Index;
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 
 /**
  * Created by IntelliJ IDEA. User: kenny Date: 12-okt-2006 Time: 14:11:46
  */
-public class TestMascotDatfile extends TestCaseLM {
+public class TestMascotDatfile extends TestCase {
     // Class specific log4j logger for TestMascotDatfile instances.
     private static Logger logger = Logger.getLogger(TestMascotDatfile.class);
 
@@ -55,7 +55,7 @@ public class TestMascotDatfile extends TestCaseLM {
 
     public void testSpectrumfilenameToQuerynumberMap() {
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F009911.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F009911.dat"));
         //2. Get the the masses object to run the tests on.
         HashMap m = lMascotDatfile.getSpectrumFilenameToQuerynumberMap();
         //3.Test some QueryNumbers.
@@ -68,7 +68,7 @@ public class TestMascotDatfile extends TestCaseLM {
     public void testGetProteinDescriptionbyAccessionNumber() {
 
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath("F009911.dat"));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F009911.dat"));
 
         //2. Test protein discription.
         String lAccession = "O14770 (450-477)";
@@ -82,7 +82,7 @@ public class TestMascotDatfile extends TestCaseLM {
 
     public void testGetFileName() {
         String lFilename = "F009911.dat";
-        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(getFullFilePath(lFilename));
+        MascotDatfileInf lMascotDatfile = new MascotDatfile_Index(TestCaseLM.getFullFilePath(lFilename));
         Assert.assertEquals(lFilename, lMascotDatfile.getFileName());
     }
 }

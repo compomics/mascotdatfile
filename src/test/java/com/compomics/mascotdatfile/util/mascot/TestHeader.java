@@ -23,15 +23,15 @@
 
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
-import junit.TestCaseLM;
+import com.compomics.util.junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 
 /**
  * Created by IntelliJ IDEA. User: Kenny Date: 24-feb-2006 Time: 14:13:50
  */
-public class TestHeader extends TestCaseLM {
+public class TestHeader extends TestCase {
     // Class specific log4j logger for TestHeader instances.
     private static Logger logger = Logger.getLogger(TestHeader.class);
 
@@ -41,7 +41,7 @@ public class TestHeader extends TestCaseLM {
 
     public void testReadHeader() {
         //1. Create a new DatfileID instance of the first datfile.
-        MascotDatfile lDfid = new MascotDatfile(getFullFilePath("F009911.dat"));
+        MascotDatfile lDfid = new MascotDatfile(TestCaseLM.getFullFilePath("F009911.dat"));
         //2. Get the the header object to run the tests on.
         Header h = lDfid.getHeaderSection();
         //3.Test ALL instance variables.

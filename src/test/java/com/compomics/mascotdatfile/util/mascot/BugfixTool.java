@@ -1,14 +1,11 @@
 package com.compomics.mascotdatfile.util.mascot;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
-import com.compomics.mascotdatfile.util.mascot.PeptideHit;
-import com.compomics.mascotdatfile.util.mascot.Query;
 import com.compomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
 import com.compomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
 import com.compomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
+import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;

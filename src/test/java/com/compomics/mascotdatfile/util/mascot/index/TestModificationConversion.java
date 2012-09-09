@@ -23,11 +23,10 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.mascot.ModificationConversion;
-import junit.TestCaseLM;
 import junit.framework.Assert;
+import junit.framework.TestCase;
+import org.apache.log4j.Logger;
 /**
  * Created by IntelliJ IDEA.
  * User: Kenny
@@ -38,7 +37,7 @@ import junit.framework.Assert;
 /**
  * This class implements the test scenario for the TestModificationConversion Class.
  */
-public class TestModificationConversion extends TestCaseLM {
+public class TestModificationConversion extends TestCase {
     // Class specific log4j logger for TestModificationConversion instances.
     private static Logger logger = Logger.getLogger(TestModificationConversion.class);
 
