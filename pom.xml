@@ -5,7 +5,8 @@
     <groupId>com.compomics</groupId>
     <artifactId>mascotdatfile</artifactId>
     <packaging>jar</packaging>
-    <version>3.4.2</version>
+    <version>3.4.3</version>
+
     <name>mascotdatfile</name>
     <url>http://mascotdatfile.googlecode.com</url>
 

@@ -62,7 +62,7 @@ public class TestPeptideToQueryMap extends TestCase {
         Query lQuery = (Query) lPeptideToQueryMap.getQueriesByModifiedSequence(lPeptideHit.getModifiedSequence()).get(1);
         Assert.assertEquals(555, lQuery.getQueryNumber());
         Assert.assertEquals(54.76, lQuery.getMaxIntensity(), 0.0);
-        Assert.assertEquals(2247, lPeptideToQueryMap.size());
+        Assert.assertEquals(2252, lPeptideToQueryMap.size());
     }
 
 

@@ -56,6 +56,7 @@ public class Reader {
     private byte[] iLineSeparator;
     private boolean iTempFileNeeded = false;
     private OutputStream fos = null;
+    ArrayList<Integer> lNewLineCharacters = new ArrayList<Integer>();
 
     /**
      * Construct a Reader for a Mascot results file that is located at the local filesystem.
@@ -121,8 +122,7 @@ public class Reader {
             //checking happens until we hit the end of the line containing the mascot header to make sure the correct byte is used for the rest of the file
             //from there a check happens if the newline is windows (\r\n) linux or OSX (\n) or old apples (\r)
             Integer lCharacter = -1;
-            ArrayList checkarray = new ArrayList<String>();
-            ArrayList<Integer> lNewLineCharacters = new ArrayList<Integer>();
+            ArrayList checkArray = new ArrayList<String>();
             boolean newlinefound = false;
             while ((lCharacter = aBufferedReader.read()) != -1) {
                 //read in first byte and add
@@ -131,7 +131,7 @@ public class Reader {
                     fos.write(lCharacter);
                 }
                 Object temp = ((char) lCharacter.byteValue());
-                checkarray.add(temp);
+                checkArray.add(temp);
                 while (!newlinefound) {
                    //while we are unsure, continue looking
                     lCharacter = aBufferedReader.read();
@@ -140,22 +140,22 @@ public class Reader {
                         fos.write(lCharacter);
                     }
                     temp = ((char) lCharacter.byteValue());
-                    checkarray.add(temp);
+                    checkArray.add(temp);
                     if (lCharacter == '\n') {
                         //if found \n check and if found correct use
-                        String checkarraytostring = checkarray.toString();
-                        checkarraytostring = checkarraytostring.replaceAll(",", "");
-                        if (checkarraytostring.contains("M a s c o t")) {
+                        String checkArrayToString = checkArray.toString();
+                        checkArrayToString = checkArrayToString.replaceAll(",", "");
+                        if (checkArrayToString.contains("M a s c o t")) {
                             lNewLineCharacters.add(lCharacter);
                             newlinefound = true;
                         } else {
-                            checkarray.clear();
+                            checkArray.clear();
                         }
                     } else if (lCharacter == '\r') {
                         //if found \r check if \r is alone, or if it is \r\n
-                        String tweedetestarray = checkarray.toString();
-                        tweedetestarray = tweedetestarray.replaceAll(",", "");
-                        if (tweedetestarray.contains("M a s c o t")) {
+                        String checkArrayToString = checkArray.toString();
+                        checkArrayToString = checkArrayToString.replaceAll(",", "");
+                        if (checkArrayToString.contains("M a s c o t")) {
                             lCharacter = aBufferedReader.read();
                             iByteCount++;
                             if (iTempFileNeeded) {
@@ -169,7 +169,7 @@ public class Reader {
                                 lNewLineCharacters.add(13);
                             }
                         } else {
-                            checkarray.clear();
+                            checkArray.clear();
                         }
                     }
                 }
@@ -343,7 +343,7 @@ public class Reader {
             lineReadFromBufferedReader(lLine);
             //b) index section lines!
 
-            // first line is blanc.
+            // first line is blank.
             if (!lLine.equals("")) {
                 lOldQuery = lQuery;
 
@@ -561,5 +561,8 @@ public class Reader {
         }else{
             return s.getBytes().length;
         }*/
+    }
+    public int getNewLineCharacterSize() {
+        return lNewLineCharacters.size();
     }
 }

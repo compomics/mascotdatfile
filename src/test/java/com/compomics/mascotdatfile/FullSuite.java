@@ -91,6 +91,7 @@ public class FullSuite extends TestCase {
         ts.addTest(new TestSuite(com.compomics.mascotdatfile.util.mascot.index.TestQueryToPeptideMap.class));
         ts.addTest(new TestSuite(com.compomics.mascotdatfile.util.mascot.index.TestThreshold.class));
         ts.addTest(new TestSuite(TestDecoyPeptideToQueryMap.class));
+        ts.addTest(new TestSuite(TestBackwardsCompatibility.class));
         ts.addTest(new TestSuite(com.compomics.mascotdatfile.util.mascot.index.TestQuantitation.class));
         ts.addTest(new TestSuite(TestPortability.class));
 

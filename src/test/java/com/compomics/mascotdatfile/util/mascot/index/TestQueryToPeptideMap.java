@@ -58,7 +58,7 @@ public class TestQueryToPeptideMap extends TestCase {
         MascotDatfileInf lMDF = new MascotDatfile_Index(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMapInf Query2P = lMDF.getQueryToPeptideMap();
         Vector vph = Query2P.getAllPeptideHits(1);
-        Assert.assertNull(vph);
+        Assert.assertEquals(0,vph.size());
         vph = Query2P.getAllPeptideHits(555);
         PeptideHit lPh = (PeptideHit) vph.firstElement();
         Assert.assertEquals("GAPAPPPPAQPR", lPh.getSequence());
