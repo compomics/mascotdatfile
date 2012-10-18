@@ -26,6 +26,7 @@ package com.compomics.mascotdatfile.util.mascot;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -45,6 +46,8 @@ public class ModificationList implements Serializable {
      * This Vector holds the different Variable Modificatins used in this Mascot search.
      */
     private Vector iVariableModifications = new Vector(0, 1);
+
+    private Connection iConnection;
 
     /**
      * This Constructor recieves the modifications in String Format and will transform them into different objects.
@@ -73,6 +76,20 @@ public class ModificationList implements Serializable {
         }
     }
 
+    public ModificationList(ArrayList aFModStringArrayList, ArrayList aVModStringArrayList, Connection iConnection) {
+        this.iConnection = iConnection;
+        generateVModVector(aVModStringArrayList);
+        generateFModVector(aFModStringArrayList);
+    }
+
+    public ModificationList(ArrayList aFModStringArrayList, ArrayList aVModStringArrayList, String aFixedModifications_ParameterSection,Connection iConnection) {
+        this.iConnection = iConnection;
+        generateVModVector(aVModStringArrayList);
+        if (aFixedModifications_ParameterSection != null) {
+            generateFModVector(aFixedModifications_ParameterSection);
+        }
+    }
+    
     /**
      * Create a Vector containing all the variable modification instances.
      */
@@ -224,7 +241,11 @@ public class ModificationList implements Serializable {
      * @return ShortType   String    Modification ShortType.
      */
     private String getShortType(String aKey) {
+        if (iConnection == null){
         return ModificationConversion.getShortType(aKey);
+        }  else {
+            return ModificationConversion.getShortType(aKey,iConnection);
+        }
     }
 
     /**

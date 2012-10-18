@@ -29,6 +29,7 @@ import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 
 import java.util.HashMap;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 /**
  * Created by IntelliJ IDEA.
@@ -209,30 +210,31 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
             for (int i = 1; i <= aNumberOfQueries; i++) {
                 // 2.Create a Vector on the second level(ex: Vector.get(0) returns the first PeptideHit of the requested query.)
                 Vector lSecondDimension = new Vector();
-
+                Pattern findMoreThanOneVariable = Pattern.compile(".*X.*X.*");
                 //2.a) Counter for the number of PeptideHits
                 int lCount = 1;
-
+                int lCountBackwards = 1;
                 //2.b) Get homology and identity score of this Query to pass to the creation of a peptidehit.
                 //     lThreshold[0] is the homology threshold, lThreshold[1] is the identity threshold.
                 double[] lThreshold = getQueryThresholdValues(i, aThreshold, aNumberOfQueries);
-
                 //2.c) As long as there are PeptideHits returning, generate new PeptideHit Instances.
+
                 while ((m.get("q" + i + "_p" + lCount) != null) && !(m.get("q" + i + "_p" + lCount).equals("-1"))) {
                     // put a new Key(String: ex 'p1') in the lSecondDimension HashMap, it is
                     // corresponding with an instance of PeptideHit by calling its static method.
                     // The String for that static method is created with the 'i' and 'lCount' looping variables.
-
+                    if ((m.get("q" + i + "_p" + lCount+"_subst"))!= null){
+                        lSecondDimension.add(PeptideHit.parsePeptideHit((String) m.get("q" + i + "_p" + lCount), aProteinMap, aMod, lThreshold,(String)m.get("q" + i + "_p" + lCount+"_subst")));
+                    } else  {
                     lSecondDimension.add(PeptideHit.parsePeptideHit((String) m.get("q" + i + "_p" + lCount), aProteinMap, aMod, lThreshold));
-
+                    }
                     // Update the PeptideHit in the ProteinMap.
-                    PeptideHit lPeptideHit = (PeptideHit) lSecondDimension.get(lCount - 1);
+                        PeptideHit lPeptideHit = (PeptideHit) lSecondDimension.get(lCount - lCountBackwards);
                     int lNumberOfProteinHits = lPeptideHit.getProteinHits().size();
                     for (int k = 0; k < lNumberOfProteinHits; k++) {
                         ProteinHit lProteinHit = (ProteinHit) lPeptideHit.getProteinHits().get(k);
                         aProteinMap.addProteinSource(lProteinHit.getAccession(), i, lCount);
                     }
-
                     lCount++;
                 }
                 // If no PeptideHits were added to the Vector, it makes no sense to have a vector with 0 PeptideHits.

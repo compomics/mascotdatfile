@@ -24,17 +24,17 @@
 package com.compomics.mascotdatfile.util.mascot;
 
 import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.index.Controller;
 import com.compomics.mascotdatfile.util.mascot.index.DecoyQueryToPeptideMap_Index;
 import com.compomics.mascotdatfile.util.mascot.index.QueryToPeptideMap_Index;
 import com.compomics.mascotdatfile.util.mascot.index.SummaryIndex;
 import com.compomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -230,6 +230,19 @@ public class MascotDatfile_Index implements MascotDatfileInf {
         return iModificationList;
     }
 
+    public ModificationList getModificationList(Connection iConnection) {
+        if (iModificationList == null) {
+            Masses m = getMasses();
+            if (m.getFixedModifications().size() > 0) {
+                iModificationList = new ModificationList(m.getFixedModifications(), m.getVariableModifications(),iConnection);
+            } else {
+                Parameters p = getParametersSection();
+                iModificationList = new ModificationList(m.getFixedModifications(), m.getVariableModifications(), p.getFixedModifications(),iConnection);
+            }
+        }
+        return iModificationList;
+    }
+
     /**
      * The number of queries done in the mascot search (a parameter of a Header instance).
      *
@@ -249,6 +262,13 @@ public class MascotDatfile_Index implements MascotDatfileInf {
     public QueryToPeptideMap_Index getQueryToPeptideMap() {
         if (iQueryToPeptideMap == null) {
             iQueryToPeptideMap = new QueryToPeptideMap_Index(iController, getProteinMap(), getModificationList());
+        }
+        return iQueryToPeptideMap;
+    }
+
+    public QueryToPeptideMap_Index getQueryToPeptideMap(Connection iConn) {
+        if (iQueryToPeptideMap == null) {
+            iQueryToPeptideMap = new QueryToPeptideMap_Index(iController, getProteinMap(), getModificationList(iConn));
         }
         return iQueryToPeptideMap;
     }

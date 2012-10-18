@@ -79,7 +79,7 @@ public class TestThreshold extends TestCase {
             int lCount = 0;
             for (int i = 1; i < lQueryToPeptideMap.getNumberOfQueries() + 1; i++) {
                 Vector lPeptideHitsVec = lQueryToPeptideMap.getAllPeptideHits(i);
-                if (lPeptideHitsVec == null) {
+                if (lPeptideHitsVec.size() == 0) {
                     continue;
                 }
                 PeptideHit lPeptideHit = (PeptideHit) lPeptideHitsVec.get(0);
@@ -105,7 +105,7 @@ public class TestThreshold extends TestCase {
             int lCount = 0;
             for (int i = 1; i < lQueryToPeptideMap.getNumberOfQueries() + 1; i++) {
                 Vector lPeptideHitsVec = lQueryToPeptideMap.getAllPeptideHits(i);
-                if (lPeptideHitsVec == null) {
+                if (lPeptideHitsVec.size() == 0) {
                     continue;
                 }
                 PeptideHit lPeptideHit = (PeptideHit) lPeptideHitsVec.get(0);
@@ -131,7 +131,7 @@ public class TestThreshold extends TestCase {
             int lCount = 0;
             for (int i = 1; i < lQueryToPeptideMap.getNumberOfQueries() + 1; i++) {
                 Vector lPeptideHitsVec = lQueryToPeptideMap.getAllPeptideHits(i);
-                if (lPeptideHitsVec == null) {
+                if (lPeptideHitsVec.size() == 0) {
                     continue;
                 }
                 PeptideHit lPeptideHit = (PeptideHit) lPeptideHitsVec.get(0);

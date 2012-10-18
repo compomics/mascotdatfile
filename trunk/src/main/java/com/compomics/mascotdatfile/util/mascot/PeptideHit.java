@@ -30,8 +30,6 @@ import org.apache.log4j.Logger;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * This Class contains all the parsed data from a datfile peptidehit
@@ -176,11 +174,28 @@ public class PeptideHit implements Serializable {
      *                          threshold.
      */
     private PeptideHit(String aPeptideHit, ProteinMap aProteinMap, ModificationList aModificationList, double[] aThreshold) {
-        splitPeptideHit(aPeptideHit);
-        parseDatFilePeptideString();
-        parseDatFileProteinString();
-        parseThresholds(aThreshold);
-        parsePeptideHitModifications(aModificationList);
+    this(aPeptideHit,aProteinMap,aModificationList,aThreshold,null);
+    }
+
+    private PeptideHit(String aPeptideHit, ProteinMap aProteinMap, ModificationList aModificationList, double[] aThreshold,String substitutions) {
+            splitPeptideHit(aPeptideHit);
+            parseDatFilePeptideString();
+            if (substitutions != null){
+                substitutePeptides(substitutions);
+            }
+            parseDatFileProteinString();
+            parseThresholds(aThreshold);
+            parsePeptideHitModifications(aModificationList);
+
+    }
+
+    private void substitutePeptides(String substitutions) {
+
+        String[] substitutionArray = substitutions.split(",");
+        StringBuilder replaceAminoAcids = new StringBuilder(iSequence);
+        //TODO in case of more than one variable amino acid being implemented --> while (i =0;i<substitutionArray.size;i+3) {        replaceAminoAcids.setCharAt(Integer.parseInt(substitutionArray[i]) - 1,substitutionArray[i+2].charAt(0));}
+        replaceAminoAcids.setCharAt(Integer.parseInt(substitutionArray[0]) - 1,substitutionArray[2].charAt(0));
+        iSequence = replaceAminoAcids.toString();
     }
 
     /**
@@ -222,6 +237,14 @@ public class PeptideHit implements Serializable {
         PeptideHit ph = null;
         if (!aPeptideHit.equals("-1")) {
             ph = new PeptideHit(aPeptideHit, aProteinMap, aModificationList, aThreshold);
+        }
+        return ph;
+    }
+
+    public static PeptideHit parsePeptideHit(String aPeptideHit, ProteinMap aProteinMap, ModificationList aModificationList, double[] aThreshold,String substitution) {
+        PeptideHit ph = null;
+        if (!aPeptideHit.equals("-1")) {
+            ph = new PeptideHit(aPeptideHit, aProteinMap, aModificationList, aThreshold,substitution);
         }
         return ph;
     }

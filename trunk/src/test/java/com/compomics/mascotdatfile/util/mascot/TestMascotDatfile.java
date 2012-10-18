@@ -42,7 +42,7 @@ public class TestMascotDatfile extends TestCase {
     }
 
     public void testMascotDatfile() {
-        String lDatfileLocation = "C:\thisCannotBeACorrectFile.dat";
+        String lDatfileLocation = "C:\\thisCannotBeACorrectFile.dat";
         try {
             new MascotDatfile(lDatfileLocation);
             fail("File " + lDatfileLocation + " cannot create a valid MascotDatfileInstance and error must have been thrown!");

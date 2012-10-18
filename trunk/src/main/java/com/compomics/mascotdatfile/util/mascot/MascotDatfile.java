@@ -24,15 +24,15 @@
 package com.compomics.mascotdatfile.util.mascot;
 
 import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
 import com.compomics.mascotdatfile.util.mascot.parser.MascotRawParser;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -235,6 +235,18 @@ public class MascotDatfile implements MascotDatfileInf {
      * @return QueryToPeptideMap instance with the queries and peptidehits of this MascotDatfile.
      */
     public QueryToPeptideMap getQueryToPeptideMap() {
+        if (iQueryToPeptideMap == null) {
+            if (!isErrorTolerantSearch()) {
+                // No ets, only parse the peptides.
+                iQueryToPeptideMap = new QueryToPeptideMap(iMRP.getSection("peptides"), getProteinMap(), getNumberOfQueries(), getModificationList(), getThresholds());
+            } else {
+                iQueryToPeptideMap = new QueryToPeptideMap(iMRP.getSection("peptides"), iMRP.getSection("et_peptides"), getProteinMap(), getNumberOfQueries(), getModificationList(), getThresholds());
+            }
+        }
+        return iQueryToPeptideMap;
+    }
+
+    public QueryToPeptideMap getQueryToPeptideMap(Connection iConn) {
         if (iQueryToPeptideMap == null) {
             if (!isErrorTolerantSearch()) {
                 // No ets, only parse the peptides.

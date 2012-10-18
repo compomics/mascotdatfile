@@ -23,13 +23,12 @@
 
 package com.compomics.mascotdatfile.util.mascot.index;
 
-import org.apache.log4j.Logger;
-
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.ModificationList;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.ProteinHit;
 import com.compomics.mascotdatfile.util.mascot.ProteinMap;
+import org.apache.log4j.Logger;
 
 import java.util.Vector;
 
@@ -74,8 +73,8 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
         iNumberOfQueries = aController.getNumberOfQueries();
         iModificationList = aModificationList;
         iProteinMap = aProteinMap;
-    }
 
+    }
     /**
      * This method returns a PeptideHit of the QueryNumber that is given by two parameters.
      *
@@ -99,10 +98,17 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
         double lQplughole = Double.parseDouble(lQPlugholeString);
 
         //2.c) As long as there are PeptideHits returning, generate new PeptideHit Instances.
-        String s = iController.readPeptideHit(aQueryNumber, aPeptideHitNumber);
 
-        if (s != null) {
-            lPeptideHit = PeptideHit.parsePeptideHit(s, iProteinMap, iModificationList, new double[]{lQplughole, lQmatch});
+        Vector<String> peptideBlock = iController.readPeptideHitBlock(aQueryNumber,aPeptideHitNumber);
+        if (peptideBlock.size() != 0) {
+            String s = peptideBlock.get(0).substring(peptideBlock.get(0).indexOf('=') +1);
+            String substitution = null;
+                for(String blockPart : peptideBlock){
+                    if (blockPart.contains("subst")){
+                    substitution = blockPart.substring(blockPart.indexOf('=') +1);
+                    }    
+                }
+                lPeptideHit = PeptideHit.parsePeptideHit(s, iProteinMap, iModificationList, new double[]{lQplughole, lQmatch},substitution);
         }
 
         return lPeptideHit;
@@ -116,15 +122,12 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
      *         not found or no identifications were made from the query.
      */
     public Vector getAllPeptideHits(int aQueryNumber) {
-        Vector v = null;
+        Vector<PeptideHit> v = new Vector<PeptideHit>();
         int iNumberOfPeptideHits = getNumberOfPeptideHits(aQueryNumber);
 
         for (int i = 0; i < iNumberOfPeptideHits; i++) {
             PeptideHit lPeptideHit = getPeptideHitOfOneQuery(aQueryNumber, (i + 1));
             if (lPeptideHit != null) {
-                if (i == 0) {
-                    v = new Vector();
-                }
                 v.add(lPeptideHit);
             }
         }
@@ -173,7 +176,7 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
      *         contains info of Query 1000.
      */
     public Vector getPeptideHits(int aPeptideHitNumber) {
-        Vector lBestPeptideHits = new Vector(iNumberOfQueries);
+        Vector<PeptideHit> lBestPeptideHits = new Vector<PeptideHit>(iNumberOfQueries);
         for (int i = 1; i <= iNumberOfQueries; i++) {
             lBestPeptideHits.add(getPeptideHitOfOneQuery(i, aPeptideHitNumber));
         }
@@ -212,7 +215,7 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
      * @return Vector  vector with all the PeptideHit instances above identity threshold.
      */
     public Vector getAllPeptideHitsAboveIdentityThreshold(double aConfidence) {
-        Vector lPeptideHitsAboveThreshold = new Vector();
+        Vector<PeptideHit> lPeptideHitsAboveThreshold = new Vector<PeptideHit>();
         Vector lAllBestPeptideHits = getBestPeptideHits();
         for (int i = 0; i < lAllBestPeptideHits.size(); i++) {
             PeptideHit temp = (PeptideHit) lAllBestPeptideHits.get(i);
@@ -248,7 +251,7 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
      */
     public Vector getPeptideHitsAboveIdentityThreshold(int aQueryNumber, double aConfidenceInterval) {
         Vector lPeptideHits = getAllPeptideHits(aQueryNumber);
-        Vector lResult = new Vector();
+        Vector<PeptideHit> lResult = new Vector<PeptideHit>();
         if (lPeptideHits != null) {
             for (int i = 0; i < lPeptideHits.size(); i++) {
                 PeptideHit lPeptideHit = (PeptideHit) lPeptideHits.elementAt(i);
@@ -270,7 +273,7 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
      */
     public Vector getIdentifiedQueries(double aConfidence, Vector aCompleteQueryList) {
         // All the identified Queries will be stored here.
-        Vector lIdentifiedQueries = new Vector();
+        Vector<Object> lIdentifiedQueries = new Vector<Object>();
         // The temporary peptidehits will be stored here, if the size is bigger then 0, the Query will be stored.
         // Mind that the getPeptideHitsAboveIdentityThreshold() method takes the querynumber as input (45 leads to query45)
         // And that the QueryList is a Vector starting from zero! (45 leads to query44)

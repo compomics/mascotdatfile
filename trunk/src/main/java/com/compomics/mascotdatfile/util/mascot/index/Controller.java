@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.HashMap;
 import java.util.StringTokenizer;
+import java.util.Vector;
 
 /**
  * Created by IntelliJ IDEA.
@@ -87,6 +88,32 @@ public class Controller {
         }
     }
 
+    public Vector<String> readPeptideHitBlock (int aQueryNumber,int aPetideHitNumber){
+       Vector<String> peptideHitBlock = new Vector<String>();
+        peptideHitBlock.setSize(0);
+        String peptideBlockPart = null;
+        boolean continueReading = false;
+        int counter = 0;
+       long lIndex = iIndex.getPeptideLineIndex(aQueryNumber,aPetideHitNumber);
+       if(lIndex != -1l){
+            String s = iReader.readLine(lIndex);
+            peptideBlockPart = s.substring(0,s.indexOf('='));
+           peptideHitBlock.add(s);
+           counter = s.length()+iReader.getNewLineCharacterSize();
+           continueReading = true;
+           while (continueReading) {
+               s = iReader.readLine(lIndex + counter);
+               if (!(s).contains(peptideBlockPart)){
+                   continueReading = false;
+               } else{
+                   peptideHitBlock.add(s);
+                   counter = counter + s.length()+iReader.getNewLineCharacterSize();
+               }
+           }
+        }
+        return peptideHitBlock;
+    }
+    
     public String readDecoyPeptideHit(final int aQueryNumber, final int aPeptideHitNumber) {
         long lIndex = iIndex.getDecoyPeptideLineIndex(aQueryNumber, aPeptideHitNumber);
         if (lIndex != -1l) {

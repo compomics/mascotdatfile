@@ -4,6 +4,7 @@ package com.compomics.mascotdatfile.util.interfaces;
 import com.compomics.mascotdatfile.util.mascot.*;
 import com.compomics.mascotdatfile.util.mascot.iterator.QueryEnumerator;
 
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
@@ -48,6 +49,8 @@ public interface MascotDatfileInf {
      */
     public QueryToPeptideMapInf getQueryToPeptideMap();
 
+    public QueryToPeptideMapInf getQueryToPeptideMap(Connection iConn);
+
     /**
      * Returns a mapping from the Query to its decoy Peptidehits as a QueryToPeptideMap implementation.
      *
@@ -68,8 +71,6 @@ public interface MascotDatfileInf {
      * Returns all the Queries in a vector.
      *
      * @return Vector including all searched MS/MS spectra as Query instances.
-     * @deprecated New methods replace the memory consuming vector. We advise to use either <code>getQuery()</code>
-     *             to retrieve a single Query or <code>getQueryEnumerator()</code> to enumerate all Queries.
      */
     public Vector getQueryList();
 
