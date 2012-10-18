@@ -1,10 +1,13 @@
 package com.compomics.mascotdatfile.util.mascot;
 
-import junit.TestCaseLM;
+
 import junit.framework.Assert;
+import junit.framework.TestCase;
 import org.apache.log4j.Logger;
 
 import java.util.Vector;
+
+import static com.compomics.util.junit.TestCaseLM.getFullFilePath;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,7 +16,7 @@ import java.util.Vector;
  * Time: 9:35 AM
  * To change this template use File | Settings | File Templates.
  */
-public class TestBackwardsCompatibility  extends TestCaseLM {
+public class TestBackwardsCompatibility  extends TestCase {
 
     private static Logger logger = Logger.getLogger(TestBackwardsCompatibility.class);
     private ProteinMap iProteinMap;
