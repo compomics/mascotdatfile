@@ -166,10 +166,14 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
                 String sign = String.valueOf(measuredCharge.charAt(1));
                 Charge charge;
 
-                if (sign.compareTo("+") == 0) {
-                    charge = new Charge(Charge.PLUS, Integer.valueOf(measuredCharge.substring(0, 1)));
+                if (measuredCharge.equalsIgnoreCase("Mr")) { // @TODO: figure out what 'Mr' means...
+                    charge = null;
                 } else {
-                    charge = new Charge(Charge.MINUS, Integer.valueOf(measuredCharge.substring(0, 1)));
+                    if (sign.compareTo("+") == 0) {
+                        charge = new Charge(Charge.PLUS, Integer.valueOf(measuredCharge.substring(0, 1)));
+                    } else {
+                        charge = new Charge(Charge.MINUS, Integer.valueOf(measuredCharge.substring(0, 1)));
+                    }
                 }
 
                 SpectrumMatch currentMatch = new SpectrumMatch(Spectrum.getSpectrumKey(mgfFileName, spectrumId));
@@ -301,7 +305,6 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
             System.out.println("An exception was thrown when trying to decode an mgf tile!");
             e.printStackTrace();
         }
-
 
         // a special fix for mgf files with titles containing \\ instead of \
         //spectrumTitle = spectrumTitle.replaceAll("\\\\\\\\", "\\\\");  // @TODO: only needed for OMSSA???
