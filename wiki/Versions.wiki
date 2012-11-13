@@ -1,4 +1,4 @@
-#summary Release note for MascotDatfile.
+#summary Release notes for MascotDatfile.
 
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
 
