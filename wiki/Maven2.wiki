@@ -21,11 +21,13 @@ Add the following code into your pom.xml file:
         <dependency>
             <groupId>com.compomics</groupId>
             <artifactId>mascotdatfile</artifactId>
-            <version>3.2.1</version>
+            <version>X.Y.Z</version>
             <type>jar</type>
       </dependency>
 </dependencies>
 }}}
+
+Update the version number (X.Y.Z) to latest released version.
 
 Note that the repository can be manually accessed to download the src or javadocs.
 http://genesis.ugent.be/maven2/com/compomics/mascotdatfile/
