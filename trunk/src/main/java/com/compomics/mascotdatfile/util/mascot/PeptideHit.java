@@ -280,7 +280,7 @@ public class PeptideHit implements Serializable {
     private void splitPeptideHit(String aPeptideHit) {
         StringTokenizer st = new StringTokenizer(aPeptideHit, ";");
         if (st.countTokens() != 2) {
-            System.out.println("Warning, more then two ';' semilocons used in the peptidehit String!!\n\t" + aPeptideHit);
+            System.out.println("Warning, more than two ';' semicolons used in the peptidehit String!!\t" + aPeptideHit);
         }
         int lSplitIndex = aPeptideHit.indexOf(';');
         //OK, we know we have 2 tokens, read them now.
@@ -965,6 +965,7 @@ public class PeptideHit implements Serializable {
      * method to get the expectance at confidence alpha = parameter. <br> Expectancy is the number of times you could
      * expect to get this score or better by chance.
      *
+     * @param aConfidenceInterval the confidence interval
      * @return double Expectancy
      */
     public double getExpectancy(double aConfidenceInterval) {
@@ -984,6 +985,7 @@ public class PeptideHit implements Serializable {
     /**
      * method that calculates the IdentityThreshold at confidence alpha = parameter.<br>
      *
+     * @param aConfidenceInterval the confidence interval
      * @return double      IdentityThreshold.
      */
     public double calculateIdentityThreshold(double aConfidenceInterval) {
@@ -1009,6 +1011,7 @@ public class PeptideHit implements Serializable {
      * @param aParameters  Instance of the Parameters Class to get the mass tolerance data.
      * @param aPrecursorMZ Double with the MZ value of the precursor of the spectrum wherefrom this peptidehit was
      *                     created.
+     * aPrecursorCharge    String with the precursor charge.
      * @return PeptideHitAnnotation     returns an instance of PeptideHitAnnotation wherefrom you can get the ion series
      *         of this peptidehit.
      */
@@ -1042,5 +1045,4 @@ public class PeptideHit implements Serializable {
     public String toString() {
         return (getModifiedSequence() + " - " + iIonsScore);
     }
-
 }
