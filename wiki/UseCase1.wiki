@@ -1,3 +1,5 @@
+#summary How to use MascotDatfile in your code.
+
 == example code ==
 
 {{{
