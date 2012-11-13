@@ -1,3 +1,5 @@
+#summary Release note for MascotDatfile.
+
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
 
 ===3.4.6 (13 November 2012) ===
