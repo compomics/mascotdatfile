@@ -1,4 +1,5 @@
 #summary Using MascotDatfile in Maven.
+#labels Featured
 
 MascotDatfile is hosted at our public maven2 repository.
 Add the following code into your pom.xml file:
