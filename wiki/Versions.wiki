@@ -1,5 +1,9 @@
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
 
+===3.4.6 (13 November 2012) ===
+ * The code now works with Maven 3
+ * Improved the formatting of a peptide hit warning message.
+
 ===3.3 (26 July 2012) ===
  * Support for mascot 2.4
 
@@ -44,6 +48,6 @@
 ===3.0.1 (24 February 2010)===
  * When more then 10 variable modifications are applied, the modification id becomes hexadecimal ('A' for the tenth modification) and caused an parsing error in MascotDatfile.
 
-==3.0==
+===3.0===
  * Initial import of the MascotDatfile library into google code.
  * Note that all MascotDatfile packages have been changed from 'be.proteomics.mascotdatfile.' to 'com.compomics.mascotdatfile.'
