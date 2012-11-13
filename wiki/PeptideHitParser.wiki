@@ -1,3 +1,5 @@
+#summary How to parse the peptide hits.
+
 == PeptideHitParser ==
 
 com.compomics.mascotdatfile.research.script.PeptideHitParser
