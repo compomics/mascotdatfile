@@ -5,7 +5,7 @@
     <groupId>com.compomics</groupId>
     <artifactId>mascotdatfile</artifactId>
     <packaging>jar</packaging>
-    <version>3.4.6</version>
+    <version>3.4.7</version>
     <name>mascotdatfile</name>
     <url>http://mascotdatfile.googlecode.com</url>
 
@@ -38,7 +38,7 @@
         <extensions>
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
-            <artifactId>wagon-ssh</artifactId>
+                <artifactId>wagon-ssh</artifactId>
                 <version>1.0-beta-2</version>
             </extension>
         </extensions>
@@ -250,16 +250,16 @@
         </repository>
 
         <!-- EBI repository -->
-       <repository>
-           <id>ebi-repo</id>
-           <name>The EBI Maven2 repository</name>
-           <url>http://www.ebi.ac.uk/~maven/m2repo</url>
-           <releases>
-           </releases>
-           <snapshots>
-               <enabled>false</enabled>
-           </snapshots>
-       </repository>
+        <repository>
+            <id>ebi-repo</id>
+            <name>The EBI Maven2 repository</name>
+            <url>http://www.ebi.ac.uk/~maven/m2repo</url>
+            <releases>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
 
@@ -344,12 +344,10 @@
         <!-- This project depends on the iText pdf library for pdf output.
         -->
         <dependency>
-            <groupId>itext</groupId>
-            <artifactId>iText</artifactId>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
             <version>2.0.8</version>
-            <type>jar</type>
         </dependency>
-
 
         <!-- This project depends on the commons-io JAR file.
         -->
