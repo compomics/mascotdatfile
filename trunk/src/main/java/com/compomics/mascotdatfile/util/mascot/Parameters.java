@@ -26,6 +26,7 @@ package com.compomics.mascotdatfile.util.mascot;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -70,7 +71,7 @@ public class Parameters implements Serializable {
      */
     private String iIA2TOL = null;
     /**
-     * a* ion weightin, value is often null.
+     * a* ion weighting, value is often null.
      */
     private String iIASTOL = null;
     /**
@@ -138,9 +139,15 @@ public class Parameters implements Serializable {
      */
     private String iPFA = null;
     /**
-     * The database that was used for the Mascot search.
+     * The (primary) database that was used for the Mascot search. See also 
+     * iSecondaryDatabases.
      */
     private String iDatabase = null;
+    /**
+     * The secondary databases that was used for the Mascot search. Empty if 
+     * only a single (primary) database was used.
+     */
+    private ArrayList<String> iSecondaryDatabases = null;
     /**
      * The FIXED modifications (String).
      */
@@ -189,7 +196,7 @@ public class Parameters implements Serializable {
     private String iReport = null;
     private String iOverview = null;
     /**
-     * The raw filetype whereto mascot prints its results.
+     * The raw file type whereto mascot prints its results.
      */
     private String iFormat = null;
     /**
@@ -249,7 +256,7 @@ public class Parameters implements Serializable {
 
     /**
      * This variable stores the 'Distiller' origin status. This boolean is used in order to parse the filename of the
-     * MS/MS spectra appropriateley.
+     * MS/MS spectra appropriately.
      */
     private boolean iDistillerMultiFile = false;
 
@@ -303,7 +310,7 @@ public class Parameters implements Serializable {
     }
 
     /**
-     * This constructor gets a HashMap p wich contains all the data in the parameter section of a datfile.
+     * This constructor gets a HashMap p which contains all the data in the parameter section of a datfile.
      *
      * @param p
      */
@@ -333,6 +340,15 @@ public class Parameters implements Serializable {
         iITOLU = (String) p.get("ITOLU");
         iPFA = (String) p.get("PFA");
         iDatabase = (String) p.get("DB");
+        
+        iSecondaryDatabases = new ArrayList<String>();
+
+        for (int i = 2; i < 100; i++) { // note that this limits the number of secondary databases, but should be more than enough...
+            if (p.containsKey("DB" + i)) {
+                iSecondaryDatabases.add((String) p.get("DB" + i));
+            }
+        }
+
         iFixedModifications = (String) p.get("MODS");
         iMass = (String) p.get("MASS");
         iCleavage = (String) p.get("CLE");
@@ -862,6 +878,25 @@ public class Parameters implements Serializable {
      */
     public void setDatabase(String aDatabase) {
         iDatabase = aDatabase;
+    }
+    
+    /**
+     * Returns the secondary databases that was used for the Mascot search. If 
+     * empty list only a primary database was used.
+     *
+     * @return the secondary databases that was used for the Mascot search.
+     */
+    public ArrayList<String> getSecondaryDatabases() {
+        return iSecondaryDatabases;
+    }
+
+    /**
+     * Sets the secondary databases that was used for the Mascot search.
+     *
+     * @param aSecondaryDatabases the secondary database that was used for the Mascot search.
+     */
+    public void setSecondaryDatabases(ArrayList<String> aSecondaryDatabases) {
+        iSecondaryDatabases = aSecondaryDatabases;
     }
 
     /**
