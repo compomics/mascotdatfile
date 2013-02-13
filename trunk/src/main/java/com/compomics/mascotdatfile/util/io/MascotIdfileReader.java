@@ -146,9 +146,9 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
             // Get spectrum information
             PeptideHit testPeptide = null;
 
-            if (mascotPeptideHits != null) {
+            if (mascotPeptideHits != null && !mascotPeptideHits.isEmpty()) {
                 testPeptide = mascotPeptideHits.get(0);
-            } else if (mascotDecoyPeptideHits != null) {
+            } else if (mascotDecoyPeptideHits != null && !mascotDecoyPeptideHits.isEmpty()) {
                 testPeptide = mascotDecoyPeptideHits.get(0);
             }
 
