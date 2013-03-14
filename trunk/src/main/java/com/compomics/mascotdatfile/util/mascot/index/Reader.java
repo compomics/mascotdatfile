@@ -248,7 +248,7 @@ public class Reader {
     /**
      * Return a tmp direct
      *
-     * @return
+     * @return a tmp directory
      */
     private static File getTempDirectory() {
         if (iTempFolder == null) {

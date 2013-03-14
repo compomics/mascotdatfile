@@ -286,7 +286,7 @@ public class MascotRawParser {
      * This method returns the required separator for the line tokenizer.
      *
      * @param aLine
-     * @return
+     * @return the required separator for the line tokenizer
      */
     private String analyseSeparator(String aLine) {
         if (aLine.indexOf(iSeparatorA) > 0) {
