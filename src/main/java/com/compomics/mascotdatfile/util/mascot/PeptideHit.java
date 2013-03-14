@@ -161,6 +161,10 @@ public class PeptideHit implements Serializable {
      * This boolean indicates whether this peptidehit origined from an errortolerant search.
      */
     private boolean boolErrorTolerantHit = false;
+    /**
+     * If true, debug output will be printed to the standard output.
+     */
+    private boolean debug = false;
 
 
     /**
@@ -279,7 +283,7 @@ public class PeptideHit implements Serializable {
      */
     private void splitPeptideHit(String aPeptideHit) {
         StringTokenizer st = new StringTokenizer(aPeptideHit, ";");
-        if (st.countTokens() != 2) {
+        if (st.countTokens() != 2 && debug) {
             System.out.println("Warning, more than two ';' semicolons used in the peptidehit String!!\t" + aPeptideHit);
         }
         int lSplitIndex = aPeptideHit.indexOf(';');

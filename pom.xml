@@ -5,7 +5,7 @@
     <groupId>com.compomics</groupId>
     <artifactId>mascotdatfile</artifactId>
     <packaging>jar</packaging>
-    <version>3.4.9</version>
+    <version>3.4.10</version>
     <name>mascotdatfile</name>
     <url>http://mascotdatfile.googlecode.com</url>
 
@@ -24,13 +24,17 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-            </resource>
-            <resource>
-                <directory>./</directory>
+                <filtering>true</filtering>
                 <includes>
                     <include>modificationConversion.txt</include>
                 </includes>
-                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>modificationConversion.txt</exclude>
+                </excludes>
             </resource>
         </resources>
 
