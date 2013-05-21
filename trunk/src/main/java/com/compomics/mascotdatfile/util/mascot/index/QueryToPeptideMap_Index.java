@@ -193,7 +193,7 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
     public PeptideHit getPeptideHitOfOneQuery(int aQueryNumber) {
         PeptideHit ph = null;
         Vector lPeptideHits = getAllPeptideHits(aQueryNumber);
-        if (lPeptideHits != null) {
+        if (lPeptideHits != null && !lPeptideHits.isEmpty()) {
             ph = (PeptideHit) lPeptideHits.get(0);
         }
         return ph;
