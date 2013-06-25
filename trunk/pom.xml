@@ -5,15 +5,19 @@
     <groupId>com.compomics</groupId>
     <artifactId>mascotdatfile</artifactId>
     <packaging>jar</packaging>
-    <version>3.4.11</version>
+    <version>3.4.13</version>
     <name>mascotdatfile</name>
     <url>http://mascotdatfile.googlecode.com</url>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
     <!-- Licence -->
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
-
             <url>LICENSE-2.0.txt</url>
         </license>
     </licenses>
@@ -166,6 +170,24 @@
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.0</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>display-dependency-updates</goal>
+                        </goals>
+                        <configuration>
+                            <allowMajorUpdates>true</allowMajorUpdates>
+                            <allowMinorUpdates>true</allowMinorUpdates>
                         </configuration>
                     </execution>
                 </executions>

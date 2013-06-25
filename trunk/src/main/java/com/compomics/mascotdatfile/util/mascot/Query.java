@@ -20,7 +20,6 @@
  * kenny.helsens@ugent.be 
  * lennart.martens@ebi.ac.uk
  */
-
 package com.compomics.mascotdatfile.util.mascot;
 
 import com.compomics.mascotdatfile.util.exception.MascotDatfileException;
@@ -37,8 +36,8 @@ import java.util.StringTokenizer;
  */
 public class Query implements Spectrum, Serializable {
     // Class specific log4j logger for Query instances.
-    private static Logger logger = Logger.getLogger(Query.class);
 
+    private static Logger logger = Logger.getLogger(Query.class);
     /**
      * The title of the MS/MS spectrum.
      */
@@ -84,42 +83,42 @@ public class Query implements Spectrum, Serializable {
      */
     private int iNumberOfPeaks = 0;
     /**
-     * Number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot. This will be -1
-     * by default.
+     * Number of used. Mascot note: 'obsolete' => This is a backwards
+     * compatibility feature of mascot. This will be -1 by default.
      */
     private int iNumberUsed1 = -1;
     /**
-     * The Peak array that includes all the peaks found in the massspectrum.
+     * The Peak array that includes all the peaks found in the masspectrum.
      */
     private Peak[] iPeakList = null;
     /**
      * Identifies the query in the mascot search by its number.
      */
     private int iQueryNumber = 0;
-
     /**
      * The scan number(s) from the Query.
      */
     private String iScans = null;
-
-
     /**
-     * 090110 This boolean indicates whether or not the Query filenames must be transformed. When Mascot Distiller
-     * performs the searches out of the raw data - there is no control on the filename. If set to true, this boolean
-     * will transform the distiller filename into a shorter sensible filename as used in ms_lims.
+     * 090110 This boolean indicates whether or not the Query filenames must be
+     * transformed. When Mascot Distiller performs the searches out of the raw
+     * data - there is no control on the filename. If set to true, this boolean
+     * will transform the distiller filename into a shorter sensible filename as
+     * used in ms_lims.
      */
     private static boolean iDistillerFilenameConversion = false;
-
     /**
-     * A static reference to the Parameter section, only needed when Distiller processing is used.
+     * A static reference to the Parameter section, only needed when Distiller
+     * processing is used.
      */
     private Parameters iParameters = null;
 
     /**
-     * Constructor that takes a Mascot datfile Query Section as input and parses all the data into an instance of Query
-     * and its variables.
+     * Constructor that takes a Mascot datfile Query Section as input and parses
+     * all the data into an instance of Query and its variables.
      *
-     * @param aQueryMap This is the HashMap that contains data about the Mascot datfile Query Section.
+     * @param aQueryMap This is the HashMap that contains data about the Mascot
+     * datfile Query Section.
      */
     public Query(HashMap aQueryMap, double aPrecursorMZ, String aCharge, double aPrecursorMass, double aPrecursorIntensity, int aQueryNumber) {
         parseQueryHashMap(aQueryMap, aQueryNumber);
@@ -130,10 +129,11 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * Constructor that takes a Mascot datfile Query Section as input and parses all the data into an instance of Query
-     * and its variables.
+     * Constructor that takes a Mascot datfile Query Section as input and parses
+     * all the data into an instance of Query and its variables.
      *
-     * @param aQueryMap This is the HashMap that contains data about the Mascot datfile Query Section.
+     * @param aQueryMap This is the HashMap that contains data about the Mascot
+     * datfile Query Section.
      */
     public Query(HashMap aQueryMap, double aPrecursorMZ, String aCharge, double aPrecursorMass, double aPrecursorIntensity, int aQueryNumber, Parameters aParameters) {
 
@@ -149,7 +149,8 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * This method parses the Query HashMap (directly passed by the constructor) into variables of this Query object.
+     * This method parses the Query HashMap (directly passed by the constructor)
+     * into variables of this Query object.
      */
     private void parseQueryHashMap(HashMap aQueryMap, int aQueryNumber) {
         //2.If there is spectrum information, parse it.
@@ -198,10 +199,10 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * This method gets the unparsed Title value out of the Query Hashmap, parses the String and returns a readable
-     * String.
+     * This method gets the unparsed Title value out of the Query Hashmap,
+     * parses the String and returns a readable String.
      *
-     * @return String   Readable filename
+     * @return String Readable filename
      */
     private String parseTitle(String aTitle) {
         // 1.Get the unparsed filename .
@@ -272,7 +273,7 @@ public class Query implements Spectrum, Serializable {
     /**
      * This method returns all the MZ values of the peaks in a double[].
      *
-     * @return double[]    Peak mass.
+     * @return double[] Peak mass.
      */
     public double[] getMZArray() {
         double[] lMZArray = new double[iPeakList.length];
@@ -294,7 +295,7 @@ public class Query implements Spectrum, Serializable {
     /**
      * This method returns all the Intensity values of the peaks in a double[].
      *
-     * @return double[]    Peak intensity.
+     * @return double[] Peak intensity.
      */
     public double[] getIntensityArray() {
         double[] lIntensityArray = new double[iPeakList.length];
@@ -325,7 +326,8 @@ public class Query implements Spectrum, Serializable {
     /**
      * Returns the retention time string for the spectrum.
      *
-     * @return String with the retention time string, can be 'null' if no retention time was specified.
+     * @return String with the retention time string, can be 'null' if no
+     * retention time was specified.
      */
     public String getRetentionTimeInSeconds() {
         return iRetentionTimeInSeconds;
@@ -381,8 +383,8 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * This static swithch will transform the Distiller based "long" filename into a "shorter" functional name for
-     * ms_lims.
+     * This static swithch will transform the Distiller based "long" filename
+     * into a "shorter" functional name for ms_lims.
      */
     public static void setDistillerFilenameProcessing(boolean status) {
         iDistillerFilenameConversion = status;
@@ -479,28 +481,30 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * Returns number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot. This
-     * will be -1 by default.
+     * Returns number of used. Mascot note: 'obsolete' => This is a backwards
+     * compatibility feature of mascot. This will be -1 by default.
      *
-     * @return number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot.
+     * @return number of used. Mascot note: 'obsolete' => This is a backwards
+     * compatibility feature of mascot.
      */
     public int getNumberUsed1() {
         return iNumberUsed1;
     }
 
     /**
-     * Sets number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of mascot. This will
-     * be -1 by default.
+     * Sets number of used. Mascot note: 'obsolete' => This is a backwards
+     * compatibility feature of mascot. This will be -1 by default.
      *
-     * @param aNumberUsed1 number of used. Mascot note: 'obsolete' =>  This is a backwards compatibility feature of
-     *                     mascot.
+     * @param aNumberUsed1 number of used. Mascot note: 'obsolete' => This is a
+     * backwards compatibility feature of mascot.
      */
     public void setNumberUsed1(int aNumberUsed1) {
         iNumberUsed1 = aNumberUsed1;
     }
 
     /**
-     * This class will parse al the ion peaks information out of the Query HashMap into a Peak[].
+     * This class will parse al the ion peaks information out of the Query
+     * HashMap into a Peak[].
      *
      * @return Peak[] containing all the peaks of the spectrum.
      */
@@ -532,11 +536,14 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * Returns the Peak array that includes all the peaks found in the massspectrum.
+     * Returns the Peak array that includes all the peaks found in the
+     * massspectrum.
      *
-     * @return the Peak array that includes all the peaks found in the massspectrum.
-     *         <p/>
-     *         Note that 'null' can be returned if the Ions1 value is empty as in the Mascot Distiller project files.
+     * @return the Peak array that includes all the peaks found in the
+     * massspectrum.
+     * <p/>
+     * Note that 'null' can be returned if the Ions1 value is empty as in the
+     * Mascot Distiller project files.
      */
     public Peak[] getPeakList() {
         return iPeakList;
@@ -547,9 +554,11 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * Sets the Peak array that includes all the peaks found in the massspectrum.
+     * Sets the Peak array that includes all the peaks found in the
+     * massspectrum.
      *
-     * @param aPeakList the Peak array that includes all the peaks found in the massspectrum.
+     * @param aPeakList the Peak array that includes all the peaks found in the
+     * massspectrum.
      */
     public void setPeakList(Peak[] aPeakList) {
         iPeakList = aPeakList;
@@ -567,19 +576,22 @@ public class Query implements Spectrum, Serializable {
     /**
      * Sets identifies the query in the mascot search by its number.
      *
-     * @param aQueryNumber identifies the query in the mascot search by its number.
+     * @param aQueryNumber identifies the query in the mascot search by its
+     * number.
      */
     public void setQueryNumber(int aQueryNumber) {
         iQueryNumber = aQueryNumber;
     }
 
     /**
-     * This method calculates the number of bins mascot has used for this massspectrum. Mascot separates the
-     * massspectrum by a series of bins. <br>The first round, the peak with the highest intensity of each bin is used to
-     * check for ion matches. <br>The second round, the peak with the second highest intensity of each bin is used to
-     * check for ion matches. <br>etc..
+     * This method calculates the number of bins mascot has used for this
+     * massspectrum. Mascot separates the massspectrum by a series of bins.
+     * <br>The first round, the peak with the highest intensity of each bin is
+     * used to check for ion matches. <br>The second round, the peak with the
+     * second highest intensity of each bin is used to check for ion matches.
+     * <br>etc..
      *
-     * @return int     The number of bins mascot is using for this massspectrum.
+     * @return int The number of bins mascot is using for this massspectrum.
      */
     public int getNumberOfBins() {
         int lCount = 1;
@@ -594,13 +606,14 @@ public class Query implements Spectrum, Serializable {
         return lCount;
     }
 
-
     /**
-     * This method returns a filename for the .mgf file custom created by its 'TITLE' value. Parameters from a static
-     * Parameters instance are also used.
+     * This method returns a filename for the .mgf file custom created by its
+     * 'TITLE' value. Parameters from a static Parameters instance are also
+     * used.
      *
      * @param aTitle The 'TITLE' value from the .mgf file.
-     * @return The filename as created for the given 'TITLE' by the MascotDistillerMergeFileReader.
+     * @return The filename as created for the given 'TITLE' by the
+     * MascotDistillerMergeFileReader.
      */
     private String processMGFTitleToFilename(final String aTitle) {
         boolean lMultiFile = iParameters.isDistillerMultiFile();
@@ -609,14 +622,17 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * This method returns a filename for the .mgf file custom created by its 'TITLE' value.
+     * This method returns a filename for the .mgf file custom created by its
+     * 'TITLE' value.
      *
-     * @param aTitle          The 'TITLE' value from the .mgf file.
-     * @param aMutliFile      Boolean that indicates if we must find the filename in the multifilename vector.
+     * @param aTitle The 'TITLE' value from the .mgf file.
+     * @param aMutliFile Boolean that indicates if we must find the filename in
+     * the multifilename vector.
      * @param aMultiFileNames Vector with different filenames for the raw files.
-     * @param aScans          The 'SCANS' value from the .mgf file.
-     * @param aCharge         The 'CHARGE' value from the .mgf file.
-     * @return The filename as created for the given 'TITLE' by the MascotDistillerMergeFileReader.
+     * @param aScans The 'SCANS' value from the .mgf file.
+     * @param aCharge The 'CHARGE' value from the .mgf file.
+     * @return The filename as created for the given 'TITLE' by the
+     * MascotDistillerMergeFileReader.
      */
     public static String processMGFTitleToFilename(String aTitle, boolean aMutliFile, String[] aMultiFileNames, String aScans, String aCharge) {
 
@@ -702,16 +718,20 @@ public class Query implements Spectrum, Serializable {
                 lLCRun = aTitle.substring(aTitle.lastIndexOf('\\') + 1, aTitle.lastIndexOf('.'));
             }
         }
-
+//?
         if (aTitle.indexOf("TITLE=") == 0) {
             aTitle = aTitle.substring(6);
         }
 
         // b) Parse the compound number
-        lCompound = Integer.valueOf(aTitle.substring(0, aTitle.indexOf(':')));
+        if (aTitle.indexOf(':') == -1 && !aTitle.substring(0, aTitle.indexOf(':')).matches("-?\\d+(\\.\\d+)?")) {
+            lCompound = 42;
+        } else {
+            lCompound = Integer.valueOf(aTitle.substring(0, aTitle.indexOf(':')));
+        }
 
         // c) Find out the sum of scans
-        if (aTitle.substring(aTitle.indexOf(':')+1).trim().startsWith("Sum")) {
+        if (aTitle.substring(aTitle.indexOf(':') + 1).trim().startsWith("Sum")) {
             // c1 Multiple scans from this spectrum!
             if (aMutliFile) {
                 //in the multifile title the scans are not there, it has to be parsed from the aScans string

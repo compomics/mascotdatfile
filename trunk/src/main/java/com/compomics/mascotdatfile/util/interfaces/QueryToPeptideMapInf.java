@@ -3,8 +3,9 @@ package com.compomics.mascotdatfile.util.interfaces;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
+import com.compomics.mascotdatfile.util.mascot.Query;
 
-import java.util.Vector;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA. User: Kenny Date: 10-jul-2008 Time: 17:26:47 To change this template use File | Settings |
@@ -13,27 +14,27 @@ import java.util.Vector;
 public interface QueryToPeptideMapInf {
     PeptideHit getPeptideHitOfOneQuery(int aQueryNumber, int aPeptideHitNumber);
 
-    Vector getAllPeptideHits(int aQueryNumber);
+    List<PeptideHit> getAllPeptideHits(int aQueryNumber);
 
     int getNumberOfPeptideHits(int aQueryNumber);
 
     int getNumberOfQueries();
 
-    Vector getBestPeptideHits();
+    List<PeptideHit> getBestPeptideHits();
 
-    Vector getPeptideHits(int aPeptideHitNumber);
+    List<PeptideHit> getPeptideHits(int aPeptideHitNumber);
 
     PeptideHit getPeptideHitOfOneQuery(int aQueryNumber);
 
-    Vector getAllPeptideHitsAboveIdentityThreshold();
+    List<PeptideHit> getAllPeptideHitsAboveIdentityThreshold();
 
-    Vector getAllPeptideHitsAboveIdentityThreshold(double aConfidence);
+    List<PeptideHit> getAllPeptideHitsAboveIdentityThreshold(double aConfidence);
 
-    Vector getPeptideHitsAboveIdentityThreshold(int aQueryNumber);
+    List<PeptideHit> getPeptideHitsAboveIdentityThreshold(int aQueryNumber);
 
-    Vector getPeptideHitsAboveIdentityThreshold(int aQueryNumber, double aConfidenceInterval);
+    List<PeptideHit> getPeptideHitsAboveIdentityThreshold(int aQueryNumber, double aConfidenceInterval);
 
-    Vector getIdentifiedQueries(double aConfidence, Vector aQueryList);
+    List getIdentifiedQueries(double aConfidence, List<Query> aQueryList);
 
     void buildProteinMap();
 }

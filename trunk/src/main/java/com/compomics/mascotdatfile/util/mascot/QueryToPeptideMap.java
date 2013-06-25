@@ -26,8 +26,10 @@ package com.compomics.mascotdatfile.util.mascot;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
+import java.util.ArrayList;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
@@ -490,13 +492,13 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
      * @param aCompleteQueryList Vector with <b>the complete querylist of the datfile</b>.
      * @return Vector queries with an identification above a certain confidence (alpha).
      */
-    public Vector getIdentifiedQueries(double aConfidence, Vector aCompleteQueryList) {
+    public List getIdentifiedQueries(double aConfidence, List<Query> aCompleteQueryList) {
         // All the identified Queries will be stored here.
-        Vector lIdentifiedQueries = new Vector();
+        List lIdentifiedQueries = new ArrayList();
         // The temporary peptidehits will be stored here, if the size is bigger then 0, the Query will be stored.
         // Mind that the getPeptideHitsAboveIdentityThreshold() method takes the querynumber as input (45 leads to query45)
         // And that the QueryList is a Vector starting from zero! (45 leads to query44)
-        Vector lTempPeptideHits = null;
+        List lTempPeptideHits = new ArrayList();
         for (int i = 0; i < aCompleteQueryList.size(); i++) {
             int lQueryNumber = i + 1;
             lTempPeptideHits = getPeptideHitsAboveIdentityThreshold(lQueryNumber, aConfidence);

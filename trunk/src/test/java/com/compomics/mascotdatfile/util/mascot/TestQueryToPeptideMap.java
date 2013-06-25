@@ -24,6 +24,7 @@
 package com.compomics.mascotdatfile.util.mascot;
 
 import com.compomics.util.junit.TestCaseLM;
+import java.util.List;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 import org.apache.log4j.Logger;
@@ -90,7 +91,7 @@ public class TestQueryToPeptideMap extends TestCase {
     public void testGetIdentifiedQueries() {
         MascotDatfile lMDF = new MascotDatfile(TestCaseLM.getFullFilePath("F010062.dat"));
         QueryToPeptideMap Query2P = lMDF.getQueryToPeptideMap();
-        Vector lIdentifiedQueries = Query2P.getIdentifiedQueries(0.05, lMDF.getQueryList());
+        List lIdentifiedQueries = Query2P.getIdentifiedQueries(0.05, lMDF.getQueryList());
         Assert.assertEquals(45, lIdentifiedQueries.size());
         lIdentifiedQueries = Query2P.getIdentifiedQueries(0.10, lMDF.getQueryList());
         Assert.assertEquals(50, lIdentifiedQueries.size());

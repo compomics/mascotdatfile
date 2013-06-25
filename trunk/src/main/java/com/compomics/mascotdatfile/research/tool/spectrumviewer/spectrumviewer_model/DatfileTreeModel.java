@@ -29,6 +29,7 @@ import org.apache.log4j.Logger;
 import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.Query;
+import java.util.List;
 
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
@@ -52,7 +53,7 @@ public class DatfileTreeModel implements TreeModel {
      */
     private String iRoot = null;
 
-    private Vector iFilteredQueries = null;
+    private List iFilteredQueries = null;
 
     // Default, threshold is 0.05.
     private double iFilterSettingThreshold = 0.05;
@@ -81,7 +82,7 @@ public class DatfileTreeModel implements TreeModel {
             result = iFilteredQueries.get(index);
         } else if (parent instanceof Query) {
             int lQueryNumber = ((Query) parent).getQueryNumber();
-            Vector lPeptidehits = iMascotDatfile.getQueryToPeptideMap().getPeptideHitsAboveIdentityThreshold(lQueryNumber, iFilterSettingThreshold);
+            List<PeptideHit> lPeptidehits = iMascotDatfile.getQueryToPeptideMap().getPeptideHitsAboveIdentityThreshold(lQueryNumber, iFilterSettingThreshold);
             result = lPeptidehits.get(index);
         }
         return result;
@@ -99,7 +100,7 @@ public class DatfileTreeModel implements TreeModel {
             lChildCount = iFilteredQueries.size();
         } else if (parent instanceof Query) {
             int lQueryNumber = ((Query) parent).getQueryNumber();
-            Vector lPeptidehits = iMascotDatfile.getQueryToPeptideMap().getPeptideHitsAboveIdentityThreshold(lQueryNumber, iFilterSettingThreshold);
+            List<PeptideHit> lPeptidehits = iMascotDatfile.getQueryToPeptideMap().getPeptideHitsAboveIdentityThreshold(lQueryNumber, iFilterSettingThreshold);
             lChildCount = lPeptidehits.size();
         }
         return lChildCount;
@@ -180,7 +181,7 @@ public class DatfileTreeModel implements TreeModel {
      *
      * @return Vector with Filtered
      */
-    private Vector CalculateFilteredQueries() {
+    private List CalculateFilteredQueries() {
         iFilteredQueries = iMascotDatfile.getQueryToPeptideMap().getIdentifiedQueries(iFilterSettingThreshold, iMascotDatfile.getQueryList());
         return iFilteredQueries;
     }

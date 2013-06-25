@@ -27,7 +27,6 @@ import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import org.apache.log4j.Logger;
 
-import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.QueryToPeptideMap;
 
@@ -36,6 +35,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -151,7 +151,7 @@ public class PeptideHitsAboveThreshold {
             bw.newLine();
             PeptideHit lPh = null;
             for (int i = 1; i < lNumberOfQueries + 1; i++) {
-                Vector lPeptideHits = aQueryTP.getAllPeptideHits(i);
+                List<PeptideHit> lPeptideHits = aQueryTP.getAllPeptideHits(i);
                 if (lPeptideHits.get(0) == null) {
                     continue;
                 }

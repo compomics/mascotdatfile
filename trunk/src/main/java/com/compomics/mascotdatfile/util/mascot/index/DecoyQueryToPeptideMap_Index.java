@@ -29,6 +29,7 @@ import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.ModificationList;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.ProteinMap;
+import java.util.Vector;
 
 /**
  * Created by IntelliJ IDEA.
@@ -97,4 +98,6 @@ public class DecoyQueryToPeptideMap_Index extends QueryToPeptideMap_Index implem
     public int getNumberOfPeptideHits(int aQueryNumber) {
         return iController.getNumberOfDecoyPeptideHits(aQueryNumber);
     }
+
+
 }
