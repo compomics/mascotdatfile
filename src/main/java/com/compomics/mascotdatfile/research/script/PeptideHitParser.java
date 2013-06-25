@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -86,7 +87,7 @@ public class PeptideHitParser {
                 // Iterate over all PeptideHits.
                 for (int j = 1; j <= lNumberOfQueries; j++) {
                     Query lQuery = iMascotDatfile.getQuery(j);
-                    Vector lPeptideHits = lQueryToPeptideMap.getPeptideHitsAboveIdentityThreshold(j, lAlpha);
+                    List<PeptideHit> lPeptideHits = lQueryToPeptideMap.getPeptideHitsAboveIdentityThreshold(j, lAlpha);
 
                     // CSV output array.
                     int lNumberOfPeptideHits = lPeptideHits.size();

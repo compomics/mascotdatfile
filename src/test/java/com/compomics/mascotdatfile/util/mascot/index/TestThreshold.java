@@ -36,6 +36,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Vector;
 /**
  * Created by IntelliJ IDEA.
@@ -78,7 +79,7 @@ public class TestThreshold extends TestCase {
             BufferedReader lBufferedReader = new BufferedReader(new FileReader(input));
             int lCount = 0;
             for (int i = 1; i < lQueryToPeptideMap.getNumberOfQueries() + 1; i++) {
-                Vector lPeptideHitsVec = lQueryToPeptideMap.getAllPeptideHits(i);
+                List lPeptideHitsVec = lQueryToPeptideMap.getAllPeptideHits(i);
                 if (lPeptideHitsVec.size() == 0) {
                     continue;
                 }
@@ -104,7 +105,7 @@ public class TestThreshold extends TestCase {
             BufferedReader lBufferedReader = new BufferedReader(new FileReader(input));
             int lCount = 0;
             for (int i = 1; i < lQueryToPeptideMap.getNumberOfQueries() + 1; i++) {
-                Vector lPeptideHitsVec = lQueryToPeptideMap.getAllPeptideHits(i);
+                List lPeptideHitsVec = lQueryToPeptideMap.getAllPeptideHits(i);
                 if (lPeptideHitsVec.size() == 0) {
                     continue;
                 }
@@ -130,7 +131,7 @@ public class TestThreshold extends TestCase {
             BufferedReader lBufferedReader = new BufferedReader(new FileReader(input));
             int lCount = 0;
             for (int i = 1; i < lQueryToPeptideMap.getNumberOfQueries() + 1; i++) {
-                Vector lPeptideHitsVec = lQueryToPeptideMap.getAllPeptideHits(i);
+                List lPeptideHitsVec = lQueryToPeptideMap.getAllPeptideHits(i);
                 if (lPeptideHitsVec.size() == 0) {
                     continue;
                 }

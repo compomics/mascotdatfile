@@ -30,6 +30,7 @@ import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.PeptideToQueryMap;
 import com.compomics.mascotdatfile.util.mascot.Query;
 import com.compomics.util.junit.TestCaseLM;
+import java.util.List;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 import org.apache.log4j.Logger;
@@ -84,7 +85,7 @@ public class TestPeptideToQueryMap extends TestCase {
         Assert.assertEquals("Aebers_SAX051008_1.6.1mox_9087_212.mgf", lQuery.getTitle());
 
         //test BestPeptideHits
-        Vector lBestQueriesVec = lQueryToPeptideMap.getPeptideHits(1);
+        List lBestQueriesVec = lQueryToPeptideMap.getPeptideHits(1);
         lPeptideHit = (PeptideHit) lBestQueriesVec.get(1000 - 1);
         Assert.assertEquals("SIQQLVTYVFPIAEVVLKEEQQRR", lPeptideHit.getSequence());
         lPeptideHit = (PeptideHit) lBestQueriesVec.get(1 - 1);

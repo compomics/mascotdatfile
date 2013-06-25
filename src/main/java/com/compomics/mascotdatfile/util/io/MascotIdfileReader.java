@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -134,14 +135,14 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
         for (int i = 1; i <= numberOfQueries; i++) {
 
-            Vector<PeptideHit> mascotDecoyPeptideHits = null;
+            List<PeptideHit> mascotDecoyPeptideHits = null;
             try {
                 mascotDecoyPeptideHits = lDecoyQueryToPeptideMap.getAllPeptideHits(i);
             } catch (Exception e) {
                 // Looks like there is no decoy section
             }
 
-            Vector<PeptideHit> mascotPeptideHits = lQueryToPeptideMap.getAllPeptideHits(i);
+            List<PeptideHit> mascotPeptideHits = lQueryToPeptideMap.getAllPeptideHits(i);
 
             // Get spectrum information
             PeptideHit testPeptide = null;

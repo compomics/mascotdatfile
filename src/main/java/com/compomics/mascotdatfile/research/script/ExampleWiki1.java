@@ -11,6 +11,7 @@ import com.compomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -44,7 +45,7 @@ public class ExampleWiki1 {
         // This Vector retrieves the best PeptideHit for each Query.
         // The Vector is zero based.
         // ex: Vector[0] contains the peptidehit of Query 1, etc.
-        Vector lBestPeptideHits = lQueryToPeptideMap.getAllPeptideHitsAboveIdentityThreshold();
+        List<PeptideHit> lBestPeptideHits = lQueryToPeptideMap.getAllPeptideHitsAboveIdentityThreshold();
 
         // A - Iterate over all ProteinIDs
         Iterator iter = iMascotDatfile.getProteinMap().getProteinIDIterator();
@@ -67,7 +68,7 @@ public class ExampleWiki1 {
 
         // B - Iterate over all PeptideHits.
         for (int j = 0; j < lBestPeptideHits.size(); j++) {
-            PeptideHit lPeptideHit = (PeptideHit) lBestPeptideHits.elementAt(j);
+            PeptideHit lPeptideHit = (PeptideHit) lBestPeptideHits.get(j);
             // CSV output array.
 
             if (lPeptideHit != null) {

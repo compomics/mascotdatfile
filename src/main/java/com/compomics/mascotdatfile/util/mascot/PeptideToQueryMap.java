@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -60,10 +61,10 @@ public class PeptideToQueryMap {
         // 2.Loop trough the Queries.
         for (int i = 1; i <= aQueryList.size(); i++) {
             // 3. Each query Key holds a Vector with PeptideHits, now loop trough these PeptideHits.
-            Vector lPeptideHits = aQueryToPeptideMap.getAllPeptideHits(i);
+            List lPeptideHits = aQueryToPeptideMap.getAllPeptideHits(i);
             if (lPeptideHits == null) {
                 continue;
-            } else if (lPeptideHits.size() == 0) {
+            } else if (lPeptideHits.isEmpty()) {
                 continue;
             }
             for (int j = 0; j < lPeptideHits.size(); j++) {

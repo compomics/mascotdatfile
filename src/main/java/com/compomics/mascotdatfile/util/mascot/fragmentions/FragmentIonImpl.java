@@ -590,9 +590,8 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
         return fi;
     }
 
-
     /**
-     * Reset the mathcing values.
+     * Reset the matching values.
      */
     public void resetMatchingValues() {
         boolMatch = false;
