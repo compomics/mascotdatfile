@@ -30,6 +30,7 @@ import com.compomics.mascotdatfile.util.mascot.ProteinMap;
 import com.compomics.mascotdatfile.util.mascot.Query;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -87,7 +88,7 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
      * QueryNumber. <br>Returns PeptideHit = null if PeptideHit is null.
      */
     public PeptideHit getPeptideHitOfOneQuery(int aQueryNumber, int aPeptideHitNumber) {
-        
+
         //2.b) Get homology and identity score of this Query to pass to the creation of a peptidehit.
         //     lThreshold[0] is the homology threshold, lThreshold[1] is the identity threshold.
         lQMatchString = iController.readSummary(aQueryNumber, SummaryIndex.QMATCH);
@@ -109,7 +110,7 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
             }
             return PeptideHit.parsePeptideHit(s, iProteinMap, iModificationList, new double[]{lQplughole, lQmatch}, substitution);
         } else {
-        return null;
+            return null;
         }
     }
 
@@ -193,8 +194,8 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
      * @param aQueryNumber Requested query by number! <br>45 as parameter will
      * return the best PeptideHit of Query 45.
      * @return PeptideHit returns the best PeptideHit of the requested
-     * QueryNumber.
-     * throws IndexOutOfBounds if there are no peptide hits for the given query
+     * QueryNumber. throws IndexOutOfBounds if there are no peptide hits for the
+     * given query
      */
     public PeptideHit getPeptideHitOfOneQuery(int aQueryNumber) throws IndexOutOfBoundsException {
         return getAllPeptideHits(aQueryNumber).get(0);
@@ -221,11 +222,15 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
      */
     public List<PeptideHit> getAllPeptideHitsAboveIdentityThreshold(double aConfidence) {
         List<PeptideHit> lAllBestPeptideHits = getBestPeptideHits();
-        for (PeptideHit peptideHit : lAllBestPeptideHits) {
+        //test fails, if this changes, change code duplication further down
+        for (Iterator<PeptideHit> itr = lAllBestPeptideHits.iterator(); itr.hasNext();) {
+            PeptideHit peptideHit = itr.next();
             if (peptideHit != null) {
                 if (!peptideHit.scoresAboveIdentityThreshold(aConfidence)) {
-                    lAllBestPeptideHits.remove(peptideHit);
+                    itr.remove();
                 }
+            } else {
+                itr.remove();
             }
         }
         return lAllBestPeptideHits;
@@ -257,9 +262,14 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
     public List<PeptideHit> getPeptideHitsAboveIdentityThreshold(int aQueryNumber, double aConfidenceInterval) {
         List<PeptideHit> lPeptideHits = getAllPeptideHits(aQueryNumber);
         if (lPeptideHits != null) {
-            for (PeptideHit peptideHit : lPeptideHits) {
-                if (!peptideHit.scoresAboveIdentityThreshold(aConfidenceInterval)) {
-                    lPeptideHits.remove(peptideHit);
+            for (Iterator<PeptideHit> itr = lPeptideHits.iterator(); itr.hasNext();) {
+                PeptideHit peptideHit = itr.next();
+                if (peptideHit != null) {
+                    if (!peptideHit.scoresAboveIdentityThreshold(aConfidenceInterval)) {
+                        itr.remove();
+                    }
+                } else {
+                    itr.remove();
                 }
             }
             return lPeptideHits;
@@ -303,22 +313,22 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
         int lQueryIndex;
         int lPeptideIndex;
         int numberOfQueriesInDatFile = iController.getNumberOfQueries();
-        
+
         for (int i = 0; i < numberOfQueriesInDatFile; i++) {
             lQueryIndex = i + 1;
             List<PeptideHit> peptideHitsForQuery = getAllPeptideHits(lQueryIndex);
             // Update the PeptideHit in the ProteinMap.
-                for (int j = 0; j < peptideHitsForQuery.size(); j++) {
-                    lPeptideIndex = j + 1;
-                    PeptideHit lPeptideHit = peptideHitsForQuery.get(j);
-                    if (lPeptideHit != null) {
-                        int lNumberOfProteinHits = lPeptideHit.getProteinHits().size();
-                        for (int k = 0; k < lNumberOfProteinHits; k++) {
-                            ProteinHit lProteinHit = (ProteinHit) lPeptideHit.getProteinHits().get(k);
-                            iProteinMap.addProteinSource(lProteinHit.getAccession(), lQueryIndex, lPeptideIndex);
-                        }
+            for (int j = 0; j < peptideHitsForQuery.size(); j++) {
+                lPeptideIndex = j + 1;
+                PeptideHit lPeptideHit = peptideHitsForQuery.get(j);
+                if (lPeptideHit != null) {
+                    int lNumberOfProteinHits = lPeptideHit.getProteinHits().size();
+                    for (int k = 0; k < lNumberOfProteinHits; k++) {
+                        ProteinHit lProteinHit = (ProteinHit) lPeptideHit.getProteinHits().get(k);
+                        iProteinMap.addProteinSource(lProteinHit.getAccession(), lQueryIndex, lPeptideIndex);
                     }
                 }
+            }
         }
     }
 }
