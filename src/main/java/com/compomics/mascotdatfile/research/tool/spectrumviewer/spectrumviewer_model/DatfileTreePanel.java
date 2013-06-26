@@ -26,7 +26,6 @@ package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import org.apache.log4j.Logger;
 
-import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.PeptideHitAnnotation;
 import com.compomics.mascotdatfile.util.mascot.Query;
