@@ -19,7 +19,7 @@ import com.compomics.util.experiment.massspectrometry.Spectrum;
 import com.compomics.util.experiment.personalization.ExperimentObject;
 import com.compomics.util.experiment.refinementparameters.MascotScore;
 import com.compomics.mascotdatfile.util.mascot.Query;
-import com.compomics.util.gui.waiting.WaitingHandler;
+import com.compomics.util.waiting.WaitingHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -130,7 +130,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
         int numberOfQueries = iMascotDatfile.getNumberOfQueries();
 
         if (waitingHandler != null) {
-            waitingHandler.setMaxSecondaryProgressValue(numberOfQueries);
+            waitingHandler.setMaxSecondaryProgressCounter(numberOfQueries);
         }
 
         for (int i = 1; i <= numberOfQueries; i++) {
@@ -218,7 +218,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
                 if (waitingHandler.isRunCanceled()) {
                     break;
                 }
-                waitingHandler.setSecondaryProgressValue(i);
+                waitingHandler.setSecondaryProgressCounter(i);
             }
         }
 
