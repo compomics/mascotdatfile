@@ -30,7 +30,6 @@ import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_model.DatfileTreePanel;
 import com.compomics.mascotdatfile.research.util.DatfileLocation;
-import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfTemplate;
 import com.lowagie.text.pdf.PdfWriter;
