@@ -182,9 +182,6 @@
                 <executions>
                     <execution>
                         <phase>compile</phase>
-                        <goals>
-                            <goal>display-dependency-updates</goal>
-                        </goals>
                         <configuration>
                             <allowMajorUpdates>true</allowMajorUpdates>
                             <allowMinorUpdates>true</allowMinorUpdates>
@@ -261,7 +258,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
