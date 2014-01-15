@@ -19,6 +19,7 @@ import com.compomics.util.experiment.massspectrometry.Spectrum;
 import com.compomics.util.experiment.personalization.ExperimentObject;
 import com.compomics.util.experiment.refinementparameters.MascotScore;
 import com.compomics.mascotdatfile.util.mascot.Query;
+import com.compomics.util.experiment.identification.SpectrumIdentificationAssumption;
 import com.compomics.util.waiting.WaitingHandler;
 
 import java.io.File;
@@ -199,7 +200,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
                 for (Double eValue : eValues) {
                     for (PeptideHit peptideHit : hitMap.get(eValue)) {
-                        currentMatch.addHit(Advocate.MASCOT, getPeptideAssumption(peptideHit, charge, rank));
+                        currentMatch.addHit(Advocate.Mascot.getIndex(), getPeptideAssumption(peptideHit, charge, rank), false);
                     }
                     rank += hitMap.get(eValue).size();
                 }
@@ -277,7 +278,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
             e.printStackTrace();
         }
 
-        PeptideAssumption currentAssumption = new PeptideAssumption(thePeptide, rank, Advocate.MASCOT, charge, mascotEValue, getFileName());
+        PeptideAssumption currentAssumption = new PeptideAssumption(thePeptide, rank, Advocate.Mascot.getIndex(), charge, mascotEValue, getFileName());
         MascotScore scoreParam = new MascotScore(aPeptideHit.getIonsScore());
         currentAssumption.addUrParam(scoreParam);
 
