@@ -4,7 +4,6 @@ import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import com.compomics.mascotdatfile.util.interfaces.Modification;
 import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
-import com.compomics.mascotdatfile.util.mascot.ProteinHit;
 import com.compomics.mascotdatfile.util.mascot.enumeration.MascotDatfileType;
 import com.compomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
 import com.compomics.util.Util;
@@ -19,7 +18,6 @@ import com.compomics.util.experiment.massspectrometry.Spectrum;
 import com.compomics.util.experiment.personalization.ExperimentObject;
 import com.compomics.util.experiment.refinementparameters.MascotScore;
 import com.compomics.mascotdatfile.util.mascot.Query;
-import com.compomics.util.experiment.identification.SpectrumIdentificationAssumption;
 import com.compomics.util.waiting.WaitingHandler;
 
 import java.io.File;
@@ -31,7 +29,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * This reader will import identifications from a Mascot dat file.
@@ -259,26 +256,8 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
             }
         }
 
-        Double mascotEValue = aPeptideHit.getExpectancy();
-
-        int numberOfProteinHits = aPeptideHit.getProteinHits().size();
-        ArrayList<String> proteins = new ArrayList(numberOfProteinHits);
-
-        for (int j = 0; j < numberOfProteinHits; j++) {
-            String accession = ((ProteinHit) aPeptideHit.getProteinHits().get(j)).getAccession();
-            proteins.add(accession);
-        }
-
-        Peptide thePeptide;
-
-        try {
-            thePeptide = new Peptide(peptideSequence, proteins, foundModifications);
-        } catch (IllegalArgumentException e) {
-            thePeptide = new Peptide(peptideSequence, aPeptideHit.getPeptideMr(), proteins, foundModifications);
-            e.printStackTrace();
-        }
-
-        PeptideAssumption currentAssumption = new PeptideAssumption(thePeptide, rank, Advocate.Mascot.getIndex(), charge, mascotEValue, getFileName());
+        PeptideAssumption currentAssumption = new PeptideAssumption(new Peptide(peptideSequence, foundModifications), 
+                rank, Advocate.Mascot.getIndex(), charge, aPeptideHit.getExpectancy(), getFileName());
         MascotScore scoreParam = new MascotScore(aPeptideHit.getIonsScore());
         currentAssumption.addUrParam(scoreParam);
 
