@@ -724,12 +724,11 @@ public class Query implements Spectrum, Serializable {
         }
 
         // b) Parse the compound number
-        if (aTitle.indexOf(':') == -1 && !aTitle.substring(0, aTitle.indexOf(':')).matches("-?\\d+(\\.\\d+)?")) {
-            lCompound = 42;
-        } else {
+        if (aTitle.indexOf(':') != -1 && aTitle.substring(0, aTitle.indexOf(':')).matches("-?\\d+(\\.\\d+)?")) {
             lCompound = Integer.valueOf(aTitle.substring(0, aTitle.indexOf(':')));
+        } else {
+            lCompound = -1;
         }
-
         // c) Find out the sum of scans
         if (aTitle.substring(aTitle.indexOf(':') + 1).trim().startsWith("Sum")) {
             // c1 Multiple scans from this spectrum!
