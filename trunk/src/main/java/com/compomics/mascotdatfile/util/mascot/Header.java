@@ -80,7 +80,7 @@ public class Header implements Serializable {
      */
     private int iMaxHits = 0;
     /**
-     * Database version ID.
+     * The Mascot version used to generate the dat file.
      */
     private String iVersion = null;
     /**
@@ -253,14 +253,14 @@ public class Header implements Serializable {
     }
 
     /**
-     * Database version ID.
+     * Returns the Mascot version.
      */
     public String getVersion() {
         return iVersion;
     }
 
     /**
-     * Database version ID.
+     * Set the Mascot version.
      */
     public void setVersion(String aVersion) {
         iVersion = aVersion;

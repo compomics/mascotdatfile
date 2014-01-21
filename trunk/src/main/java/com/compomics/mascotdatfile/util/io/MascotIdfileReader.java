@@ -116,7 +116,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
         HashSet<SpectrumMatch> assignedPeptideHits = new HashSet<SpectrumMatch>();
 
         QueryToPeptideMapInf lQueryToPeptideMap = iMascotDatfile.getQueryToPeptideMap();
-        QueryToPeptideMapInf lDecoyQueryToPeptideMap = iMascotDatfile.getDecoyQueryToPeptideMap();
+        QueryToPeptideMapInf lDecoyQueryToPeptideMap = iMascotDatfile.getDecoyQueryToPeptideMap(false);
 
         int numberOfQueries = iMascotDatfile.getNumberOfQueries();
 
@@ -290,5 +290,10 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
     public void close() throws IOException {
         iMascotDatfile.finish();
         iMascotDatfile = null;
+    }
+
+    @Override
+    public String getSoftwareVersion() {
+        return "Mascot " + iMascotDatfile.getHeaderSection().getVersion();
     }
 }
