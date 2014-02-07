@@ -3,6 +3,48 @@
 
 #Starting from MascotDatfile version 3.0, all subsequent versions of the library are listed here.
 
+===3.4.19 (21 January 2014) ===
+ * Disabled the error logging in the getAllSpectrumMatches in the MascotIdfileReader.
+ * Corrected a JavaDoc error where the Mascot version was annotated as the database version.
+ * Updated utilities to version 3.21.6.
+
+===3.4.18 (16 January 2014) ===
+ * Removed the protein mappings from the IdfileReader.
+
+===3.4.17 (16 January 2014) ===
+ * Fixed a logic bug in the parsing of the compound number.
+
+===3.4.16 (15 January 2014) ===
+ * Updated utilities to version 3.21.0.
+
+===3.4.15 (1 August 2013) ===
+ * Removed spectrum file renaming for Mascot distiller files which should not be needed anymore. 
+ * Update utilities  to version 3.14.16.
+
+===3.4.14 (9 July 2013) ===
+ * Updated utilities to version 3.14.13.
+
+===3.4.13 (25 June 2013) ===
+ * Started with refactoring.
+ * Dixed a problem which allowed nulls in a List to not be removed.
+
+===3.4.11 (21 May 2013) ===
+ * Fixed a bug where the first element in a vector was used without checking that the vector actually contained any elements first.
+
+===3.4.10 (14 March 2013) ===
+ * The PeptideHit object's warning "Warning, more than two ';' semicolons used in the peptidehit String" is now only shown if the debug variable is turned on.
+ * Fixed an issue with recursive folder generation when building the project using Maven 3 and NetBeans.
+ * Fixed JavaDoc warnings.
+
+===3.4.9 (13 February 2013) ===
+ * The secondary databases (if searching with more than one database) can now be extracted from the search parameters using the new getSecondaryDatabases() method.
+
+===3.4.8 (13 February 2013) ===
+ * Prevented an exception thrown in the id file reader due to empty peptide assumption lists returned by the parser.
+
+===3.4.7 (6 December 2012) ===
+ * Changed the location of the iText dependency from the Genesis repository to the common Maven repository, as there were some issues using the Genesis version.
+
 ===3.4.6 (13 November 2012) ===
  * The code now works with Maven 3
  * Improved the formatting of a peptide hit warning message.
