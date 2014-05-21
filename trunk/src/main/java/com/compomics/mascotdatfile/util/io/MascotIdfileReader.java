@@ -57,17 +57,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
      * @param aFile a file to read
      */
     public MascotIdfileReader(File aFile) {
-        inspectedFile = aFile;
-        try {
-            iMascotDatfile = MascotDatfileFactory.create(inspectedFile.getCanonicalPath(), MascotDatfileType.MEMORY);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-    }
-
-    public String getExtension() {
-        return ".dat";
+        this(aFile, aFile.length() > 1073741824);
     }
 
     /**
@@ -197,7 +187,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
                 for (Double eValue : eValues) {
                     for (PeptideHit peptideHit : hitMap.get(eValue)) {
-                        currentMatch.addHit(Advocate.Mascot.getIndex(), getPeptideAssumption(peptideHit, charge, rank), false);
+                        currentMatch.addHit(Advocate.mascot.getIndex(), getPeptideAssumption(peptideHit, charge, rank), false);
                     }
                     rank += hitMap.get(eValue).size();
                 }
@@ -256,8 +246,8 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
             }
         }
 
-        PeptideAssumption currentAssumption = new PeptideAssumption(new Peptide(peptideSequence, foundModifications), 
-                rank, Advocate.Mascot.getIndex(), charge, aPeptideHit.getExpectancy(), getFileName());
+        PeptideAssumption currentAssumption = new PeptideAssumption(new Peptide(peptideSequence, foundModifications),
+                rank, Advocate.mascot.getIndex(), charge, aPeptideHit.getExpectancy(), getFileName());
         MascotScore scoreParam = new MascotScore(aPeptideHit.getIonsScore());
         currentAssumption.addUrParam(scoreParam);
 
@@ -282,7 +272,6 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
         // a special fix for mgf files with titles containing \\ instead of \
         //spectrumTitle = spectrumTitle.replaceAll("\\\\\\\\", "\\\\");  // @TODO: only needed for OMSSA???
-
         return spectrumTitle;
     }
 
@@ -293,7 +282,17 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
     }
 
     @Override
+    public String getExtension() {
+        return ".dat";
+    }
+
+    @Override
     public String getSoftwareVersion() {
-        return "Mascot " + iMascotDatfile.getHeaderSection().getVersion();
+        return iMascotDatfile.getHeaderSection().getVersion();
+    }
+
+    @Override
+    public String getSoftware() {
+        return "Mascot";
     }
 }
