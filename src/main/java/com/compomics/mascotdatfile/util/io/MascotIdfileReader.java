@@ -52,7 +52,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
     /**
      * Constructor for the MascotIdfilereader. Using the memory option for the
-     * parser.
+     * parser if the file is bigger than 1 GB.
      *
      * @param aFile a file to read
      */
