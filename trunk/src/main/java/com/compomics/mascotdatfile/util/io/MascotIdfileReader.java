@@ -287,12 +287,11 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
     }
 
     @Override
-    public String getSoftwareVersion() {
-        return iMascotDatfile.getHeaderSection().getVersion();
-    }
-
-    @Override
-    public String getSoftware() {
-        return "Mascot";
+    public HashMap<String, ArrayList<String>> getSoftwareVersions() {
+        HashMap<String, ArrayList<String>> result = new HashMap<String, ArrayList<String>>();
+        ArrayList<String> versions = new ArrayList<String>();
+        versions.add(iMascotDatfile.getHeaderSection().getVersion());
+        result.put("Mascot", versions);
+        return result;
     }
 }
