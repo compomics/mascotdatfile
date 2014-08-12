@@ -18,17 +18,21 @@ import com.compomics.util.experiment.massspectrometry.Spectrum;
 import com.compomics.util.experiment.personalization.ExperimentObject;
 import com.compomics.util.experiment.refinementparameters.MascotScore;
 import com.compomics.mascotdatfile.util.mascot.Query;
+import com.compomics.util.experiment.identification.SequenceFactory;
 import com.compomics.util.waiting.WaitingHandler;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import javax.xml.bind.JAXBException;
 
 /**
  * This reader will import identifications from a Mascot dat file.
@@ -45,9 +49,20 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
      * Instance of the mascotdatfile parser.
      */
     private MascotDatfileInf iMascotDatfile;
+    /**
+     * A map of the peptides found in this file
+     */
+    private HashMap<String, LinkedList<Peptide>> peptideMap;
+    /**
+     * The length of the keys of the peptide map
+     */
+    private int peptideMapKeyLength;
 
+    /**
+     * Default constructor for the service loading mechanism.
+     */
     public MascotIdfileReader() {
-        // Default constructor for the service loading mechanism.
+
     }
 
     /**
@@ -100,10 +115,22 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
     }
 
     @Override
-    public HashSet<SpectrumMatch> getAllSpectrumMatches(WaitingHandler waitingHandler) throws IOException, IllegalArgumentException, Exception {
+    public LinkedList<SpectrumMatch> getAllSpectrumMatches(WaitingHandler waitingHandler) throws IOException, IllegalArgumentException, SQLException, ClassNotFoundException, InterruptedException, JAXBException {
+        return getAllSpectrumMatches(waitingHandler, true);
+    }
+
+    @Override
+    public LinkedList<SpectrumMatch> getAllSpectrumMatches(WaitingHandler waitingHandler, boolean secondaryMaps) throws IOException, IllegalArgumentException, SQLException, ClassNotFoundException, InterruptedException, JAXBException {
+
+        if (secondaryMaps) {
+            SequenceFactory sequenceFactory = SequenceFactory.getInstance();
+            peptideMapKeyLength = sequenceFactory.getDefaultProteinTree().getInitialTagSize();
+            peptideMap = new HashMap<String, LinkedList<Peptide>>(1024);
+        }
+
+        LinkedList<SpectrumMatch> result = new LinkedList<SpectrumMatch>();
 
         String mgfFileName = getMgfFileName();
-        HashSet<SpectrumMatch> assignedPeptideHits = new HashSet<SpectrumMatch>();
 
         QueryToPeptideMapInf lQueryToPeptideMap = iMascotDatfile.getQueryToPeptideMap();
         QueryToPeptideMapInf lDecoyQueryToPeptideMap = iMascotDatfile.getDecoyQueryToPeptideMap(false);
@@ -187,12 +214,12 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
                 for (Double eValue : eValues) {
                     for (PeptideHit peptideHit : hitMap.get(eValue)) {
-                        currentMatch.addHit(Advocate.mascot.getIndex(), getPeptideAssumption(peptideHit, charge, rank), false);
+                        currentMatch.addHit(Advocate.mascot.getIndex(), getPeptideAssumption(peptideHit, charge, rank, secondaryMaps), false);
                     }
                     rank += hitMap.get(eValue).size();
                 }
 
-                assignedPeptideHits.add(currentMatch);
+                result.add(currentMatch);
             }
 
             if (waitingHandler != null) {
@@ -203,7 +230,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
             }
         }
 
-        return assignedPeptideHits;
+        return result;
     }
 
     /**
@@ -215,9 +242,11 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
      * @param aPeptideHit the peptide hit to parse
      * @param charge the corresponding charge
      * @param rank the rank of the peptideHit
+     * @param secondaryMaps if true the peptides and tags will be kept in maps
+     *
      * @return a peptide assumption
      */
-    private PeptideAssumption getPeptideAssumption(PeptideHit aPeptideHit, Charge charge, int rank) {
+    private PeptideAssumption getPeptideAssumption(PeptideHit aPeptideHit, Charge charge, int rank, boolean secondaryMaps) {
 
         ArrayList<ModificationMatch> foundModifications = new ArrayList();
         String peptideSequence = aPeptideHit.getSequence();
@@ -246,7 +275,19 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
             }
         }
 
-        PeptideAssumption currentAssumption = new PeptideAssumption(new Peptide(peptideSequence, foundModifications),
+        Peptide peptide = new Peptide(peptideSequence, foundModifications);
+
+        if (secondaryMaps) {
+            String subSequence = peptideSequence.substring(0, peptideMapKeyLength);
+            LinkedList<Peptide> peptidesForTag = peptideMap.get(subSequence);
+            if (peptidesForTag == null) {
+                peptidesForTag = new LinkedList<Peptide>();
+                peptideMap.put(subSequence, peptidesForTag);
+            }
+            peptidesForTag.add(peptide);
+        }
+
+        PeptideAssumption currentAssumption = new PeptideAssumption(peptide,
                 rank, Advocate.mascot.getIndex(), charge, aPeptideHit.getExpectancy(), getFileName());
         MascotScore scoreParam = new MascotScore(aPeptideHit.getIonsScore());
         currentAssumption.addUrParam(scoreParam);
@@ -293,5 +334,20 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
         versions.add(iMascotDatfile.getHeaderSection().getVersion());
         result.put("Mascot", versions);
         return result;
+    }
+
+    @Override
+    public HashMap<String, LinkedList<Peptide>> getPeptidesMap() {
+        return peptideMap;
+    }
+
+    @Override
+    public HashMap<String, LinkedList<SpectrumMatch>> getSimpleTagsMap() {
+        return new HashMap<String, LinkedList<SpectrumMatch>>();
+    }
+
+    @Override
+    public HashMap<String, LinkedList<SpectrumMatch>> getTagsMap() {
+        return new HashMap<String, LinkedList<SpectrumMatch>>();
     }
 }
