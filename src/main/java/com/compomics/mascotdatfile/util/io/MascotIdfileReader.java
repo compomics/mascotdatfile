@@ -29,7 +29,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import javax.xml.bind.JAXBException;
@@ -50,11 +49,11 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
      */
     private MascotDatfileInf iMascotDatfile;
     /**
-     * A map of the peptides found in this file
+     * A map of the peptides found in this file.
      */
     private HashMap<String, LinkedList<Peptide>> peptideMap;
     /**
-     * The length of the keys of the peptide map
+     * The length of the keys of the peptide map.
      */
     private int peptideMapKeyLength;
 
