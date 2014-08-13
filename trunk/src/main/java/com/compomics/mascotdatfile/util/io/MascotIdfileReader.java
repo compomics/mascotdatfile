@@ -18,7 +18,9 @@ import com.compomics.util.experiment.massspectrometry.Spectrum;
 import com.compomics.util.experiment.personalization.ExperimentObject;
 import com.compomics.util.experiment.refinementparameters.MascotScore;
 import com.compomics.mascotdatfile.util.mascot.Query;
+import com.compomics.util.experiment.biology.AminoAcid;
 import com.compomics.util.experiment.identification.SequenceFactory;
+import com.compomics.util.preferences.SequenceMatchingPreferences;
 import com.compomics.util.waiting.WaitingHandler;
 
 import java.io.File;
@@ -115,13 +117,13 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
     @Override
     public LinkedList<SpectrumMatch> getAllSpectrumMatches(WaitingHandler waitingHandler) throws IOException, IllegalArgumentException, SQLException, ClassNotFoundException, InterruptedException, JAXBException {
-        return getAllSpectrumMatches(waitingHandler, true);
+        return getAllSpectrumMatches(waitingHandler, null);
     }
 
     @Override
-    public LinkedList<SpectrumMatch> getAllSpectrumMatches(WaitingHandler waitingHandler, boolean secondaryMaps) throws IOException, IllegalArgumentException, SQLException, ClassNotFoundException, InterruptedException, JAXBException {
+    public LinkedList<SpectrumMatch> getAllSpectrumMatches(WaitingHandler waitingHandler, SequenceMatchingPreferences sequenceMatchingPreferences) throws IOException, IllegalArgumentException, SQLException, ClassNotFoundException, InterruptedException, JAXBException {
 
-        if (secondaryMaps) {
+        if (sequenceMatchingPreferences != null) {
             SequenceFactory sequenceFactory = SequenceFactory.getInstance();
             peptideMapKeyLength = sequenceFactory.getDefaultProteinTree().getInitialTagSize();
             peptideMap = new HashMap<String, LinkedList<Peptide>>(1024);
@@ -213,7 +215,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
                 for (Double eValue : eValues) {
                     for (PeptideHit peptideHit : hitMap.get(eValue)) {
-                        currentMatch.addHit(Advocate.mascot.getIndex(), getPeptideAssumption(peptideHit, charge, rank, secondaryMaps), false);
+                        currentMatch.addHit(Advocate.mascot.getIndex(), getPeptideAssumption(peptideHit, charge, rank, sequenceMatchingPreferences), false);
                     }
                     rank += hitMap.get(eValue).size();
                 }
@@ -241,11 +243,12 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
      * @param aPeptideHit the peptide hit to parse
      * @param charge the corresponding charge
      * @param rank the rank of the peptideHit
-     * @param secondaryMaps if true the peptides and tags will be kept in maps
+     * @param sequenceMatchingPreferences the sequence matching preferences to
+     * use to fill the secondary maps
      *
      * @return a peptide assumption
      */
-    private PeptideAssumption getPeptideAssumption(PeptideHit aPeptideHit, Charge charge, int rank, boolean secondaryMaps) {
+    private PeptideAssumption getPeptideAssumption(PeptideHit aPeptideHit, Charge charge, int rank, SequenceMatchingPreferences sequenceMatchingPreferences) {
 
         ArrayList<ModificationMatch> foundModifications = new ArrayList();
         String peptideSequence = aPeptideHit.getSequence();
@@ -276,8 +279,9 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
         Peptide peptide = new Peptide(peptideSequence, foundModifications);
 
-        if (secondaryMaps) {
+        if (sequenceMatchingPreferences != null) {
             String subSequence = peptideSequence.substring(0, peptideMapKeyLength);
+            subSequence = AminoAcid.getMatchingSequence(subSequence, sequenceMatchingPreferences);
             LinkedList<Peptide> peptidesForTag = peptideMap.get(subSequence);
             if (peptidesForTag == null) {
                 peptidesForTag = new LinkedList<Peptide>();
