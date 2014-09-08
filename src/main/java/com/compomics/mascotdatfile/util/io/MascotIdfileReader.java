@@ -19,6 +19,7 @@ import com.compomics.util.experiment.personalization.ExperimentObject;
 import com.compomics.util.experiment.refinementparameters.MascotScore;
 import com.compomics.mascotdatfile.util.mascot.Query;
 import com.compomics.util.experiment.biology.AminoAcid;
+import com.compomics.util.experiment.biology.AminoAcidSequence;
 import com.compomics.util.experiment.identification.SequenceFactory;
 import com.compomics.util.preferences.SequenceMatchingPreferences;
 import com.compomics.util.waiting.WaitingHandler;
@@ -117,11 +118,11 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
     @Override
     public LinkedList<SpectrumMatch> getAllSpectrumMatches(WaitingHandler waitingHandler) throws IOException, IllegalArgumentException, SQLException, ClassNotFoundException, InterruptedException, JAXBException {
-        return getAllSpectrumMatches(waitingHandler, null);
+        return getAllSpectrumMatches(waitingHandler, null, true);
     }
 
     @Override
-    public LinkedList<SpectrumMatch> getAllSpectrumMatches(WaitingHandler waitingHandler, SequenceMatchingPreferences sequenceMatchingPreferences) throws IOException, IllegalArgumentException, SQLException, ClassNotFoundException, InterruptedException, JAXBException {
+    public LinkedList<SpectrumMatch> getAllSpectrumMatches(WaitingHandler waitingHandler, SequenceMatchingPreferences sequenceMatchingPreferences, boolean expandAaCombinations) throws IOException, IllegalArgumentException, SQLException, ClassNotFoundException, InterruptedException, JAXBException {
 
         if (sequenceMatchingPreferences != null) {
             SequenceFactory sequenceFactory = SequenceFactory.getInstance();
@@ -215,7 +216,21 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
                 for (Double eValue : eValues) {
                     for (PeptideHit peptideHit : hitMap.get(eValue)) {
-                        currentMatch.addHit(Advocate.mascot.getIndex(), getPeptideAssumption(peptideHit, charge, rank, sequenceMatchingPreferences), false);
+                        PeptideAssumption peptideAssumption = getPeptideAssumption(peptideHit, charge, rank, sequenceMatchingPreferences);
+                        if (expandAaCombinations && AminoAcidSequence.hasCombination(peptideAssumption.getPeptide().getSequence())) {
+                            Peptide peptide = peptideAssumption.getPeptide();
+                            ArrayList<ModificationMatch> modificationMatches = peptide.getModificationMatches();
+                            for (StringBuilder expandedSequence : AminoAcidSequence.getCombinations(peptide.getSequence())) {
+                                Peptide newPeptide = new Peptide(expandedSequence.toString(), new ArrayList<ModificationMatch>(modificationMatches.size()));
+                                for (ModificationMatch modificationMatch : modificationMatches) {
+                                    newPeptide.addModificationMatch(new ModificationMatch(modificationMatch.getTheoreticPtm(), modificationMatch.isVariable(), modificationMatch.getModificationSite()));
+                                }
+                                PeptideAssumption newAssumption = new PeptideAssumption(newPeptide, peptideAssumption.getRank(), peptideAssumption.getAdvocate(), peptideAssumption.getIdentificationCharge(), peptideAssumption.getScore(), peptideAssumption.getIdentificationFile());
+                                currentMatch.addHit(Advocate.mascot.getIndex(), newAssumption, false);
+                            }
+                        } else {
+                            currentMatch.addHit(Advocate.mascot.getIndex(), peptideAssumption, false);
+                        }
                     }
                     rank += hitMap.get(eValue).size();
                 }
@@ -347,5 +362,15 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
     @Override
     public HashMap<String, LinkedList<SpectrumMatch>> getTagsMap() {
         return new HashMap<String, LinkedList<SpectrumMatch>>();
+    }
+
+    @Override
+    public void clearTagsMap() {
+        // No tags here
+    }
+
+    @Override
+    public void clearPeptidesMap() {
+        peptideMap.clear();
     }
 }
