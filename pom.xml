@@ -8,6 +8,7 @@
     <version>3.4.27</version>
     <name>mascotdatfile</name>
     <url>http://mascotdatfile.googlecode.com</url>
+    <description>Java API for MS/MS search results by Mascot (Matrix Science)</description>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
