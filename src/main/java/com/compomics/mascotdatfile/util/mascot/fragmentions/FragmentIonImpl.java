@@ -72,13 +72,13 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
     /**
      * This int value is a measurement of the importance of the fragmentions. It is originally from the ionseries. <ul>
      * <li><b>FragmentIon.NOT_Sign_NOT_Scoring </b> - Not Significant, Not Scoring. <li><b>FragmentIon.Sign_NOT_Scoring
-     * </b> - Significant, Not Scoring. <li><b>FragmentIon.Sign_AND_Scoring  </b> - Significant And Scoring. <i>default
+     * </b> - Significant, Not Scoring. <li><b>FragmentIon.Sign_AND_Scoring  </b> - Significant And Scoring.</ul> <i>Default
      * is FragmentIon.NOT_Sign_NOT_Scoring. </i>
      */
     private int iImportance = FragmentIon.NOT_Sign_NOT_Scoring;
     /**
      * This double is the default error margin at wich this fragmention should be matched in the mass spectrum. <br>this
-     * Value is necessairy for the spectrumpannel. When this fragmention must be shown on the spectrumpannel, it MUST
+     * Value is necessary for the spectrumpannel. When this fragmention must be shown on the spectrumpannel, it MUST
      * have a error margin for itself. <br>the other methods that can be accessed on a fragmention have a parametrical
      * error margin so. These do not interfere, because they work in opposite directions.
      */
@@ -250,7 +250,7 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
      * Returns this int value is a measurement of the importance of the fragmentions. It is originally from the
      * ionseries. <ul> <li><b>FragmentIon.NOT_Sign_NOT_Scoring </b> - Not Significant, Not Scoring.
      * <li><b>FragmentIon.Sign_NOT_Scoring </b> - Significant, Not Scoring. <li><b>FragmentIon.Sign_AND_Scoring  </b> -
-     * Significant And Scoring. <i>default is FragmentIon.NOT_Sign_NOT_Scoring. </i>
+     * Significant And Scoring.</ul> <i>Default is FragmentIon.NOT_Sign_NOT_Scoring. </i>
      *
      * @return this int value is a measurement of the importance of the fragmentions. It is originally from the
      *         ionseries.
@@ -263,7 +263,7 @@ public class FragmentIonImpl implements FragmentIon, Cloneable, Serializable {
      * Sets this int value is a measurement of the importance of the fragmentions. It is originally from the ionseries.
      * <ul> <li><b>FragmentIon.NOT_Sign_NOT_Scoring </b> - Not Significant, Not Scoring.
      * <li><b>FragmentIon.Sign_NOT_Scoring </b> - Significant, Not Scoring. <li><b>FragmentIon.Sign_AND_Scoring  </b> -
-     * Significant And Scoring. <i>default is FragmentIon.NOT_Sign_NOT_Scoring. </i>
+     * Significant And Scoring.</ul> <i>Default is FragmentIon.NOT_Sign_NOT_Scoring. </i>
      *
      * @param aImportance this int value is a measurement of the importance of the fragmentions. It is originally from
      *                    the ionseries.

@@ -198,8 +198,8 @@ public class ProteinHit implements Serializable {
     /**
      * This method should only be used of the Protein accession comes from a PeptideCentric database as can be generated
      * with DBToolkit. (http://genesis.ugent.be/dbtoolkit/) These databases contain peptides, so being truncated
-     * proteins, as fasta entries. Example: >sw|Q9P1Y5 (716-726)|K1543_HUMAN Protein KIAA1543. DMQRLTDQQQR
-     * <p/>
+     * proteins, as fasta entries. Example: &gt;sw|Q9P1Y5 (716-726)|K1543_HUMAN Protein KIAA1543. DMQRLTDQQQR
+     * <p>
      * Is a fasta entry in the truncated database. The Sequence is the Peptide from 716-726 in HUMAN Protein KIAA1543 -
      * Q9P1Y5. Mascot takes these as protein entries, and the protein hits will have a start site of 1 if this peptide
      * is identified. This method will return 716 as the correct start site.
@@ -224,8 +224,8 @@ public class ProteinHit implements Serializable {
     /**
      * This method should only be used of the Protein accession comes from a PeptideCentric database as can be generated
      * with DBToolkit. (http://genesis.ugent.be/dbtoolkit/) These databases contain peptides, so being truncated
-     * proteins, as fasta entries. Example: >sw|Q9P1Y5 (716-726)|K1543_HUMAN Protein KIAA1543. DMQRLTDQQQR
-     * <p/>
+     * proteins, as fasta entries. Example: &gt;sw|Q9P1Y5 (716-726)|K1543_HUMAN Protein KIAA1543. DMQRLTDQQQR
+     * <p>
      * Is a fasta entry in the truncated database. The Sequence is the Peptide from 716-726 in HUMAN Protein KIAA1543 -
      * Q9P1Y5. Mascot takes these as protein entries, and the protein hits will have a stop site of 10 if this peptide
      * is identified. This method will return 726 as the correct stop site.

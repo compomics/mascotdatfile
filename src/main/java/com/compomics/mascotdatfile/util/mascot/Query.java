@@ -83,7 +83,7 @@ public class Query implements Spectrum, Serializable {
      */
     private int iNumberOfPeaks = 0;
     /**
-     * Number of used. Mascot note: 'obsolete' => This is a backwards
+     * Number of used. Mascot note: 'obsolete', i.e., this is a backwards
      * compatibility feature of mascot. This will be -1 by default.
      */
     private int iNumberUsed1 = -1;
@@ -481,10 +481,10 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * Returns number of used. Mascot note: 'obsolete' => This is a backwards
+     * Returns number of used. Mascot note: 'obsolete', i.e., this is a backwards
      * compatibility feature of mascot. This will be -1 by default.
      *
-     * @return number of used. Mascot note: 'obsolete' => This is a backwards
+     * @return number of used. Mascot note: 'obsolete', i.e., This is a backwards
      * compatibility feature of mascot.
      */
     public int getNumberUsed1() {
@@ -492,10 +492,10 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * Sets number of used. Mascot note: 'obsolete' => This is a backwards
+     * Sets number of used. Mascot note: 'obsolete', i.e., This is a backwards
      * compatibility feature of mascot. This will be -1 by default.
      *
-     * @param aNumberUsed1 number of used. Mascot note: 'obsolete' => This is a
+     * @param aNumberUsed1 number of used. Mascot note: 'obsolete', i.e., This is a
      * backwards compatibility feature of mascot.
      */
     public void setNumberUsed1(int aNumberUsed1) {
@@ -503,7 +503,7 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * This class will parse al the ion peaks information out of the Query
+     * This class will parse all the ion peaks information out of the Query
      * HashMap into a Peak[].
      *
      * @return Peak[] containing all the peaks of the spectrum.
@@ -541,7 +541,7 @@ public class Query implements Spectrum, Serializable {
      *
      * @return the Peak array that includes all the peaks found in the
      * massspectrum.
-     * <p/>
+     * <p>
      * Note that 'null' can be returned if the Ions1 value is empty as in the
      * Mascot Distiller project files.
      */

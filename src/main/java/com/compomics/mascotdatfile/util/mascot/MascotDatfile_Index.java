@@ -305,11 +305,11 @@ public class MascotDatfile_Index implements MascotDatfileInf {
 
     /**
      * @return Vector with the corresponding Query instances. Query n is located
-     * at <Vector>.get(n-1)
-     * @deprecated This method is depracated as it uses a lot of memory. It is
+     * at Vector.get(n-1)
+     * @deprecated This method is deprecated as it uses a lot of memory. It is
      * better advised the getNumberOfQueries method and retrieve the queries one
      * by one with the getQuery() method.
-     * <p/>
+     * <p>
      * This method parses all the datfile Query sections into a Vector with
      * Query instances containing all the original data.
      */
@@ -384,9 +384,6 @@ public class MascotDatfile_Index implements MascotDatfileInf {
         return q = new Query(lQuerySection, lPrecursorMZ, lCharge, lPrecursorMass, lPrecursorIntensity, aQueryNumber, getParametersSection());
     }
 
-    /**
-     * @inheritDoc
-     */
     public QueryEnumerator getQueryEnumerator() {
         return new QueryEnumerator(this);  //To change body of implemented methods use File | Settings | File Templates.
     }

@@ -68,7 +68,7 @@ public class Header implements Serializable {
      */
     private long iDate = 0;
     /**
-     * Time on <iDate> that the search was requested.
+     * Time that the search was requested.
      */
     private String iTime = null;
     /**
@@ -211,14 +211,14 @@ public class Header implements Serializable {
     }
 
     /**
-     * Time on <iDate> that the search was requested.
+     * Time that the search was requested.
      */
     public String getTime() {
         return iTime;
     }
 
     /**
-     * Time on <iDate> that the search was requested.
+     * Time that the search was requested.
      */
     public void setTime(String aTime) {
         iTime = aTime;

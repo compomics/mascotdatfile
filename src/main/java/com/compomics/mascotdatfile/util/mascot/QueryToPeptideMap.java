@@ -395,7 +395,7 @@ public class QueryToPeptideMap implements QueryToPeptideMapInf {
      * This method returns the PeptideHits of one number of each query in a Vector.
      *
      * @param aPeptideHitNumber The PeptideHit in the requested Query. The best peptideHit is peptidehit 1.
-     * @return Vector with PeptideHit<aPeptideHitNumber> of every query. Vector[0] contains info of Query 1. Vector[999]
+     * @return Vector with PeptideHit (aPeptideHitNumber) of every query. Vector[0] contains info of Query 1. Vector[999]
      *         contains info of Query 1000.
      */
     public Vector getPeptideHits(int aPeptideHitNumber) {

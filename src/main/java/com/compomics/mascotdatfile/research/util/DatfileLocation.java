@@ -74,7 +74,7 @@ public class DatfileLocation {
      *
      * @param aDatfileLocationType source of the datfile ( 0 is hard disk, 1 is localDB, 2 is Muppet)
      * @param aParams              <ol> <li> if datfile is on hard disk; this String[] must first supply <b>the path and
-     *                             filename as 1 String</b><br />ex: <i>c:\mascot\F010356.dat</i>. <li> if datfile comes
+     *                             filename as 1 String</b><br>ex: <i>c:\mascot\F010356.dat</i>. <li> if datfile comes
      *                             from local db, this String[] must supply only the <b>datfileID or the filename</b>.
      *                             <li> if datfile comes from muppet db, this String[] must supply the
      *                             <ol><li><b>datfileID or the filename</b>.<li>username<li>password</ol><br> <li> if

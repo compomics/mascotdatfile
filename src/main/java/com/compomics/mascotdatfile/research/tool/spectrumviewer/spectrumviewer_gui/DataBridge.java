@@ -24,14 +24,11 @@
 package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_gui;
 
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
-import org.apache.log4j.Logger;
-
-import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 
 /**
  * <b>Created by IntelliJ IDEA.</b> User: Kenni Date: 10-jul-2006 Time: 15:06:08
- * <p/>
- * <br>This Class </br>
+ * <p>
+ * <br>This Class <br>
  */
 public interface DataBridge {
 

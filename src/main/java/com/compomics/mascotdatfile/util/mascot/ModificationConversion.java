@@ -43,7 +43,7 @@ import java.util.StringTokenizer;
 /**
  * Singleton Class, only one instance of this Class is made. The Class holds itself and a Static HashMap. You can always
  * get the hashmap by the static getConversionMap() method.
- * <p/>
+ * <p>
  * Parses modificationConversion.txt (must be in classpath! 'src/conf/modificationConversion.txt') Key:     fullname
  * Acetyl_heavy (N-term) Value:   shortname   AcD3
  */

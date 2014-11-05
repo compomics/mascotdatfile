@@ -48,8 +48,8 @@ import java.sql.SQLException;
 
 /**
  * <b>Created by IntelliJ IDEA.</b> User: Kenni Date: 6-jul-2006 Time: 21:09:33
- * <p/>
- * <br>This Class has a main that will start a gui thread to show a spectrum with annotations.</br>
+ * <p>
+ * <br>This Class has a main that will start a gui thread to show a spectrum with annotations.<br>
  */
 public class Spectrumviewer_gui extends JFrame implements DataBridge {
     // Class specific log4j logger for Spectrumviewer_gui instances.

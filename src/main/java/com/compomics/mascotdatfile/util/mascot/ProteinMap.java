@@ -83,7 +83,7 @@ public class ProteinMap {
     /**
      * Public method accessed during the QueryToPeptideMap Generation. If a PeptideHit contains a ProteinHit with an
      * accession found in this ProteinMap, this method will be called and the corresponding ProteinID instance will be
-     * updated with a QueryNumber & PeptideHitNumber wherein that ProteinID was found.
+     * updated with a QueryNumber and PeptideHitNumber wherein that ProteinID was found.
      *
      * @param aAccession        String identifier of the Protein.
      * @param aQueryNumber      QueryNumber wherein a PeptideHit was linked to this ProteinID.

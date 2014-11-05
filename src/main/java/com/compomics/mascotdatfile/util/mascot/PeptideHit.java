@@ -620,7 +620,7 @@ public class PeptideHit implements Serializable {
      * Method Parse the MascotDatfile_Modifications instance into relevant modifications of this peptidehit into the
      * Modification[] iModifications. Process: 1.Put all the fixed mods in the Modification[], 2.Put all the variable
      * mods in the Modification[], this is done by using this instance's VariableModificationsString. (   if a fixed and
-     * variable mod are both possible (ex: Fixed K-acetylation & Variable K-biotinylation, 1.The Fixed is set on every K
+     * variable mod are both possible (ex: Fixed K-acetylation and Variable K-biotinylation, 1.The Fixed is set on every K
      * 2.The variable overwrites the fixed if the VariableModificationsString would say that the K has the variable mod!
      * )
      *
@@ -687,7 +687,7 @@ public class PeptideHit implements Serializable {
      * Method Parse the MascotDatfile_Modifications instance into relevant modifications of this peptidehit into the
      * Modification[] iModifications. Process: 1.Put all the fixed mods in the Modification[], 2.Put all the variable
      * mods in the Modification[], this is done by using this instance's VariableModificationsString. (   if a fixed and
-     * variable mod are both possible (ex: Fixed K-acetylation & Variable K-biotinylation, 1.The Fixed is set on every K
+     * variable mod are both possible (ex: Fixed K-acetylation and Variable K-biotinylation, 1.The Fixed is set on every K
      * 2.The variable overwrites the fixed if the VariableModificationsString would say that the K has the variable mod!
      * )
      *
@@ -816,8 +816,8 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * Returns the modified sequence of the peptidehit in a String[]. Example: The peptide Ace-K<AceD3>ENNYR-COOH will
-     * return a String[] with [0]Ace-K<AceD3> [1]E [2]N [3]N [4]Y [5]R-COOH
+     * Returns the modified sequence of the peptidehit in a String[]. Example: The peptide Ace-K&lt;AceD3&gt;ENNYR-COOH will
+     * return a String[] with [0]Ace-K&lt;AceD3&gt; [1]E [2]N [3]N [4]Y [5]R-COOH
      *
      * @return String[] with the modified sequence in different components according the primary sequence.
      */
