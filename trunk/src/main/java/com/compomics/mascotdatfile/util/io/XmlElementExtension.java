@@ -200,7 +200,7 @@ public class XmlElementExtension {
     /**
      * Get all the children of the XmlElementExtension
      *
-     * @return Vector<XmlElementExtension> with the children
+     * @return the children of the XmlElementExtension
      */
     public Vector<XmlElementExtension> getChildren() {
         if (!iParsed) {
@@ -231,7 +231,7 @@ public class XmlElementExtension {
      *
      * @param aTitle Title of the child (first/second/third) If the title of this child is "first", the children of this
      *               child will be asked with title "second/third"
-     * @return Vector<XmlElementExtension> with the asked childs
+     * @return Vector with the asked children
      */
     public Vector<XmlElementExtension> getChildByTitle(String aTitle) {
         if (!iParsed) {
@@ -241,7 +241,7 @@ public class XmlElementExtension {
         }
         String lTitleToFind;
         boolean lFindGrandChildren;
-        if (aTitle.indexOf("/") == -1) {
+        if (!aTitle.contains("/")) {
             lTitleToFind = aTitle;
             lFindGrandChildren = false;
         } else {

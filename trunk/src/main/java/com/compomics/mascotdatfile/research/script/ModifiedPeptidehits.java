@@ -35,8 +35,8 @@ import java.util.Vector;
 
 /**
  * <b>Created by IntelliJ IDEA.</b> User: Kenni Date: 4-jul-2006 Time: 14:47:29
- * <p/>
- * <br>This Class can read a datfile and will search for one or more modifications (args).</br>
+ * <p>
+ * <br>This Class can read a datfile and will search for one or more modifications (args).<br>
  */
 public class ModifiedPeptidehits {
     // Class specific log4j logger for ModifiedPeptidehits instances.

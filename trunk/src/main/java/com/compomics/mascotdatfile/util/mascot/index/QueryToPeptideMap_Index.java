@@ -174,7 +174,7 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
      *
      * @param aPeptideHitNumber The PeptideHit in the requested Query. The best
      * peptideHit is peptidehit 1.
-     * @return Vector with PeptideHit<aPeptideHitNumber> of every query.
+     * @return Vector with PeptideHit (aPeptideHitNumber) of every query.
      * Vector[0] contains info of Query 1. Vector[999] contains info of Query
      * 1000.
      */

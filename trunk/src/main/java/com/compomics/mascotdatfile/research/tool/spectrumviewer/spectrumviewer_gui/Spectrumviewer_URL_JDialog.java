@@ -27,7 +27,6 @@ import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import org.apache.log4j.Logger;
 
 import com.compomics.mascotdatfile.research.util.DatfileLocation;
-import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.compomics.util.gui.JLabelAndComponentPanel;
 
 import javax.swing.*;
@@ -39,8 +38,8 @@ import java.util.Properties;
 
 /**
  * <b>Created by IntelliJ IDEA.</b> User: Kenni Date: 9-jul-2006 Time: 13:27:41
- * <p/>
- * <br>This Class is a JDialog to retrieve Spectrum information from a URL</br>
+ * <p>
+ * <br>This Class is a JDialog to retrieve Spectrum information from a URL<br>
  */
 public class Spectrumviewer_URL_JDialog extends JDialog {
     // Class specific log4j logger for Spectrumviewer_URL_JDialog instances.

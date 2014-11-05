@@ -38,7 +38,7 @@ import javax.xml.bind.JAXBException;
 
 /**
  * This reader will import identifications from a Mascot dat file.
- * <p/>
+ * <p>
  * @author Marc Vaudel
  */
 public class MascotIdfileReader extends ExperimentObject implements IdfileReader {

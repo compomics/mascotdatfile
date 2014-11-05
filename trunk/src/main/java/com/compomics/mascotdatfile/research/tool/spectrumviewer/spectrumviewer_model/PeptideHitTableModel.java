@@ -32,8 +32,8 @@ import java.util.Hashtable;
 
 /**
  * <b>Created by IntelliJ IDEA.</b> User: Kenni Date: 7-jul-2006 Time: 11:48:08
- * <p/>
- * <br>This Class </br>
+ * <p>
+ * <br>This Class <br>
  */
 public class PeptideHitTableModel extends AbstractTableModel {
     // Class specific log4j logger for PeptideHitTableModel instances.

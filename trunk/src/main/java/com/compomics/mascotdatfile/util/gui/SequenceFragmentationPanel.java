@@ -64,14 +64,14 @@ public class SequenceFragmentationPanel extends JPanel {
 
     /**
      * This boolean holds whether or not the given sequence is a modified sequence or a normal peptide sequence. Normal:
-     * KENNY Modified: NH2-K<Ace>ENNY-COOH
+     * KENNY Modified: NH2-K&lt;Ace&gt;ENNY-COOH
      */
     private boolean isModifiedSequence;
 
     /**
      * Creates a non-modal dialog without a title with the specified <code>Frame</code> as its owner.  If
      * <code>owner</code> is <code>null</code>, a shared, hidden frame will be set as the owner of the dialog.
-     * <p/>
+     * <p>
      * This constructor sets the component's locale property to the value returned by
      * <code>JComponent.getDefaultLocale</code>.
      *
@@ -95,7 +95,7 @@ public class SequenceFragmentationPanel extends JPanel {
     /**
      * Creates a non-modal dialog without a title with the specified <code>Frame</code> as its owner.  If
      * <code>owner</code> is <code>null</code>, a shared, hidden frame will be set as the owner of the dialog.
-     * <p/>
+     * <p>
      * This constructor sets the component's locale property to the value returned by
      * <code>JComponent.getDefaultLocale</code>.
      *
@@ -390,7 +390,7 @@ public class SequenceFragmentationPanel extends JPanel {
      * Set the Sequence for the SequenceFragmentationPanel.
      *
      * @param lSequence            String with peptide sequence.
-     * @param boolModifiedSequence Boolean whether lSequence is a Modified Sequence "NH2-K<Ace>ENNY-COOH" or a Flat
+     * @param boolModifiedSequence Boolean whether lSequence is a Modified Sequence "NH2-K&lt;Ace&gt;ENNY-COOH" or a Flat
      *                             Sequence "KENNY".
      */
     public void setSequence(String lSequence, boolean boolModifiedSequence) {

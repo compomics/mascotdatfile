@@ -298,7 +298,7 @@ public class MascotDatfile implements MascotDatfileInf {
      * This method parses all the datfile Query sections into a Vector with Query instances containing all the original
      * data.
      *
-     * @return Vector with the corresponding Query instances. Query n is located at <Vector>.get(n-1)
+     * @return Vector with the corresponding Query instances. Query n is located at Vector.get(n-1)
      */
     public Vector getQueryList() {
         if (iQueryList == null) {
@@ -339,18 +339,15 @@ public class MascotDatfile implements MascotDatfileInf {
     }
 
     public Query getQuery(final int aQueryNumber) {
-        return (Query) getQueryList().get(aQueryNumber - 1);  //To change body of implemented methods use File | Settings | File Templates.
+        return (Query) getQueryList().get(aQueryNumber - 1);
     }
 
-    /**
-     * @inheritDoc
-     */
     public QueryEnumerator getQueryEnumerator() {
-        return new QueryEnumerator(this);  //To change body of implemented methods use File | Settings | File Templates.
+        return new QueryEnumerator(this);
     }
 
     /**
-     * This method creates a new Parameters instance. 1.Submit the paramaters HashMap in the constructor. 2.Receive the
+     * This method creates a new Parameters instance. 1.Submit the parameters HashMap in the constructor. 2.Receive the
      * parsed data into an Parameters instance.
      *
      * @return Parameters   instance of Parameters with all the parsed data of the parameters section of the datfile.
@@ -504,7 +501,7 @@ public class MascotDatfile implements MascotDatfileInf {
     }
 
     /**
-     * @{inheritDoc}
+     * {@inheritDoc}
      */
     public Quantitation getQuantitation() {
 
@@ -515,5 +512,4 @@ public class MascotDatfile implements MascotDatfileInf {
         }
         return iQuantitation;
     }
-
 }

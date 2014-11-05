@@ -161,7 +161,7 @@ public class Parameters implements Serializable {
      */
     private String iCleavage = null;
     /**
-     * The path&filename of the input file used for the mascot search.
+     * The path and filename of the input file used for the mascot search.
      */
     private String iFile = null;
     /**
@@ -182,7 +182,7 @@ public class Parameters implements Serializable {
      */
     private String iUserName = null;
     /**
-     * The e-mail of <iUserName>.
+     * The e-mail of iUserName.
      */
     private String iUserEmail = null;
     /**
@@ -200,7 +200,7 @@ public class Parameters implements Serializable {
      */
     private String iFormat = null;
     /**
-     * The version of <iFormat>.
+     * The version of iFormat.
      */
     private String iFormVersion = null;
     private String iFrag = null;
@@ -269,7 +269,7 @@ public class Parameters implements Serializable {
      */
     private HashMap iDistillerOptions = null;
     /**
-     * The Distiller processing boolean reports on whether or not this data has been processed & searched by Mascot
+     * The Distiller processing boolean reports on whether or not this data has been processed and searched by Mascot
      * Distiller.
      */
     private boolean iDistillerProcessing = false;
@@ -954,18 +954,18 @@ public class Parameters implements Serializable {
     }
 
     /**
-     * Returns the path&filename of the input file used for the mascot search.
+     * Returns the path and filename of the input file used for the mascot search.
      *
-     * @return the path&filename of the input file used for the mascot search.
+     * @return the path and filename of the input file used for the mascot search.
      */
     public String getFile() {
         return iFile;
     }
 
     /**
-     * Sets the path&filename of the input file used for the mascot search.
+     * Sets the path and filename of the input file used for the mascot search.
      *
-     * @param aFile the path&filename of the input file used for the mascot search.
+     * @param aFile the path and filename of the input file used for the mascot search.
      */
     public void setFile(String aFile) {
         iFile = aFile;
@@ -1062,18 +1062,18 @@ public class Parameters implements Serializable {
     }
 
     /**
-     * Returns the e-mail of <iUserName>.
+     * Returns the e-mail of iUserName.
      *
-     * @return the e-mail of <iUserName>.
+     * @return the e-mail of iUserName.
      */
     public String getUserEmail() {
         return iUserEmail;
     }
 
     /**
-     * Sets the e-mail of <iUserName>.
+     * Sets the e-mail of iUserName.
      *
-     * @param aUserEmail the e-mail of <iUserName>.
+     * @param aUserEmail the e-mail of iUserName.
      */
     public void setUserEmail(String aUserEmail) {
         iUserEmail = aUserEmail;

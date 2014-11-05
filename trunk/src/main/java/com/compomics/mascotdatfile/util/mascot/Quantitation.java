@@ -148,7 +148,7 @@ public class Quantitation {
      * @param lIndex   StandardXpathIndex
      * @param lAccess  StandardXpathAccess
      * @param lXmlPath String with the xml tag name
-     * @return Vector<XmlElementExtension> with the XmlElementExtensions
+     * @return Vector with the XmlElementExtensions
      * @throws java.io.IOException error reading the xml file.
      */
     public Vector<XmlElementExtension> getXmlElements(StandardXpathIndex lIndex, StandardXpathAccess lAccess, String lXmlPath) throws IOException {

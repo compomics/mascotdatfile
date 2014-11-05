@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * Created by IntelliJ IDEA. User: kenny Date: Jun 15, 2009 Time: 12:09:30 PM
- * <p/>
+ * <p>
  * This class represents an ErrorTolerantModification.
  */
 public class ErrorTolerantModification implements Modification, Serializable {
@@ -34,14 +34,15 @@ public class ErrorTolerantModification implements Modification, Serializable {
      */
     private int iModificationID = 0;
     /**
-     * The short end notation for a modifcication.
+     * The short end notation for a modification.
      */
     private String iShortType = null;
 
     /**
-     * Contructor Generate a fixed modification containing different parameters of the modification.
+     * Constructor Generate a fixed modification containing different parameters of the modification.
      *
      * @param aType           standard name by mascot
+     * @param aShortType      the short type
      * @param aMass           mass
      * @param aNeutralLoss    neutral loss
      * @param aLocation       location ( Can be 'null' if location unspecified )

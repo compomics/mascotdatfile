@@ -493,16 +493,16 @@ public class PeptideHitAnnotation implements Serializable {
      * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
      *                             created.
      * @param aNumberOfPeaksUsed   This variable holds the number of ions that mascot used to check witch of the
-     *                             theoretical ions matched in the spectrum. In practice, anly the first
-     *                             <aNumberOfPeaksUsed> Peaks from <aPeaks> will be used to do the check. This parameter
+     *                             theoretical ions matched in the spectrum. In practice, any of the first
+     *                             aNumberOfPeaksUsed Peaks from aPeaks will be used to do the check. This parameter
      *                             is returned by the getPeaksUsedFromIons1() method in PeptideHit.
      * @param aMaxIntensity        double with the max intensity of the spectrum.
      * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be
      *                             (aMaxIntensity*aIntensityPercentage), only matches that are above this threshold will
      *                             be added to the Vector.* @param aMassError           This is the mass error to check
      *                             if this theoretical fragment ion was found in the spectrum.
-     * @return int[] with the distinct number fragmentions that covered the sequence. <br /> <b>[0]</b> number of b-ions
-     *         covering the peptide's sequence.<br /> <b>[1]</b> number of y-ions covering the peptide's sequence.<br />
+     * @return int[] with the distinct number fragmentions that covered the sequence. <br> <b>[0]</b> number of b-ions
+     *         covering the peptide's sequence.<br> <b>[1]</b> number of y-ions covering the peptide's sequence.<br>
      *         <b>[2]</b> number of b- and -ions covering the peptide's sequence.
      */
     public int[] getFusedIonCoverage(Peak[] aPeaks, int aNumberOfPeaksUsed, double aMaxIntensity, double aIntensityPercentage) {
@@ -525,15 +525,15 @@ public class PeptideHitAnnotation implements Serializable {
 
     /**
      * This method returns a Vector with FragmentIon instances.<br> All the FragmentIons are matched by 2 submethods.
-     * <ul><li>MatchedIonsByMascot<br>First, check the Peaks that mascot used to check the matching fragmentions.
+     * <ul><li>MatchedIonsByMascot<br>First, check the Peaks that mascot used to check the matching fragment ions.
      * <li>MatchedIonsAboveIntensityThreshold<br>Second, check all the Peaks in the spectrum for matches. The matching
-     * Peak must have a intensity above a parametrical intensityThreshold.
+     * Peak must have a intensity above a parametrical intensityThreshold.</ul>
      *
      * @param aPeaks               Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
      *                             created.
      * @param aNumberOfIonsUsed    This variable holds the number of ions that mascot used to check witch of the
-     *                             theoretical ions matched in the spectrum.<br></br> In practice, only the first
-     *                             <aNumberOfIonsUsed> Peaks from <aPeaks> will be used to do the check. This parameter
+     *                             theoretical ions matched in the spectrum.<br><br> In practice, only the first
+     *                             aNumberOfIonsUsed Peaks from aPeaks will be used to do the check. This parameter
      *                             is returned by the getPeaksUsedFromIons1() method in PeptideHit.
      * @param aMaxIntensity        double with the max intensity of the spectrum.
      * @param aIntensityPercentage This double is a percent (ex: 0.10) , The relative intensityThreshold will then be
@@ -591,8 +591,8 @@ public class PeptideHitAnnotation implements Serializable {
      * @param aPeaks             Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
      *                           created.
      * @param aNumberOfPeaksUsed This variable holds the number of ions that mascot used to check witch of the
-     *                           theoretical ions matched in the spectrum. In practice, anly the first
-     *                           <aNumberOfPeaksUsed> Peaks from <aPeaks> will be used to do the check. This parameter
+     *                           theoretical ions matched in the spectrum. In practice, any of the first
+     *                           aNumberOfPeaksUsed Peaks from aPeaks will be used to do the check. This parameter
      *                           is returned by the getPeaksUsedFromIons1() method in PeptideHit.
      * @return Vector  Returns a vector with FragmentIon instances that had a match in the Peak[].
      */
@@ -1729,11 +1729,11 @@ public class PeptideHitAnnotation implements Serializable {
      *
      * @param aIonTypes int[] wherein the ions you want in return can be retrieved. use the static integers on the
      *                  FragmentIon interface!<ul> <li>0  - a Series <li>1  place holder <li>2  - a++ Series
-     *                  <p/>
+     *                  <p>
      *                  <li>3  - b Series <li>4  place holder <li>5  - b++ Series
-     *                  <p/>
+     *                  <p>
      *                  <li>6  - y Series <li>7  place holder <li>8  - y++ Series
-     *                  <p/>
+     *                  <p>
      *                  <li>9  c <li>10 c++ <li>11 x <li>12 x++ <li>13 z <li>14 z++</ul>
      * @return Vector with all the theoretical fragmentions that should be checked for a match in the spectrum.
      */
@@ -1750,16 +1750,16 @@ public class PeptideHitAnnotation implements Serializable {
     }
 
     /**
-     * This method calculates ioncoverage of a PeptideSequence and matched fragmentions.
+     * This method calculates ion coverage of a PeptideSequence and matched fragment ions.
      *
      * @param aPeaks             Peak[] containing all the peak masses of the Query wherefrom this PeptideHit was
      *                           created.
      * @param aNumberOfPeaksUsed This variable holds the number of ions that mascot used to check witch of the
-     *                           theoretical ions matched in the spectrum. In practice, anly the first
-     *                           <aNumberOfPeaksUsed> Peaks from <aPeaks> will be used to do the check. This parameter
+     *                           theoretical ions matched in the spectrum. In practice, any of the first
+     *                           aNumberOfPeaksUsed Peaks from aPeaks will be used to do the check. This parameter
      *                           is returned by the getPeaksUsedFromIons1() method in PeptideHit.
-     * @return int[] with the distinct number fragmentions that covered the sequence. <br /> <b>[0]</b> number of b-ions
-     *         covering the peptide's sequence.<br /> <b>[1]</b> number of y-ions covering the peptide's sequence.<br />
+     * @return int[] with the distinct number fragment ions that covered the sequence. <br> <b>[0]</b> number of b-ions
+     *         covering the peptide's sequence.<br> <b>[1]</b> number of y-ions covering the peptide's sequence.<br>
      *         <b>[2]</b> number of b- and -ions covering the peptide's sequence.
      */
     public int[] getMascotIonCoverage(Peak[] aPeaks, int aNumberOfPeaksUsed) {

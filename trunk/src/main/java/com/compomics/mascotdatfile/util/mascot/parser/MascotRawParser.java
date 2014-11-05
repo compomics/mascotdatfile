@@ -68,7 +68,7 @@ public class MascotRawParser {
     }
 
     /**
-     * This method returns a String representation of the data wrapped. <br /> <b>Please note</b> that this is not the
+     * This method returns a String representation of the data wrapped. <br> <b>Please note</b> that this is not the
      * same as the original format of the file from which the data came!!!
      *
      * @return String   with the String representation of this wrapper.
