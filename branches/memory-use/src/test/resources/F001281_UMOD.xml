@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<umod:unimod xmlns:umod="http://www.unimod.org/xmlns/schema/unimod_2" majorVersion="2" minorVersion="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unimod.org/xmlns/schema/unimod_2 unimod_2.xsd">
+  <umod:elements>
+    <umod:elem avge_mass="1.00794" full_name="Hydrogen" mono_mass="1.007825035" title="H"/>
+    <umod:elem avge_mass="2.014101779" full_name="Deuterium" mono_mass="2.014101779" title="2H"/>
+    <umod:elem avge_mass="6.941" full_name="Lithium" mono_mass="7.016003" title="Li"/>
+    <umod:elem avge_mass="12.0107" full_name="Carbon" mono_mass="12" title="C"/>
+    <umod:elem avge_mass="13.00335483" full_name="Carbon13" mono_mass="13.00335483" title="13C"/>
+    <umod:elem avge_mass="14.0067" full_name="Nitrogen" mono_mass="14.003074" title="N"/>
+    <umod:elem avge_mass="15.00010897" full_name="Nitrogen15" mono_mass="15.00010897" title="15N"/>
+    <umod:elem avge_mass="15.9994" full_name="Oxygen" mono_mass="15.99491463" title="O"/>
+    <umod:elem avge_mass="17.9991603" full_name="Oxygen18" mono_mass="17.9991603" title="18O"/>
+    <umod:elem avge_mass="18.9984032" full_name="Fluorine" mono_mass="18.99840322" title="F"/>
+    <umod:elem avge_mass="22.98977" full_name="Sodium" mono_mass="22.9897677" title="Na"/>
+    <umod:elem avge_mass="30.973761" full_name="Phosphorous" mono_mass="30.973762" title="P"/>
+    <umod:elem avge_mass="32.065" full_name="Sulfur" mono_mass="31.9720707" title="S"/>
+    <umod:elem avge_mass="35.453" full_name="Chlorine" mono_mass="34.96885272" title="Cl"/>
+    <umod:elem avge_mass="39.0983" full_name="Potassium" mono_mass="38.9637074" title="K"/>
+    <umod:elem avge_mass="40.078" full_name="Calcium" mono_mass="39.9625906" title="Ca"/>
+    <umod:elem avge_mass="55.845" full_name="Iron" mono_mass="55.9349393" title="Fe"/>
+    <umod:elem avge_mass="58.6934" full_name="Nickel" mono_mass="57.9353462" title="Ni"/>
+    <umod:elem avge_mass="65.409" full_name="Zinc" mono_mass="63.9291448" title="Zn"/>
+    <umod:elem avge_mass="78.96" full_name="Selenium" mono_mass="79.9165196" title="Se"/>
+    <umod:elem avge_mass="79.904" full_name="Bromine" mono_mass="78.9183361" title="Br"/>
+    <umod:elem avge_mass="107.8682" full_name="Silver" mono_mass="106.905092" title="Ag"/>
+    <umod:elem avge_mass="200.59" full_name="Mercury" mono_mass="201.970617" title="Hg"/>
+    <umod:elem avge_mass="196.96655" full_name="Gold" mono_mass="196.966543" title="Au"/>
+    <umod:elem avge_mass="126.90447" full_name="Iodine" mono_mass="126.904473" title="I"/>
+    <umod:elem avge_mass="95.94" full_name="Molybdenum" mono_mass="97.9054073" title="Mo"/>
+    <umod:elem avge_mass="0.000549" full_name="electron" mono_mass="0.000549" title="e"/>
+  </umod:elements>
+  <umod:modifications>
+    <umod:mod approved="false" date_time_modified="2007-02-14 09:23:15" date_time_posted="2002-08-19 19:17:11" full_name="Oxidation or Hydroxylation" group_of_poster="admin" title="Oxidation" username_of_poster="unimod">
+      <umod:specificity classification="Artefact" hidden="false" position="Anywhere" site="W" spec_group="10"/>
+      <umod:specificity classification="Artefact" hidden="false" position="Anywhere" site="H" spec_group="10"/>
+      <umod:specificity classification="Post-translational" hidden="true" position="Anywhere" site="C" spec_group="9">
+        <umod:misc_notes>Cysteine sulfenic acid</umod:misc_notes>
+      </umod:specificity>
+      <umod:specificity classification="Artefact" hidden="false" position="Anywhere" site="M" spec_group="8">
+        <umod:NeutralLoss avge_mass="64.1069" composition="H(4) C O S" flag="false" mono_mass="63.998285">
+          <umod:element number="4" symbol="H"/>
+          <umod:element number="1" symbol="C"/>
+          <umod:element number="1" symbol="O"/>
+          <umod:element number="1" symbol="S"/>
+        </umod:NeutralLoss>
+        <umod:NeutralLoss avge_mass="0.0000" composition="0" flag="false" mono_mass="0.000000"/>
+      </umod:specificity>
+      <umod:specificity classification="Post-translational" hidden="true" position="Anywhere" site="R" spec_group="7"/>
+      <umod:specificity classification="Post-translational" hidden="true" position="Anywhere" site="Y" spec_group="6"/>
+      <umod:specificity classification="Artefact" hidden="true" position="Anywhere" site="F" spec_group="5"/>
+      <umod:specificity classification="Post-translational" hidden="true" position="Anywhere" site="P" spec_group="4">
+        <umod:misc_notes>Proline oxidation to glutamic semialdehyde</umod:misc_notes>
+      </umod:specificity>
+      <umod:specificity classification="Post-translational" hidden="true" position="Anywhere" site="N" spec_group="3"/>
+      <umod:specificity classification="Post-translational" hidden="true" position="Anywhere" site="K" spec_group="2"/>
+      <umod:specificity classification="Post-translational" hidden="true" position="Anywhere" site="D" spec_group="1"/>
+      <umod:delta avge_mass="15.9994" composition="O" mono_mass="15.994915">
+        <umod:element number="1" symbol="O"/>
+      </umod:delta>
+      <umod:xref>
+        <umod:text>14661085</umod:text>
+        <umod:source>PubMed PMID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>AA0146</umod:text>
+        <umod:source>RESID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>AA0235</umod:text>
+        <umod:source>RESID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>AA0027</umod:text>
+        <umod:source>RESID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>11461766</umod:text>
+        <umod:source>PubMed PMID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>AA0028</umod:text>
+        <umod:source>RESID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>9004526</umod:text>
+        <umod:source>PubMed PMID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>AA0030</umod:text>
+        <umod:source>RESID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>AA0029</umod:text>
+        <umod:source>RESID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>AA0215</umod:text>
+        <umod:source>RESID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>Lagerwerf FM, van de Weert M, Heerma W, Haverkamp J, Rapid Commun Mass Spectrom. 1996;10(15):1905-10</umod:text>
+        <umod:source>Journal</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>AA0205</umod:text>
+        <umod:source>RESID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>AA0026</umod:text>
+        <umod:source>RESID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>Berlett, Barbara S.; Stadtman, Earl R. Journal of Biological Chemistry (1997), 272(33), 20313-20316.</umod:text>
+        <umod:source>Journal</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>15569593</umod:text>
+        <umod:source>PubMed PMID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>14661084</umod:text>
+        <umod:source>PubMed PMID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>CSEA</umod:text>
+        <umod:source>FindMod</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>DOPA</umod:text>
+        <umod:source>FindMod</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>11120890</umod:text>
+        <umod:source>PubMed PMID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>11212008</umod:text>
+        <umod:source>PubMed PMID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>AA0322</umod:text>
+        <umod:source>RESID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>HYDR</umod:text>
+        <umod:source>FindMod</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+      <umod:xref>
+        <umod:text>12781462</umod:text>
+        <umod:source>PubMed PMID</umod:source>
+        <umod:url></umod:url>
+      </umod:xref>
+    </umod:mod>
+  </umod:modifications>
+  <umod:amino_acids>
+    <umod:aa avge_mass="0.0000" full_name="" mono_mass="0.000000" three_letter="" title="-"/>
+    <umod:aa avge_mass="71.0779" full_name="Alanine" mono_mass="71.037114" three_letter="Ala" title="A">
+      <umod:element number="5" symbol="H"/>
+      <umod:element number="3" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="156.1857" full_name="Arginine" mono_mass="156.101111" three_letter="Arg" title="R">
+      <umod:element number="12" symbol="H"/>
+      <umod:element number="6" symbol="C"/>
+      <umod:element number="4" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="114.1026" full_name="Asparagine" mono_mass="114.042927" three_letter="Asn" title="N">
+      <umod:element number="6" symbol="H"/>
+      <umod:element number="4" symbol="C"/>
+      <umod:element number="2" symbol="N"/>
+      <umod:element number="2" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="115.0874" full_name="Aspartic acid" mono_mass="115.026943" three_letter="Asp" title="D">
+      <umod:element number="5" symbol="H"/>
+      <umod:element number="4" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="3" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="103.1429" full_name="Cysteine" mono_mass="103.009185" three_letter="Cys" title="C">
+      <umod:element number="5" symbol="H"/>
+      <umod:element number="3" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+      <umod:element number="1" symbol="S"/>
+    </umod:aa>
+    <umod:aa avge_mass="129.1140" full_name="Glutamic acid" mono_mass="129.042593" three_letter="Glu" title="E">
+      <umod:element number="7" symbol="H"/>
+      <umod:element number="5" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="3" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="128.1292" full_name="Glutamine" mono_mass="128.058578" three_letter="Gln" title="Q">
+      <umod:element number="8" symbol="H"/>
+      <umod:element number="5" symbol="C"/>
+      <umod:element number="2" symbol="N"/>
+      <umod:element number="2" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="57.0513" full_name="Glycine" mono_mass="57.021464" three_letter="Gly" title="G">
+      <umod:element number="3" symbol="H"/>
+      <umod:element number="2" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="137.1393" full_name="Histidine" mono_mass="137.058912" three_letter="His" title="H">
+      <umod:element number="7" symbol="H"/>
+      <umod:element number="6" symbol="C"/>
+      <umod:element number="3" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="113.1576" full_name="Isoleucine" mono_mass="113.084064" three_letter="Ile" title="I">
+      <umod:element number="11" symbol="H"/>
+      <umod:element number="6" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="113.1576" full_name="Leucine" mono_mass="113.084064" three_letter="Leu" title="L">
+      <umod:element number="11" symbol="H"/>
+      <umod:element number="6" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="128.1723" full_name="Lysine" mono_mass="128.094963" three_letter="Lys" title="K">
+      <umod:element number="12" symbol="H"/>
+      <umod:element number="6" symbol="C"/>
+      <umod:element number="2" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="131.1961" full_name="Methionine" mono_mass="131.040485" three_letter="Met" title="M">
+      <umod:element number="9" symbol="H"/>
+      <umod:element number="5" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+      <umod:element number="1" symbol="S"/>
+    </umod:aa>
+    <umod:aa avge_mass="147.1739" full_name="Phenylalanine" mono_mass="147.068414" three_letter="Phe" title="F">
+      <umod:element number="9" symbol="H"/>
+      <umod:element number="9" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="97.1152" full_name="Proline" mono_mass="97.052764" three_letter="Pro" title="P">
+      <umod:element number="7" symbol="H"/>
+      <umod:element number="5" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="87.0773" full_name="Serine" mono_mass="87.032028" three_letter="Ser" title="S">
+      <umod:element number="5" symbol="H"/>
+      <umod:element number="3" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="2" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="101.1039" full_name="Threonine" mono_mass="101.047679" three_letter="Thr" title="T">
+      <umod:element number="7" symbol="H"/>
+      <umod:element number="4" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="2" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="186.2099" full_name="Tryptophan" mono_mass="186.079313" three_letter="Trp" title="W">
+      <umod:element number="10" symbol="H"/>
+      <umod:element number="11" symbol="C"/>
+      <umod:element number="2" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="163.1733" full_name="Tyrosine" mono_mass="163.063329" three_letter="Tyr" title="Y">
+      <umod:element number="9" symbol="H"/>
+      <umod:element number="9" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="2" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="99.1311" full_name="Valine" mono_mass="99.068414" three_letter="Val" title="V">
+      <umod:element number="9" symbol="H"/>
+      <umod:element number="5" symbol="C"/>
+      <umod:element number="1" symbol="N"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+    <umod:aa avge_mass="1.0079" full_name="N-term" mono_mass="1.007825" three_letter="N-term" title="N-term">
+      <umod:element number="1" symbol="H"/>
+    </umod:aa>
+    <umod:aa avge_mass="17.0073" full_name="C-term" mono_mass="17.002740" three_letter="C-term" title="C-term">
+      <umod:element number="1" symbol="H"/>
+      <umod:element number="1" symbol="O"/>
+    </umod:aa>
+  </umod:amino_acids>
+</umod:unimod>
