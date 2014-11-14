@@ -66,6 +66,8 @@ public class ExampleWiki1 {
             System.out.println(item);
         }
 
+        Vector queryVector = iMascotDatfile.getQueryList();
+
         // B - Iterate over all PeptideHits.
         for (int j = 0; j < lBestPeptideHits.size(); j++) {
             PeptideHit lPeptideHit = (PeptideHit) lBestPeptideHits.get(j);
@@ -96,7 +98,7 @@ public class ExampleWiki1 {
                     list.add("PEPTIDE");
 
                     // 1.
-                    list.add(((Query) iMascotDatfile.getQueryList().get(j)).getFilename());
+                    list.add(((Query) queryVector.get(j)).getFilename());
 
                     // 2.
                     list.add(lPeptideHit.getModifiedSequence());
