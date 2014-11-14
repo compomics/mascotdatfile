@@ -123,6 +123,11 @@ public class MascotDatfile_Index implements MascotDatfileInf {
     private String iFileName = null;
 
     /**
+     * A Vector of Query instances containing all the original data
+     */
+    private Vector iQueryList = null;
+
+    /**
      * Constructs MascotDatfile instance from a String containing to an existing
      * path and filename.
      *
@@ -314,7 +319,6 @@ public class MascotDatfile_Index implements MascotDatfileInf {
      * Query instances containing all the original data.
      */
     public Vector getQueryList() {
-        Vector iQueryList = null;
         if (iQueryList == null) {
             int lNumQueries = iController.getNumberOfQueries();
             iQueryList = new Vector(lNumQueries);
