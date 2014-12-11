@@ -5,7 +5,7 @@
     <groupId>com.compomics</groupId>
     <artifactId>mascotdatfile</artifactId>
     <packaging>jar</packaging>
-    <version>3.4.27</version>
+    <version>3.4.28</version>
     <name>mascotdatfile</name>
     <url>http://mascotdatfile.googlecode.com</url>
     <description>Java API for MS/MS search results by Mascot (Matrix Science)</description>
@@ -303,7 +303,7 @@
         <dependency>
             <groupId>com.compomics</groupId>
             <artifactId>utilities</artifactId>
-            <version>3.36.0</version>
+            <version>3.43.24</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>
