@@ -208,3 +208,6 @@ RP-CO1 (RP)=CO1
 threo-CO1 (T)=CO1
 # Hydrazone formed between Lysine-4-keto-Benaldehyde and 6-Hydrazinonicotinic-Acid-Y(NO2)R (for in vitro tests)
 Lys-BCO1 (K)=BCO1
+#dfdfgdfg
+#added 21012015
+TMT6plex (N-term)=TMT6plex
