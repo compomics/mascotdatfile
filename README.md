@@ -3,7 +3,7 @@
  * [Project Description](#project-description)
  * [Downloads](#downloads)
  * [Usage](#usage)
- * [Project Funding](#project-funding)
+ * [Project Support](#project-support)
 
 ----
 
@@ -11,35 +11,52 @@
 
 Proteomics bioinformatics deals with organizing and analyzing large amounts of information generated during proteomic analyses. The vast amounts of mass spectrometry data are typically interpreted by database search algorithms such as [Mascot Server](http://www.matrixscience.com/) from Matrix Science. The results of such a search are presented in an user-friendly HTML page, yet, this is inconvenient when further processing is required. Therefore we have developed the *MascotDatfile* library which transforms a flat file into a dynamic object model.
 
-[Go to top of page](#colims)
+Helsens et al. *MascotDatfile: an open-source library to fully parse and analyse MASCOT MS/MS search results. Proteomics (2007) vol. 7 (3) pp. 364-6 ([PUBMED ID:17203510](http://www.ncbi.nlm.nih.gov/pubmed/17203510))*
+
+[Go to top of page](#mascotdatfile)
 
 ----
 
 ## Downloads
 
-Download Colims 1.3.2-SNAPSHOT [here](http://genesis.ugent.be/colims/colims-1.3.2-SNAPSHOT.7z). Download the linux version of ActiveMQ [here](http://genesis.ugent.be/colims/apache-activemq-5.9.0.tar.gz).
+<table border=0>
+  <tr>
+    <td width="200">[http://genesis.ugent.be/maven2/com/compomics/mascotdatfile/3.4.29/mascotdatfile-3.4.29.zip http://mascotdatfile.googlecode.com/svn/wiki/images/download_button.png]</td>
+    <td width="150">_3.4.29 - All platforms_</td>
+    <td width="150">_[http://code.google.com/p/mascotdatfile/source/list ReleaseNotes]_</td>
+  </tr>
+</table> 
 
-[Go to top of page](#colims)
+### Example files
+  * test
+  * test
+  * test
+  * test
+  * test
+
+[Go to top of page](#mascotdatfile)
 
 ----
 
 ## Usage
-See the [wiki](https://github.com/compomics/colims/wiki) for additional information on how to setup, run and configure colims.
+See the [wiki](https://github.com/compomics/mascotdatfile/wiki) for additional information on how to setup, run and configure colims.
 
-[Go to top of page](#colims)
+[Go to top of page](#mascotdatfile)
 
 ----
 
-## Project Funding
+## Project Support
 
-Colims has been developed as part of the [ProteomeXchange](http://www.proteomexchange.org) Infrastructure project of the [7th Framework Programme](http://cordis.europa.eu/fp7/home_en.html) of the [European Commission](http://ec.europa.eu/index_en.htm European Commission), funded under contract number 260558.
+The *MascotDatfile* project is grateful for the support by:
 
-![http://www.proteomexchange.org/](http://genesis.ugent.be/public_data/image/proteomeXChangeLogo.PNG)
-![http://cordis.europa.eu/fp7/home_en.html](http://cordis.europa.eu/icons/fp7_en.gif)
-![http://ec.europa.eu/index_en.htm](http://ec.europa.eu/wel/template-2009/images/banner/european-commission-flag.jpg)
+![http://www.compomics.com](http://genesis.ugent.be/public_data/image/compomics.png)
+![http://www.vib.be](http://genesis.ugent.be/public_data/image/vib.png)
+![http://www.ugent.be/en](http://genesis.ugent.be/public_data/image/ugent.png)
 
 ----
 
 ![https://www.jetbrains.com/idea/]( https://www.jetbrains.com/idea/docs/logo_intellij_idea.png)
+![http://java.com/en/](http://genesis.ugent.be/public_data/image/java.png)
+![http://maven.apache.org/](http://genesis.ugent.be/public_data/image/maven.png)
 
-[Go to top of page](#colims)
+[Go to top of page](#mascotdatfile)
