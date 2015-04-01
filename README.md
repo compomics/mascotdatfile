@@ -23,7 +23,7 @@ Helsens et al. *MascotDatfile: an open-source library to fully parse and analyse
   <tr>
     <td width="200">![http://genesis.ugent.be/maven2/com/compomics/mascotdatfile/3.4.29/mascotdatfile-3.4.29.zip] (http://mascotdatfile.googlecode.com/svn/wiki/images/download_button.png)</td>
     <td width="150">_3.4.29 - All platforms_</td>
-    <td width="150">[ReleaseNotes](http://code.google.com/p/mascotdatfile/source/list)</td>
+    <td width="150">[ReleaseNotes](https://github.com/compomics/mascotdatfile/commits/master)</td>
   </tr>
 </table> 
 
@@ -32,7 +32,7 @@ Helsens et al. *MascotDatfile: an open-source library to fully parse and analyse
 ----
 
 ## Usage
-See the [wiki](https://github.com/compomics/mascotdatfile/wiki) for additional information on how to setup, run and configure colims.
+See the [wiki](https://github.com/compomics/mascotdatfile/wiki) for additional information on how to setup, run and configure *MascotDatfile*.
 
 [Go to top of page](#mascotdatfile)
 
