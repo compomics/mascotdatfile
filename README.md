@@ -18,8 +18,7 @@ Proteomics bioinformatics deals with organizing and analyzing large amounts of i
 ----
 
 ## Downloads
-![http://www.compomics.com](http://genesis.ugent.be/public_data/image/compomics.png)
-![http://www.compomics.com](http://github.com/compomics/mascotdatfile/wiki/images/download_button.png)
+![http://www.compomics.com](https://github.com/compomics/mascotdatfile/wiki/images/download_button.png)
 *3.4.29 - All platforms*
 [ReleaseNotes](https://github.com/compomics/mascotdatfile/wiki/ReleaseNotes)
 
