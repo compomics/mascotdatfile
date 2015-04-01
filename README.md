@@ -9,7 +9,7 @@
 
 ## Project Description
 
-Proteomics bioinformatics deals with organizing and analyzing large amounts of information generated during proteomic analyses. The vast amounts of mass spectrometry data are typically interpreted by database search algorithms such as [http://www.matrixscience.com/ Mascot Server from Matrix Science]. The results of such a search are presented in an user-friendly HTML page, yet, this is inconvenient when further processing is required. Therefore we have developed the `MascotDatfile` library which transforms a flat file into a dynamic object model.
+Proteomics bioinformatics deals with organizing and analyzing large amounts of information generated during proteomic analyses. The vast amounts of mass spectrometry data are typically interpreted by database search algorithms such as [Mascot Server](http://www.matrixscience.com/) from Matrix Science. The results of such a search are presented in an user-friendly HTML page, yet, this is inconvenient when further processing is required. Therefore we have developed the *MascotDatfile* library which transforms a flat file into a dynamic object model.
 
 [Go to top of page](#colims)
 
