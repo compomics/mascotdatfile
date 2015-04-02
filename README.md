@@ -18,6 +18,12 @@ Proteomics bioinformatics deals with organizing and analyzing large amounts of i
 ----
 
 ## Download
+| | | |
+| :------------: |:---------------:| :-----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+| zebra stripes | are neat        |    $1 |
+
 ![http://www.compomics.com](https://github.com/compomics/mascotdatfile/wiki/images/download_button.png) | *3.4.29 - All platforms* | [ReleaseNotes](https://github.com/compomics/mascotdatfile/wiki/ReleaseNotes)
 
 [Go to top of page](#mascotdatfile)
