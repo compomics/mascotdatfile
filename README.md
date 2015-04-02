@@ -37,14 +37,14 @@ See the [wiki](https://github.com/compomics/mascotdatfile/wiki) for additional i
 
 The *MascotDatfile* project is grateful for the support by:
 
-![http://www.compomics.com](http://genesis.ugent.be/public_data/image/compomics.png)
-![http://www.vib.be](http://genesis.ugent.be/public_data/image/vib.png)
-![http://www.ugent.be/en](http://genesis.ugent.be/public_data/image/ugent.png)
+| compomics | VIB | Ghent University|
+|:--:|:--:|:--:|
+| ![http://www.compomics.com](http://genesis.ugent.be/public_data/image/compomics.png) | ![http://www.vib.be](http://genesis.ugent.be/public_data/image/vib.png) | ![http://www.ugent.be/en](http://genesis.ugent.be/public_data/image/ugent.png) |
 
 ----
 
-![https://www.jetbrains.com/idea/]( https://www.jetbrains.com/idea/docs/logo_intellij_idea.png)
-![http://java.com/en/](http://genesis.ugent.be/public_data/image/java.png)
-![http://maven.apache.org/](http://genesis.ugent.be/public_data/image/maven.png)
+| Intellij | Java | Maven |
+|:--:|:--:|:--:|
+| ![https://www.jetbrains.com/idea/]( https://www.jetbrains.com/idea/docs/logo_intellij_idea.png)| ![http://java.com/en/](http://genesis.ugent.be/public_data/image/java.png) | ![http://maven.apache.org/](http://genesis.ugent.be/public_data/image/maven.png) |
 
 [Go to top of page](#mascotdatfile)
