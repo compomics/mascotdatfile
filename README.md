@@ -39,12 +39,12 @@ The *MascotDatfile* project is grateful for the support by:
 
 | Compomics | VIB | Ghent University|
 |:--:|:--:|:--:|
-| ![http://www.compomics.com](http://genesis.ugent.be/public_data/image/compomics.png) | ![http://www.vib.be](http://genesis.ugent.be/public_data/image/vib.png) | ![http://www.ugent.be/en](http://genesis.ugent.be/public_data/image/ugent.png) |
+| [![compomics](http://genesis.ugent.be/public_data/image/compomics.png)](http://www.compomics.com) | [![vib](http://genesis.ugent.be/public_data/image/vib.png)](http://www.vib.be) | [![](http://genesis.ugent.be/public_data/image/ugent.png)](http://www.ugent.be/en) |
 
 ----
 
 | IntelliJ | Java | Maven |
 |:--:|:--:|:--:|
-| ![https://www.jetbrains.com/idea/]( https://www.jetbrains.com/idea/docs/logo_intellij_idea.png)| ![http://java.com/en/](http://genesis.ugent.be/public_data/image/java.png) | ![http://maven.apache.org/](http://genesis.ugent.be/public_data/image/maven.png) |
+| [![]( https://www.jetbrains.com/idea/docs/logo_intellij_idea.png)](https://www.jetbrains.com/idea/) | [![java](http://genesis.ugent.be/public_data/image/java.png)](http://java.com/en/) | [![maven](http://genesis.ugent.be/public_data/image/maven.png)](http://maven.apache.org/) |
 
 [Go to top of page](#mascotdatfile)
