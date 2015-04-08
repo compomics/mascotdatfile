@@ -45,8 +45,8 @@ The *MascotDatfile* project is grateful for the support by:
 
 ----
 
-| IntelliJ | Java | Maven |
-|:--:|:--:|:--:|
-| [![]( https://www.jetbrains.com/idea/docs/logo_intellij_idea.png)](https://www.jetbrains.com/idea/) | [![java](http://genesis.ugent.be/public_data/image/java.png)](http://java.com/en/) | [![maven](http://genesis.ugent.be/public_data/image/maven.png)](http://maven.apache.org/) |
+| IntelliJ | Netbeans | Java | Maven |
+|:--:|:--:|:--:|:--:|
+| [![intellij](https://www.jetbrains.com/idea/docs/logo_intellij_idea.png)](https://www.jetbrains.com/idea/) | [![netbeans](https://netbeans.org/images_www/visual-guidelines/NB-logo-single.jpg)](https://netbeans.org/) | [![java](http://genesis.ugent.be/public_data/image/java.png)](http://java.com/en/) | [![maven](http://genesis.ugent.be/public_data/image/maven.png)](http://maven.apache.org/) |
 
 [Go to top of page](#mascotdatfile)
