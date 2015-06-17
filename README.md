@@ -36,7 +36,7 @@ See the [wiki](https://github.com/compomics/mascotdatfile/wiki) for additional i
 ## Project Support
 
 The *MascotDatfile* project is grateful for the support by:
-
+<div class="thing">&nbsp;</div>
 | Compomics | VIB | Ghent University|
 |:--:|:--:|:--:|
 | [![compomics](http://genesis.ugent.be/public_data/image/compomics.png)](http://www.compomics.com) | [![vib](http://genesis.ugent.be/public_data/image/vib.png)](http://www.vib.be) | [![](http://genesis.ugent.be/public_data/image/ugent.png)](http://www.ugent.be/en) |
