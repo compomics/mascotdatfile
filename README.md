@@ -18,8 +18,9 @@ Proteomics bioinformatics deals with organising and analysing large amounts of i
 ----
 
 ## Download
+
 | Download | Version | Release info |
-| :------------: |:---------------:| :-----:|
+|:--:|:--:|:--:|
 | [![download](https://github.com/compomics/mascotdatfile/wiki/images/download_button.png)](http://genesis.ugent.be/maven2/com/compomics/mascotdatfile/3.4.29/mascotdatfile-3.4.29.zip) | *3.4.29 - All platforms* |    [Release notes](https://github.com/compomics/mascotdatfile/wiki/ReleaseNotes) |
 
 [Go to top of page](#mascotdatfile)
@@ -37,13 +38,9 @@ See the [wiki](https://github.com/compomics/mascotdatfile/wiki) for additional i
 
 The *MascotDatfile* project is grateful for the support by:
 
-<span class="noheader">
-
 | Compomics | VIB | Ghent University|
 |:--:|:--:|:--:|
 | [![compomics](http://genesis.ugent.be/public_data/image/compomics.png)](http://www.compomics.com) | [![vib](http://genesis.ugent.be/public_data/image/vib.png)](http://www.vib.be) | [![](http://genesis.ugent.be/public_data/image/ugent.png)](http://www.ugent.be/en) |
-
-</span>
 
 [Go to top of page](#mascotdatfile)
 
