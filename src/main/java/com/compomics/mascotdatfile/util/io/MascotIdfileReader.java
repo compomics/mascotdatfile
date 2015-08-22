@@ -9,19 +9,18 @@ import com.compomics.mascotdatfile.util.mascot.factory.MascotDatfileFactory;
 import com.compomics.util.Util;
 import com.compomics.util.experiment.biology.Peptide;
 import com.compomics.util.experiment.identification.Advocate;
-import com.compomics.util.experiment.identification.PeptideAssumption;
 import com.compomics.util.experiment.identification.matches.ModificationMatch;
 import com.compomics.util.experiment.identification.matches.SpectrumMatch;
 import com.compomics.util.experiment.io.identifications.IdfileReader;
 import com.compomics.util.experiment.massspectrometry.Charge;
 import com.compomics.util.experiment.massspectrometry.Spectrum;
 import com.compomics.util.experiment.personalization.ExperimentObject;
-import com.compomics.util.experiment.refinementparameters.MascotScore;
 import com.compomics.mascotdatfile.util.mascot.Query;
 import com.compomics.util.experiment.biology.AminoAcid;
 import com.compomics.util.experiment.biology.AminoAcidSequence;
-import com.compomics.util.experiment.identification.SearchParameters;
-import com.compomics.util.experiment.identification.SequenceFactory;
+import com.compomics.util.experiment.identification.identification_parameters.SearchParameters;
+import com.compomics.util.experiment.identification.protein_sequences.SequenceFactory;
+import com.compomics.util.experiment.identification.spectrum_assumptions.PeptideAssumption;
 import com.compomics.util.preferences.SequenceMatchingPreferences;
 import com.compomics.util.waiting.WaitingHandler;
 
@@ -311,8 +310,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
         PeptideAssumption currentAssumption = new PeptideAssumption(peptide,
                 rank, Advocate.mascot.getIndex(), charge, aPeptideHit.getExpectancy(), getFileName());
-        MascotScore scoreParam = new MascotScore(aPeptideHit.getIonsScore());
-        currentAssumption.addUrParam(scoreParam);
+        currentAssumption.setRawScore(aPeptideHit.getIonsScore());
 
         return currentAssumption;
     }
