@@ -29,7 +29,6 @@ import com.compomics.mascotdatfile.util.interfaces.QueryToPeptideMapInf;
 import com.compomics.mascotdatfile.util.mascot.ModificationList;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.ProteinMap;
-import java.util.Vector;
 
 /**
  * Created by IntelliJ IDEA.
@@ -50,6 +49,7 @@ public class DecoyQueryToPeptideMap_Index extends QueryToPeptideMap_Index implem
     /**
      * Constructor for creating a new QueryToPeptideMap.
      *
+     * @param aController       the controller
      * @param aProteinMap       ProteinMap is a structured version of the ProteinSection.
      * @param aModificationList ModificationList to create a different Modification[] for each PeptideHit.
      */

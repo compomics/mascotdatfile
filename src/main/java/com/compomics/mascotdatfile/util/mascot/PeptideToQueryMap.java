@@ -53,6 +53,7 @@ public class PeptideToQueryMap {
      * Constructor Create the iPeptideToQueryMap, starting from the iQueryToPeptideMap
      *
      * @param aQueryToPeptideMap Hashmap with key=Querynumber that has a value=vector with peptidehits.
+     * @param aQueryList the query list
      */
     public PeptideToQueryMap(QueryToPeptideMapInf aQueryToPeptideMap, Vector aQueryList) {
         // 1.Initiate iPeptideToQueryMap.

@@ -119,6 +119,11 @@ public class Query implements Spectrum, Serializable {
      *
      * @param aQueryMap This is the HashMap that contains data about the Mascot
      * datfile Query Section.
+     * @param aPrecursorMZ the precursor mz
+     * @param aCharge the charge
+     * @param aPrecursorIntensity the precursor intensity
+     * @param aPrecursorMass the precursor mass
+     * @param aQueryNumber the query number
      */
     public Query(HashMap aQueryMap, double aPrecursorMZ, String aCharge, double aPrecursorMass, double aPrecursorIntensity, int aQueryNumber) {
         parseQueryHashMap(aQueryMap, aQueryNumber);
@@ -134,6 +139,12 @@ public class Query implements Spectrum, Serializable {
      *
      * @param aQueryMap This is the HashMap that contains data about the Mascot
      * datfile Query Section.
+     * @param aPrecursorMZ the precursor mz
+     * @param aCharge the charge
+     * @param aPrecursorIntensity the precursor intensity
+     * @param aPrecursorMass the precursor mass
+     * @param aQueryNumber the query number
+     * @param aParameters the parameters
      */
     public Query(HashMap aQueryMap, double aPrecursorMZ, String aCharge, double aPrecursorMass, double aPrecursorIntensity, int aQueryNumber, Parameters aParameters) {
 
@@ -383,8 +394,10 @@ public class Query implements Spectrum, Serializable {
     }
 
     /**
-     * This static swithch will transform the Distiller based "long" filename
+     * This static switch will transform the Distiller based "long" filename
      * into a "shorter" functional name for ms_lims.
+     *
+     * @param status on or off
      */
     public static void setDistillerFilenameProcessing(boolean status) {
         iDistillerFilenameConversion = status;
@@ -780,7 +793,7 @@ public class Query implements Spectrum, Serializable {
      * @return String Text representation of the object.
      */
     public String toString() {
-        String s = null;
+        String s;
         if (iQueryNumber != 0) {
             s = "Query " + iQueryNumber + " from spectrum: " + iTitle;
         } else {

@@ -282,6 +282,8 @@ public interface FragmentIon extends SpectrumAnnotation {
 
     /**
      * This method sets the color for the annotation.
+     *
+     * @param aColor the color
      */
     public void setColor(Color aColor);
 

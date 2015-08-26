@@ -312,7 +312,7 @@ public class Parameters implements Serializable {
     /**
      * This constructor gets a HashMap p which contains all the data in the parameter section of a datfile.
      *
-     * @param p
+     * @param p the parameters
      */
     public Parameters(HashMap p) {
         //parse all the key-values into instance variables.

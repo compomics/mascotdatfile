@@ -225,7 +225,7 @@ public class DatfileTreePanel extends JPanel {
     /**
      * Sets the filter settings to the DatfileTreeModel and a new JTree is constructed.
      *
-     * @param aConfidence
+     * @param aConfidence the confidence level
      */
     public void setFilterSettingsOnTreeModel(double aConfidence) {
         int lConfidencePercentage = (new Double((1 - aConfidence) * 100)).intValue();

@@ -127,6 +127,11 @@ public class DatfileLocation {
      * This method returns an MascotDatfile instance based on the location type that was defined in the constructor.
      *
      * @return MascotDatfile    MascotDatfile instance defined on the constructor.
+     *
+     * @throws java.lang.ClassNotFoundException if a ClassNotFoundException is thrown
+     * @throws java.lang.InstantiationException if an InstantiationException is thrown
+     * @throws java.lang.IllegalAccessException if an IllegalAccessException is thrown
+     * @throws java.sql.SQLException if an SQLException is thrown
      */
     public MascotDatfileInf getDatfile() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         return this.getDatfile(false);
@@ -137,6 +142,11 @@ public class DatfileLocation {
      *
      * @param aIndexed boolean to indicate whether the file should be loaded using an index or not.
      * @return MascotDatfile    MascotDatfile instance defined on the constructor.
+     *
+     * @throws java.lang.ClassNotFoundException if a ClassNotFoundException is thrown
+     * @throws java.lang.InstantiationException if an InstantiationException is thrown
+     * @throws java.lang.IllegalAccessException if an IllegalAccessException is thrown
+     * @throws java.sql.SQLException if an SQLException is thrown
      */
     public MascotDatfileInf getDatfile(boolean aIndexed) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         MascotDatfileInf mdf = null;

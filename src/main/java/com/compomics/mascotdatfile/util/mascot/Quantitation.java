@@ -171,7 +171,7 @@ public class Quantitation {
     /**
      * Returns the Attribute value of the requested Attribute.
      *
-     * @param aAttributeName
+     * @param aAttributeName the attribute name
      * @return String value of the requested Attribute. Can be null if the attribute was not found.
      */
     public String getMethodAttribute(String aAttributeName) {

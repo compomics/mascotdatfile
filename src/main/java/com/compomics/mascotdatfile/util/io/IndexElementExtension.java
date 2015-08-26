@@ -41,9 +41,9 @@ public class IndexElementExtension {
     /**
      * Constructor
      *
-     * @param aElement
-     * @param aPath
-     * @param aAccessor
+     * @param aElement the element
+     * @param aPath the path
+     * @param aAccessor the accessor
      */
     public IndexElementExtension(IndexElement aElement, String aPath, StandardXpathAccess aAccessor) {
         this.iIndexElement = aElement;
@@ -55,7 +55,7 @@ public class IndexElementExtension {
      * Getter for the XmlElementExtensions linked to the accessor and IndexElement
      *
      * @return the XmlElementExtensions linked to the accessor and IndexElement
-     * @throws java.io.IOException
+     * @throws java.io.IOException if an IOException is thrown
      */
     public Vector<XmlElementExtension> getExtendedXmlElement() throws IOException {
         Vector<XmlElementExtension> lElements = new Vector<XmlElementExtension>();

@@ -56,7 +56,7 @@ public class SpectrumViewer_Filter_JDialog extends JDialog {
      * @param aTarget    Databridge to pass the filter settings.
      * @param aTitle     Title of the dialog.
      * @param aPropsFile Properties file path for default settings.
-     * @throws java.awt.HeadlessException
+     * @throws java.awt.HeadlessException if an HeadlessException is thrown
      */
     public SpectrumViewer_Filter_JDialog(Frame aOwner, DataBridge aTarget, String aTitle, String aPropsFile) throws HeadlessException {
         super(aOwner, aTitle, true);

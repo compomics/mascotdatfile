@@ -57,16 +57,22 @@ public interface Modification {
 
     /**
      * The mass of the modification.
+     *
+     * @return the mass of the modification
      */
     double getMass();
 
     /**
-     * The location of the ModificationList(wich residue will be modified).
+     * The location of the modification, i.e., which residue will be modified.
+     *
+     * @return the location of the modification
      */
     String getLocation();
 
     /**
      * The int ID of the modification as used in the peptideHits_*ModificationsString
+     *
+     * @return the ID of the modification 
      */
     int getModificationID();
 

@@ -34,7 +34,6 @@ import java.util.Iterator;
 import org.apache.log4j.Logger;
 
 import java.util.List;
-import java.util.Vector;
 
 /**
  * Created by IntelliJ IDEA. User: Kenny Date: 26-feb-2006 Time: 16:52:10
@@ -62,6 +61,7 @@ public class QueryToPeptideMap_Index implements QueryToPeptideMapInf {
     /**
      * Constructor for creating a new QueryToPeptideMap.
      *
+     * @param aController the controller
      * @param aProteinMap ProteinMap is a structured version of the
      * ProteinSection.
      * @param aModificationList ModificationList to create a different

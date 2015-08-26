@@ -76,6 +76,7 @@ public class FixedModification implements Modification, Serializable {
      * Contructor Generate a fixed modification containing different parameters of the modification.
      *
      * @param aType           standard name by mascot
+     * @param aShortType      the short name
      * @param aMass           mass
      * @param aLocation       location
      * @param aModificationID modification integer ID like it used in a PeptideHit ModificationSequence String.
@@ -90,14 +91,14 @@ public class FixedModification implements Modification, Serializable {
     }
 
     /**
-     * Contructor Generate a fixed modification containing different parameters of the modification except for the mass!
-     * This constructor needs to be called when parsing old datfiles, they dont contain the mass of the fixed
+     * Constructor Generate a fixed modification containing different parameters of the modification except for the mass!
+     * This constructor needs to be called when parsing old datfiles, they do not contain the mass of the fixed
      * modifications.
      *
      * @param aType           standard name by mascot
      * @param aLocation       location
      * @param aModificationID modification integer ID like it used in a PeptideHit ModificationSequence String.
-     * @param aShortType
+     * @param aShortType      the short name
      */
     public FixedModification(String aType, String aShortType, String aLocation, int aModificationID) {
         iType = aType;
@@ -124,7 +125,7 @@ public class FixedModification implements Modification, Serializable {
      * Returns the mass of the modification.
      *
      * @return the mass of the modification by the (old) datfile.
-     * @throws MascotDatfileException
+     * @throws MascotDatfileException if a MascotDatfileException is thrown
      */
     public double getMass() {
         if (isValidMass() == false) {

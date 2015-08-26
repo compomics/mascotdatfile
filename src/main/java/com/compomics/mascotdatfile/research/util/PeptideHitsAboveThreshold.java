@@ -93,7 +93,7 @@ public class PeptideHitsAboveThreshold {
     /**
      * Use only for a quick and dirty run to get the peptidehits above threshold.
      *
-     * @param args
+     * @param args the command line arguments
      */
     public static void main(String[] args) {
         DatfileLocation dfl = null;

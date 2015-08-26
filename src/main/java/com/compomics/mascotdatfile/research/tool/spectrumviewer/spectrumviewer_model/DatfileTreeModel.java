@@ -26,7 +26,6 @@ package com.compomics.mascotdatfile.research.tool.spectrumviewer.spectrumviewer_
 import com.compomics.mascotdatfile.util.interfaces.MascotDatfileInf;
 import org.apache.log4j.Logger;
 
-import com.compomics.mascotdatfile.util.mascot.MascotDatfile;
 import com.compomics.mascotdatfile.util.mascot.PeptideHit;
 import com.compomics.mascotdatfile.util.mascot.Query;
 import java.util.List;
@@ -34,7 +33,6 @@ import java.util.List;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
-import java.util.Vector;
 
 /**
  * Created by IntelliJ IDEA. User: Kenni Date: 1-jun-2006 Time: 14:18:41 To change this template use File | Settings |
@@ -157,7 +155,7 @@ public class DatfileTreeModel implements TreeModel {
     /**
      * Sets the setting to filter the threshold.
      *
-     * @param aFilterSettingThreshold
+     * @param aFilterSettingThreshold the filter threshold
      */
     public void setFilterSettingThreshold(double aFilterSettingThreshold) {
         iFilterSettingThreshold = aFilterSettingThreshold;

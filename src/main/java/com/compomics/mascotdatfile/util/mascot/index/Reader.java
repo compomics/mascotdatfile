@@ -189,7 +189,7 @@ public class Reader {
             // 3. LineIndex reading is needed as to make the indexing feasable.
             // Now the buffered reader continues reading line by line.
 
-            String lLine = "";
+            String lLine;
             boolean lSectionFinished = false;
 
             while ((lLine = aBufferedReader.readLine()) != null) {
@@ -271,7 +271,7 @@ public class Reader {
 
         // boundary flag, parse the next line!
         //reset to false.
-        String lLine = "";
+        String lLine;
         if ((lLine = aBufferedReader.readLine()) != null) {
             lineReadFromBufferedReader(lLine);
 
@@ -337,7 +337,6 @@ public class Reader {
         ArrayList<Integer> lLineNumbers = new ArrayList<Integer>();
         int lOldQuery = 1;
         int lQuery = 1;
-        int lPeptide = 1;
 
         while ((lLine = aBufferedReader.readLine()) != null) {
             lineReadFromBufferedReader(lLine);
@@ -379,7 +378,6 @@ public class Reader {
         ArrayList<Integer> lLineNumbers = new ArrayList<Integer>();
         int lOldQuery = 1;
         int lQuery = 1;
-        int lPeptide = 1;
 
         while ((lLine = aBufferedReader.readLine()) != null) {
             lineReadFromBufferedReader(lLine);
@@ -414,8 +412,6 @@ public class Reader {
                 }
             }
         }
-
-
     }
 
     /**
@@ -509,7 +505,7 @@ public class Reader {
     /**
      * Close the RandomAccessFile and the temporary file, if any.
      *
-     * @throws java.io.IOException
+     * @throws java.io.IOException if an IOException is thrown
      */
     public void close() throws IOException {
         if (raf != null) {

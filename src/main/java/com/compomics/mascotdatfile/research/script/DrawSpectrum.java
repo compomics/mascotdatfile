@@ -153,7 +153,8 @@ public class DrawSpectrum {
     /**
      * This static method displays a masspectrum by the peaks from the Query and annotations in the Vector.
      *
-     * @param aMascotDatfile MascotDatfile pointer wherefrom you can get anything you need for the visualistion.
+     * @param aPeptideHit the peptide hit
+     * @param aMascotDatfile MascotDatfile pointer wherefrom you can get anything you need for the visualization.
      */
     public static void drawSpectrum(PeptideHit aPeptideHit, MascotDatfile aMascotDatfile) {
         // Get the best Query behind this identification.

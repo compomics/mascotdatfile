@@ -738,6 +738,8 @@ public class PeptideHitAnnotation implements Serializable {
 
     /**
      * This method returns an array with all possible B neutral loss ions.
+     *
+     * @return array with all possible B neutral loss ions
      */
     public FragmentIonImpl[] getBNeutralLossIons() {
         Vector<FragmentIonImpl> lNeutralLossIons = new Vector<FragmentIonImpl>();
@@ -775,6 +777,8 @@ public class PeptideHitAnnotation implements Serializable {
 
     /**
      * This method returns an array with all possible Y neutral loss ions.
+     *
+     * @return array with all possible Y neutral loss ions
      */
     public FragmentIonImpl[] getYNeutralLossIons() {
         Vector<FragmentIonImpl> lNeutralLossIons = new Vector<FragmentIonImpl>();
@@ -1639,6 +1643,8 @@ public class PeptideHitAnnotation implements Serializable {
 
     /**
      * This method returns a FragmentIonImp[] with the precursor as a fragmention and the immoniumIons.
+     *
+     * @return a FragmentIonImp[] with the precursor as a fragmention and the immoniumIons
      */
     public Vector getPrecursorAndImmoniumIons() {
         Vector lPrecAndImmoIons = new Vector();
@@ -1729,11 +1735,11 @@ public class PeptideHitAnnotation implements Serializable {
      *
      * @param aIonTypes int[] wherein the ions you want in return can be retrieved. use the static integers on the
      *                  FragmentIon interface!<ul> <li>0  - a Series <li>1  place holder <li>2  - a++ Series
-     *                  <p>
+     *                  <br><br>
      *                  <li>3  - b Series <li>4  place holder <li>5  - b++ Series
-     *                  <p>
+     *                  <br><br>
      *                  <li>6  - y Series <li>7  place holder <li>8  - y++ Series
-     *                  <p>
+     *                  <br><br>
      *                  <li>9  c <li>10 c++ <li>11 x <li>12 x++ <li>13 z <li>14 z++</ul>
      * @return Vector with all the theoretical fragmentions that should be checked for a match in the spectrum.
      */

@@ -55,7 +55,9 @@ public class Ratio {
     /**
      * Calculates the Ratio for the Components within the given peaks from.
      *
-     * @param aPeaks
+     * @param aPeaks the peaks
+     * @param aIonTolerance the ion tolerance
+     * @param aMassType the mass type
      * @return The calculated ratio. If these were set, the intensities will be weighted by their coefficient. If one of
      *         the Peaks was not found, the returning is negative. <ul> <li>-1 means the numerator peak is missing</li>
      *         <li>-2 means the denominator peak is missing</li> <li>-3 means both the numerator and the denominator

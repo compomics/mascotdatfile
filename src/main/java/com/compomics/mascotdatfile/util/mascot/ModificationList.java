@@ -61,9 +61,10 @@ public class ModificationList implements Serializable {
     }
 
     /**
-     * This Constructor recieves the modifications in String Format and will transform them into different objects.
+     * This Constructor receives the modifications in String Format and will transform them into different objects.
      *
      * @param aFModStringArrayList FixedModifications ArrayList
+     * @param aVModStringArrayList VariableModifcations ArrayList
      * @param aFixedModifications_ParameterSection
      *                             String with the fixed modifications as read from the parameters-section. They will
      *                             not contain mass data!! This is only functional to create a complete modifiedSequence

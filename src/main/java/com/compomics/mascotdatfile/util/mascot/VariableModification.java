@@ -71,6 +71,7 @@ public class VariableModification implements Modification, Serializable {
      * Contructor Generate a fixed modification containing different parameters of the modification.
      *
      * @param aType           standard name by mascot
+     * @param aShortType      the short name
      * @param aMass           mass
      * @param aNeutralLoss    neutral loss
      * @param aLocation       location ( Can be 'null' if location unspecified )

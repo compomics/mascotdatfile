@@ -372,7 +372,7 @@ public class PeptideHit implements Serializable {
     /**
      * This method set's the peptide mass
      *
-     * @param aPeptideMr
+     * @param aPeptideMr the peptide mass
      */
     public void setPeptideMr(double aPeptideMr) {
         iPeptideMr = aPeptideMr;
@@ -390,7 +390,7 @@ public class PeptideHit implements Serializable {
     /**
      * This method sets the delta mass
      *
-     * @param aDeltaMass
+     * @param aDeltaMass the delta mass
      */
     public void setDeltaMass(double aDeltaMass) {
         iDeltaMass = aDeltaMass;
@@ -399,7 +399,7 @@ public class PeptideHit implements Serializable {
     /**
      * Set the errortolerant search origin for this peptidehit.
      *
-     * @param aErrorTolerantHit
+     * @param aErrorTolerantHit if the search is error tolerant
      */
     public void setErrorTolerantHit(final boolean aErrorTolerantHit) {
         boolErrorTolerantHit = aErrorTolerantHit;
@@ -417,7 +417,7 @@ public class PeptideHit implements Serializable {
     /**
      * This method sets the number of matched ions
      *
-     * @param aNumberOfIonsMatched
+     * @param aNumberOfIonsMatched the number of matched ions
      */
     public void setNumberOfIonsMatched(int aNumberOfIonsMatched) {
         iNumberOfIonsMatched = aNumberOfIonsMatched;
@@ -433,9 +433,9 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * This method sets the peptide sequence
+     * This method sets the peptide sequence.
      *
-     * @param aSequence
+     * @param aSequence the peptide sequence
      */
     public void setSequence(String aSequence) {
         iSequence = aSequence;
@@ -451,9 +451,9 @@ public class PeptideHit implements Serializable {
     }
 
     /**
-     * This method sets the total number of peaks that were used from ions1
+     * This method sets the total number of peaks that were used from ions1.
      *
-     * @param aPeaksUsedFromIons1
+     * @param aPeaksUsedFromIons1 the peaks used from ions1
      */
     public void setPeaksUsedFromIons1(int aPeaksUsedFromIons1) {
         iPeaksUsedFromIons1 = aPeaksUsedFromIons1;
@@ -480,7 +480,7 @@ public class PeptideHit implements Serializable {
     /**
      * This method sets the modifications on the peptidehit by a coded String
      *
-     * @param aVariableModificationsArray
+     * @param aVariableModificationsArray the variable modifications
      */
     public void setVariableModificationsArray(int[] aVariableModificationsArray) {
         iVariableModificationsArray = aVariableModificationsArray;
@@ -489,7 +489,7 @@ public class PeptideHit implements Serializable {
     /**
      * method parses the coded variablemodificationString into an int[]
      *
-     * @param aVariableModificationString
+     * @param aVariableModificationString the variable modifications
      */
     public void setVariableModificationsArray(String aVariableModificationString) {
         //initialise the int[]
@@ -517,7 +517,7 @@ public class PeptideHit implements Serializable {
     /**
      * This sets the ionsscore of the peptidehit
      *
-     * @param aIonsScore
+     * @param aIonsScore the ion scores
      */
     public void setIonsScore(double aIonsScore) {
         iIonsScore = aIonsScore;
@@ -535,7 +535,7 @@ public class PeptideHit implements Serializable {
     /**
      * This sets a the ionseries
      *
-     * @param aIonSeriesFound
+     * @param aIonSeriesFound the ion series
      */
     public void setIonSeriesFound(int[] aIonSeriesFound) {
         iIonSeriesFound = aIonSeriesFound;
@@ -553,7 +553,7 @@ public class PeptideHit implements Serializable {
     /**
      * This sets how many peaks there were used from ions2
      *
-     * @param aPeaksUsedFromIons2
+     * @param aPeaksUsedFromIons2 the peaks user from ions2
      */
     public void setPeaksUsedFromIons2(int aPeaksUsedFromIons2) {
         iPeaksUsedFromIons2 = aPeaksUsedFromIons2;
@@ -571,7 +571,7 @@ public class PeptideHit implements Serializable {
     /**
      * This sets how many peaks there were used from ions3
      *
-     * @param aPeaksUsedFromIons3
+     * @param aPeaksUsedFromIons3 the peaks used from ions3
      */
     public void setPeaksUsedFromIons3(int aPeaksUsedFromIons3) {
         iPeaksUsedFromIons3 = aPeaksUsedFromIons3;
@@ -1016,6 +1016,7 @@ public class PeptideHit implements Serializable {
      * @param aPrecursorMZ Double with the MZ value of the precursor of the spectrum wherefrom this peptidehit was
      *                     created.
      * aPrecursorCharge    String with the precursor charge.
+     * @param aPrecursorCharge the precursor charge
      * @return PeptideHitAnnotation     returns an instance of PeptideHitAnnotation wherefrom you can get the ion series
      *         of this peptidehit.
      */

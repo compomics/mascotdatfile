@@ -126,6 +126,8 @@ public class Header implements Serializable {
 
     /**
      * Number of sequences in the database.
+     *
+     * @return number of sequences in the database
      */
     public long getSequences() {
         return iSequences;
@@ -133,6 +135,8 @@ public class Header implements Serializable {
 
     /**
      * Number of sequences in the database.
+     *
+     * @param aSequences the number of sequences in the database
      */
     public void setSequences(int aSequences) {
         iSequences = aSequences;
@@ -140,6 +144,8 @@ public class Header implements Serializable {
 
     /**
      * Number of sequences after taxonomy filter.
+     *
+     * @return number of sequences after taxonomy filter
      */
     public long getSequences_after_tax() {
         return iSequences_after_tax;
@@ -147,6 +153,8 @@ public class Header implements Serializable {
 
     /**
      * Number of sequences after taxonomy filter.
+     *
+     * @param aSequences_after_tax number of sequences after taxonomy filter
      */
     public void setSequences_after_tax(int aSequences_after_tax) {
         iSequences_after_tax = aSequences_after_tax;
@@ -154,6 +162,8 @@ public class Header implements Serializable {
 
     /**
      * Number of residues in the DB.
+     *
+     * @return number of residues in the DB
      */
     public long getResidues() {
         return iResidues;
@@ -161,22 +171,28 @@ public class Header implements Serializable {
 
     /**
      * Number of residues in the DB.
+     *
+     * @param aResidues number of residues in the DB
      */
     public void setResidues(int aResidues) {
         iResidues = aResidues;
     }
 
     /**
-     * This is a ',' seperated list of values that represent a histogram of the complete protein score distribution.
-     * Only meaningfull for a PMF search.
+     * This is a ',' separated list of values that represent a histogram of the complete protein score distribution.
+     * Only meaningful for a PMF search.
+     *
+     * @return list of values that represent a histogram of the complete protein score distribution
      */
     public String getDistribution() {
         return iDistribution;
     }
 
     /**
-     * This is a ',' seperated list of values that represent a histogram of the complete protein score distribution.
-     * Only meaningfull for a PMF search.
+     * This is a ',' separated list of values that represent a histogram of the complete protein score distribution.
+     * Only meaningful for a PMF search.
+     *
+     * @param aDistribution list of values that represent a histogram of the complete protein score distribution
      */
     public void setDistribution(String aDistribution) {
         iDistribution = aDistribution;
@@ -184,6 +200,8 @@ public class Header implements Serializable {
 
     /**
      * Search time in seconds.
+     *
+     * @return search time in seconds
      */
     public long getExecutionTime() {
         return iExecutionTime;
@@ -191,6 +209,8 @@ public class Header implements Serializable {
 
     /**
      * Search time in seconds.
+     *
+     * @param aExecutionTime search time in seconds
      */
     public void setExecutionTime(int aExecutionTime) {
         iExecutionTime = aExecutionTime;
@@ -198,6 +218,8 @@ public class Header implements Serializable {
 
     /**
      * Date when the search was done.
+     *
+     * @return date when the search was done
      */
     public long getDate() {
         return iDate;
@@ -205,6 +227,8 @@ public class Header implements Serializable {
 
     /**
      * Date when the search was done.
+     *
+     * @param aDate date when the search was done
      */
     public void setDate(int aDate) {
         iDate = aDate;
@@ -212,6 +236,8 @@ public class Header implements Serializable {
 
     /**
      * Time that the search was requested.
+     *
+     * @return time that the search was requested
      */
     public String getTime() {
         return iTime;
@@ -219,6 +245,8 @@ public class Header implements Serializable {
 
     /**
      * Time that the search was requested.
+     *
+     * @param aTime time that the search was requested
      */
     public void setTime(String aTime) {
         iTime = aTime;
@@ -226,6 +254,8 @@ public class Header implements Serializable {
 
     /**
      * Number of queries done.
+     *
+     * @return number of queries done
      */
     public int getQueries() {
         return iQueries;
@@ -233,6 +263,8 @@ public class Header implements Serializable {
 
     /**
      * Number of queries done.
+     *
+     * @param aQueries number of queries done
      */
     public void setQueries(int aQueries) {
         iQueries = aQueries;
@@ -240,6 +272,8 @@ public class Header implements Serializable {
 
     /**
      * Maximum number of hits that should be listed in the datfile.
+     *
+     * @return maximum number of hits
      */
     public int getMaxHits() {
         return iMaxHits;
@@ -247,6 +281,8 @@ public class Header implements Serializable {
 
     /**
      * Maximum number of hits that should be listed in the datfile.
+     *
+     * @param aMaxHits maximum number of hits
      */
     public void setMaxHits(int aMaxHits) {
         iMaxHits = aMaxHits;
@@ -254,6 +290,8 @@ public class Header implements Serializable {
 
     /**
      * Returns the Mascot version.
+     *
+     * @return the Mascot version
      */
     public String getVersion() {
         return iVersion;
@@ -261,6 +299,8 @@ public class Header implements Serializable {
 
     /**
      * Set the Mascot version.
+     *
+     * @param aVersion the Mascot version
      */
     public void setVersion(String aVersion) {
         iVersion = aVersion;
@@ -268,6 +308,8 @@ public class Header implements Serializable {
 
     /**
      * Filename of the actual database. (ex: SP_human_20060207.fasta)
+     *
+     * @return filename of the actual database
      */
     public String getRelease() {
         return iRelease;
@@ -275,6 +317,8 @@ public class Header implements Serializable {
 
     /**
      * Filename of the actual database. (ex: SP_human_20060207.fasta)
+     *
+     * @param aRelease filename of the actual database
      */
     public void setRelease(String aRelease) {
         iRelease = aRelease;
@@ -282,6 +326,8 @@ public class Header implements Serializable {
 
     /**
      * Unique task identifier for searches submitted asynchronously.
+     *
+     * @return unique task identifier
      */
     public String getTaskID() {
         return iTaskID;
@@ -289,6 +335,8 @@ public class Header implements Serializable {
 
     /**
      * Unique task identifier for searches submitted asynchronously.
+     *
+     * @param aTaskID unique task identifier
      */
     public void setTaskID(String aTaskID) {
         iTaskID = aTaskID;
@@ -296,6 +344,8 @@ public class Header implements Serializable {
 
     /**
      * This is a String[] with warnings from Mascot.
+     *
+     * @return the warnings
      */
     public ArrayList getWarnings() {
         return iWarnings;
@@ -303,6 +353,8 @@ public class Header implements Serializable {
 
     /**
      * This is a String[] with warnings from Mascot.
+     *
+     * @param aWarnings the warnings
      */
     public void setWarnings(ArrayList aWarnings) {
         iWarnings = aWarnings;

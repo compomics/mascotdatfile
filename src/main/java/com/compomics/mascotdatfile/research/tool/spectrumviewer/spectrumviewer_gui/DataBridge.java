@@ -36,11 +36,14 @@ public interface DataBridge {
      * This method will be used by the dialogs to pass the the MascotDatfile to the Spectrumviewer_gui.
      *
      * @param aMdf MascotDatfile instance with a DatfileTreePanel passed by a dialog.
+     * @param aFilename the file name
      */
     public void passMascotDatfile(MascotDatfileInf aMdf, String aFilename);
 
     /**
      * This method will be used by the dialogs to pass the FilterSettings to the GUI that contains the DatfileTreePanel.
+     *
+     * @param aIdentityThreshold the identity threshold
      */
     public void passFilterSettings(double aIdentityThreshold);
 }

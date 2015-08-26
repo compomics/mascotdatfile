@@ -72,7 +72,9 @@ public class XmlElementExtension {
 
 
     /**
-     * This method will parse the xml string
+     * This method will parse the xml string.
+     *
+     * @param lXmlString the XML string
      */
     public void parse(String lXmlString) {
         //split the xml tag in different lines
