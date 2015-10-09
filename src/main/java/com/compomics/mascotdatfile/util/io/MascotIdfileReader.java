@@ -51,14 +51,6 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
      * Instance of the mascotdatfile parser.
      */
     private MascotDatfileInf iMascotDatfile;
-    /**
-     * A map of the peptides found in this file.
-     */
-    private HashMap<String, LinkedList<Peptide>> peptideMap;
-    /**
-     * The length of the keys of the peptide map.
-     */
-    private int peptideMapKeyLength;
 
     /**
      * Default constructor for the service loading mechanism.
@@ -126,12 +118,6 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
     public LinkedList<SpectrumMatch> getAllSpectrumMatches(WaitingHandler waitingHandler, SearchParameters searchParameters, 
             SequenceMatchingPreferences sequenceMatchingPreferences, boolean expandAaCombinations) 
             throws IOException, IllegalArgumentException, SQLException, ClassNotFoundException, InterruptedException, JAXBException {
-
-        if (sequenceMatchingPreferences != null) {
-            SequenceFactory sequenceFactory = SequenceFactory.getInstance();
-            peptideMapKeyLength = sequenceFactory.getDefaultProteinTree().getInitialTagSize();
-            peptideMap = new HashMap<String, LinkedList<Peptide>>(1024);
-        }
 
         LinkedList<SpectrumMatch> result = new LinkedList<SpectrumMatch>();
 
@@ -297,17 +283,6 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
 
         Peptide peptide = new Peptide(peptideSequence, foundModifications);
 
-        if (sequenceMatchingPreferences != null) {
-            String subSequence = peptideSequence.substring(0, peptideMapKeyLength);
-            subSequence = AminoAcid.getMatchingSequence(subSequence, sequenceMatchingPreferences);
-            LinkedList<Peptide> peptidesForTag = peptideMap.get(subSequence);
-            if (peptidesForTag == null) {
-                peptidesForTag = new LinkedList<Peptide>();
-                peptideMap.put(subSequence, peptidesForTag);
-            }
-            peptidesForTag.add(peptide);
-        }
-
         PeptideAssumption currentAssumption = new PeptideAssumption(peptide,
                 rank, Advocate.mascot.getIndex(), charge, aPeptideHit.getExpectancy(), getFileName());
         currentAssumption.setRawScore(aPeptideHit.getIonsScore());
@@ -357,13 +332,8 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
     }
 
     @Override
-    public HashMap<String, LinkedList<Peptide>> getPeptidesMap() {
-        return peptideMap;
-    }
-
-    @Override
     public HashMap<String, LinkedList<SpectrumMatch>> getTagsMap() {
-        return new HashMap<String, LinkedList<SpectrumMatch>>();
+        return new HashMap<String, LinkedList<SpectrumMatch>>(0);
     }
 
     @Override
@@ -372,9 +342,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
     }
 
     @Override
-    public void clearPeptidesMap() {
-        if (peptideMap != null) {
-            peptideMap.clear();
-        }
+    public boolean hasDeNovoTags() {
+        return false;
     }
 }
