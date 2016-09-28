@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*
  * CVS information:
@@ -32,6 +34,8 @@ public class MascotRawParser {
 
     private static String iSeparatorA = "=";
     private static String iSeparatorB = ":";
+
+    private static final Pattern myPattern = Pattern.compile("(\"[^\"]+\")=([0-9.]+,\"[^\"]+\")");
 
     /**
      * This HashMap will hold each section in the Mascot raw results file as key-value pairs, where the key is the name
@@ -245,10 +249,20 @@ public class MascotRawParser {
                 // contain an '=', as IPI headers often do)!
                 Object key = null;
                 Object value = null;
-                if ((line.startsWith("h") && line.indexOf("_text=") >= 0) || (line.startsWith("\"") && line.endsWith("\""))) {
+                if (line.startsWith("h") && line.indexOf("_text=") >= 0) {
                     key = line.substring(0, line.indexOf("=")).trim();
                     if (line.length() > line.indexOf("=") + 1) {
                         value = line.substring(line.indexOf("=") + 1).trim();
+                    }
+                } else if (line.startsWith("\"") && line.endsWith("\"")) {
+                    // protein header and mass
+                    Matcher myMatcher = myPattern.matcher(line);
+                    if (myMatcher.matches()) {
+                        key = myMatcher.group(1);
+                        value = myMatcher.group(2);
+                    } else {
+                        logger.error("Cannot match line " + line + ".");
+                        System.exit(1);
                     }
                 } else {
                     // Normal key/value row.
