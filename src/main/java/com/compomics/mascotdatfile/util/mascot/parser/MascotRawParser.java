@@ -262,7 +262,6 @@ public class MascotRawParser {
                         value = myMatcher.group(2);
                     } else {
                         logger.error("Cannot match line " + line + ".");
-                        System.exit(1);
                     }
                 } else {
                     // Normal key/value row.
