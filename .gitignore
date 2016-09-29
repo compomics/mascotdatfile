@@ -1,2 +1,4 @@
 /target/
 mascotdatfile_log4j.log
+.idea
+*.iml
