@@ -16,10 +16,8 @@ import com.compomics.util.experiment.massspectrometry.Charge;
 import com.compomics.util.experiment.massspectrometry.Spectrum;
 import com.compomics.util.experiment.personalization.ExperimentObject;
 import com.compomics.mascotdatfile.util.mascot.Query;
-import com.compomics.util.experiment.biology.AminoAcid;
 import com.compomics.util.experiment.biology.AminoAcidSequence;
 import com.compomics.util.experiment.identification.identification_parameters.SearchParameters;
-import com.compomics.util.experiment.identification.protein_sequences.SequenceFactory;
 import com.compomics.util.experiment.identification.spectrum_assumptions.PeptideAssumption;
 import com.compomics.util.preferences.SequenceMatchingPreferences;
 import com.compomics.util.waiting.WaitingHandler;
@@ -329,16 +327,6 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
         versions.add(iMascotDatfile.getHeaderSection().getVersion());
         result.put("Mascot", versions);
         return result;
-    }
-
-    @Override
-    public HashMap<String, LinkedList<SpectrumMatch>> getTagsMap() {
-        return new HashMap<String, LinkedList<SpectrumMatch>>(0);
-    }
-
-    @Override
-    public void clearTagsMap() {
-        // No tags here
     }
 
     @Override
