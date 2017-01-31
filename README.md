@@ -1,4 +1,4 @@
-6# MascotDatfile
+# MascotDatfile
 
  * [Project Description](#project-description)
  * [Download](#download)
