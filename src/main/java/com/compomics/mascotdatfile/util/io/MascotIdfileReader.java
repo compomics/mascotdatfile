@@ -174,7 +174,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
                     }
                 }
 
-                SpectrumMatch currentMatch = new SpectrumMatch(Spectrum.getSpectrumKey(mgfFileName, spectrumId));
+                SpectrumMatch currentMatch = new SpectrumMatch(mgfFileName, spectrumId);
                 currentMatch.setSpectrumNumber(i); //@TODO: set the spectrum index instead
                 HashMap<Double, ArrayList<PeptideHit>> hitMap = new HashMap<Double, ArrayList<PeptideHit>>();
 
@@ -210,7 +210,7 @@ public class MascotIdfileReader extends ExperimentObject implements IdfileReader
                             for (StringBuilder expandedSequence : AminoAcidSequence.getCombinations(peptide.getSequence())) {
                                 Peptide newPeptide = new Peptide(expandedSequence.toString(), new ArrayList<ModificationMatch>(modificationMatches.size()));
                                 for (ModificationMatch modificationMatch : modificationMatches) {
-                                    newPeptide.addModificationMatch(new ModificationMatch(modificationMatch.getTheoreticPtm(), modificationMatch.isVariable(), modificationMatch.getModificationSite()));
+                                    newPeptide.addModificationMatch(new ModificationMatch(modificationMatch.getTheoreticPtm(), modificationMatch.getVariable(), modificationMatch.getModificationSite()));
                                 }
                                 PeptideAssumption newAssumption = new PeptideAssumption(newPeptide, peptideAssumption.getRank(), peptideAssumption.getAdvocate(), peptideAssumption.getIdentificationCharge(), peptideAssumption.getScore(), peptideAssumption.getIdentificationFile());
                                 currentMatch.addHit(Advocate.mascot.getIndex(), newAssumption, false);

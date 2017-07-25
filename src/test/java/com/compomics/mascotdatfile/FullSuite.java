@@ -65,7 +65,6 @@ public class FullSuite extends TestCase {
         ts.addTest(new TestSuite(TestProteinHit.class));
         ts.addTest(new TestSuite(TestProteinID.class));
         ts.addTest(new TestSuite(TestProteinMap.class));
-        ts.addTest(new TestSuite(TestQuery.class));
         ts.addTest(new TestSuite(TestQueryToPeptideMap.class));
         ts.addTest(new TestSuite(TestThreshold.class));
 
