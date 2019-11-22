@@ -5,7 +5,7 @@
     <groupId>com.compomics</groupId>
     <artifactId>mascotdatfile</artifactId>
     <packaging>jar</packaging>
-    <version>3.6.0</version>
+    <version>3.6.1</version>
     <name>mascotdatfile</name>
     <url>https://github.com/compomics/mascotdatfile</url>
     <description>Java API for MS/MS search results by Mascot (Matrix Science)</description>

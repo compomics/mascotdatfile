@@ -751,14 +751,14 @@ public class Query implements Spectrum, Serializable {
                 lEndScan = Integer.valueOf(aScans.substring(aScans.indexOf("-") + 1));
             } else {
                 if (aScans == null) {
-                    lBeginScan = Integer.valueOf(aTitle.substring(aTitle.indexOf("range ") + 6, aTitle.indexOf(" (rt=")));
+                    lBeginScan = Integer.valueOf(aTitle.substring(aTitle.toLowerCase().indexOf("range ") + 6, aTitle.indexOf(" (rt=")));
                     lEndScan = Integer.valueOf(aTitle.substring(aTitle.indexOf(") to ") + 5, aTitle.lastIndexOf(" (rt=")));
                 } else {
                     lBeginScan = Integer.valueOf(aScans.substring(aScans.indexOf("=") + 1, aScans.indexOf("-")));
                     lEndScan = Integer.valueOf(aScans.substring(aScans.indexOf("-") + 1));
                 }
             }
-            lSumOfScans = Integer.valueOf(aTitle.substring(aTitle.indexOf("Sum of ") + 7, aTitle.lastIndexOf(" scans ")));
+            lSumOfScans = Integer.valueOf(aTitle.substring(aTitle.indexOf("Sum of ") + 7, aTitle.lastIndexOf(" scans")));
         } else {
             // c2 Single scan form this spectrum!
             if (aMutliFile) {
